@@ -47,15 +47,15 @@ public class _5_CDIO_D3 implements EntryPoint {
 
 		// We can add style names to widgets
 		sendButton.addStyleName("sendButton");
-		sebbyButton.addStyleName("sendButton");
+		sebbyButton.addStyleName("sebbyButton");
 
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("nameFieldContainer").add(nameField);
 		RootPanel.get("sebbyFieldContainer").add(sebbyField);
 		RootPanel.get("sendButtonContainer").add(sendButton);
-		RootPanel.get("errorLabelContainer").add(errorLabel);
 		RootPanel.get("sebbyButtonContainer").add(sebbyButton);
+		RootPanel.get("errorLabelContainer").add(errorLabel);
 
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
