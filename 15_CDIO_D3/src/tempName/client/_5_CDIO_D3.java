@@ -38,18 +38,24 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		final Button sendButton = new Button("Send");
+		final Button sebbyButton = new Button("Testing");
 		final TextBox nameField = new TextBox();
-		nameField.setText("GWT User");
+		final TextBox sebbyField = new TextBox();
+		nameField.setText("GWT Users");
+		sebbyField.setText("tester");
 		final Label errorLabel = new Label();
 
 		// We can add style names to widgets
 		sendButton.addStyleName("sendButton");
+		sebbyButton.addStyleName("sendButton");
 
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("nameFieldContainer").add(nameField);
+		RootPanel.get("sebbyFieldContainer").add(sebbyField);
 		RootPanel.get("sendButtonContainer").add(sendButton);
 		RootPanel.get("errorLabelContainer").add(errorLabel);
+		RootPanel.get("sebbyButtonContainer").add(sebbyButton);
 
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
