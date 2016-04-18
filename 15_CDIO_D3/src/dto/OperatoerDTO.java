@@ -15,15 +15,18 @@ public class OperatoerDTO {
   String cpr; 
   /** Operatør password min. 7 max. 8 karakterer */
   String password;
+  /** The operators admin status. TRUE = admin, FALSE = not dmin */
+  boolean admin;
 	
 	
-  public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password) {
+  public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, boolean admin) {
     super();
     this.oprId = oprId;
     this.oprNavn = oprNavn;
     this.ini = ini;
     this.cpr = cpr;
     this.password = password;
+    this.admin = admin;
   }
 
 

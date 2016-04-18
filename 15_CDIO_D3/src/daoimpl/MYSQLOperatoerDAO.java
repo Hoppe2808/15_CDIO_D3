@@ -15,7 +15,12 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 
 	@Override
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
-		// TODO Auto-generated method stub
+		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
+		
+		try{
+			if (!rs.first()) throw new DALException("Brugeren " +oprId+ "findes ikke");
+			return new OperatoerDTO(rs.getInt("o_id"))
+		}
 		return null;
 	}
 
