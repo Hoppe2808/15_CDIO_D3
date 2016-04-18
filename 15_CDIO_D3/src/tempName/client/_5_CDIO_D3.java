@@ -19,8 +19,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import cdio1.Operatoer;
-
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
@@ -83,6 +81,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 					Window.alert("Something went wrong in checking for admin status");
 				}
 				op.addOp(11, name, password, cpr, admin);
+				Window.alert(op.getOprNavn(1));
 			}
 		});
 		

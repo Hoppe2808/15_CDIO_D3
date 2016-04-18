@@ -1,5 +1,7 @@
 package cdio1;
 
+import tempName.client.Operatoer;
+
 public class Funktionalitet implements IFunktionalitet {
 
 	private Vaegt v = new Vaegt();
