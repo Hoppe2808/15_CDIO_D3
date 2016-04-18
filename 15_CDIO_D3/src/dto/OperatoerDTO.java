@@ -78,4 +78,12 @@ public class OperatoerDTO {
   public void setPassword(String password) {
     this.password = password;
   } 
+  
+  public boolean getAdminStatus(){
+	  return admin;
+  }
+  
+  public void setAdminStatus(boolean admin){
+	  this.admin = admin;
+  }
 }
