@@ -10,13 +10,15 @@ h1 {
   text-align: center;
 }
 
-.sendButton {
+.textButton {
   display: block;
-  font-size: 16pt;
+  font-size: 10pt;
+  width: 200px;
+  height: 25px;
 }
-.sebbyButton {
-  display: block;
-  font-size: 16pt;
+
+.font{
+	font-size:12pt
 }
 
 /** Most GWT widgets already have a style name defined */
@@ -35,4 +37,9 @@ h1 {
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;
+}
+
+.loginButton{
+	display: table;
+	margin: 0 auto;
 }
