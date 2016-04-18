@@ -1,4 +1,4 @@
-package cdio1;
+package tempName.client;
 
 public interface IFunktionalitet {
 
@@ -9,7 +9,7 @@ public interface IFunktionalitet {
 	 * @param admin Admin status (1 = nej, 2 = ja)
 	 * @return True, hvis login er rigtigt
 	 */
-	boolean tjekLogin(int ID, String pass, int admin);
+	boolean tjekLogin(int ID, String pass, boolean admin);
 
 	/**
 	 * Metode der udregner nettovaegt ud fra brutto og taravaegt og gemmer det i en arraylist
@@ -33,7 +33,7 @@ public interface IFunktionalitet {
 	 * @param cpr Den nye operatoers CPR-nummer
 	 * @param admin Om han er admin (1 = nej, 2 = ja)
 	 */
-	void createOperatoer(String navn, String cpr, int admin);
+	void createOperatoer(String navn, String cpr, boolean admin);
 
 	/**
 	 * Sletter en operatoer

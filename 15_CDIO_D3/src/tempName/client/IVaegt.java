@@ -1,4 +1,4 @@
-package cdio1;
+package tempName.client;
 
 public interface IVaegt {
 

@@ -1,9 +1,7 @@
-package cdio1;
+package tempName.client;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import tempName.client.Operatoer;
 
 public class PasswordMethods {
 

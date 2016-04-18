@@ -1,6 +1,4 @@
-package cdio1;
-
-import tempName.client.Operatoer;
+package tempName.client;
 
 public class Funktionalitet implements IFunktionalitet {
 
@@ -16,17 +14,17 @@ public class Funktionalitet implements IFunktionalitet {
 	}
 
 	@Override
-	public boolean tjekLogin(int ID, String pass, int admin) {
+	public boolean tjekLogin(int ID, String pass, boolean admin) {
 		int opID = ID;
-		int adminCheck = admin;
+		boolean adminCheck = admin;
 		String adgangskode = pass;
 		int OperatørAntal = o.getOperatoerArrayLaengde();
 
 		for(int i = 0; i < OperatørAntal; i++){
 			if (opID == o.getOprId(i)){
 				if(adgangskode.equals(o.getAdgangskode(i))){
-					if(adminCheck == 2){
-						if(o.getAdminStatus(i) == 2){
+					if(adminCheck == true){
+						if(o.getAdminStatus(i) == true){
 							return true;
 						}
 					} else {
@@ -63,7 +61,7 @@ public class Funktionalitet implements IFunktionalitet {
 	}
 
 	@Override
-	public void createOperatoer(String oprNavn, String cpr, int admin) {			
+	public void createOperatoer(String oprNavn, String cpr, boolean admin) {			
 		String Adgangskode = ak.getNewKode(6);		
 		o.addOp(oprId, oprNavn, Adgangskode, cpr, admin);
 		System.out.println("DEV NOTICE - den nye operatørs adganskode (copy paste): "+Adgangskode);
@@ -123,7 +121,7 @@ public class Funktionalitet implements IFunktionalitet {
 			opValues[1] = o.getOprNavn(index);
 			opValues[2] = o.getCpr(index);
 			opValues[3] = o.getAdgangskode(index);
-			opValues[4] = Integer.toString(o.getAdminStatus(index));
+			opValues[4] = Boolean.toString(o.getAdminStatus(index));
 			return opValues;
 		}else{
 			throw new FException(iD);

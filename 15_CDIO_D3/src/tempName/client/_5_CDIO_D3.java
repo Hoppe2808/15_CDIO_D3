@@ -1,6 +1,9 @@
 package tempName.client;
 
 import tempName.shared.FieldVerifier;
+
+import java.util.Arrays;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -31,6 +34,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 	private boolean loggedIn;
 	
 	private Operatoer op = new Operatoer();
+	private Funktionalitet f = new Funktionalitet(op);
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -46,6 +50,10 @@ public class _5_CDIO_D3 implements EntryPoint {
 	/**
 	 * This is the entry point method.
 	 */
+	public void onModuleLoad() {
+		loginScreen();
+	}
+	
 	public void loginScreen(){
 		final Label loginHeader = new Label("Login");
 		final Button loginButton = new Button("Login");
@@ -63,12 +71,15 @@ public class _5_CDIO_D3 implements EntryPoint {
 					password = loginPassword.getText();
 					for (int i = 0; i < op.getOperatoerArrayLaengde(); i++){
 						if (op.getOprId(i) == id){
-							if (op.getAdgangskode(i) == password){
+							if (f.tjekLogin(id, password, op.getAdminStatus(i))){
 								loggedIn = true;
+								createOp();
 							}
 						}
 					}
-					Window.alert("Wrong login");
+					if (!(loggedIn)){
+						Window.alert("Wrong login");						
+					}
 				} else {
 					Window.alert("Username must be a number bewteen 0 - 100");
 				}
@@ -84,31 +95,22 @@ public class _5_CDIO_D3 implements EntryPoint {
 		RootPanel.get("errorLabelContainer").add(loginError);
 		
 	}
-	public void onModuleLoad() {
-		
-		while (!(loggedIn)){
-			loginScreen();
-		}
-		createOp();
-		
-
-	}
 	private void createOp() {
 		final Label createHeader = new Label("Create operator");
 		final Button submitButton = new Button("Send");
 		final TextBox username = new TextBox();
 		final Label usernameLabel = new Label("Name: ");
 		final TextBox cprField = new TextBox();
-		final Label cprLabel = new Label("Password: ");
-		final TextBox passwordField = new TextBox();
-		final Label passwordLabel = new Label("Cpr-number: ");
+		final Label cprLabel = new Label("Cpr-number: ");
 		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
 		final RadioButton adminNo = new RadioButton("radioGroup", "No");
 		final Label adminLabel = new Label("Is it an admin? ");
 		final Label errorLabel = new Label();
+		final Button logOut = new Button();
 
 		// We can add style names to widgets
 		submitButton.addStyleName("sendButton");
+		logOut.addStyleName("logOutButton");
 		
 		adminYes.setValue(false);
 		adminNo.setValue(true);
@@ -123,7 +125,6 @@ public class _5_CDIO_D3 implements EntryPoint {
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				name = username.getText();
-				password = passwordField.getText();
 				cpr = cprField.getText();
 				if (adminYes.getValue()){
 					admin = true;
@@ -133,8 +134,18 @@ public class _5_CDIO_D3 implements EntryPoint {
 					Window.alert("Something went wrong in checking for admin status");
 				}
 				
-				op.addOp(11, name, password, cpr, admin);
-				Window.alert(op.getOprNavn(1));
+				f.createOperatoer(name, cpr, admin);
+				try {
+					Window.alert(Arrays.toString(f.getOperatoer(1)));
+				} catch (FException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		logOut.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				loginScreen();
 			}
 		});
 		
@@ -149,15 +160,14 @@ public class _5_CDIO_D3 implements EntryPoint {
 		RootPanel.get("cprFieldContainer").add(cprField);
 		RootPanel.get("cprLabelContainer").add(cprLabel);
 		RootPanel.get("passwordFieldContainer").clear();
-		RootPanel.get("passwordFieldContainer").add(passwordField);
-		RootPanel.get("passwordLabelContainer").clear();;
-		RootPanel.get("passwordLabelContainer").add(passwordLabel);
+		RootPanel.get("passwordLabelContainer").clear();
 		RootPanel.get("sendButtonContainer").clear();
 		RootPanel.get("sendButtonContainer").add(submitButton);
 		RootPanel.get("isAdminButtonContainer").add(panel);
 		RootPanel.get("adminLabelContainer").add(adminLabel);
 		RootPanel.get("errorLabelContainer").clear();
 		RootPanel.get("errorLabelContainer").add(errorLabel);
+		RootPanel.get("logOutContainer").add(logOut);
 		// Focus the cursor on the name field when the app loads
 		username.setFocus(true);
 		username.selectAll();
