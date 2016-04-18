@@ -121,7 +121,7 @@ public class ProgramController {
 					System.out.println("Indtast navn: ");
 					String navn = sc.next();
 					while (navn.length() < 2 || navn.length() > 20){
-						System.out.println("Navnet skal være mellem 2 og 20 karakterer");
+					System.out.println("Navnet skal være mellem 2 og 20 karakterer");
 						navn = sc.next();
 					}
 					System.out.println("Indtast cpr-nummer: ");

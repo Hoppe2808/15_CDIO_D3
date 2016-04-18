@@ -31,7 +31,7 @@ public class AdgangskodeMetoder {
 		do{
 			kode = sc.next();
 			if(!this.kontrolKodeLaengde(kode)){
-				System.out.print("Din adgangskode skal bestå af mindst 6 karakterer!");
+				System.out.print("Din adgangskode skal bestå af mellem 7-8 karakterer!");
 			}
 			if(!this.kontrolKode(kode)){
 				System.out.println("Din adgangskode skal indholde mindst 3 følgende: Tal, Specialtegn, Stort Bogstav, Lille Bogstav");
@@ -45,7 +45,7 @@ public class AdgangskodeMetoder {
 	 * @return true hvis den er på 6 tegn eller derover
 	 */
 	public boolean kontrolKodeLaengde(String adgangskode){
-		if(adgangskode.length()<6){
+		if(adgangskode.length()<7&&adgangskode.length()>8){
 			//			System.out.print("Din adgangskode skal bestå af mindst 6 karakterer!");
 			return false;
 		}else if(adgangskode.length()>=6){
@@ -139,5 +139,9 @@ public class AdgangskodeMetoder {
 		}else{
 			return false;
 		}
+	}
+	public String getNyKode(int kodeLaengde){
+		String adgangskode = AD.getNyKode(kodeLaengde);
+		return adgangskode;
 	}
 }
