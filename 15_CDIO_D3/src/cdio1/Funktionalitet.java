@@ -3,7 +3,7 @@ package cdio1;
 public class Funktionalitet implements IFunktionalitet {
 
 	private Vaegt v = new Vaegt();
-	private AdgangskodeData ak = new AdgangskodeData();
+	private PasswordData ak = new PasswordData();
 	private Operatoer o;
 
 	private int maalingsID = 1;
@@ -62,7 +62,7 @@ public class Funktionalitet implements IFunktionalitet {
 
 	@Override
 	public void createOperatoer(String oprNavn, String cpr, int admin) {			
-		String Adgangskode = ak.getNyKode(6);		
+		String Adgangskode = ak.getNewKode(6);		
 		o.addOp(oprId, oprNavn, Adgangskode, cpr, admin);
 		System.out.println("DEV NOTICE - den nye operatørs adganskode (copy paste): "+Adgangskode);
 		System.out.println("DEV NOTICE - den nye operatørs ID er: "+oprId);

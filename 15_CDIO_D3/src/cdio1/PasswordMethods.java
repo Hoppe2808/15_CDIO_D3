@@ -3,19 +3,19 @@ package cdio1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AdgangskodeMetoder {
+public class PasswordMethods {
 
-	private AdgangskodeData AD = new AdgangskodeData();
+	private PasswordData AD = new PasswordData();
 	private Operatoer o;
 
-	private ArrayList<String> karakterer = AD.getKarakterer();
-	private boolean smaaBogstaver;
-	private boolean storeBogstaver;
-	private boolean tal;
-	private boolean tegn;
-	private int forskelige;
+	private ArrayList<String> character = AD.getCharacter();
+	private boolean smallLetters;
+	private boolean kapLetters;
+	private boolean numbers;
+	private boolean symbols;
+	private int different;
 
-	public AdgangskodeMetoder(Operatoer o) {
+	public PasswordMethods(Operatoer o) {
 		this.o = o;
 	}
 	
@@ -26,29 +26,29 @@ public class AdgangskodeMetoder {
 	 * @param sc scanner objekt der sendes videre
 	 * @return returnere koden, når den er gået igennem kontroltjekket
 	 */
-	public String kontrollerKode(int id, Scanner sc){
-		String kode;
+	public String checkPass(int id, Scanner sc){
+		String password;
 		do{
-			kode = sc.next();
-			if(!this.kontrolKodeLaengde(kode)){
+			password = sc.next();
+			if(!this.checkPassLength(password)){
 				System.out.print("Din adgangskode skal bestå af mellem 7-8 karakterer!");
 			}
-			if(!this.kontrolKode(kode)){
+			if(!this.checkPass(password)){
 				System.out.println("Din adgangskode skal indholde mindst 3 følgende: Tal, Specialtegn, Stort Bogstav, Lille Bogstav");
 			}
-		}while(!this.kontrolKode(kode));
-		return kode;
+		}while(!this.checkPass(password));
+		return password;
 	}
 	
 	/**
-	 * @param adgangskode Indsæt adgangskoden som skal kontrolleres
+	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den er på 6 tegn eller derover
 	 */
-	public boolean kontrolKodeLaengde(String adgangskode){
-		if(adgangskode.length()<7&&adgangskode.length()>8){
+	public boolean checkPassLength(String password){
+		if(password.length()<7&&password.length()>8){
 			//			System.out.print("Din adgangskode skal bestå af mindst 6 karakterer!");
 			return false;
-		}else if(adgangskode.length()>=6){
+		}else if(password.length()>=6){
 			return true;
 		}else{
 			System.out.println("Fejl i kontrolKodeLaengde");
@@ -57,53 +57,53 @@ public class AdgangskodeMetoder {
 	}
 
 	/**
-	 * @param adgangskode Indsæt adgangskoden som skal kontrolleres
+	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den består...
 	 */
-	public boolean kontrolKode(String adgangskode){
+	public boolean checkPass(String password){
 
 		AD.array();
 
-		tal=false;
-		tegn= false;
-		smaaBogstaver=false;
-		storeBogstaver=false;
-		forskelige = 0;
+		numbers=false;
+		symbols= false;
+		smallLetters=false;
+		kapLetters=false;
+		different = 0;
 
 		for(int j=0; j<=9; j++){
-			if(adgangskode.contains(karakterer.get(j))){
-				tal = true;
-				forskelige++;
+			if(password.contains(character.get(j))){
+				numbers = true;
+				different++;
 				break;
 			}
 		}
 		
 		for(int j=10; j<=35; j++){
-			if(adgangskode.contains(karakterer.get(j))){
-				smaaBogstaver = true;
-				forskelige++;
+			if(password.contains(character.get(j))){
+				smallLetters = true;
+				different++;
 				break;
 			}
 		}
 		
 		for(int j=36; j<=61; j++){
-			if(adgangskode.contains(karakterer.get(j))){
-				storeBogstaver = true;
-				forskelige++;
+			if(password.contains(character.get(j))){
+				kapLetters = true;
+				different++;
 				break;
 			}
 		}
 		
 		for(int j=62; j<=68; j++){
-			if(adgangskode.contains(karakterer.get(j))){
-				tegn = true;
-				forskelige++;
+			if(password.contains(character.get(j))){
+				symbols = true;
+				different++;
 				break;
 			}
 		}
 
-		if(!tal||!smaaBogstaver||!storeBogstaver||!tegn){
-			if(forskelige<3){
+		if(!numbers||!smallLetters||!kapLetters||!symbols){
+			if(different<3){
 				return false;
 			}
 		}
@@ -111,13 +111,13 @@ public class AdgangskodeMetoder {
 	}
 
 	/**
-	 * @param kode Første kode
-	 * @param kodex Anden kode
+	 * @param password1 Første kode
+	 * @param password2 Anden kode
 	 * @return true hvis koderne er ens METODEN ER TIL OPRETTELSE AF NY KODE
 	 */
-	public boolean ensKode(String kode, String kodex) {
+	public boolean samePass(String password1, String password2) {
 
-		if(kode.equals(kodex)) return true;
+		if(password1.equals(password2)) return true;
 		else return false;
 	}
 	
@@ -125,7 +125,7 @@ public class AdgangskodeMetoder {
 	 * 
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
-	public boolean korrektBrugerKode(int iD, String kode){
+	public boolean correctUserPassword(int iD, String kode){
 
 		int index = -1;	
 		for (int i = 0 ; i < o.getOperatoerArrayLaengde() ; i++){		
@@ -141,7 +141,7 @@ public class AdgangskodeMetoder {
 		}
 	}
 	public String getNyKode(int kodeLaengde){
-		String adgangskode = AD.getNyKode(kodeLaengde);
+		String adgangskode = AD.getNewKode(kodeLaengde);
 		return adgangskode;
 	}
 }

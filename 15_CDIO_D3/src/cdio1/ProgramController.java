@@ -13,7 +13,7 @@ public class ProgramController {
 	
 	private Operatoer o = new Operatoer();
 	private Funktionalitet f = new Funktionalitet(o);
-	private AdgangskodeMetoder ak = new AdgangskodeMetoder(o);
+	private PasswordMethods ak = new PasswordMethods(o);
 	TUI tui;
 
 	int valg;
@@ -186,7 +186,7 @@ public class ProgramController {
 						System.out.println("Intast operatørens ID");
 						m3Valg = sc.nextInt();
 						System.out.println("Intast ny adgangskode til operatør");
-						m3ValgString = ak.kontrollerKode(m3Valg, sc);
+						m3ValgString = ak.checkPass(m3Valg, sc);
 						try {
 							f.updateOperatoer(m3Valg, 3, m3ValgString);
 							System.out.println("Operatørens navn er nu ændret");
@@ -259,16 +259,16 @@ public class ProgramController {
 					String kode = sc.next();
 					String kodex;
 
-					if(ak.korrektBrugerKode(ID, kode)){
+					if(ak.correctUserPassword(ID, kode)){
 						System.out.println("Indtast ny adgangskode her: ");
-						kode = ak.kontrollerKode(ID, sc);
+						kode = ak.checkPass(ID, sc);
 						System.out.println("Indtast ny adgangskode igen: ");
 						kodex = sc.next();
-						if(!ak.ensKode(kode, kodex)){
+						if(!ak.samePass(kode, kodex)){
 							System.out.println("Kodeordene er ikke ens!");
 						}
 
-						else if(ak.ensKode(kode, kodex)){
+						else if(ak.samePass(kode, kodex)){
 							f.setKode(ID, kode);
 						}
 					}else{
