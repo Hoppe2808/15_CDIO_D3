@@ -7,7 +7,7 @@ public class Operatoer implements IOperatoer{
 	private ArrayList<op> opArray = new ArrayList<op>();
 
 	public Operatoer(){
-		this.addOp(10, "Admin", "Abc02324", "", true);
+		this.addOp(0, "Admin", "Abc02324", "", true);
 	}
 
 	/**

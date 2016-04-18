@@ -58,14 +58,19 @@ public class _5_CDIO_D3 implements EntryPoint {
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				name = loginUsername.getText();
-				if (name.matches("^[1-9][0-9]?$|^100$")){
+				if (name.matches("^[0-9][0-9]?$|^100$")){
 					id = Integer.parseInt(name);
 					password = loginPassword.getText();
-					if (op.getOprId(id) != 0){
-						loggedIn = true;						
+					for (int i = 0; i < op.getOperatoerArrayLaengde(); i++){
+						if (op.getOprId(i) == id){
+							if (op.getAdgangskode(i) == password){
+								loggedIn = true;
+							}
+						}
 					}
-				} else {
 					Window.alert("Wrong login");
+				} else {
+					Window.alert("Username must be a number bewteen 0 - 100");
 				}
 			}
 		});
