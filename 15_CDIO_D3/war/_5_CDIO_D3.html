@@ -10,29 +10,35 @@
 
     	<link type="text/css" rel="stylesheet" href="_5_CDIO_D3.css">
 
-    <title>Hey fuqbui</title>
+    <title>CDIOd3</title>
     
     <script type="text/javascript" language="javascript" src="_5_cdio_d3/_5_cdio_d3.nocache.js"></script>
 	</head>
 	<body>
-	<h1>Velkommen til nettovægtsberegneren!</h1>
 	<table align="center">
+		<h1>Opret operatør</h1>
 		<tr>
-		<td colspan="2" style="font-weight:bold" class="font">Indtast brugernavn og password</td>
-		</tr>
-		<tr>
-			<td><input type="text" class="textButton" placeholder="Brugernavn"></td>
-        </tr>
-        <tr>
-        	<td><input type="text" class="textButton" placeholder="Password"></td>
-        </tr>
-        <tr>
-        <td> <button class="loginButton">Login</button> </td>
-        </tr>
-	</table>
-        	
-       
-        	
-	</body>
+			<td><label>Navn:</label></td>
+			<td id ="nameFieldContainer"></td>
 
+
+
+        </tr>
+        <tr>
+			<td><label>Adgangskode:</label></td>
+        	<td id ="passwordFieldContainer"></td>        
+        </tr>
+        <tr>
+        	<td><label>Cpr-nummer:</label></td>
+        	<td id ="cprFieldContainer"></td>        
+        </tr>
+        <tr>
+           	<td><label>Er det en admin?</label></td>
+           	<td id = "isAdminButtonContainer"></td>
+        </tr>
+        <tr>
+        <td id = "sendButtonContainer"></td>
+        </tr>	
+	</table>
+	</body>
 </html>

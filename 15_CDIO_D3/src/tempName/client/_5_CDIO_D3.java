@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -37,23 +38,35 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		final Button loginButton = new Button("login");
+		final Button loginButton = new Button("Send");
 		final TextBox username = new TextBox();
-		final TextBox password = new TextBox();
-		username.setText("GWT Users");
-		password.setText("tester");
+		final TextBox cprField = new TextBox();
+		final TextBox passwordField = new TextBox();
+		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
+		final RadioButton adminNo = new RadioButton("radioGroup", "No");
+		username.setText("Name");
+		cprField.setText("CprNr");
+		passwordField.setText("Password");
 		final Label errorLabel = new Label();
 
 		// We can add style names to widgets
 		loginButton.addStyleName("sendButton");
-		sebbyButton.addStyleName("sebbyButton");
+		
+		adminYes.setValue(false);
+		adminNo.setValue(true);
+		
+		VerticalPanel panel = new VerticalPanel();
+		panel.setSpacing(3);
+		panel.add(adminYes);
+		panel.add(adminNo);
 
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("nameFieldContainer").add(username);
-		RootPanel.get("sebbyFieldContainer").add(password);
+		RootPanel.get("cprFieldContainer").add(cprField);
+		RootPanel.get("passwordFieldContainer").add(passwordField);
 		RootPanel.get("sendButtonContainer").add(loginButton);
-		RootPanel.get("sebbyButtonContainer").add(sebbyButton);
+		RootPanel.get("isAdminButtonContainer").add(panel);
 		RootPanel.get("errorLabelContainer").add(errorLabel);
 
 		// Focus the cursor on the name field when the app loads
