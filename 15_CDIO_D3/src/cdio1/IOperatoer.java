@@ -2,7 +2,7 @@ package cdio1;
 
 public interface IOperatoer {
 
-	void addOp(int oprId, String oprNavn, String adgangskode, String cpr, int admin);
+	void addOp(int oprId, String oprNavn, String adgangskode, String cpr, boolean admin);
 	void setOprId(int index, int oprId);
 	void setOprNavn(int index, String oprNavn);
 	void setCpr(int index, String value);

@@ -13,7 +13,7 @@ public class Operatoer implements IOperatoer{
 	/**
 	 * Tilføjer en ny operatoer
 	 */
-	public void addOp(int oprId, String oprNavn, String adgangskode, String cpr, int admin){
+	public void addOp(int oprId, String oprNavn, String adgangskode, String cpr, boolean admin){
 		opArray.add(new op(oprId, oprNavn, adgangskode, cpr, admin));
 	}
 
@@ -117,12 +117,12 @@ public class Operatoer implements IOperatoer{
 	private class op{
 
 		private int oprId;
-		private int admin;
+		private boolean admin;
 		private String oprNavn;
 		private String adgangskode;
 		private String cpr;
 
-		private op(int oprId, String oprNavn, String adgangskode, String cpr, int admin){
+		private op(int oprId, String oprNavn, String adgangskode, String cpr, boolean admin){
 
 			this.cpr = cpr;
 			this.adgangskode = adgangskode;
