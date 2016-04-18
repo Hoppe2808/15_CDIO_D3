@@ -3,6 +3,8 @@ package cdio1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import tempName.client.Operatoer;
+
 public class PasswordMethods {
 
 	private PasswordData AD = new PasswordData();
