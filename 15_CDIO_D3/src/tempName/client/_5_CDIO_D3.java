@@ -40,6 +40,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		final Button submitButton = new Button("Send");
+
 		final TextBox username = new TextBox();
 		final TextBox cprField = new TextBox();
 		final TextBox passwordField = new TextBox();
@@ -69,51 +70,16 @@ public class _5_CDIO_D3 implements EntryPoint {
 		RootPanel.get("sendButtonContainer").add(submitButton);
 		RootPanel.get("isAdminButtonContainer").add(panel);
 		RootPanel.get("errorLabelContainer").add(errorLabel);
-
+		Window.alert("Hej");
 		// Focus the cursor on the name field when the app loads
 		username.setFocus(true);
 		username.selectAll();
-
-		// Create a handler for the sendButton and nameField
-		class MyHandler implements ClickHandler, KeyUpHandler {
-			/**
-			 * Fired when the user clicks on the sendButton.
-			 */
+		
+		
+		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				Window.alert(username.getText());
-				sendNameToServer();
+				Window.alert("Hej");
 			}
-
-			/**
-			 * Fired when the user types in the nameField.
-			 */
-			public void onKeyUp(KeyUpEvent event) {
-				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					sendNameToServer();
-				}
-			}
-
-			/**
-			 * Send the name from the nameField to the server and wait for a response.
-			 */
-			private void sendNameToServer() {
-				// First, we validate the input.
-				errorLabel.setText("");
-				String textToServer = username.getText();
-				Window.alert(username.getText());
-				if (!FieldVerifier.isValidName(textToServer)) {
-					errorLabel.setText("Please enter at least four characters");
-					return;
-				}
-
-				// Then, we send the input to the server.
-				submitButton.setEnabled(false);
-			}
-		}
-
-		// Add a handler to send the name to the server
-		MyHandler handler = new MyHandler();
-		submitButton.addClickHandler(handler);
-		username.addKeyUpHandler(handler);
+		});
 	}
 }
