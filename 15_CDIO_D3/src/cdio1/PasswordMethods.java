@@ -125,7 +125,7 @@ public class PasswordMethods {
 	 * 
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
-	public boolean correctUserPassword(int iD, String kode){
+	public boolean correctUserPassword(int iD, String password){
 
 		int index = -1;	
 		for (int i = 0 ; i < o.getOperatoerArrayLaengde() ; i++){		
@@ -134,14 +134,14 @@ public class PasswordMethods {
 			}		
 		}
 
-		if(o.getAdgangskode(index).equals(kode)){
+		if(o.getAdgangskode(index).equals(password)){
 			return true;
 		}else{
 			return false;
 		}
 	}
-	public String getNyKode(int kodeLaengde){
-		String adgangskode = AD.getNewKode(kodeLaengde);
-		return adgangskode;
+	public String getNewPassword(int passwordLength){
+		String password = AD.getNewKode(passwordLength);
+		return password;
 	}
 }
