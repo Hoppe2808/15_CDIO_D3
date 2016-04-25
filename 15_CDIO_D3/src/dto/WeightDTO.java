@@ -14,7 +14,7 @@ public class WeightDTO {
 	 * @param opID The operator behind the measurement
 	 * @param ms the weight of the measurement
 	 */
-	public WeightDTO (int opID, double ms){
+	public WeightDTO (int w_id, double ms, int opID){
 		super();
 		this.opID = opID;
 		this.ms = ms;		
