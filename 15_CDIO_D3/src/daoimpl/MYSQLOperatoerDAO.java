@@ -13,7 +13,6 @@ import dto.OperatoerDTO;
 
 public class MYSQLOperatoerDAO implements OperatoerDAO {
 
-	@Override
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
 
@@ -25,7 +24,6 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		}
 	}
 
-	@Override
 	public List<OperatoerDTO> getOperatoerList() throws DALException {
 		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
@@ -40,7 +38,6 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		return list;
 	}
 
-	@Override
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
 		Connector.doUpdate(
 				"INSERT INTO operatoer(o_id, name, ini, cpr, password, admin) VALUES "
@@ -50,7 +47,6 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 
 	}
 
-	@Override
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
 		Connector.doUpdate(
 				"UPDATE operatoer SET name = '" + opr.getOprNavn() + "', ini = '" + opr.getIni() + "', '" 
