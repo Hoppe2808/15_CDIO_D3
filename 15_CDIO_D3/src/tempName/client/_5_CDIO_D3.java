@@ -1,5 +1,7 @@
 package tempName.client;
 
+import tempName.client.service.GreetingService;
+import tempName.client.service.GreetingServiceAsync;
 import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
@@ -45,8 +47,6 @@ public class _5_CDIO_D3 implements EntryPoint {
 	private boolean admin;
 	private boolean loggedIn;
 	
-	private Operatoer op = new Operatoer();
-	private Funktionalitet f = new Funktionalitet(op);
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -172,7 +172,14 @@ public class _5_CDIO_D3 implements EntryPoint {
 		MYSQLWeightDAO meas = new MYSQLWeightDAO();
 		List<WeightDTO> measurements = new ArrayList<WeightDTO>();
 		final CellTable<WeightDTO> table = new CellTable<WeightDTO>();
-		
+		greetingService.greetServer("Måling", new AsyncCallback<String>(){
+			public void onFailure(Throwable caught) {
+				// Show the RPC error message to the user
+			}
+
+			public void onSuccess(String result) {
+			}
+		});
 		try {
 			measurements = meas.getWeightList();
 		} catch (DALException e) {

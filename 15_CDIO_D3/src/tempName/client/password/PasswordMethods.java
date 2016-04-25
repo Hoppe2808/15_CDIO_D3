@@ -1,4 +1,4 @@
-package tempName.client;
+package tempName.client.password;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package tempName.client;
+package tempName.client.service;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
