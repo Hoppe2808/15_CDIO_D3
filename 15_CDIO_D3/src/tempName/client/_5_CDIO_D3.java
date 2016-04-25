@@ -11,6 +11,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -18,6 +20,9 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -52,7 +57,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		loginScreen();
+		adminMenu();
 	}
 	
 	public void loginScreen(){
@@ -63,6 +68,12 @@ public class _5_CDIO_D3 implements EntryPoint {
 		final TextBox loginPassword = new TextBox();
 		final Label logPassLabel = new Label("Password: ");
 		final Label loginError = new Label();
+		final VerticalPanel container = new VerticalPanel();
+		container.add(logUserLabel);
+		container.add(loginUsername);
+		container.add(logPassLabel);
+		container.add(loginPassword);
+		container.add(loginButton);
 		
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -74,7 +85,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 						if (op.getOprId(i) == id){
 							if (f.tjekLogin(id, password, op.getAdminStatus(i))){
 								loggedIn = true;
-								createOp();
+								adminMenu();
 							}
 						}
 					}
@@ -86,16 +97,212 @@ public class _5_CDIO_D3 implements EntryPoint {
 				}
 			}
 		});
-		
+		RootPanel.get("headerContainer").clear();
 		RootPanel.get("headerContainer").add(loginHeader);
-		RootPanel.get("nameFieldContainer").add(loginUsername);
-		RootPanel.get("nameLabelContainer").add(logUserLabel);
-		RootPanel.get("passwordFieldContainer").add(loginPassword);
-		RootPanel.get("passwordLabelContainer").add(logPassLabel);
-		RootPanel.get("sendButtonContainer").add(loginButton);
-		RootPanel.get("errorLabelContainer").add(loginError);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
 		
 	}
+	
+	private void adminMenu(){
+		final Label adminHeader = new Label("Admin Menu");
+		final Button createOp = new Button("Create new operator");
+		final Button deleteOp = new Button("Delete an operator");
+		final Button editOp = new Button("Change attributes of operator");
+		final Button inspectOp = new Button("Inspect an operator");
+		final Button measurements = new Button("Check measurements");
+		final Button logout = new Button("Logout");
+		final VerticalPanel container = new VerticalPanel();
+		container.setSpacing(9);
+		container.add(createOp);
+		container.add(deleteOp);
+		container.add(editOp);
+		container.add(inspectOp);
+		container.add(measurements);
+		
+		createOp.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				createOp();
+			}
+		});
+		deleteOp.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				deleteOp();
+			}
+		});
+		editOp.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				editOp();
+			}
+		});
+		inspectOp.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				inspectOp();
+			}
+		});
+		measurements.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				measurements();
+			}
+		});
+		logout.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				loginScreen();
+			}
+		});
+		RootPanel.get("headerContainer").clear();
+		RootPanel.get("headerContainer").add(adminHeader);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
+		RootPanel.get("logout").add(logout);
+		RootPanel.get("back").clear();
+	}
+	
+	private void measurements() {
+		final Label measureHeader = new Label("Measurements");
+		final CellTable table = new CellTable();
+		
+		final TextColumn wID = new TextColumn(){
+
+			@Override
+			public Object getValue(Object object) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+		}
+		final TextColumn w = new TextColumn(){
+
+			@Override
+			public Object getValue(Object object) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+		}
+		final TextColumn oID = new TextColumn(){
+
+			@Override
+			public Object getValue(Object object) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+		}
+		final Button back = new Button("<- Back");
+		final VerticalPanel container = new VerticalPanel();
+		container.setSpacing(9);
+		container.add(table);
+		RootPanel.get("headerContainer").clear();
+		RootPanel.get("headerContainer").add(measureHeader);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
+		RootPanel.get("back").clear();
+		RootPanel.get("back").add(back);
+		
+		back.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				adminMenu();
+			}
+		});
+	}
+
+	private void inspectOp() {
+		final Label inspectHeader = new Label("Inspect an operator");
+		final ListBox lb = new ListBox();
+		final Button inspect = new Button("Inspect");
+		final Button back = new Button("<- Back");
+		final VerticalPanel container = new VerticalPanel();
+		container.setSpacing(9);
+		container.add(lb);
+		container.add(inspect);
+		
+		RootPanel.get("headerContainer").clear();
+		RootPanel.get("headerContainer").add(inspectHeader);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
+		RootPanel.get("back").clear();
+		RootPanel.get("back").add(back);
+		
+		back.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				adminMenu();
+			}
+		});
+	}
+
+	private void editOp() {
+		final Label editHeader = new Label("Edit an operator");
+		final ListBox lb = new ListBox();
+		final Label username = new Label("Username: ");
+		final TextBox userText = new TextBox();
+		final Label password = new Label("Password: ");
+		final TextBox passText = new TextBox();
+		final Label cpr = new Label("Cpr-number: ");
+		final TextBox cprText = new TextBox();
+		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
+		final RadioButton adminNo = new RadioButton("radioGroup", "No");
+		final Label adminLabel = new Label("Is it an admin? ");
+		final Button submit = new Button("Submit");
+		VerticalPanel panel = new VerticalPanel();
+		panel.setSpacing(3);
+		panel.add(adminYes);
+		panel.add(adminNo);
+		
+		final Button back = new Button("<- Back");
+		final VerticalPanel container = new VerticalPanel();
+		container.setSpacing(9);
+		container.add(lb);
+		container.add(username);
+		container.add(userText);
+		container.add(cpr);
+		container.add(cprText);
+		container.add(password);
+		container.add(passText);
+		container.add(panel);
+		container.add(submit);
+		
+		RootPanel.get("headerContainer").clear();
+		RootPanel.get("headerContainer").add(editHeader);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
+		RootPanel.get("back").clear();
+		RootPanel.get("back").add(back);
+		
+		back.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				adminMenu();
+			}
+		});
+	}
+
+	private void deleteOp() {
+		final Label deleteHeader = new Label("Delete operator");
+		final ListBox lb = new ListBox();
+		final Button delete = new Button("Delete");
+		final Button back = new Button("<- Back");
+		final VerticalPanel container = new VerticalPanel();
+		container.add(lb);
+		container.add(delete);
+		back.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				adminMenu();
+			}
+		});
+		RootPanel.get("headerContainer").clear();
+		RootPanel.get("headerContainer").add(deleteHeader);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
+		RootPanel.get("back").clear();
+		RootPanel.get("back").add(back);
+	}
+	
 	private void createOp() {
 		final Label createHeader = new Label("Create operator");
 		final Button submitButton = new Button("Send");
@@ -107,19 +314,28 @@ public class _5_CDIO_D3 implements EntryPoint {
 		final RadioButton adminNo = new RadioButton("radioGroup", "No");
 		final Label adminLabel = new Label("Is it an admin? ");
 		final Label errorLabel = new Label();
-		final Button logOut = new Button();
-
-		// We can add style names to widgets
-		submitButton.addStyleName("sendButton");
-		logOut.addStyleName("logOutButton");
-		
-		adminYes.setValue(false);
-		adminNo.setValue(true);
-		
+		final Button back = new Button("<- Back");
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(3);
 		panel.add(adminYes);
 		panel.add(adminNo);
+		final VerticalPanel container = new VerticalPanel();
+		container.setSpacing(9);
+		
+		container.add(usernameLabel);
+		container.add(username);
+		container.add(cprLabel);
+		container.add(cprField);
+		container.add(adminLabel);
+		container.add(panel);
+		container.add(submitButton);
+
+		// We can add style names to widgets
+		submitButton.addStyleName("sendButton");
+		
+		adminYes.setValue(false);
+		adminNo.setValue(true);
+		
 
 
 		
@@ -144,9 +360,9 @@ public class _5_CDIO_D3 implements EntryPoint {
 				}
 			}
 		});
-		logOut.addClickHandler(new ClickHandler() {
+		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				loginScreen();
+				adminMenu();
 			}
 		});
 		
@@ -154,21 +370,12 @@ public class _5_CDIO_D3 implements EntryPoint {
 		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("headerContainer").clear();
 		RootPanel.get("headerContainer").add(createHeader);
-		RootPanel.get("nameFieldContainer").clear();
-		RootPanel.get("nameFieldContainer").add(username);
-		RootPanel.get("nameLabelContainer").clear();;
-		RootPanel.get("nameLabelContainer").add(usernameLabel);
-		RootPanel.get("cprFieldContainer").add(cprField);
-		RootPanel.get("cprLabelContainer").add(cprLabel);
-		RootPanel.get("passwordFieldContainer").clear();
-		RootPanel.get("passwordLabelContainer").clear();
-		RootPanel.get("sendButtonContainer").clear();
-		RootPanel.get("sendButtonContainer").add(submitButton);
-		RootPanel.get("isAdminButtonContainer").add(panel);
-		RootPanel.get("adminLabelContainer").add(adminLabel);
-		RootPanel.get("errorLabelContainer").clear();
-		RootPanel.get("errorLabelContainer").add(errorLabel);
-		RootPanel.get("logOutContainer").add(logOut);
+		RootPanel.get("bodyContainer").clear();
+		RootPanel.get("bodyContainer").add(container);
+		RootPanel.get("logout").clear();
+		RootPanel.get("back").clear();
+		RootPanel.get("back").add(back);
+		
 		// Focus the cursor on the name field when the app loads
 		username.setFocus(true);
 		username.selectAll();
