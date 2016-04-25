@@ -84,24 +84,24 @@ public class _5_CDIO_D3 implements EntryPoint {
 		
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				name = loginUsername.getText();
-				if (name.matches("^[0-9][0-9]?$|^100$")){
-					id = Integer.parseInt(name);
-					password = loginPassword.getText();
-					for (int i = 0; i < op.getOperatoerArrayLaengde(); i++){
-						if (op.getOprId(i) == id){
-							if (f.tjekLogin(id, password, op.getAdminStatus(i))){
-								loggedIn = true;
-								adminMenu();
-							}
-						}
-					}
-					if (!(loggedIn)){
-						Window.alert("Wrong login");						
-					}
-				} else {
-					Window.alert("Username must be a number bewteen 0 - 100");
-				}
+//				name = loginUsername.getText();
+//				if (name.matches("^[0-9][0-9]?$|^100$")){
+//					id = Integer.parseInt(name);
+//					password = loginPassword.getText();
+//					for (int i = 0; i < op.getOperatoerArrayLaengde(); i++){
+//						if (op.getOprId(i) == id){
+//							if (f.tjekLogin(id, password, op.getAdminStatus(i))){
+//								loggedIn = true;
+//								adminMenu();
+//							}
+//						}
+//					}
+//					if (!(loggedIn)){
+//						Window.alert("Wrong login");						
+//					}
+//				} else {
+//					Window.alert("Username must be a number bewteen 0 - 100");
+//				}
 			}
 		});
 		RootPanel.get("headerContainer").clear();
@@ -373,23 +373,23 @@ public class _5_CDIO_D3 implements EntryPoint {
 		
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				name = username.getText();
-				cpr = cprField.getText();
-				if (adminYes.getValue()){
-					admin = true;
-				} else if(adminNo.getValue()){
-					admin = false;
-				} else {
-					Window.alert("Something went wrong in checking for admin status");
-				}
-				
-				f.createOperatoer(name, cpr, admin);
-				try {
-					Window.alert(Arrays.toString(f.getOperatoer(1)));
-				} catch (FException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				name = username.getText();
+//				cpr = cprField.getText();
+//				if (adminYes.getValue()){
+//					admin = true;
+//				} else if(adminNo.getValue()){
+//					admin = false;
+//				} else {
+//					Window.alert("Something went wrong in checking for admin status");
+//				}
+//				
+//				f.createOperatoer(name, cpr, admin);
+//				try {
+//					Window.alert(Arrays.toString(f.getOperatoer(1)));
+//				} catch (FException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 			}
 		});
 		back.addClickHandler(new ClickHandler() {

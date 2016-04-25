@@ -53,7 +53,8 @@ public class MySQLTest {
 
 		System.out.println("Opdatering af initialer for operatoer nummer 200");
 		oprDTO.setIni("DoJu");
-		try { opr.updateOperatoer(oprDTO);
+		try { 
+			opr.updateOperatoer(oprDTO);
 		}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 

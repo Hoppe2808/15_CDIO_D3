@@ -3,10 +3,12 @@ package tempName.client.password;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import tempName.server.data.dto.OperatoerDTO;
+
 public class PasswordMethods {
 
 	private PasswordData AD = new PasswordData();
-	private Operatoer o;
+	private OperatoerDTO o;
 
 	private ArrayList<String> character = AD.getCharacter();
 	private boolean smallLetters;
@@ -15,7 +17,7 @@ public class PasswordMethods {
 	private boolean symbols;
 	private int different;
 
-	public PasswordMethods(Operatoer o) {
+	public PasswordMethods(OperatoerDTO o) {
 		this.o = o;
 	}
 	
@@ -127,18 +129,18 @@ public class PasswordMethods {
 	 */
 	public boolean correctUserPassword(int iD, String password){
 
-		int index = -1;	
-		for (int i = 0 ; i < o.getOperatoerArrayLaengde() ; i++){		
-			if (iD == o.getOprId(i)){			
-				index = i;			
-			}		
-		}
-
-		if(o.getAdgangskode(index).equals(password)){
-			return true;
-		}else{
+//		int index = -1;	
+//		for (int i = 0 ; i < o.getOperatoerArrayLaengde() ; i++){		
+//			if (iD == o.getOprId(i)){			
+//				index = i;			
+//			}		
+//		}
+//
+//		if(o.getAdgangskode(index).equals(password)){
+//			return true;
+//		}else{
 			return false;
-		}
+//		}
 	}
 	public String getNewPassword(int passwordLength){
 		String password = AD.getNewKode(passwordLength);
