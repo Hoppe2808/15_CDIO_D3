@@ -2,7 +2,9 @@ package tempName.client;
 
 import tempName.shared.FieldVerifier;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -27,6 +29,11 @@ import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.view.client.ListDataProvider;
+
+import daoimpl.MYSQLWeightDAO;
+import daointerface.DALException;
+import dto.WeightDTO;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -52,6 +59,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 * Create a remote service proxy to talk to the server-side Greeting service.
 	 */
 	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
+	
 
 	/**
 	 * This is the entry point method.
@@ -162,35 +170,53 @@ public class _5_CDIO_D3 implements EntryPoint {
 	
 	private void measurements() {
 		final Label measureHeader = new Label("Measurements");
-		final CellTable table = new CellTable();
+		MYSQLWeightDAO meas = new MYSQLWeightDAO();
+		List<WeightDTO> measurements = new ArrayList<WeightDTO>();
+		final CellTable<WeightDTO> table = new CellTable<WeightDTO>();
 		
-		final TextColumn wID = new TextColumn(){
+		try {
+			measurements = meas.getWeightList();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
+		dataProvider.addDataDisplay(table);
+		
+		List<WeightDTO> list = dataProvider.getList();
+	    for (WeightDTO measurement : measurements) {
+	      list.add(measurement);
+	    }
+		
+		final TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
 
 			@Override
-			public Object getValue(Object object) {
-				// TODO Auto-generated method stub
-				return null;
+			public String getValue(WeightDTO mm) {
+				return Integer.toString(mm.getWID());
 			}
 			
-		}
-		final TextColumn w = new TextColumn(){
+		};
+		final TextColumn<WeightDTO> w = new TextColumn<WeightDTO>(){
 
 			@Override
-			public Object getValue(Object object) {
+			public String getValue(WeightDTO mm) {
 				// TODO Auto-generated method stub
-				return null;
+				return Double.toString(mm.getMS());
 			}
 			
-		}
-		final TextColumn oID = new TextColumn(){
+		};
+		final TextColumn<WeightDTO> oID = new TextColumn<WeightDTO>(){
 
 			@Override
-			public Object getValue(Object object) {
-				// TODO Auto-generated method stub
-				return null;
+			public String getValue(WeightDTO mm) {
+				return Integer.toString(mm.getopID());
 			}
 			
-		}
+		};
+
+		table.addColumn(wID, "Weight ID");
+		table.addColumn(w, "Measurement");
+		table.addColumn(oID, "Operator ID");
 		final Button back = new Button("<- Back");
 		final VerticalPanel container = new VerticalPanel();
 		container.setSpacing(9);

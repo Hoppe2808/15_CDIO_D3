@@ -6,6 +6,7 @@ package dto;
 
 public class WeightDTO {
 
+	int wID;
 	int opID;
 	double ms;
 	
@@ -16,6 +17,7 @@ public class WeightDTO {
 	 */
 	public WeightDTO (int w_id, double ms, int opID){
 		super();
+		this.wID = w_id;
 		this.opID = opID;
 		this.ms = ms;		
 	}
@@ -34,5 +36,8 @@ public class WeightDTO {
 	
 	public void setMS(double ms){
 		this.ms = ms;
+	}
+	public int getWID(){
+		return wID;
 	}
 }
