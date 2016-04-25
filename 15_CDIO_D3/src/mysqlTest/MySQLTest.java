@@ -1,10 +1,11 @@
 package mysqlTest;
 
 import java.sql.SQLException;
-import daointerface.DALException;
-import database.Connector;
-import dto.OperatoerDTO;
-import daoimpl.MYSQLOperatoerDAO;
+
+import tempName.server.data.daoimpl.MYSQLOperatoerDAO;
+import tempName.server.data.daointerface.DALException;
+import tempName.server.data.database.Connector;
+import tempName.server.data.dto.OperatoerDTO;
 
 public class MySQLTest {
 

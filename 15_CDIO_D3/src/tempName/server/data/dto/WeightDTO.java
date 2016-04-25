@@ -1,4 +1,4 @@
-package dto;
+package tempName.server.data.dto;
 
 /**
  * Data transfer object for weight measurements

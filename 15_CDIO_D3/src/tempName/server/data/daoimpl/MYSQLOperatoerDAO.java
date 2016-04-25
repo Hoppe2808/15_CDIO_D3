@@ -1,15 +1,14 @@
-package daoimpl;
+package tempName.server.data.daoimpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
-import database.Connector;
-
-import daointerface.DALException;
-import daointerface.OperatoerDAO;
-import dto.OperatoerDTO;
+import tempName.server.data.daointerface.DALException;
+import tempName.server.data.daointerface.OperatoerDAO;
+import tempName.server.data.database.Connector;
+import tempName.server.data.dto.OperatoerDTO;
 
 public class MYSQLOperatoerDAO implements OperatoerDAO {
 

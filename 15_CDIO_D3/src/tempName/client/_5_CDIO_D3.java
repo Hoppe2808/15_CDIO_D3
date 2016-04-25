@@ -1,5 +1,8 @@
 package tempName.client;
 
+import tempName.server.data.daoimpl.MYSQLWeightDAO;
+import tempName.server.data.daointerface.DALException;
+import tempName.server.data.dto.WeightDTO;
 import tempName.shared.FieldVerifier;
 
 import java.util.ArrayList;
@@ -30,10 +33,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
-
-import daoimpl.MYSQLWeightDAO;
-import daointerface.DALException;
-import dto.WeightDTO;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

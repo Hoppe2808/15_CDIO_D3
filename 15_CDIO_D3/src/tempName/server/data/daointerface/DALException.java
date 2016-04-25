@@ -1,4 +1,4 @@
-package daointerface;
+package tempName.server.data.daointerface;
 
 public class DALException extends Exception
 {

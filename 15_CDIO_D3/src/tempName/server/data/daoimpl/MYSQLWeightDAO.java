@@ -1,14 +1,14 @@
-package daoimpl;
+package tempName.server.data.daoimpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import daointerface.DALException;
-import daointerface.WeightDAO;
-import database.Connector;
-import dto.WeightDTO;
+import tempName.server.data.daointerface.DALException;
+import tempName.server.data.daointerface.WeightDAO;
+import tempName.server.data.database.Connector;
+import tempName.server.data.dto.WeightDTO;
 
 public class MYSQLWeightDAO implements WeightDAO {
 

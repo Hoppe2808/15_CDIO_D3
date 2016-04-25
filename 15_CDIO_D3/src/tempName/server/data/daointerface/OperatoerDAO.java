@@ -1,9 +1,8 @@
-package daointerface;
+package tempName.server.data.daointerface;
 
 import java.util.List;
 
-import daointerface.DALException;
-import dto.OperatoerDTO;
+import tempName.server.data.dto.OperatoerDTO;
 
 public interface OperatoerDAO {
 		OperatoerDTO getOperatoer(int oprId) throws DALException;

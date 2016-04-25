@@ -1,8 +1,8 @@
-package daointerface;
+package tempName.server.data.daointerface;
 
 import java.util.List;
-import daointerface.DALException;
-import dto.WeightDTO;
+
+import tempName.server.data.dto.WeightDTO;
 
 public interface WeightDAO {
 		

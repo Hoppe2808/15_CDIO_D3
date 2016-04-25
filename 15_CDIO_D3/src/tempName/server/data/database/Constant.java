@@ -1,4 +1,4 @@
-package database;
+package tempName.server.data.database;
 
 //erstat konstanterne nedenfor
 

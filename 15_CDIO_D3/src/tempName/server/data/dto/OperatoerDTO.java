@@ -1,4 +1,4 @@
-package dto;
+package tempName.server.data.dto;
 
 /**
 * Operatør Data Transfer Object (DTO)
