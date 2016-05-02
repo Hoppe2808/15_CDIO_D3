@@ -86,4 +86,9 @@ public class OperatoerDTO {
   public void setAdminStatus(boolean admin){
 	  this.admin = admin;
   }
+  
+  public String toString(){
+	return oprId + " " + oprNavn + " " + ini + " "+ cpr + " "+ password + " " + admin;
+	  
+  }
 }

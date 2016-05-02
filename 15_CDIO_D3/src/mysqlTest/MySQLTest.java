@@ -25,18 +25,18 @@ public class MySQLTest {
 		catch (SQLException e) {
 			e.printStackTrace(); 
 		}
-
-		System.out.println("Operatoer nummer 2:");
+		
+		System.out.println("Operatoer nummer 1:");
 		MYSQLOperatoerDAO opr = new MYSQLOperatoerDAO();
 		try { 
-			System.out.println(opr.getOperatoer(2)); 
+			System.out.println(opr.getOperatoer(1).toString()); 
 		}
 		catch (DALException e) { 
 			System.out.println(e.getMessage()); 
 		}
 
 		System.out.println("Indsaettelse af ny operatoer med opr_id =  200");
-		OperatoerDTO oprDTO = new OperatoerDTO(200,"Don Juan","DJ","000000-0000","password", false);
+		OperatoerDTO oprDTO = new OperatoerDTO(200,"Don Juan","DJ","0000000000","password", false);
 		try { 
 			opr.createOperatoer(oprDTO); 
 		}catch (DALException e) {
@@ -52,7 +52,7 @@ public class MySQLTest {
 		}
 
 		System.out.println("Opdatering af initialer for operatoer nummer 200");
-		oprDTO.setIni("DoJu");
+		oprDTO.setIni("DJu");
 		try { 
 			opr.updateOperatoer(oprDTO);
 		}
