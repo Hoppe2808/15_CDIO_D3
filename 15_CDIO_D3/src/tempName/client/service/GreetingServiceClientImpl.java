@@ -23,6 +23,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		this.service.greetServer("Johnson", new defaultCallback());
 		
 	}
+	
+	public MainGUI getMainGUI(){
+		return this.maingui;
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
@@ -34,7 +38,8 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		@Override
 		public void onSuccess(Object result) {
 			if (result instanceof String){
-				
+				String greeting = (String) result;
+				maingui.updateLabel(greeting);
 			}
 		}
 		

@@ -2,6 +2,7 @@ package tempName.client;
 
 import tempName.client.service.GreetingService;
 import tempName.client.service.GreetingServiceAsync;
+import tempName.client.service.GreetingServiceClientImpl;
 import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
@@ -64,7 +65,9 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		adminMenu();
+		GreetingServiceClientImpl clientImpl = new GreetingServiceClientImpl(GWT.getModuleBaseURL() + "greet");
+		RootPanel.get().add(clientImpl.getMainGUI());
+		//adminMenu();
 	}
 	
 	public void loginScreen(){
