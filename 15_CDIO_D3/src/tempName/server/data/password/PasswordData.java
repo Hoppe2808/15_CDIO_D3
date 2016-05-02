@@ -1,4 +1,4 @@
-package tempName.client.password;
+package tempName.server.data.password;
 
 import java.util.ArrayList;
 

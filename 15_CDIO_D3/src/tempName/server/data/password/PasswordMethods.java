@@ -1,14 +1,15 @@
-package tempName.client.password;
+package tempName.server.data.password;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import tempName.server.data.dto.OperatoerDTO;
+import tempName.server.data.daoimpl.*;
+import tempName.server.data.daointerface.DALException;
 
 public class PasswordMethods {
 
 	private PasswordData AD = new PasswordData();
-	private OperatoerDTO o;
+	private MYSQLOperatoerDAO dao;
 
 	private ArrayList<String> character = AD.getCharacter();
 	private boolean smallLetters;
@@ -20,7 +21,7 @@ public class PasswordMethods {
 	public PasswordMethods(OperatoerDTO o) {
 		this.o = o;
 	}
-	
+
 	/**
 	 * Metode der tester hvorvidt en bruger nye password stemmer overens
 	 * med de satte regler
@@ -41,7 +42,7 @@ public class PasswordMethods {
 		}while(!this.checkPass(password));
 		return password;
 	}
-	
+
 	/**
 	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den er på 6 tegn eller derover
@@ -79,7 +80,7 @@ public class PasswordMethods {
 				break;
 			}
 		}
-		
+
 		for(int j=10; j<=35; j++){
 			if(password.contains(character.get(j))){
 				smallLetters = true;
@@ -87,7 +88,7 @@ public class PasswordMethods {
 				break;
 			}
 		}
-		
+
 		for(int j=36; j<=61; j++){
 			if(password.contains(character.get(j))){
 				kapLetters = true;
@@ -95,7 +96,7 @@ public class PasswordMethods {
 				break;
 			}
 		}
-		
+
 		for(int j=62; j<=68; j++){
 			if(password.contains(character.get(j))){
 				symbols = true;
@@ -122,26 +123,35 @@ public class PasswordMethods {
 		if(password1.equals(password2)) return true;
 		else return false;
 	}
-	
+
 	/**
-	 * 
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
 	public boolean correctUserPassword(int iD, String password){
 
-//		int index = -1;	
-//		for (int i = 0 ; i < o.getOperatoerArrayLaengde() ; i++){		
-//			if (iD == o.getOprId(i)){			
-//				index = i;			
-//			}		
-//		}
-//
-//		if(o.getAdgangskode(index).equals(password)){
-//			return true;
-//		}else{
-			return false;
-//		}
+		int index = -1;	
+		try {
+			for (int i = 0 ; i < dao.getOperatoerList().size() ; i++){		
+				if (iD == dao.getOperatoer(i).getOprId()){			
+					index = i;	
+					break;				}		
+			}
+		} catch (DALException e) {
+			System.out.println("Error in getting operator ID");
+		}
+
+		try {
+			if(dao.getOperatoer(index).getPassword().equals(password)){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (DALException e) {
+			System.out.println("Error in getting operator password");
+		}
+		return false;
 	}
+
 	public String getNewPassword(int passwordLength){
 		String password = AD.getNewKode(passwordLength);
 		return password;
