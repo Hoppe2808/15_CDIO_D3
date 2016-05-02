@@ -32,7 +32,7 @@ public class Connector
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		
 		// get Connection-object via DriverManager
-		return (Connection) DriverManager.getConnection(url, username, password);
+		return (Connection) DriverManager.getConnection("jdbc:mysql://ec2-52-30-89-247.eu-west-1.compute.amazonaws.com:3306/grp15", "grp15", "grp15");
 	}
 	
 	private static Connection conn;
@@ -43,11 +43,8 @@ public class Connector
 				throws InstantiationException, IllegalAccessException,
 					ClassNotFoundException, SQLException
 	{
-//		conn	= connectToDatabase("jdbc:mysql://"+server+":"+port+"/"+database,
-//					username, password);
-		
-		conn	= connectToDatabase("jdbc:mysql://ec2-52-30-89-247.eu-west-1.compute.amazonaws.com:3306/grp15", "grp15", "grp15");
-		
+		conn	= connectToDatabase("jdbc:mysql://"+server+":"+port+"/"+database,
+					username, password);
 		
 		stm		= conn.createStatement();
 	}
@@ -57,6 +54,7 @@ public class Connector
 	{
 		this(Constant.server, Constant.port, Constant.database,
 				Constant.username, Constant.password);
+		
 	}
 	
 	public static ResultSet doQuery(String cmd) throws DALException
