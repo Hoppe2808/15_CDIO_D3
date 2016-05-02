@@ -4,13 +4,18 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
+import tempName.client.gui.MainGUI;
+
 public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	private GreetingServiceAsync service;
+	private MainGUI maingui;
 	
 	public GreetingServiceClientImpl(String url){
 		this.service = GWT.create(GreetingService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
+		
+		this.maingui = new MainGUI(this);
 	}
 
 	@Override
@@ -28,7 +33,9 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 
 		@Override
 		public void onSuccess(Object result) {
-			System.out.println("Success");
+			if (result instanceof String){
+				
+			}
 		}
 		
 	}
