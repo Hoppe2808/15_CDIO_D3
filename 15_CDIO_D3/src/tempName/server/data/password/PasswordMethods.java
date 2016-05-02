@@ -18,31 +18,6 @@ public class PasswordMethods {
 	private boolean symbols;
 	private int different;
 
-	public PasswordMethods(OperatoerDTO o) {
-		this.o = o;
-	}
-
-	/**
-	 * Metode der tester hvorvidt en bruger nye password stemmer overens
-	 * med de satte regler
-	 * @param id Operatørens ID
-	 * @param sc scanner objekt der sendes videre
-	 * @return returnere koden, når den er gået igennem kontroltjekket
-	 */
-	public String checkPass(int id, Scanner sc){
-		String password;
-		do{
-			password = sc.next();
-			if(!this.checkPassLength(password)){
-				System.out.print("Din adgangskode skal bestå af mellem 7-8 karakterer!");
-			}
-			if(!this.checkPass(password)){
-				System.out.println("Din adgangskode skal indholde mindst 3 følgende: Tal, Specialtegn, Stort Bogstav, Lille Bogstav");
-			}
-		}while(!this.checkPass(password));
-		return password;
-	}
-
 	/**
 	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den er på 6 tegn eller derover
