@@ -12,17 +12,13 @@ public class MySQLOPTest {
 	public static void main(String[] args) {
 		try { 
 			new Connector(); 
-		} 
-		catch (InstantiationException e) {
+		} catch (InstantiationException e) {
 			e.printStackTrace(); 
-		}
-		catch (IllegalAccessException e) {
+		}catch (IllegalAccessException e) {
 			e.printStackTrace(); 
-		}
-		catch (ClassNotFoundException e) {
+		}catch (ClassNotFoundException e) {
 			e.printStackTrace(); 
-		}
-		catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace(); 
 		}
 		
