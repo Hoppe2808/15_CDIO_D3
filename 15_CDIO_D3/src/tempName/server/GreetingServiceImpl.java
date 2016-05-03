@@ -24,7 +24,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	
 	public boolean checkLogin(int id, String pass){
 		boolean check = passMeth.correctUserPassword(id, pass);
-		Window.alert("hasa");
+		System.out.println("HEjejeje");
 		return check;
 	}
 
