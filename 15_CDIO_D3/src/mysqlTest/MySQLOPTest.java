@@ -7,7 +7,7 @@ import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
 import tempName.server.data.dto.OperatoerDTO;
 
-public class MySQLTest {
+public class MySQLOPTest {
 
 	public static void main(String[] args) {
 		try { 
