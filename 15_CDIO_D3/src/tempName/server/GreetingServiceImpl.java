@@ -1,7 +1,6 @@
 package tempName.server;
 
 import tempName.client.service.GreetingService;
-import tempName.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {

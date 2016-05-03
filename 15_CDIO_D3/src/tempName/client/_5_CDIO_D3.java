@@ -3,10 +3,9 @@ package tempName.client;
 import tempName.client.service.GreetingService;
 import tempName.client.service.GreetingServiceAsync;
 import tempName.client.service.GreetingServiceClientImpl;
-import tempName.server.data.daoimpl.MYSQLWeightDAO;
+//import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
-import tempName.shared.FieldVerifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,19 +47,6 @@ public class _5_CDIO_D3 implements EntryPoint {
 	private boolean admin;
 	private boolean loggedIn;
 	
-	/**
-	 * The message displayed to the user when the server cannot be reached or
-	 * returns an error.
-	 */
-	private static final String SERVER_ERROR = "An error occurred while "
-			+ "attempting to contact the server. Please check your network " + "connection and try again.";
-
-	/**
-	 * Create a remote service proxy to talk to the server-side Greeting service.
-	 */
-	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
-	
-
 	/**
 	 * This is the entry point method.
 	 */
@@ -153,7 +139,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 		});
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				measurements();
+//				measurements();
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -170,80 +156,81 @@ public class _5_CDIO_D3 implements EntryPoint {
 		RootPanel.get("back").clear();
 	}
 	
-	private void measurements() {
-		final Label measureHeader = new Label("Measurements");
-		MYSQLWeightDAO meas = new MYSQLWeightDAO();
-		List<WeightDTO> measurements = new ArrayList<WeightDTO>();
-		final CellTable<WeightDTO> table = new CellTable<WeightDTO>();
-		greetingService.greetServer("Måling", new AsyncCallback<String>(){
-			public void onFailure(Throwable caught) {
-				// Show the RPC error message to the user
-			}
-
-			public void onSuccess(String result) {
-			}
-		});
-		try {
-			measurements = meas.getWeightList();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
-		dataProvider.addDataDisplay(table);
-		
-		List<WeightDTO> list = dataProvider.getList();
-	    for (WeightDTO measurement : measurements) {
-	      list.add(measurement);
-	    }
-		
-		final TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
-
-			@Override
-			public String getValue(WeightDTO mm) {
-				return Integer.toString(mm.getWID());
-			}
-			
-		};
-		final TextColumn<WeightDTO> w = new TextColumn<WeightDTO>(){
-
-			@Override
-			public String getValue(WeightDTO mm) {
-				// TODO Auto-generated method stub
-				return Double.toString(mm.getMS());
-			}
-			
-		};
-		final TextColumn<WeightDTO> oID = new TextColumn<WeightDTO>(){
-
-			@Override
-			public String getValue(WeightDTO mm) {
-				return Integer.toString(mm.getopID());
-			}
-			
-		};
-
-		table.addColumn(wID, "Weight ID");
-		table.addColumn(w, "Measurement");
-		table.addColumn(oID, "Operator ID");
-		final Button back = new Button("<- Back");
-		final VerticalPanel container = new VerticalPanel();
-		container.setSpacing(9);
-		container.add(table);
-		RootPanel.get("headerContainer").clear();
-		RootPanel.get("headerContainer").add(measureHeader);
-		RootPanel.get("bodyContainer").clear();
-		RootPanel.get("bodyContainer").add(container);
-		RootPanel.get("logout").clear();
-		RootPanel.get("back").clear();
-		RootPanel.get("back").add(back);
-		
-		back.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				adminMenu();
-			}
-		});
-	}
+//	private void measurements() {
+//		final Label measureHeader = new Label("Measurements");
+//		MYSQLWeightDAO meas = new MYSQLWeightDAO();
+//		List<WeightDTO> measurements = new ArrayList<WeightDTO>();
+//		final CellTable<WeightDTO> table = new CellTable<WeightDTO>();
+//		GreetingServiceAsync greetingService = null;
+//		greetingService.greetServer("Måling", new AsyncCallback<String>(){
+//			public void onFailure(Throwable caught) {
+//				// Show the RPC error message to the user
+//			}
+//
+//			public void onSuccess(String result) {
+//			}
+//		});
+//		try {
+//			measurements = meas.getWeightList();
+//		} catch (DALException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
+//		dataProvider.addDataDisplay(table);
+//		
+//		List<WeightDTO> list = dataProvider.getList();
+//	    for (WeightDTO measurement : measurements) {
+//	      list.add(measurement);
+//	    }
+//		
+//		final TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
+//
+//			@Override
+//			public String getValue(WeightDTO mm) {
+//				return Integer.toString(mm.getWID());
+//			}
+//			
+//		};
+//		final TextColumn<WeightDTO> w = new TextColumn<WeightDTO>(){
+//
+//			@Override
+//			public String getValue(WeightDTO mm) {
+//				// TODO Auto-generated method stub
+//				return Double.toString(mm.getMS());
+//			}
+//			
+//		};
+//		final TextColumn<WeightDTO> oID = new TextColumn<WeightDTO>(){
+//
+//			@Override
+//			public String getValue(WeightDTO mm) {
+//				return Integer.toString(mm.getopID());
+//			}
+//			
+//		};
+//
+//		table.addColumn(wID, "Weight ID");
+//		table.addColumn(w, "Measurement");
+//		table.addColumn(oID, "Operator ID");
+//		final Button back = new Button("<- Back");
+//		final VerticalPanel container = new VerticalPanel();
+//		container.setSpacing(9);
+//		container.add(table);
+//		RootPanel.get("headerContainer").clear();
+//		RootPanel.get("headerContainer").add(measureHeader);
+//		RootPanel.get("bodyContainer").clear();
+//		RootPanel.get("bodyContainer").add(container);
+//		RootPanel.get("logout").clear();
+//		RootPanel.get("back").clear();
+//		RootPanel.get("back").add(back);
+//		
+//		back.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//				adminMenu();
+//			}
+//		});
+//	}
 
 	private void inspectOp() {
 		final Label inspectHeader = new Label("Inspect an operator");

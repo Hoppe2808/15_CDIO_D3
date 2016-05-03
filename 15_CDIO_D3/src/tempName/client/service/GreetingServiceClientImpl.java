@@ -11,6 +11,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	private MainGUI maingui;
 	
 	public GreetingServiceClientImpl(String url){
+		System.out.println(url);
 		this.service = GWT.create(GreetingService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
@@ -20,7 +21,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 
 	@Override
 	public void greetServer(String name) {
-		this.service.greetServer("Johnson", new defaultCallback());
+		this.service.greetServer(name, new defaultCallback());
 		
 	}
 	

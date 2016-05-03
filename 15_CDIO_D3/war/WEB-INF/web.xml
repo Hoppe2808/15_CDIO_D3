@@ -7,15 +7,19 @@
 
   <!-- Servlets -->
   
-  <!-- Default page to serve --><servlet>
+  <!-- Default page to serve -->
+  <servlet>
   	<servlet-name>greetingServlet</servlet-name>
   	<servlet-class>tempName.server.GreetingServiceImpl</servlet-class>
 </servlet>
-	<servlet-mapping>
-		<servlet-name>greetingServlet</servlet-name>
-		<url-pattern>/15_CDIO_D3/greet</url-pattern>
-	</servlet-mapping>
-	<welcome-file-list>
+
+<servlet-mapping>
+	<servlet-name>greetingServlet</servlet-name>
+	<url-pattern>/_5_cdio_d3/greet</url-pattern>
+</servlet-mapping>
+	
+	
+<welcome-file-list>
     <welcome-file>_5_CDIO_D3.html</welcome-file>
   </welcome-file-list>
 
