@@ -1,5 +1,7 @@
 package tempName.client.service;
 
 public interface GreetingServiceClientInt {
-	void greetServer(String name);
+	void getMeasurements();
+	void getOperators();
+	void checkLogin(int id, String pass);
 }

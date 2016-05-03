@@ -1,5 +1,8 @@
 package tempName.client.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
@@ -18,11 +21,20 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		
 		this.maingui = new MainGUI(this);
 	}
-
+	
 	@Override
-	public void greetServer(String name) {
-		this.service.greetServer(name, new defaultCallback());
+	public void getMeasurements() {
+		this.service.getMeasurements(new defaultCallback());
 		
+	}
+	@Override
+	public void getOperators() {
+		this.service.getOperators(new defaultCallback());
+		
+	}
+	@Override
+	public void checkLogin(int id, String pass){
+		this.service.checkLogin(id, pass, new defaultCallback());
 	}
 	
 	public MainGUI getMainGUI(){
@@ -38,12 +50,23 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 
 		@Override
 		public void onSuccess(Object result) {
+			System.out.println(result);
 			if (result instanceof String){
 				String greeting = (String) result;
-				maingui.updateLabel(greeting);
+			} else if (result instanceof ArrayList){
+				ArrayList data = (ArrayList) result;
+				if (data.get(0) instanceof ArrayList){
+					maingui.updateMeasurements(data);				
+				} else if (data.get(0) instanceof HashMap){
+					maingui.updateOperators(data);
+				}
+			} else if (result instanceof Boolean){
+				boolean check = (boolean) result;
+				maingui.updateLogin(check);
 			}
 		}
 		
 	}
+
 
 }
