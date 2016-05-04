@@ -31,24 +31,24 @@ public class MySQLOPTest {
 			System.out.println(e.getMessage()); 
 		}
 
-		System.out.println("Indsaettelse af ny operatoer med opr_id =  200");
-		OperatoerDTO oprDTO = new OperatoerDTO(200,"Don Juan","DJ","0000000000","password", false);
+		System.out.println("Indsaettelse af ny operatoer med opr_id =  3");
+		OperatoerDTO oprDTO = new OperatoerDTO(0,"test af mysql statemnet","pb","0000000000","password", false);
 		try { 
 			opr.createOperatoer(oprDTO); 
 		}catch (DALException e) {
 			System.out.println(e.getMessage());
 		}	
 
-		System.out.println("Operatoer nummer 200:");
+		System.out.println("Operatoer nummer 3:");
 		try { 
-			System.out.println(opr.getOperatoer(200)); 
+			System.out.println(opr.getOperatoer(3)); 
 		}
 		catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println("Opdatering af initialer for operatoer nummer 200");
-		oprDTO.setIni("DJu");
+		System.out.println("Opdatering af initialer for operatoer nummer 3");
+		oprDTO.setIni("op");
 		try { 
 			opr.updateOperatoer(oprDTO);
 		}
@@ -56,9 +56,9 @@ public class MySQLOPTest {
 			System.out.println(e.getMessage()); 
 		}
 
-		System.out.println("Operatoer nummer 200:");
+		System.out.println("Operatoer nummer 3:");
 		try { 
-			System.out.println(opr.getOperatoer(200));
+			System.out.println(opr.getOperatoer(3));
 		}
 		catch (DALException e) {
 			System.out.println(e.getMessage()); 
@@ -72,9 +72,9 @@ public class MySQLOPTest {
 			System.out.println(e.getMessage()); 
 		}
 
-		System.out.println("Operatoer nummer 5:");
+		System.out.println("Operatoer nummer 100:");
 		try {
-			System.out.println(opr.getOperatoer(5));
+			System.out.println(opr.getOperatoer(100));
 		}
 		catch (DALException e) {
 			System.out.println(e.getMessage());

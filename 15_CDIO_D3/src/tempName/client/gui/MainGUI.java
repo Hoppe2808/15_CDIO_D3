@@ -34,6 +34,7 @@ public class MainGUI extends Composite {
 	private String name;
 	private int id;
 	private String password;
+	private String ini;
 	private String cpr;
 	private boolean admin;
 	private ArrayList measurements = new ArrayList();
@@ -193,8 +194,12 @@ public class MainGUI extends Composite {
 		final Button submitButton = new Button("Send");
 		final TextBox username = new TextBox();
 		final Label usernameLabel = new Label("Name: ");
+		final TextBox iniField = new TextBox();
+		final Label iniLabel = new Label("Initialer: ");
 		final TextBox cprField = new TextBox();
 		final Label cprLabel = new Label("Cpr-number: ");
+		final TextBox pwField = new TextBox();
+		final Label pwLabel = new Label("Password: ");
 		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
 		final RadioButton adminNo = new RadioButton("radioGroup", "No");
 		final Label adminLabel = new Label("Is it an admin? ");
@@ -209,8 +214,12 @@ public class MainGUI extends Composite {
 
 		container.add(usernameLabel);
 		container.add(username);
+		container.add(iniLabel);
+		container.add(iniField);
 		container.add(cprLabel);
 		container.add(cprField);
+		container.add(pwLabel);
+		container.add(pwField);
 		container.add(adminLabel);
 		container.add(panel);
 		container.add(submitButton);
@@ -225,7 +234,9 @@ public class MainGUI extends Composite {
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				name = username.getText();
+				ini = iniField.getText();
 				cpr = cprField.getText();
+				password = pwField.getText();
 				if (adminYes.getValue()){
 					admin = true;
 				} else if(adminNo.getValue()){
@@ -233,7 +244,7 @@ public class MainGUI extends Composite {
 				} else {
 					Window.alert("Something went wrong in checking for admin status");
 				}
-				
+
 				serviceImpl.createOp(id, name, ini, cpr, password, admin);
 			}
 		});
