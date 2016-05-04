@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
+import tempName.server.data.daointerface.DALException;
 
 public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	private GreetingServiceAsync service;
@@ -36,7 +37,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		this.service.checkLogin(id, pass, new defaultCallback());
 	}
 	@Override
-	public void createOp(int id, String name, String ini, String cpr, String password, boolean admin) {
+	public void createOp(int id, String name, String ini, String cpr, String password, boolean admin){
 		this.service.createOp(id, name, ini, cpr, password, admin, new defaultCallback());
 	}
 	

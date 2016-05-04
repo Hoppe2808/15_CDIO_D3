@@ -37,14 +37,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			e.printStackTrace(); 
 		}
 	}
+	
 	public void createOp(int id, String name, String init, String cpr, String password, boolean admin){
-		try {
-			operatoerDAO.createOperatoer(new OperatoerDTO(id, name, init, cpr, password, admin));
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			try {
+				operatoerDAO.createOperatoer(new OperatoerDTO(id, name, init, cpr, password, admin));
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
+	
 	public String checkLogin(int id, String pass){
 		String check;
 		if (passMeth.correctUserPassword(id, pass)){

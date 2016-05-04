@@ -130,7 +130,7 @@ public class MainGUI extends Composite {
 		container.add(lb);
 		container.add(inspect);
 		container.add(back);
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				adminMenu();
@@ -146,9 +146,9 @@ public class MainGUI extends Composite {
 								+ " - " + (String) operators.get(i).get("AdminStatus"));
 					}
 				}
-				
+
 			}
-			
+
 		});
 	}
 	private void editOp() {
@@ -190,6 +190,7 @@ public class MainGUI extends Composite {
 		});
 	}
 	private void createOp() {
+		final Label failure = new Label("");
 		final Label createHeader = new Label("Create operator");
 		final Button submitButton = new Button("Send");
 		final TextBox username = new TextBox();
@@ -212,6 +213,7 @@ public class MainGUI extends Composite {
 		container.clear();
 		container.setSpacing(9);
 
+		container.add(failure);
 		container.add(usernameLabel);
 		container.add(username);
 		container.add(iniLabel);
@@ -233,6 +235,7 @@ public class MainGUI extends Composite {
 
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				id = 0;
 				name = username.getText();
 				ini = iniField.getText();
 				cpr = cprField.getText();
@@ -244,8 +247,18 @@ public class MainGUI extends Composite {
 				} else {
 					Window.alert("Something went wrong in checking for admin status");
 				}
+				if(ini.length() > 3){
+					failure.setText("Initialerne må maks være 3 karaktere langt");
+				}else{
+					if(cpr.length()!= 10){
+						failure.setText("Et cpr-nummer er 10 karakterer langt");
+					}else{
 
-				serviceImpl.createOp(id, name, ini, cpr, password, admin);
+						serviceImpl.createOp(id, name, ini, cpr, password, admin);
+						Window.alert("Succes!");
+						adminMenu();
+					}
+				}
 			}
 		});
 		back.addClickHandler(new ClickHandler() {

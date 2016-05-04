@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import tempName.server.data.daointerface.DALException;
+
 /**
  * The async counterpart of <code>GreetingService</code>.
  */
