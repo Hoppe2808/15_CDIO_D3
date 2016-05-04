@@ -15,5 +15,7 @@ public interface GreetingService extends RemoteService {
 
 	ArrayList<HashMap> getOperators();
 
-	boolean checkLogin(int id, String pass);
+	String checkLogin(int id, String pass);
+
+	void connectDatabase();
 }

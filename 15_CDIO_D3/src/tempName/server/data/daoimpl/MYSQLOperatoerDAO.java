@@ -16,7 +16,8 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
 		try{
 			if (!rs.first()) throw new DALException("Brugeren " +oprId+ "findes ikke");
-			return new OperatoerDTO(rs.getInt("o_id"), rs.getString("name"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getBoolean("admin"));
+			OperatoerDTO result = new OperatoerDTO(rs.getInt("o_id"), rs.getString("name"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getBoolean("admin"));
+			return result;
 		} catch(SQLException e) {
 			throw new DALException(e);
 		}

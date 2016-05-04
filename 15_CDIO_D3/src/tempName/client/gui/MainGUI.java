@@ -39,6 +39,7 @@ public class MainGUI extends Composite {
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
+		this.serviceImpl.connectDatabase();
 		loginScreen();
 	}
 	public void loginScreen(){
@@ -321,11 +322,13 @@ public class MainGUI extends Composite {
 	public void updateOperators(ArrayList op){
 		operators = op;
 	}
-	public void updateLogin(boolean check) {
-		if (check){
+	public void updateLogin(String check) {
+		if (check == "true"){
 			loggedIn = true;	
-		} else{
+		} else if (check == "false"){
 			loggedIn = false;
+		} else {
+			Window.alert("Something went wrong in login check");
 		}
 
 

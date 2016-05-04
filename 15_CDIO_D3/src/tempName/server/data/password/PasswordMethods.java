@@ -18,6 +18,10 @@ public class PasswordMethods {
 	private boolean symbols;
 	private int different;
 
+	
+	public PasswordMethods(MYSQLOperatoerDAO dao){
+		this.dao = dao;
+	}
 	/**
 	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den er på 6 tegn eller derover
@@ -105,16 +109,17 @@ public class PasswordMethods {
 	public boolean correctUserPassword(int iD, String password){
 
 		int index = -1;	
+
 		try {
-			for (int i = 0 ; i < dao.getOperatoerList().size() ; i++){		
+			for (int i = 1 ; i < dao.getOperatoerList().size(); i++){
 				if (iD == dao.getOperatoer(i).getOprId()){			
 					index = i;	
-					break;				}		
+					break;				
+				}		
 			}
 		} catch (DALException e) {
 			System.out.println("Error in getting operator ID");
 		}
-
 		try {
 			if(dao.getOperatoer(index).getPassword().equals(password)){
 				return true;

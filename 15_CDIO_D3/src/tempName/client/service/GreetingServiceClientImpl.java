@@ -14,7 +14,6 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	private MainGUI maingui;
 	
 	public GreetingServiceClientImpl(String url){
-		System.out.println(url);
 		this.service = GWT.create(GreetingService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
@@ -40,6 +39,12 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public MainGUI getMainGUI(){
 		return this.maingui;
 	}
+	
+	@Override
+	public void connectDatabase() {
+		this.service.connectDatabase(new defaultCallback());
+		
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
@@ -52,7 +57,8 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		public void onSuccess(Object result) {
 			System.out.println(result);
 			if (result instanceof String){
-				String greeting = (String) result;
+				String loginCheck = (String) result;
+				maingui.updateLogin(loginCheck);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
 				if (data.get(0) instanceof ArrayList){
@@ -60,9 +66,6 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 				} else if (data.get(0) instanceof HashMap){
 					maingui.updateOperators(data);
 				}
-			} else if (result instanceof Boolean){
-				boolean check = (boolean) result;
-				maingui.updateLogin(check);
 			}
 		}
 		

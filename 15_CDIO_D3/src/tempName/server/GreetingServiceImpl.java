@@ -4,10 +4,12 @@ import tempName.client.service.GreetingService;
 import tempName.server.data.daoimpl.MYSQLOperatoerDAO;
 import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
+import tempName.server.data.database.Connector;
 import tempName.server.data.dto.OperatoerDTO;
 import tempName.server.data.dto.WeightDTO;
 import tempName.server.data.password.PasswordMethods;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +22,29 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	
 	private MYSQLWeightDAO weightDAO = new MYSQLWeightDAO();
 	private MYSQLOperatoerDAO operatoerDAO = new MYSQLOperatoerDAO();
-	private PasswordMethods passMeth = new PasswordMethods();
+	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
 	
-	public boolean checkLogin(int id, String pass){
-		boolean check = passMeth.correctUserPassword(id, pass);
-		System.out.println("HEjejeje");
+	public void connectDatabase(){
+		try { 
+			new Connector(); 
+		} catch (InstantiationException e) {
+			e.printStackTrace(); 
+		}catch (IllegalAccessException e) {
+			e.printStackTrace(); 
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace(); 
+		}catch (SQLException e) {
+			e.printStackTrace(); 
+		}
+		
+	}
+	public String checkLogin(int id, String pass){
+		String check;
+		if (passMeth.correctUserPassword(id, pass)){
+			check = "true";
+		} else{
+			check = "false";
+		}
 		return check;
 	}
 
