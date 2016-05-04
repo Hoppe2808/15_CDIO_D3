@@ -129,12 +129,7 @@ public class MainGUI extends Composite {
 		final Label oper = new Label("");
 		final Button inspect = new Button("Inspect");
 		final Button back = new Button("<- Back");
-		ListBox lb = new ListBox();
-		for (int i = 0; i < operators.size(); i++){
-			String name = (String) operators.get(i).get("Username");
-			lb.addItem(name);
-		}
-		lb.setVisibleItemCount(1);
+		final TextBox lb = new TextBox();
 		container.clear();
 		container.setSpacing(9);
 		container.add(oper);
@@ -147,12 +142,16 @@ public class MainGUI extends Composite {
 				adminMenu();
 			}
 		});
-		lb.addChangeHandler(new ChangeHandler(){
-
+		inspect.addClickHandler(new ClickHandler(){
 			@Override
-			public void onChange(ChangeEvent event) {
-				String test = Integer.toString(lb.getSelectedIndex());
-				oper.setText(test);
+			public void onClick(ClickEvent event) {
+				int answer = Integer.parseInt(lb.getText());
+				for (int i = 0; i < operators.size(); i++){
+					if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
+						oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials"
+								+ " - " + (String) operators.get(i).get("AdminStatus")));
+					}
+				}
 				
 			}
 			
