@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ChangeListener;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -17,6 +20,7 @@ import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
 
@@ -32,10 +36,10 @@ public class MainGUI extends Composite {
 	private String password;
 	private String cpr;
 	private boolean admin;
-	private boolean loggedIn;
 	private ArrayList measurements = new ArrayList();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private GreetingServiceClientImpl serviceImpl;
+	private VerticalPanel container = new VerticalPanel();
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -50,8 +54,8 @@ public class MainGUI extends Composite {
 		final TextBox loginPassword = new TextBox();
 		final Label logPassLabel = new Label("Password: ");
 		final Label loginError = new Label();
-		final VerticalPanel container = new VerticalPanel();
 		initWidget(container);
+		container.clear();
 		container.add(logUserLabel);
 		container.add(loginUsername);
 		container.add(logPassLabel);
@@ -60,19 +64,11 @@ public class MainGUI extends Composite {
 
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				loggedIn = false;
 				name = loginUsername.getText();
 				if (name.matches("^[0-9][0-9]?$|^100$")){
 					id = Integer.parseInt(name);
 					password = loginPassword.getText();
 					serviceImpl.checkLogin(id, password);
-
-					if (!(loggedIn)){
-						Window.alert("Wrong login");						
-					} else {
-						Window.alert("Correct Login");
-						adminMenu();
-					}
 				} else {
 					Window.alert("Username must be a number bewteen 0 - 100");
 				}
@@ -81,6 +77,7 @@ public class MainGUI extends Composite {
 
 	}
 	private void adminMenu(){
+		serviceImpl.getOperators();
 		final Label adminHeader = new Label("Admin Menu");
 		final Button createOp = new Button("Create new operator");
 		final Button deleteOp = new Button("Delete an operator");
@@ -88,7 +85,7 @@ public class MainGUI extends Composite {
 		final Button inspectOp = new Button("Inspect an operator");
 		final Button measurements = new Button("Check measurements");
 		final Button logout = new Button("Logout");
-		final VerticalPanel container = new VerticalPanel();
+		container.clear();
 		container.setSpacing(9);
 		container.add(createOp);
 		container.add(deleteOp);
@@ -118,7 +115,7 @@ public class MainGUI extends Composite {
 		});
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				//				measurements();
+				measurements();
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -129,26 +126,36 @@ public class MainGUI extends Composite {
 	}
 	private void inspectOp() {
 		final Label inspectHeader = new Label("Inspect an operator");
-		final ListBox lb = new ListBox();
+		final Label oper = new Label("");
 		final Button inspect = new Button("Inspect");
 		final Button back = new Button("<- Back");
-		final VerticalPanel container = new VerticalPanel();
+		ListBox lb = new ListBox();
+		for (int i = 0; i < operators.size(); i++){
+			String name = (String) operators.get(i).get("Username");
+			lb.addItem(name);
+		}
+		lb.setVisibleItemCount(1);
+		container.clear();
 		container.setSpacing(9);
+		container.add(oper);
 		container.add(lb);
 		container.add(inspect);
-
-		RootPanel.get("headerContainer").clear();
-		RootPanel.get("headerContainer").add(inspectHeader);
-		RootPanel.get("bodyContainer").clear();
-		RootPanel.get("bodyContainer").add(container);
-		RootPanel.get("logout").clear();
-		RootPanel.get("back").clear();
-		RootPanel.get("back").add(back);
-
+		container.add(back);
+		
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				adminMenu();
 			}
+		});
+		lb.addChangeHandler(new ChangeHandler(){
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				String test = Integer.toString(lb.getSelectedIndex());
+				oper.setText(test);
+				
+			}
+			
 		});
 	}
 	private void editOp() {
@@ -170,7 +177,7 @@ public class MainGUI extends Composite {
 		panel.add(adminNo);
 
 		final Button back = new Button("<- Back");
-		final VerticalPanel container = new VerticalPanel();
+		container.clear();
 		container.setSpacing(9);
 		container.add(lb);
 		container.add(username);
@@ -181,14 +188,7 @@ public class MainGUI extends Composite {
 		container.add(passText);
 		container.add(panel);
 		container.add(submit);
-
-		RootPanel.get("headerContainer").clear();
-		RootPanel.get("headerContainer").add(editHeader);
-		RootPanel.get("bodyContainer").clear();
-		RootPanel.get("bodyContainer").add(container);
-		RootPanel.get("logout").clear();
-		RootPanel.get("back").clear();
-		RootPanel.get("back").add(back);
+		container.add(back);
 
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -201,21 +201,15 @@ public class MainGUI extends Composite {
 		final ListBox lb = new ListBox();
 		final Button delete = new Button("Delete");
 		final Button back = new Button("<- Back");
-		final VerticalPanel container = new VerticalPanel();
+		container.clear();
 		container.add(lb);
 		container.add(delete);
+		container.add(back);
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				adminMenu();
 			}
 		});
-		RootPanel.get("headerContainer").clear();
-		RootPanel.get("headerContainer").add(deleteHeader);
-		RootPanel.get("bodyContainer").clear();
-		RootPanel.get("bodyContainer").add(container);
-		RootPanel.get("logout").clear();
-		RootPanel.get("back").clear();
-		RootPanel.get("back").add(back);
 	}
 	private void createOp() {
 		final Label createHeader = new Label("Create operator");
@@ -233,7 +227,7 @@ public class MainGUI extends Composite {
 		panel.setSpacing(3);
 		panel.add(adminYes);
 		panel.add(adminNo);
-		final VerticalPanel container = new VerticalPanel();
+		container.clear();
 		container.setSpacing(9);
 
 		container.add(usernameLabel);
@@ -243,15 +237,13 @@ public class MainGUI extends Composite {
 		container.add(adminLabel);
 		container.add(panel);
 		container.add(submitButton);
+		container.add(back);
 
 		// We can add style names to widgets
 		submitButton.addStyleName("sendButton");
 
 		adminYes.setValue(false);
 		adminNo.setValue(true);
-
-
-
 
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -280,16 +272,6 @@ public class MainGUI extends Composite {
 			}
 		});
 
-		// Add the nameField and sendButton to the RootPanel
-		// Use RootPanel.get() to get the entire body element
-		RootPanel.get("headerContainer").clear();
-		RootPanel.get("headerContainer").add(createHeader);
-		RootPanel.get("bodyContainer").clear();
-		RootPanel.get("bodyContainer").add(container);
-		RootPanel.get("logout").clear();
-		RootPanel.get("back").clear();
-		RootPanel.get("back").add(back);
-
 		// Focus the cursor on the name field when the app loads
 		username.setFocus(true);
 		username.selectAll();
@@ -300,15 +282,9 @@ public class MainGUI extends Composite {
 		serviceImpl.getMeasurements();
 
 		final Button back = new Button("<- Back");
-		final VerticalPanel container = new VerticalPanel();
+		container.clear();
 		container.setSpacing(9);
-		RootPanel.get("headerContainer").clear();
-		RootPanel.get("headerContainer").add(measureHeader);
-		RootPanel.get("bodyContainer").clear();
-		RootPanel.get("bodyContainer").add(container);
-		RootPanel.get("logout").clear();
-		RootPanel.get("back").clear();
-		RootPanel.get("back").add(back);
+		container.add(back);
 
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -323,10 +299,10 @@ public class MainGUI extends Composite {
 		operators = op;
 	}
 	public void updateLogin(String check) {
-		if (check == "true"){
-			loggedIn = true;	
-		} else if (check == "false"){
-			loggedIn = false;
+		if (check.equals("true")){
+			adminMenu();
+		} else if (check.equals("false")){
+			Window.alert("FAIL");
 		} else {
 			Window.alert("Something went wrong in login check");
 		}

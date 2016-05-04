@@ -48,22 +48,22 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		return check;
 	}
 
-	public ArrayList<HashMap> getOperators(){
+	public ArrayList<HashMap<String, String>> getOperators(){
 		List<OperatoerDTO> rawList = new ArrayList<OperatoerDTO>();
-		ArrayList<HashMap> finalData = new ArrayList<HashMap>();
+		ArrayList<HashMap<String, String>> finalData = new ArrayList<HashMap<String, String>>();
 		try {
 			rawList = this.operatoerDAO.getOperatoerList();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		for (int i = 0; i < rawList.size(); i++){
-			finalData.add(new HashMap());
-			finalData.get(i).put("ID", rawList.get(i).getOprId());
+			finalData.add(new HashMap<String, String>());
+			finalData.get(i).put("ID", Integer.toString(rawList.get(i).getOprId()));
 			finalData.get(i).put("Username", rawList.get(i).getOprNavn());
 			finalData.get(i).put("Password", rawList.get(i).getPassword());
 			finalData.get(i).put("cpr", rawList.get(i).getCpr());
 			finalData.get(i).put("Initials", rawList.get(i).getIni());
-			finalData.get(i).put("AdminStatus", rawList.get(i).getAdminStatus());
+			finalData.get(i).put("AdminStatus", Boolean.toString(rawList.get(i).getAdminStatus()));
 		}
 		return finalData;
 	}

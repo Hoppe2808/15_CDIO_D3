@@ -13,9 +13,11 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface GreetingService extends RemoteService {
 	ArrayList<ArrayList> getMeasurements();
 
-	ArrayList<HashMap> getOperators();
+	ArrayList<HashMap<String, String>> getOperators();
 
 	String checkLogin(int id, String pass);
 
 	void connectDatabase();
+	
+	
 }

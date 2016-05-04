@@ -58,6 +58,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 			System.out.println(result);
 			if (result instanceof String){
 				String loginCheck = (String) result;
+				System.out.println(loginCheck);
 				maingui.updateLogin(loginCheck);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;

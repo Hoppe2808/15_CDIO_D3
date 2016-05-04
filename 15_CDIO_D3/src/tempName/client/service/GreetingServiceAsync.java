@@ -10,7 +10,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface GreetingServiceAsync {
 	void getMeasurements(AsyncCallback<ArrayList<ArrayList>> callback);
-	void getOperators(AsyncCallback<ArrayList<HashMap>> callback);
+	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);
 	void connectDatabase(AsyncCallback callback);
 }
