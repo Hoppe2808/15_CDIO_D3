@@ -80,7 +80,6 @@ public class MainGUI extends Composite {
 		serviceImpl.getOperators();
 		final Label adminHeader = new Label("Admin Menu");
 		final Button createOp = new Button("Create new operator");
-		final Button deleteOp = new Button("Delete an operator");
 		final Button editOp = new Button("Change attributes of operator");
 		final Button inspectOp = new Button("Inspect an operator");
 		final Button measurements = new Button("Check measurements");
@@ -88,7 +87,6 @@ public class MainGUI extends Composite {
 		container.clear();
 		container.setSpacing(9);
 		container.add(createOp);
-		container.add(deleteOp);
 		container.add(editOp);
 		container.add(inspectOp);
 		container.add(measurements);
@@ -96,11 +94,6 @@ public class MainGUI extends Composite {
 		createOp.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				createOp();
-			}
-		});
-		deleteOp.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				deleteOp();
 			}
 		});
 		editOp.addClickHandler(new ClickHandler() {
@@ -148,8 +141,8 @@ public class MainGUI extends Composite {
 				int answer = Integer.parseInt(lb.getText());
 				for (int i = 0; i < operators.size(); i++){
 					if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
-						oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials"
-								+ " - " + (String) operators.get(i).get("AdminStatus")));
+						oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials")
+								+ " - " + (String) operators.get(i).get("AdminStatus"));
 					}
 				}
 				
@@ -195,21 +188,6 @@ public class MainGUI extends Composite {
 			}
 		});
 	}
-	private void deleteOp() {
-		final Label deleteHeader = new Label("Delete operator");
-		final ListBox lb = new ListBox();
-		final Button delete = new Button("Delete");
-		final Button back = new Button("<- Back");
-		container.clear();
-		container.add(lb);
-		container.add(delete);
-		container.add(back);
-		back.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				adminMenu();
-			}
-		});
-	}
 	private void createOp() {
 		final Label createHeader = new Label("Create operator");
 		final Button submitButton = new Button("Send");
@@ -246,23 +224,17 @@ public class MainGUI extends Composite {
 
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				//				name = username.getText();
-				//				cpr = cprField.getText();
-				//				if (adminYes.getValue()){
-				//					admin = true;
-				//				} else if(adminNo.getValue()){
-				//					admin = false;
-				//				} else {
-				//					Window.alert("Something went wrong in checking for admin status");
-				//				}
-				//				
-				//				f.createOperatoer(name, cpr, admin);
-				//				try {
-				//					Window.alert(Arrays.toString(f.getOperatoer(1)));
-				//				} catch (FException e) {
-				//					// TODO Auto-generated catch block
-				//					e.printStackTrace();
-				//				}
+				name = username.getText();
+				cpr = cprField.getText();
+				if (adminYes.getValue()){
+					admin = true;
+				} else if(adminNo.getValue()){
+					admin = false;
+				} else {
+					Window.alert("Something went wrong in checking for admin status");
+				}
+				
+				serviceImpl.createOp(id, name, ini, cpr, password, admin);
 			}
 		});
 		back.addClickHandler(new ClickHandler() {

@@ -19,5 +19,5 @@ public interface GreetingService extends RemoteService {
 
 	void connectDatabase();
 	
-	
+	void createOp(int id, String name, String ini, String cpr, String password, boolean admin);
 }

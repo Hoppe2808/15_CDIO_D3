@@ -5,4 +5,5 @@ public interface GreetingServiceClientInt {
 	void getOperators();
 	void checkLogin(int id, String pass);
 	void connectDatabase();
+	void createOp(int id, String name, String ini, String cpr, String password, boolean admin);
 }

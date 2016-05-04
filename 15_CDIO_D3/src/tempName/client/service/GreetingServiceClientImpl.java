@@ -35,6 +35,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void checkLogin(int id, String pass){
 		this.service.checkLogin(id, pass, new defaultCallback());
 	}
+	@Override
+	public void createOp(int id, String name, String ini, String cpr, String password, boolean admin) {
+		this.service.createOp(id, name, ini, cpr, password, admin, new defaultCallback());
+	}
 	
 	public MainGUI getMainGUI(){
 		return this.maingui;
@@ -71,6 +75,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		}
 		
 	}
+
 
 
 }

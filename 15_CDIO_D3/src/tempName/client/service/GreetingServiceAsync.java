@@ -13,4 +13,5 @@ public interface GreetingServiceAsync {
 	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);
 	void connectDatabase(AsyncCallback callback);
+	void createOp(int id, String name, String ini, String cpr, String password, boolean admin, AsyncCallback<Void> callback);
 }
