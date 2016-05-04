@@ -23,7 +23,7 @@ public class MYSQLWeightDAO implements WeightDAO {
 	@Override
 	public List<WeightDTO> getWeightList() throws DALException {
 		List<WeightDTO> list = new ArrayList<WeightDTO>();
-		ResultSet rs = Connector.doQuery("SELECT*FROM operatoer");
+		ResultSet rs = Connector.doQuery("SELECT*FROM weight");
 		try{
 			while (rs.next()){
 				list.add(new WeightDTO(rs.getInt("w_id"), rs.getDouble("weight"), rs.getInt("o_id")));

@@ -9,7 +9,7 @@ public class WeightDTO {
 	int wID;
 	int opID;
 	double ms;
-	
+
 	/**
 	 * The object used to transfer the weight details to the database
 	 * @param opID The operator behind the measurement
@@ -21,23 +21,27 @@ public class WeightDTO {
 		this.opID = opID;
 		this.ms = ms;		
 	}
-	
+
 	public int getopID(){
 		return opID;
 	}
-	
+
 	public void setopID(int opID){
 		this.opID = opID;
 	}
-	
+
 	public double getMS(){
 		return ms;
 	}
-	
+
 	public void setMS(double ms){
 		this.ms = ms;
 	}
 	public int getWID(){
 		return wID;
+	}
+
+	public String toString(){
+		return wID + " " + ms + " " + opID;
 	}
 }
