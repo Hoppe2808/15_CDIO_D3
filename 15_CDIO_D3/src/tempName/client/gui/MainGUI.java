@@ -53,13 +53,11 @@ public class MainGUI extends Composite {
 		loginScreen();
 	}
 	public void loginScreen(){
-		final Label loginHeader = new Label("Login");
 		final Button loginButton = new Button("Login");
 		final TextBox loginUsername = new TextBox();
 		final Label logUserLabel = new Label("Username: ");
 		final TextBox loginPassword = new TextBox();
 		final Label logPassLabel = new Label("Password: ");
-		final Label loginError = new Label();
 		initWidget(container);
 		container.clear();
 		container.add(logUserLabel);
@@ -80,17 +78,40 @@ public class MainGUI extends Composite {
 				}
 			}
 		});
+	}
+	public void loginScreen2(){
+		final Button loginButton = new Button("Login");
+		final TextBox loginUsername = new TextBox();
+		final Label logUserLabel = new Label("Username: ");
+		final TextBox loginPassword = new TextBox();
+		final Label logPassLabel = new Label("Password: ");
+		container.clear();
+		container.add(logUserLabel);
+		container.add(loginUsername);
+		container.add(logPassLabel);
+		container.add(loginPassword);
+		container.add(loginButton);
 
+		loginButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				name = loginUsername.getText();
+				if (name.matches("^[0-9][0-9]?$|^100$")){
+					id = Integer.parseInt(name);
+					password = loginPassword.getText();
+					serviceImpl.checkLogin(id, password);
+				} else {
+					Window.alert("Username must be a number bewteen 0 - 100");
+				}
+			}
+		});
 	}
 	private void opMenu(){
-		final Label opHeader = new Label("Operator menu");
 		final Label meas = new Label("Indtast din måling");
 		final DoubleBox measText = new DoubleBox();
 		final Button submit = new Button("Send");
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
-		container.add(opHeader);
 		container.add(meas);
 		container.add(measText);
 		container.add(submit);
@@ -108,7 +129,7 @@ public class MainGUI extends Composite {
 		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				loginScreen();
+				loginScreen2();
 			}
 		});
 	}
@@ -159,7 +180,7 @@ public class MainGUI extends Composite {
 		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				loginScreen();
+				loginScreen2();
 			}
 		});
 	}
