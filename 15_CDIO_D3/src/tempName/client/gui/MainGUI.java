@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ChangeListener;
@@ -80,8 +81,7 @@ public class MainGUI extends Composite {
 
 	}
 	private void adminMenu(){
-		serviceImpl.getOperators();
-		serviceImpl.getMeasurements();
+		
 		final Label adminHeader = new Label("Admin Menu");
 		final Button createOp = new Button("Create new operator");
 		final Button editOp = new Button("Change attributes of operator");
@@ -107,12 +107,21 @@ public class MainGUI extends Composite {
 		});
 		inspectOp.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				serviceImpl.getOperators();
 				inspectOp();
 			}
 		});
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				measurements();
+				serviceImpl.getMeasurements();
+			    Timer t = new Timer() {
+			        @Override
+			        public void run() {
+			        	measurements();
+			        	
+			        }
+			      };
+			      t.schedule(100);
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -278,8 +287,6 @@ public class MainGUI extends Composite {
 	@SuppressWarnings("unchecked")
 	private void measurements() {
 		final Label measureHeader = new Label("Measurements");
-		Window.alert(Integer.toString(measurements.size()));
-
 		CellTable<WeightDTO> table = new CellTable<WeightDTO>();
 		TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
 
@@ -315,10 +322,10 @@ public class MainGUI extends Composite {
 		dataProvider.addDataDisplay(table);
 		
 		List<WeightDTO> list = new ArrayList<WeightDTO>();
+		list = dataProvider.getList();
 		for (WeightDTO mm : measurements) {
 			list.add(mm);
 		}
-		list = dataProvider.getList();
 
 		final Button back = new Button("<- Back");
 		container.clear();

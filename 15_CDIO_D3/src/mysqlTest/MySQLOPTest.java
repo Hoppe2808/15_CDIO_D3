@@ -32,7 +32,8 @@ public class MySQLOPTest {
 		}
 
 		System.out.println("Indsaettelse af ny operatoer med opr_id =  3");
-		OperatoerDTO oprDTO = new OperatoerDTO(0,"test af mysql statemnet","pb","0000000000","password", false);
+		OperatoerDTO oprDTO = new OperatoerDTO();
+		// 0,"test af mysql statemnet","pb","0000000000","password", false
 		try { 
 			opr.createOperatoer(oprDTO); 
 		}catch (DALException e) {
