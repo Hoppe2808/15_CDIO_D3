@@ -41,7 +41,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	public void createOp(int id, String name, String init, String cpr, String password, boolean admin){
 		
 			try {
-				operatoerDAO.createOperatoer(new OperatoerDTO(id, name, init, cpr, password, admin));
+				OperatoerDTO opDTO = new OperatoerDTO();
+				opDTO.setOprId(id);
+				opDTO.setOprNavn(name);
+				opDTO.setIni(init);
+				opDTO.setCpr(cpr);
+				opDTO.setPassword(password);
+				opDTO.setAdminStatus(admin);
+				operatoerDAO.createOperatoer(opDTO);
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -80,22 +87,23 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<ArrayList> getMeasurements(){
+	public ArrayList<WeightDTO> getMeasurements(){
 		List<WeightDTO> rawList = new ArrayList<WeightDTO>();
-		ArrayList<ArrayList> finalData = new ArrayList<ArrayList>();
+//		ArrayList<ArrayList> finalData = new ArrayList<ArrayList>();
 		try {
 			rawList = this.weightDAO.getWeightList();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		for (int i = 0; i < rawList.size(); i++){
-			finalData.add(new ArrayList<>());
-			finalData.get(i).add(rawList.get(i).getWID());
-			finalData.get(i).add(rawList.get(i).getopID());
-			finalData.get(i).add(rawList.get(i).getMS());
-		}
+		System.out.println(rawList.get(0).getopID());
+//		for (int i = 0; i < rawList.size(); i++){
+//			finalData.add(new ArrayList<>());
+//			finalData.get(i).add(rawList.get(i).getWID());
+//			finalData.get(i).add(rawList.get(i).getopID());
+//			finalData.get(i).add(rawList.get(i).getMS());
+//		}
 		
-		return finalData;
+		return (ArrayList<WeightDTO>) rawList;
 	}
 
 

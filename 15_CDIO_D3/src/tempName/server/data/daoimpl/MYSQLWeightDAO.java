@@ -26,7 +26,11 @@ public class MYSQLWeightDAO implements WeightDAO {
 		ResultSet rs = Connector.doQuery("SELECT*FROM weight");
 		try{
 			while (rs.next()){
-				list.add(new WeightDTO(rs.getInt("w_id"), rs.getDouble("weight"), rs.getInt("o_id")));
+				WeightDTO weightDTO = new WeightDTO();
+				weightDTO.setMS(rs.getDouble("weight"));
+				weightDTO.setopID(rs.getInt("o_id"));
+				weightDTO.setWID(rs.getInt("w_id"));
+				list.add(weightDTO);
 			}
 		} catch(SQLException e){
 			throw new DALException(e);

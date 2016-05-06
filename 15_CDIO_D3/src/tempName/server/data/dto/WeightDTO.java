@@ -1,25 +1,25 @@
 package tempName.server.data.dto;
 
+import java.io.Serializable;
+import com.google.gwt.user.client.rpc.IsSerializable;
+
 /**
  * Data transfer object for weight measurements
  */
 
-public class WeightDTO {
+public class WeightDTO implements Serializable{
 
-	int wID;
-	int opID;
-	double ms;
+	private int wID;
+	private int opID;
+	private double ms;
 
 	/**
 	 * The object used to transfer the weight details to the database
 	 * @param opID The operator behind the measurement
 	 * @param ms the weight of the measurement
 	 */
-	public WeightDTO (int w_id, double ms, int opID){
-		super();
-		this.wID = w_id;
-		this.opID = opID;
-		this.ms = ms;		
+	public WeightDTO(){
+		
 	}
 
 	public int getopID(){
@@ -36,6 +36,9 @@ public class WeightDTO {
 
 	public void setMS(double ms){
 		this.ms = ms;
+	}
+	public void setWID(int wID){
+		this.wID = wID;
 	}
 	public int getWID(){
 		return wID;

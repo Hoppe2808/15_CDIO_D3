@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
 import tempName.server.data.daointerface.DALException;
+import tempName.server.data.dto.WeightDTO;
 
 public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	private GreetingServiceAsync service;
@@ -22,11 +23,13 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		this.maingui = new MainGUI(this);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void getMeasurements() {
 		this.service.getMeasurements(new defaultCallback());
 		
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public void getOperators() {
 		this.service.getOperators(new defaultCallback());
@@ -67,7 +70,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 				maingui.updateLogin(loginCheck);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
-				if (data.get(0) instanceof ArrayList){
+				if (data.get(0) instanceof WeightDTO){
 					maingui.updateMeasurements(data);				
 				} else if (data.get(0) instanceof HashMap){
 					maingui.updateOperators(data);

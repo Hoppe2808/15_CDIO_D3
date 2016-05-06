@@ -6,12 +6,13 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import tempName.server.data.daointerface.DALException;
+import tempName.server.data.dto.WeightDTO;
 
 /**
  * The async counterpart of <code>GreetingService</code>.
  */
 public interface GreetingServiceAsync {
-	void getMeasurements(AsyncCallback<ArrayList<ArrayList>> callback);
+	void getMeasurements(AsyncCallback<ArrayList<WeightDTO>> callback);
 	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);
 	void connectDatabase(AsyncCallback callback);

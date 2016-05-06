@@ -7,13 +7,14 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import tempName.server.data.daointerface.DALException;
+import tempName.server.data.dto.WeightDTO;
 
 /**
  * The client-side stub for the RPC service.
  */
 @RemoteServiceRelativePath("greet")
 public interface GreetingService extends RemoteService {
-	ArrayList<ArrayList> getMeasurements();
+	ArrayList<WeightDTO> getMeasurements();
 
 	ArrayList<HashMap<String, String>> getOperators();
 

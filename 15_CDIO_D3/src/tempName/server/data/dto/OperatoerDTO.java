@@ -1,10 +1,12 @@
 package tempName.server.data.dto;
 
+import java.io.Serializable;
+
 /**
 * Operatør Data Transfer Object (DTO)
 */
 
-public class OperatoerDTO {
+public class OperatoerDTO implements Serializable{
   /** Operatør id i området 1-99999999. Vælges af brugerne */
   int oprId; 
   /** Operatør navn min. 2 max. 20 karakterer */
@@ -19,14 +21,8 @@ public class OperatoerDTO {
   boolean admin;
 	
 	
-  public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, boolean admin) {
-    super();
-    this.oprId = oprId;
-    this.oprNavn = oprNavn;
-    this.ini = ini;
-    this.cpr = cpr;
-    this.password = password;
-    this.admin = admin;
+  public OperatoerDTO() {
+	  
   }
 
 

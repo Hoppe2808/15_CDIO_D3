@@ -16,7 +16,14 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
 		try{
 			if (!rs.first()) throw new DALException("Brugeren " +oprId+ "findes ikke");
-			OperatoerDTO result = new OperatoerDTO(rs.getInt("o_id"), rs.getString("name"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"), rs.getBoolean("admin"));
+			OperatoerDTO opDTO = new OperatoerDTO();
+			opDTO.setOprId(rs.getInt("o_id"));
+			opDTO.setOprNavn(rs.getString("name"));
+			opDTO.setIni(rs.getString("ini"));
+			opDTO.setCpr(rs.getString("cpr"));
+			opDTO.setPassword(rs.getString("password"));
+			opDTO.setAdminStatus(rs.getBoolean("admin"));
+			OperatoerDTO result = opDTO;
 			return result;
 		} catch(SQLException e) {
 			throw new DALException(e);
@@ -28,8 +35,14 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
 		try{
 			while (rs.next()){
-				list.add(new OperatoerDTO(rs.getInt("o_id"), rs.getString("name"), rs.getString("ini"), 
-						rs.getString("cpr"), rs.getString("password"), rs.getBoolean("admin")));
+				OperatoerDTO opDTO = new OperatoerDTO();
+				opDTO.setOprId(rs.getInt("o_id"));
+				opDTO.setOprNavn(rs.getString("name"));
+				opDTO.setIni(rs.getString("ini"));
+				opDTO.setCpr(rs.getString("cpr"));
+				opDTO.setPassword(rs.getString("password"));
+				opDTO.setAdminStatus(rs.getBoolean("admin"));
+				list.add(opDTO);
 			}
 		} catch(SQLException e){
 			throw new DALException(e);
