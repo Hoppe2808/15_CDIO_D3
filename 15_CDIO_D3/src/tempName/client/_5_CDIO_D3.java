@@ -22,7 +22,7 @@ public class _5_CDIO_D3 implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		GreetingServiceClientImpl clientImpl = new GreetingServiceClientImpl(GWT.getModuleBaseURL() + "greet");
-		RootPanel.get().add(clientImpl.getMainGUI());
+		RootPanel.get("theShit").add(clientImpl.getMainGUI());
 	}
 
 }

@@ -35,25 +35,8 @@ h1 {
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-  margin: 15px 6px 6px;
-}
-
-.loginButton{
-	display: table;
+#theShit{
+	text-align: center;
+	width: 250px; 
 	margin: 0 auto;
-}
-#logout{
-    position: relative;
-    bottom: 0;
-    right: 0;
-}
-#back{
-    position: relative;
-    bottom: 0;
-    left: 0;
-}
-.stuff{
-    border-style: solid;
-    border-color: BLACK;
 }
