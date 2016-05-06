@@ -60,6 +60,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void getAdmin(int id){
 		this.service.getAdmin(id, new defaultCallback());
 	}
+	@Override
+	public void addMeasurement(double mm, int id){
+		this.service.addMeasurement(mm, id, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 

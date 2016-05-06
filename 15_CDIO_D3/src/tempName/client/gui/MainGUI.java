@@ -17,6 +17,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ChangeListener;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DoubleBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
@@ -83,8 +84,33 @@ public class MainGUI extends Composite {
 	}
 	private void opMenu(){
 		final Label opHeader = new Label("Operator menu");
+		final Label meas = new Label("Indtast din måling");
+		final DoubleBox measText = new DoubleBox();
+		final Button submit = new Button("Send");
+		final Button logout = new Button("Logout");
 		container.clear();
+		container.setSpacing(9);
 		container.add(opHeader);
+		container.add(meas);
+		container.add(measText);
+		container.add(submit);
+		container.add(logout);
+		
+		submit.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				try{
+					serviceImpl.addMeasurement(Double.parseDouble(measText.getText()), id); 
+					Window.alert("Measurement has been successfully added");					
+				}catch(Exception e){
+					Window.alert("You have to imput a number as a measurement");
+				}
+			}
+		});
+		logout.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				loginScreen();
+			}
+		});
 	}
 	private void adminMenu(){
 		
@@ -100,6 +126,7 @@ public class MainGUI extends Composite {
 		container.add(editOp);
 		container.add(inspectOp);
 		container.add(measurements);
+		container.add(logout);
 
 		createOp.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -351,7 +378,7 @@ public class MainGUI extends Composite {
 
 		table.addColumn(wID, "Weight ID");
 		table.addColumn(meas, "Measurements");
-		table.addColumn(wID, "Operator ID");
+		table.addColumn(oID, "Operator ID");
 
 		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
 

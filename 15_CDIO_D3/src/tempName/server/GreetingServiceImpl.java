@@ -127,5 +127,18 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		return oDTO.getAdminStatus();
 	}
 
+	@Override
+	public void addMeasurement(double mm, int id) {
+		WeightDTO wDTO = new WeightDTO();
+		wDTO.setopID(id);
+		wDTO.setMS(mm);
+		try {
+			this.weightDAO.addWeight(wDTO);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 
 }

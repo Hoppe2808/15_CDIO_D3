@@ -10,4 +10,5 @@ public interface GreetingServiceClientInt {
 	void createOp(int id, String name, String ini, String cpr, String password, boolean admin);
 	void updateOp(int id, String name, String ini, String cpr, String password, boolean admin);
 	void getAdmin(int id);
+	void addMeasurement(double mm, int id);
 }

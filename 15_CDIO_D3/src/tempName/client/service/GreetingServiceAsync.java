@@ -19,4 +19,5 @@ public interface GreetingServiceAsync {
 	void createOp(int id, String name, String ini, String cpr, String password, boolean admin, AsyncCallback<Void> callback);
 	void updateOp(int id, String name, String ini, String cpr, String password, boolean admin, AsyncCallback<Void> callback);
 	void getAdmin(int id, AsyncCallback callback);
+	void addMeasurement(double mm, int id, AsyncCallback callback);
 }

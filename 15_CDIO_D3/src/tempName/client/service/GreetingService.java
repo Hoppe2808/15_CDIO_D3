@@ -27,4 +27,6 @@ public interface GreetingService extends RemoteService {
 	void updateOp(int id, String name, String ini, String cpr, String password, boolean admin);
 	
 	boolean getAdmin(int id);
+	
+	void addMeasurement(double mm, int id);
 }
