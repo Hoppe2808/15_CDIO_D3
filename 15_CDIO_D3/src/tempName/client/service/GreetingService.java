@@ -6,7 +6,6 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
 
 /**

@@ -1,7 +1,6 @@
 package tempName.server.data.dto;
 
 import java.io.Serializable;
-import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * Data transfer object for weight measurements

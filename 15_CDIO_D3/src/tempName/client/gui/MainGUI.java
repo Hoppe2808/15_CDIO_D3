@@ -1,37 +1,25 @@
 package tempName.client.gui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ChangeListener;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DoubleBox;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
 
-import tempName.client.service.GreetingServiceAsync;
 import tempName.client.service.GreetingServiceClientImpl;
-import tempName.server.data.daoimpl.MYSQLWeightDAO;
-import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
 
 public class MainGUI extends Composite {
@@ -287,7 +275,6 @@ public class MainGUI extends Composite {
 	}
 	private void createOp() {
 		final Label failure = new Label("");
-		final Label createHeader = new Label("Create operator");
 		final Button submitButton = new Button("Send");
 		final TextBox username = new TextBox();
 		final Label usernameLabel = new Label("Name: ");
@@ -300,7 +287,6 @@ public class MainGUI extends Composite {
 		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
 		final RadioButton adminNo = new RadioButton("radioGroup", "No");
 		final Label adminLabel = new Label("Is it an admin? ");
-		final Label errorLabel = new Label();
 		final Button back = new Button("<- Back");
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(3);
@@ -368,9 +354,7 @@ public class MainGUI extends Composite {
 		username.selectAll();
 	}
 
-	@SuppressWarnings("unchecked")
 	private void measurements() {
-		final Label measureHeader = new Label("Measurements");
 		CellTable<WeightDTO> table = new CellTable<WeightDTO>();
 		TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
 
@@ -423,9 +407,11 @@ public class MainGUI extends Composite {
 			}
 		});
 	}
+	
 	public void updateMeasurements(ArrayList mm){
 		measurements = mm;
 	}
+	
 	public void updateOperators(ArrayList op){
 		operators = op;
 	}

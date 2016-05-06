@@ -8,7 +8,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
-import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
 
 public class GreetingServiceClientImpl implements GreetingServiceClientInt{

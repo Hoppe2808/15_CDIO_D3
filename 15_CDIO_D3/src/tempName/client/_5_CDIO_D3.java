@@ -2,10 +2,6 @@ package tempName.client;
 
 
 import tempName.client.service.GreetingServiceClientImpl;
-import tempName.server.data.database.Connector;
-
-import java.sql.SQLException;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 

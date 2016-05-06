@@ -1,7 +1,5 @@
 package tempName.client.service;
 
-import tempName.server.data.daointerface.DALException;
-
 public interface GreetingServiceClientInt {
 	void getMeasurements();
 	void getOperators();

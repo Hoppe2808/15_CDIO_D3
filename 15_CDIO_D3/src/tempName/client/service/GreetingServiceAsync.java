@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.WeightDTO;
 
 /**

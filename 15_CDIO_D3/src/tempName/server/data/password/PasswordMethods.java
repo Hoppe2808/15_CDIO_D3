@@ -1,8 +1,6 @@
 package tempName.server.data.password;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-import tempName.server.data.dto.OperatoerDTO;
 import tempName.server.data.daoimpl.*;
 import tempName.server.data.daointerface.DALException;
 
