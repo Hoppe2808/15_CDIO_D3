@@ -43,7 +43,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void createOp(int id, String name, String ini, String cpr, String password, boolean admin){
 		this.service.createOp(id, name, ini, cpr, password, admin, new defaultCallback());
 	}
-	
+	@Override
+	public void updateOp(int id, String name, String ini, String cpr, String password, boolean admin){
+		this.service.updateOp(id, name, ini, cpr, password, admin, new defaultCallback());
+	}
 	public MainGUI getMainGUI(){
 		return this.maingui;
 	}
@@ -52,6 +55,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void connectDatabase() {
 		this.service.connectDatabase(new defaultCallback());
 		
+	}
+	@Override
+	public void getAdmin(int id){
+		this.service.getAdmin(id, new defaultCallback());
 	}
 
 	private class defaultCallback implements AsyncCallback{
@@ -66,8 +73,9 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 			System.out.println(result);
 			if (result instanceof String){
 				String loginCheck = (String) result;
-				System.out.println(loginCheck);
 				maingui.updateLogin(loginCheck);
+			} else if(result instanceof Boolean){
+				maingui.adminCheck((boolean) result);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
 				if (data.get(0) instanceof WeightDTO){

@@ -50,7 +50,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 				opDTO.setAdminStatus(admin);
 				operatoerDAO.createOperatoer(opDTO);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}
@@ -89,21 +88,43 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	@SuppressWarnings("unchecked")
 	public ArrayList<WeightDTO> getMeasurements(){
 		List<WeightDTO> rawList = new ArrayList<WeightDTO>();
-//		ArrayList<ArrayList> finalData = new ArrayList<ArrayList>();
 		try {
 			rawList = this.weightDAO.getWeightList();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		System.out.println(rawList.get(0).getopID());
-//		for (int i = 0; i < rawList.size(); i++){
-//			finalData.add(new ArrayList<>());
-//			finalData.get(i).add(rawList.get(i).getWID());
-//			finalData.get(i).add(rawList.get(i).getopID());
-//			finalData.get(i).add(rawList.get(i).getMS());
-//		}
 		
 		return (ArrayList<WeightDTO>) rawList;
+	}
+
+	@Override
+	public void updateOp(int id, String name, String ini, String cpr, String password, boolean admin) {
+		OperatoerDTO oDTO = new OperatoerDTO();
+		oDTO.setOprId(id);
+		oDTO.setOprNavn(name);
+		oDTO.setIni(ini);
+		oDTO.setCpr(cpr);
+		oDTO.setPassword(password);
+		oDTO.setAdminStatus(admin);
+		try {
+			this.operatoerDAO.updateOperatoer(oDTO);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public boolean getAdmin(int id) {
+		OperatoerDTO oDTO = new OperatoerDTO();
+		
+		try {
+			oDTO = this.operatoerDAO.getOperatoer(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return oDTO.getAdminStatus();
 	}
 
 

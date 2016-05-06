@@ -8,4 +8,6 @@ public interface GreetingServiceClientInt {
 	void checkLogin(int id, String pass);
 	void connectDatabase();
 	void createOp(int id, String name, String ini, String cpr, String password, boolean admin);
+	void updateOp(int id, String name, String ini, String cpr, String password, boolean admin);
+	void getAdmin(int id);
 }

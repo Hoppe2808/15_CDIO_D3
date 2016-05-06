@@ -40,6 +40,7 @@ public class MainGUI extends Composite {
 	private String ini;
 	private String cpr;
 	private boolean admin;
+	private boolean userAdmin;
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private GreetingServiceClientImpl serviceImpl;
@@ -79,6 +80,11 @@ public class MainGUI extends Composite {
 			}
 		});
 
+	}
+	private void opMenu(){
+		final Label opHeader = new Label("Operator menu");
+		container.clear();
+		container.add(opHeader);
 	}
 	private void adminMenu(){
 		
@@ -165,13 +171,16 @@ public class MainGUI extends Composite {
 	}
 	private void editOp() {
 		final Label editHeader = new Label("Edit an operator");
-		final ListBox lb = new ListBox();
+		final Label id = new Label("User ID: ");
+		final TextBox idText = new TextBox();
 		final Label username = new Label("Username: ");
 		final TextBox userText = new TextBox();
 		final Label password = new Label("Password: ");
 		final TextBox passText = new TextBox();
 		final Label cpr = new Label("Cpr-number: ");
 		final TextBox cprText = new TextBox();
+		final Label ini = new Label("Initialer: ");
+		final TextBox iniText = new TextBox();
 		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
 		final RadioButton adminNo = new RadioButton("radioGroup", "No");
 		final Label adminLabel = new Label("Is it an admin? ");
@@ -184,9 +193,12 @@ public class MainGUI extends Composite {
 		final Button back = new Button("<- Back");
 		container.clear();
 		container.setSpacing(9);
-		container.add(lb);
+		container.add(id);
+		container.add(idText);
 		container.add(username);
 		container.add(userText);
+		container.add(ini);
+		container.add(iniText);
 		container.add(cpr);
 		container.add(cprText);
 		container.add(password);
@@ -195,6 +207,30 @@ public class MainGUI extends Composite {
 		container.add(submit);
 		container.add(back);
 
+		submit.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				if (adminYes.getValue()){
+					admin = true;
+				} else if(adminNo.getValue()){
+					admin = false;
+				} else {
+					Window.alert("Something went wrong in checking for admin status");
+				}
+				try{
+					if (cprText.getText().length() != 10){
+						Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
+					} else if (iniText.getText().length() > 3 && iniText.getText().length() < 2){
+						Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
+					} else{
+						serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
+						Window.alert("Operator updated");						
+					}
+				} catch(Exception e){
+					Window.alert("Operator not updated");
+				}
+			}
+		});
+		
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				adminMenu();
@@ -347,13 +383,18 @@ public class MainGUI extends Composite {
 	}
 	public void updateLogin(String check) {
 		if (check.equals("true")){
-			adminMenu();
+			serviceImpl.getAdmin(id);
 		} else if (check.equals("false")){
 			Window.alert("FAIL");
 		} else {
 			Window.alert("Something went wrong in login check");
 		}
-
-
+	}
+	public void adminCheck(boolean admin){
+		if (admin){
+			adminMenu();
+		} else {
+			opMenu();
+		}
 	}
 }
