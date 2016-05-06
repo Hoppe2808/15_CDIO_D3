@@ -16,7 +16,7 @@ public class MYSQLWeightDAO implements WeightDAO {
 	public void addWeight(WeightDTO w) throws DALException {
 		Connector.doUpdate(
 				"INSERT INTO weight(weight, o_id) VALUES "
-				+"(" + w.getMS() + ", " + w.getopID() + ")"
+						+"(" + w.getMS() + ", " + w.getopID() + ")"
 				);
 	}
 
@@ -36,7 +36,7 @@ public class MYSQLWeightDAO implements WeightDAO {
 			throw new DALException(e);
 		}
 		return list;
-		
+
 	}
 
 }

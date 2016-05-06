@@ -13,26 +13,26 @@ import tempName.server.data.dto.WeightDTO;
 public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	private GreetingServiceAsync service;
 	private MainGUI maingui;
-	
+
 	public GreetingServiceClientImpl(String url){
 		this.service = GWT.create(GreetingService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
-		
+
 		this.maingui = new MainGUI(this);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void getMeasurements() {
 		this.service.getMeasurements(new defaultCallback());
-		
+
 	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public void getOperators() {
 		this.service.getOperators(new defaultCallback());
-		
+
 	}
 	@Override
 	public void checkLogin(int id, String pass){
@@ -49,11 +49,11 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public MainGUI getMainGUI(){
 		return this.maingui;
 	}
-	
+
 	@Override
 	public void connectDatabase() {
 		this.service.connectDatabase(new defaultCallback());
-		
+
 	}
 	@Override
 	public void getAdmin(int id){
@@ -88,7 +88,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 				}
 			}
 		}
-		
+
 	}
 
 

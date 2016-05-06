@@ -16,7 +16,7 @@ public class PasswordMethods {
 	private boolean symbols;
 	private int different;
 
-	
+
 	public PasswordMethods(MYSQLOperatoerDAO dao){
 		this.dao = dao;
 	}

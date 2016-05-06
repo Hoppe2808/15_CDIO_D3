@@ -104,7 +104,7 @@ public class MainGUI extends Composite {
 		container.add(measText);
 		container.add(submit);
 		container.add(logout);
-		
+
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				try{
@@ -122,7 +122,7 @@ public class MainGUI extends Composite {
 		});
 	}
 	private void adminMenu(){
-		
+
 		final Label adminHeader = new Label("Admin Menu");
 		final Button createOp = new Button("Create new operator");
 		final Button editOp = new Button("Change attributes of operator");
@@ -156,14 +156,14 @@ public class MainGUI extends Composite {
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				serviceImpl.getMeasurements();
-			    Timer t = new Timer() {
-			        @Override
-			        public void run() {
-			        	measurements();
-			        	
-			        }
-			      };
-			      t.schedule(100);
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						measurements();
+
+					}
+				};
+				t.schedule(100);
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -266,7 +266,7 @@ public class MainGUI extends Composite {
 				}
 			}
 		});
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				adminMenu();
@@ -388,7 +388,7 @@ public class MainGUI extends Composite {
 		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
 
 		dataProvider.addDataDisplay(table);
-		
+
 		List<WeightDTO> list = new ArrayList<WeightDTO>();
 		list = dataProvider.getList();
 		for (WeightDTO mm : measurements) {
@@ -407,11 +407,11 @@ public class MainGUI extends Composite {
 			}
 		});
 	}
-	
+
 	public void updateMeasurements(ArrayList mm){
 		measurements = mm;
 	}
-	
+
 	public void updateOperators(ArrayList op){
 		operators = op;
 	}

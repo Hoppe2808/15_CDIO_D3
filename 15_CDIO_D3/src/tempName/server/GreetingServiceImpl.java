@@ -19,11 +19,11 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
-	
+
 	private MYSQLWeightDAO weightDAO = new MYSQLWeightDAO();
 	private MYSQLOperatoerDAO operatoerDAO = new MYSQLOperatoerDAO();
 	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
-	
+
 	public void connectDatabase(){
 		try { 
 			new Connector(); 
@@ -37,23 +37,23 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			e.printStackTrace(); 
 		}
 	}
-	
+
 	public void createOp(int id, String name, String init, String cpr, String password, boolean admin){
-		
-			try {
-				OperatoerDTO opDTO = new OperatoerDTO();
-				opDTO.setOprId(id);
-				opDTO.setOprNavn(name);
-				opDTO.setIni(init);
-				opDTO.setCpr(cpr);
-				opDTO.setPassword(password);
-				opDTO.setAdminStatus(admin);
-				operatoerDAO.createOperatoer(opDTO);
-			} catch (DALException e) {
-				e.printStackTrace();
-			}
+
+		try {
+			OperatoerDTO opDTO = new OperatoerDTO();
+			opDTO.setOprId(id);
+			opDTO.setOprNavn(name);
+			opDTO.setIni(init);
+			opDTO.setCpr(cpr);
+			opDTO.setPassword(password);
+			opDTO.setAdminStatus(admin);
+			operatoerDAO.createOperatoer(opDTO);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public String checkLogin(int id, String pass){
 		String check;
 		if (passMeth.correctUserPassword(id, pass)){
@@ -83,8 +83,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		}
 		return finalData;
 	}
-	
-	
+
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<WeightDTO> getMeasurements(){
 		List<WeightDTO> rawList = new ArrayList<WeightDTO>();
@@ -94,7 +94,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			e.printStackTrace();
 		}
 		System.out.println(rawList.get(0).getopID());
-		
+
 		return (ArrayList<WeightDTO>) rawList;
 	}
 
@@ -112,13 +112,13 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public boolean getAdmin(int id) {
 		OperatoerDTO oDTO = new OperatoerDTO();
-		
+
 		try {
 			oDTO = this.operatoerDAO.getOperatoer(id);
 		} catch (DALException e) {
@@ -137,7 +137,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 

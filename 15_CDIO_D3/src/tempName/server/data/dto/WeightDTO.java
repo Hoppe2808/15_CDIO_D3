@@ -18,7 +18,7 @@ public class WeightDTO implements Serializable{
 	 * @param ms the weight of the measurement
 	 */
 	public WeightDTO(){
-		
+
 	}
 
 	public int getopID(){

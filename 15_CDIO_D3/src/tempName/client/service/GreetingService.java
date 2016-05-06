@@ -20,12 +20,12 @@ public interface GreetingService extends RemoteService {
 	String checkLogin(int id, String pass);
 
 	void connectDatabase();
-	
+
 	void createOp(int id, String name, String ini, String cpr, String password, boolean admin);
-	
+
 	void updateOp(int id, String name, String ini, String cpr, String password, boolean admin);
-	
+
 	boolean getAdmin(int id);
-	
+
 	void addMeasurement(double mm, int id);
 }

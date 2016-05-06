@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class _5_CDIO_D3 implements EntryPoint {
 
-	
+
 	/**
 	 * This is the entry point method.
 	 */
