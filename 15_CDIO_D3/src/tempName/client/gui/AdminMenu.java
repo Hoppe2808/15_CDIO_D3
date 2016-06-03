@@ -1,6 +1,7 @@
 package tempName.client.gui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,12 +17,23 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
+import tempName.client.service.GreetingServiceClientImpl;
 import tempName.server.data.dto.WeightDTO;
 
 public class AdminMenu {
 	
-	public AdminMenu(){
+	private VerticalPanel container;
+	private GreetingServiceClientImpl serviceImpl;
+	private MainGUI mainGUI;
+	private int id;
+	
+	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id){
 		
+		this.container = container;
+		this.serviceImpl = serviceImpl;
+		this.mainGUI = mainGUI;
+		this.id = id;
+
 	}
 	
 	

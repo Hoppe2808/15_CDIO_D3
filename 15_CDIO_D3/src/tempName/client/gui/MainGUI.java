@@ -35,6 +35,7 @@ public class MainGUI extends Composite {
 	private GreetingServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private OperatoerMenu opMenu;
+	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id);
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -113,7 +114,7 @@ public class MainGUI extends Composite {
 	}
 	public void adminCheck(boolean admin){
 		if (admin){
-			adminMenu();
+			AM.adminMenu();
 		} else {
 			opMenu = new OperatoerMenu(container, serviceImpl, this, id);
 			opMenu.opMenu();
