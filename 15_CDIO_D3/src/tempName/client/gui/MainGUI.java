@@ -34,6 +34,7 @@ public class MainGUI extends Composite {
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private GreetingServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
+	private OperatoerMenu opMenu;
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -90,34 +91,6 @@ public class MainGUI extends Composite {
 				} else {
 					Window.alert("Username must be a number bewteen 0 - 100");
 				}
-			}
-		});
-	}
-	private void opMenu(){
-		final Label meas = new Label("Indtast din måling");
-		final DoubleBox measText = new DoubleBox();
-		final Button submit = new Button("Send");
-		final Button logout = new Button("Logout");
-		container.clear();
-		container.setSpacing(9);
-		container.add(meas);
-		container.add(measText);
-		container.add(submit);
-		container.add(logout);
-
-		submit.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				try{
-					serviceImpl.addMeasurement(Double.parseDouble(measText.getText()), id); 
-					Window.alert("Measurement has been successfully added");					
-				}catch(Exception e){
-					Window.alert("You have to imput a number as a measurement");
-				}
-			}
-		});
-		logout.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				loginScreen2();
 			}
 		});
 	}
@@ -428,7 +401,8 @@ public class MainGUI extends Composite {
 		if (admin){
 			adminMenu();
 		} else {
-			opMenu();
+			opMenu = new OperatoerMenu(container, serviceImpl, this, id);
+			opMenu.opMenu();
 		}
 	}
 }
