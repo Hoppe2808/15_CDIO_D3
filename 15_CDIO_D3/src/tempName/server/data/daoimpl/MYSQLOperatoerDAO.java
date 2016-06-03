@@ -11,9 +11,18 @@ import tempName.server.data.database.Connector;
 import tempName.server.data.dto.OperatoerDTO;
 
 public class MYSQLOperatoerDAO implements OperatoerDAO {
+	private Connector connector;
+	
+	public MYSQLOperatoerDAO(){
+		try {
+			connector = new Connector();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
+		ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
 		try{
 			if (!rs.first()) throw new DALException("Brugeren " +oprId+ "findes ikke");
 			OperatoerDTO opDTO = new OperatoerDTO();
@@ -32,7 +41,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 
 	public List<OperatoerDTO> getOperatoerList() throws DALException {
 		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
+		ResultSet rs = connector.doQuery("SELECT * FROM operatoer");
 		try{
 			while (rs.next()){
 				OperatoerDTO opDTO = new OperatoerDTO();
@@ -51,7 +60,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
-		Connector.doUpdate(
+		connector.doUpdate(
 				"INSERT INTO operatoer(o_id, name, ini, cpr, password, admin) VALUES "
 						+"(" + opr.getOprId() + ", '" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + opr.getCpr() + 
 						"', '" + opr.getPassword() + "', " + opr.getAdminStatus() + ")"
@@ -60,7 +69,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
-		Connector.doUpdate(
+		connector.doUpdate(
 				"UPDATE operatoer SET name = '" + opr.getOprNavn() + "', ini = '" + opr.getIni() + "', cpr = '" 
 						+ opr.getCpr() + "', password = '" + opr.getPassword() + "', admin = " + opr.getAdminStatus() + " WHERE o_id = "
 						+ 	opr.getOprId()			

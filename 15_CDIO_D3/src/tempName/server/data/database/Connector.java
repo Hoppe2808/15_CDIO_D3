@@ -57,13 +57,13 @@ public class Connector
 
 	}
 
-	public static ResultSet doQuery(String cmd) throws DALException
+	public ResultSet doQuery(String cmd) throws DALException
 	{
 		try { return stm.executeQuery(cmd); }
 		catch (SQLException e) { throw new DALException(e); }
 	}
 
-	public static int doUpdate(String cmd) throws DALException
+	public int doUpdate(String cmd) throws DALException
 	{
 		try { return stm.executeUpdate(cmd); }
 		catch (SQLException e) { throw new DALException(e); }
