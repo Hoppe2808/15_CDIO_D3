@@ -11,10 +11,10 @@ import tempName.server.data.database.Connector;
 import tempName.server.data.dto.ReceptDTO;
 
 
-public class MYSQLRecept implements ReceptDAO{
+public class MYSQLReceptDAO implements ReceptDAO{
 	private Connector connector;
 	
-	public MYSQLRecept() {
+	public MYSQLReceptDAO() {
 		try {
 			connector = new Connector();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
