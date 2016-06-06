@@ -35,7 +35,7 @@ h1 {
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
-#theShit{
+#main{
 	text-align: center;
 	width: 250px; 
 	margin: 0 auto;
