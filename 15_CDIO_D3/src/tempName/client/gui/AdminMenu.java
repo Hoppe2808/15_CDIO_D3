@@ -101,6 +101,7 @@ public class AdminMenu {
 		final TextBox lb = new TextBox();
 		container.clear();
 		container.setSpacing(9);
+		container.add(inspectHeader);
 		container.add(oper);
 		container.add(lb);
 		container.add(inspect);
@@ -144,6 +145,8 @@ public class AdminMenu {
 		final Button submit = new Button("Submit");
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(3);
+		panel.add(editHeader);
+		panel.add(adminLabel);
 		panel.add(adminYes);
 		panel.add(adminNo);
 
