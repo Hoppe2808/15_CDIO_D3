@@ -19,6 +19,7 @@ import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.client.service.GreetingServiceClientImpl;
 import tempName.server.data.dto.RaavareDTO;
+import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
 
 public class AdminMenu implements FarmaAdminInt{
@@ -32,6 +33,7 @@ public class AdminMenu implements FarmaAdminInt{
 	private ArrayList<HashMap> operators;
 	private ArrayList<WeightDTO> measurements;
 	private ArrayList<RaavareDTO> raavare;
+	private ArrayList<ReceptDTO> recept;
 	
 	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators, ArrayList<WeightDTO> measurements){
 		
@@ -49,14 +51,16 @@ public class AdminMenu implements FarmaAdminInt{
 		final Button createOp = new Button("Create new operator");
 		final Button editOp = new Button("Change attributes of operator");
 		final Button inspectOp = new Button("Inspect an operator");
-		final Button measurements = new Button("Check measurements");
+		final Button raavaremenu = new Button("Check råvarer");
+		final Button receptmenu = new Button("Check recepter");
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
 		container.add(createOp);
 		container.add(editOp);
 		container.add(inspectOp);
-		container.add(measurements);
+		container.add(raavaremenu);
+		container.add(receptmenu);
 		container.add(logout);
 
 		createOp.addClickHandler(new ClickHandler() {
@@ -75,13 +79,26 @@ public class AdminMenu implements FarmaAdminInt{
 				inspectOp();
 			}
 		});
-		measurements.addClickHandler(new ClickHandler() {
+		raavaremenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRaavare();
 				Timer t = new Timer() {
 					@Override
 					public void run() {
-						measurements();
+						raavare();
+
+					}
+				};
+				t.schedule(100);
+			}
+		});
+		receptmenu.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainGUI.serviceImpl.getRaavare();
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						raavare();
 
 					}
 				};
@@ -281,7 +298,7 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 
 	@Override
-	public void measurements() {
+	public void raavare() {
 		CellTable<RaavareDTO> table = new CellTable<RaavareDTO>();
 		TextColumn<RaavareDTO> rID = new TextColumn<RaavareDTO>(){
 
@@ -334,6 +351,51 @@ public class AdminMenu implements FarmaAdminInt{
 			}
 		});
 	}
+	@Override
+	public void recept() {
+		CellTable<ReceptDTO> table = new CellTable<ReceptDTO>();
+		TextColumn<ReceptDTO> rID = new TextColumn<ReceptDTO>(){
+
+			@Override
+			public String getValue(ReceptDTO object) {
+				return Integer.toString(object.getRec_Id());
+			}
+
+		};
+		TextColumn<ReceptDTO> rName = new TextColumn<ReceptDTO>(){
+
+			@Override
+			public String getValue(ReceptDTO object) {
+				return object.getRec_navn();
+			}
+
+		};
+		
+		table.addColumn(rID, "Raavare ID");
+		table.addColumn(rName, "Raavare Name");
+
+		ListDataProvider<ReceptDTO> dataProvider = new ListDataProvider<ReceptDTO>();
+
+		dataProvider.addDataDisplay(table);
+
+		List<ReceptDTO> list = new ArrayList<ReceptDTO>();
+		list = dataProvider.getList();
+		for (ReceptDTO mm : recept) {
+			list.add(mm);
+		}
+
+		final Button back = new Button("<- Back");
+		container.clear();
+		container.setSpacing(9);
+		container.add(table);
+		container.add(back);
+
+		back.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				adminMenu();
+			}
+		});
+	}
 	public void updateMeasurements(ArrayList<WeightDTO> mm){
 		measurements = mm;
 	}
@@ -342,5 +404,8 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
 		this.raavare = raavare;
+	}
+	public void updateRecept(ArrayList<ReceptDTO> recept){
+		this.recept = recept;
 	}
 }

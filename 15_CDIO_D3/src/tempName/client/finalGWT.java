@@ -18,7 +18,7 @@ public class finalGWT implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		GreetingServiceClientImpl clientImpl = new GreetingServiceClientImpl(GWT.getModuleBaseURL() + "greet");
-		RootPanel.get("theShit").add(clientImpl.getMainGUI());
+		RootPanel.get("main").add(clientImpl.getMainGUI());
 	}
 
 }

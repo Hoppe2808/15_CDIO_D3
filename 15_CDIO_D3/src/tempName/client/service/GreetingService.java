@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import tempName.server.data.dto.RaavareDTO;
+import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
 
 /**

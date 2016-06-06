@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import tempName.server.data.dto.RaavareDTO;
+import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
 
 /**

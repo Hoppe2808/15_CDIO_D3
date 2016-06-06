@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import tempName.client.service.GreetingServiceClientImpl;
 import tempName.server.data.dto.RaavareDTO;
+import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
 
 public class MainGUI extends Composite {
@@ -27,6 +28,7 @@ public class MainGUI extends Composite {
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
+	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
@@ -123,5 +125,10 @@ public class MainGUI extends Composite {
 		this.raavare = raavare;
 		AM.updateRaavare(raavare);
 		faMenu.updateRaavare(raavare);
+	}
+	public void updateRecept(ArrayList recept){
+		this.recept = recept;
+		AM.updateRecept(recept);
+		faMenu.updateRecept(recept);
 	}
 }
