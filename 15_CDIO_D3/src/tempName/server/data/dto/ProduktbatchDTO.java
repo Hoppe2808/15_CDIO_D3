@@ -8,16 +8,6 @@ public class ProduktbatchDTO  {
 	int rbId;
 	double tara;
 	double netto;
-	
-	public ProduktbatchDTO (int pbId,int recpetId, int status, int oprId, int rbId,double tara, double netto){
-		this.pbId = pbId;
-		this.recpetId = recpetId;
-		this.status = status;
-		this.oprId = oprId;
-		this.rbId = rbId;
-		this.tara = tara;
-		this.netto = netto;
-	}
 
 	public int getPbId() {
 		return pbId;

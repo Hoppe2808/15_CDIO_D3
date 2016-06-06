@@ -23,13 +23,13 @@ public class MYSQLRecept implements ReceptDAO{
 	}
 	
 	@Override
-	public ReceptDTO getRecept(int rec_Id) throws DALException {
-		ResultSet rs = connector.doQuery("SELECT * FROM recept WHERE recept_Id = " + rec_Id);
+	public ReceptDTO getRecept(int receptId) throws DALException {
+		ResultSet rs = connector.doQuery("SELECT * FROM recept WHERE receptId = " + receptId);
 		try{
-			if (!rs.first()) throw new DALException("Recepten " + rec_Id + " findes ikke");
+			if (!rs.first()) throw new DALException("Recepten " + receptId + " findes ikke");
 			ReceptDTO recDTO = new ReceptDTO();
-			recDTO.setRec_Id(rs.getInt("recept_id"));
-			recDTO.setRec_navn(rs.getString("recept_navn"));
+			recDTO.receptId(rs.getInt("receptId"));
+			recDTO.receptNavn(rs.getString("receptNavn"));
 			ReceptDTO result = recDTO;
 			return result;
 		} catch(SQLException e) {
@@ -44,8 +44,8 @@ public class MYSQLRecept implements ReceptDAO{
 		try{
 			while (rs.next()){
 				ReceptDTO recDTO = new ReceptDTO();
-				recDTO.setRec_Id(rs.getInt("recept_id"));
-				recDTO.setRec_navn(rs.getString("recept_navn"));
+				recDTO.receptId(rs.getInt("receptId"));
+				recDTO.receptNavn(rs.getString("receptNavn"));
 				list.add(recDTO);
 			}
 		} catch(SQLException e){
@@ -57,16 +57,16 @@ public class MYSQLRecept implements ReceptDAO{
 	@Override
 	public void createRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
-				"INSERT INTO recept(recept_id, recept_navn) VALUES "
-						+"(" + rec.getRec_Id() + ", '" + rec.getRec_navn() + ")"
+				"INSERT INTO recept(receptId, receptNavn) VALUES "
+						+"(" + rec.receptId() + ", '" + rec.receptNavn() + ")"
 				);		
 	}
 
 	@Override
 	public void updateRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
-				"UPDATE recept SET recept_id = '" + rec.getRec_Id() + "', recept_navn = '" + rec.getRec_navn()
-				 + " WHERE opr_id = " + rec.getRec_Id()			
+				"UPDATE recept SET receptId = '" + rec.receptId() + "', receptNavn = '" + rec.receptNavn()
+				 + " WHERE oprId = " + rec.receptId()			
 				);		
 	}
 }

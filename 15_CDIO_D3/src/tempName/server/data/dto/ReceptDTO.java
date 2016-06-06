@@ -9,19 +9,19 @@ public class ReceptDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int rec_Id;
-	private String rec_navn;
+	private int receptId;
+	private String receptNavn;
 	
-	public int getRec_Id() {
-		return rec_Id;
+	public int receptId() {
+		return receptId;
 	}
-	public void setRec_Id(int rec_Id) {
-		this.rec_Id = rec_Id;
+	public void receptId(int receptId) {
+		this.receptId = receptId;
 	}
-	public String getRec_navn() {
-		return rec_navn;
+	public String receptNavn() {
+		return receptNavn;
 	}
-	public void setRec_navn(String rec_navn) {
-		this.rec_navn = rec_navn;
+	public void receptNavn(String recpetNavn) {
+		this.receptNavn = recpetNavn;
 	}
 }
