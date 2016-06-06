@@ -31,7 +31,7 @@ public class MySQLWheightTest {
 			System.out.println(e.getMessage());		
 		}		
 
-		System.out.println("Indsættelse af ny vægtmåling med o_id = 200: ");		
+		System.out.println("Indsættelse af ny vægtmåling med opr_id = 200: ");		
 		WeightDTO wDTO = new WeightDTO();		
 		// 200, 15, 200		
 		try{		

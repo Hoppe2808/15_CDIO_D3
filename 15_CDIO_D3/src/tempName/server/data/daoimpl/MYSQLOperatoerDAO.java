@@ -22,7 +22,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 	}
 
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
-		ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
+		ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
 			try{
 			if (!rs.first()) throw new DALException("Brugeren " +oprId+ "findes ikke");
 			OperatoerDTO opDTO = new OperatoerDTO();
@@ -39,6 +39,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		}
 	}
 
+	
 	public List<OperatoerDTO> getOperatoerList() throws DALException {
 		List<OperatoerDTO> list = new ArrayList<OperatoerDTO>();
 		ResultSet rs = connector.doQuery("SELECT * FROM operatoer");
