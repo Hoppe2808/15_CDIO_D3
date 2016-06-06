@@ -32,15 +32,17 @@ public class FarmaceutMenu implements FarmaAdminInt{
 	
 	public void farmaMenu(){
 		final Label farmaHeader = new Label("Farmaceut Menu");
-		final Button measurements = new Button("Check measurements");
+		final Button raavaremenu = new Button("Check råvarer");
+		final Button receptmenu = new Button("Check recepter");
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
 		container.add(farmaHeader);
-		container.add(measurements);
+		container.add(raavaremenu);
+		container.add(receptmenu);
 		container.add(logout);
 
-		measurements.addClickHandler(new ClickHandler() {
+		raavaremenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRaavare();
 				Timer t = new Timer() {
