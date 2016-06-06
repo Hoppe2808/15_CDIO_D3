@@ -29,11 +29,12 @@ public class VaerksfoererMenu implements FarmaAdminInt {
 	}
 	
 	public void foremanMenu(){
-		final Label ForemanHeader = new Label("Foreman Menu");
+		final Label foremanHeader = new Label("Foreman Menu");
 		final Button measurements = new Button("Check measurements");
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
+		container.add(foremanHeader);
 		container.add(measurements);
 		container.add(logout);
 

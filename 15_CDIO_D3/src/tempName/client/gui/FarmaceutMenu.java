@@ -31,6 +31,7 @@ public class FarmaceutMenu implements FarmaAdminInt{
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
+		container.add(farmaHeader);
 		container.add(measurements);
 		container.add(logout);
 
