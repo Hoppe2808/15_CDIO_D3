@@ -1,22 +1,16 @@
 package tempName.server.data.password;
-
 import java.util.ArrayList;
 import tempName.server.data.daoimpl.*;
 import tempName.server.data.daointerface.DALException;
-
 public class PasswordMethods {
-
 	private PasswordData AD = new PasswordData();
 	private MYSQLOperatoerDAO dao;
-
 	private ArrayList<String> character = AD.getCharacter();
 	private boolean smallLetters;
 	private boolean kapLetters;
 	private boolean numbers;
 	private boolean symbols;
 	private int different;
-
-
 	public PasswordMethods(MYSQLOperatoerDAO dao){
 		this.dao = dao;
 	}
@@ -35,21 +29,17 @@ public class PasswordMethods {
 			return false;
 		}
 	}
-
 	/**
 	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den består...
 	 */
 	public boolean checkPass(String password){
-
 		AD.array();
-
 		numbers=false;
 		symbols= false;
 		smallLetters=false;
 		kapLetters=false;
 		different = 0;
-
 		for(int j=0; j<=9; j++){
 			if(password.contains(character.get(j))){
 				numbers = true;
@@ -57,7 +47,6 @@ public class PasswordMethods {
 				break;
 			}
 		}
-
 		for(int j=10; j<=35; j++){
 			if(password.contains(character.get(j))){
 				smallLetters = true;
@@ -65,7 +54,6 @@ public class PasswordMethods {
 				break;
 			}
 		}
-
 		for(int j=36; j<=61; j++){
 			if(password.contains(character.get(j))){
 				kapLetters = true;
@@ -73,7 +61,6 @@ public class PasswordMethods {
 				break;
 			}
 		}
-
 		for(int j=62; j<=68; j++){
 			if(password.contains(character.get(j))){
 				symbols = true;
@@ -81,7 +68,6 @@ public class PasswordMethods {
 				break;
 			}
 		}
-
 		if(!numbers||!smallLetters||!kapLetters||!symbols){
 			if(different<3){
 				return false;
@@ -89,26 +75,20 @@ public class PasswordMethods {
 		}
 		return true;
 	}
-
 	/**
 	 * @param password1 Første kode
 	 * @param password2 Anden kode
 	 * @return true hvis koderne er ens METODEN ER TIL OPRETTELSE AF NY KODE
 	 */
 	public boolean samePass(String password1, String password2) {
-
 		if(password1.equals(password2)) return true;
 		else return false;
 	}
-
 	/**
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
 	public boolean correctUserPassword(int iD, String password){
-
 		int index = -1;	
-		
-
 		try {
 			for (int i = 1 ; i < dao.getOperatoerList().size(); i++){
 				if (iD == dao.getOperatoer(i).getOprId()){			
@@ -116,8 +96,7 @@ public class PasswordMethods {
 					break;				
 				}		
 			}
-		} catch (DALException e) {
-			
+		} catch (DALException e) {		
 			System.out.println("Error in getting operator ID");
 		}
 		try {
@@ -132,7 +111,6 @@ public class PasswordMethods {
 		}
 		return false;
 	}
-
 	public String getNewPassword(int passwordLength){
 		String password = AD.getNewKode(passwordLength);
 		return password;
