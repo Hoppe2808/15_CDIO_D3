@@ -11,4 +11,6 @@ public interface GreetingServiceClientInt {
 	void addMeasurement(double mm, int id);
 	void addRaavare(String rName, String deliverer);
 	void getRaavare();
+	void addRecept(String receptName);
+	void getRecept();
 }

@@ -22,4 +22,6 @@ public interface GreetingServiceAsync {
 	void addMeasurement(double mm, int id, AsyncCallback callback);
 	void addRaavare(String rName, String deliverer, AsyncCallback callback);
 	void getRaavare(AsyncCallback<ArrayList<RaavareDTO>> callback);
+	void addRecept(String receptName, AsyncCallback callback);
+	void getRecept(AsyncCallback<ArrayList<ReceptDTO>> callback);
 }

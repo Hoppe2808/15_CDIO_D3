@@ -19,6 +19,8 @@ public interface GreetingService extends RemoteService {
 	ArrayList<HashMap<String, String>> getOperators();
 	
 	ArrayList<RaavareDTO> getRaavare();
+	
+	ArrayList<ReceptDTO> getRecept();
 
 	String checkLogin(int id, String pass);
 
@@ -33,4 +35,6 @@ public interface GreetingService extends RemoteService {
 	void addMeasurement(double mm, int id);
 	
 	void addRaavare(String rName, String deliverer);
+	
+	void addRecept(String receptName);
 }
