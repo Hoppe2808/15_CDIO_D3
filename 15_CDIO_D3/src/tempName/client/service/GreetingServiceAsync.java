@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 
 /**
@@ -20,4 +21,5 @@ public interface GreetingServiceAsync {
 	void getAdmin(int id, AsyncCallback callback);
 	void addMeasurement(double mm, int id, AsyncCallback callback);
 	void addRaavare(String rName, String deliverer, AsyncCallback callback);
+	void getRaavare(AsyncCallback<ArrayList<RaavareDTO>> callback);
 }

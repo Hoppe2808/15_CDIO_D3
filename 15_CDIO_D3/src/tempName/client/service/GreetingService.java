@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 
 /**
@@ -16,6 +17,8 @@ public interface GreetingService extends RemoteService {
 	ArrayList<WeightDTO> getMeasurements();
 
 	ArrayList<HashMap<String, String>> getOperators();
+	
+	ArrayList<RaavareDTO> getRaavare();
 
 	String checkLogin(int id, String pass);
 

@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import tempName.client.service.GreetingServiceClientImpl;
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 
 public class MainGUI extends Composite {
@@ -25,6 +26,7 @@ public class MainGUI extends Composite {
 	private FarmaceutMenu faMenu;
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
+	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
@@ -116,5 +118,9 @@ public class MainGUI extends Composite {
 	public void updateOperators(ArrayList op){
 		operators = op;
 		AM.updateOperators(operators);
+	}
+	public void updateRaavare(ArrayList raavare){
+		this.raavare = raavare;
+		AM.updateRaavare(raavare);
 	}
 }

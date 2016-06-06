@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.client.service.GreetingServiceClientImpl;
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 
 public class AdminMenu implements FarmaAdminInt{
@@ -30,6 +31,7 @@ public class AdminMenu implements FarmaAdminInt{
 	private String ini, cpr, name, password;
 	private ArrayList<HashMap> operators;
 	private ArrayList<WeightDTO> measurements;
+	private ArrayList<RaavareDTO> raavare;
 	
 	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators, ArrayList<WeightDTO> measurements){
 		
@@ -75,7 +77,7 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.getMeasurements();
+				mainGUI.serviceImpl.getRaavare();
 				Timer t = new Timer() {
 					@Override
 					public void run() {
@@ -280,43 +282,43 @@ public class AdminMenu implements FarmaAdminInt{
 
 	@Override
 	public void measurements() {
-		CellTable<WeightDTO> table = new CellTable<WeightDTO>();
-		TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
+		CellTable<RaavareDTO> table = new CellTable<RaavareDTO>();
+		TextColumn<RaavareDTO> rID = new TextColumn<RaavareDTO>(){
 
 			@Override
-			public String getValue(WeightDTO object) {
-				return Integer.toString(object.getWID());
+			public String getValue(RaavareDTO object) {
+				return Integer.toString(object.getrID());
 			}
 
 		};
-		TextColumn<WeightDTO> meas = new TextColumn<WeightDTO>(){
+		TextColumn<RaavareDTO> rName = new TextColumn<RaavareDTO>(){
 
 			@Override
-			public String getValue(WeightDTO object) {
-				return Double.toString(object.getMS());
+			public String getValue(RaavareDTO object) {
+				return object.getrName();
 			}
 
 		};
-		TextColumn<WeightDTO> oID = new TextColumn<WeightDTO>(){
+		TextColumn<RaavareDTO> deliverer = new TextColumn<RaavareDTO>(){
 
 			@Override
-			public String getValue(WeightDTO object) {
-				return Integer.toString(object.getopID());
+			public String getValue(RaavareDTO object) {
+				return object.getDeliverer();
 			}
 
 		};
 
-		table.addColumn(wID, "Weight ID");
-		table.addColumn(meas, "Measurements");
-		table.addColumn(oID, "Operator ID");
+		table.addColumn(rID, "Raavare ID");
+		table.addColumn(rName, "Raavare Name");
+		table.addColumn(deliverer, "Deliverer");
 
-		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
+		ListDataProvider<RaavareDTO> dataProvider = new ListDataProvider<RaavareDTO>();
 
 		dataProvider.addDataDisplay(table);
 
-		List<WeightDTO> list = new ArrayList<WeightDTO>();
+		List<RaavareDTO> list = new ArrayList<RaavareDTO>();
 		list = dataProvider.getList();
-		for (WeightDTO mm : measurements) {
+		for (RaavareDTO mm : raavare) {
 			list.add(mm);
 		}
 
@@ -337,5 +339,8 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateOperators(ArrayList<HashMap> operators){
 		this.operators = operators;
+	}
+	public void updateRaavare(ArrayList<RaavareDTO> raavare){
+		this.raavare = raavare;
 	}
 }
