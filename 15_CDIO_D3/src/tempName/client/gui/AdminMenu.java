@@ -20,7 +20,7 @@ import com.google.gwt.view.client.ListDataProvider;
 import tempName.client.service.GreetingServiceClientImpl;
 import tempName.server.data.dto.WeightDTO;
 
-public class AdminMenu {
+public class AdminMenu implements FarmaAdminInt{
 	
 	private VerticalPanel container;
 	private GreetingServiceClientImpl serviceImpl;
@@ -278,7 +278,8 @@ public class AdminMenu {
 		username.selectAll();
 	}
 
-	private void measurements() {
+	@Override
+	public void measurements() {
 		CellTable<WeightDTO> table = new CellTable<WeightDTO>();
 		TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
 
