@@ -26,16 +26,12 @@ public class MainGUI extends Composite {
 	private String name;
 	private int id;
 	private String password;
-	private String ini;
-	private String cpr;
-	private boolean admin;
-	private boolean userAdmin;
-	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
-	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private GreetingServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private OperatoerMenu opMenu;
-	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id);
+	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
+	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
+	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
 
 	public MainGUI(GreetingServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -96,13 +92,6 @@ public class MainGUI extends Composite {
 		});
 	}
 
-	public void updateMeasurements(ArrayList mm){
-		measurements = mm;
-	}
-
-	public void updateOperators(ArrayList op){
-		operators = op;
-	}
 	public void updateLogin(String check) {
 		if (check.equals("true")){
 			serviceImpl.getAdmin(id);
@@ -119,5 +108,13 @@ public class MainGUI extends Composite {
 			opMenu = new OperatoerMenu(container, serviceImpl, this, id);
 			opMenu.opMenu();
 		}
+	}
+
+	public void updateMeasurements(ArrayList mm){
+		measurements = mm;
+	}
+
+	public void updateOperators(ArrayList op){
+		operators = op;
 	}
 }

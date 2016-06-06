@@ -26,18 +26,22 @@ public class AdminMenu {
 	private GreetingServiceClientImpl serviceImpl;
 	private MainGUI mainGUI;
 	private int id;
+	private boolean admin;
+	private String ini, cpr, name, password;
+	private ArrayList<HashMap> operators;
+	private ArrayList<WeightDTO> measurements;
 	
-	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id){
+	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators, ArrayList<WeightDTO> measurements){
 		
 		this.container = container;
 		this.serviceImpl = serviceImpl;
 		this.mainGUI = mainGUI;
 		this.id = id;
-
+		this.operators = operators;
+		this.measurements= measurements;
 	}
 	
-	
-	private void adminMenu(){
+	public void adminMenu(){
 
 		final Label adminHeader = new Label("Admin Menu");
 		final Button createOp = new Button("Create new operator");
@@ -84,8 +88,9 @@ public class AdminMenu {
 		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				loginScreen2();
+				mainGUI.loginScreen2();
 			}
+
 		});
 	}
 	private void inspectOp() {
