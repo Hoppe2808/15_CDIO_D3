@@ -96,9 +96,19 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		System.out.println(rawList.get(0).getopID());
 
 		return (ArrayList<WeightDTO>) rawList;
+	}
+	@Override
+	public ArrayList<RaavareDTO> getRaavare(){
+		List<RaavareDTO> rawList = new ArrayList<RaavareDTO>();
+		try {
+			rawList = this.raavareDAO.getRaavareList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+
+		return (ArrayList<RaavareDTO>) rawList;
 	}
 
 	@Override
@@ -155,6 +165,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		}
 		
 	}
+	
 
 
 }

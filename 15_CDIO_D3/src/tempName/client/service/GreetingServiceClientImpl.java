@@ -1,13 +1,17 @@
 package tempName.client.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
+import tempName.server.data.daointerface.DALException;
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 
 public class GreetingServiceClientImpl implements GreetingServiceClientInt{
@@ -67,6 +71,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void addRaavare(String rName, String deliverer){
 		this.service.addRaavare(rName, deliverer, new defaultCallback());
 	}
+	@Override
+	public void getRaavare(){
+		this.service.getRaavare(new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
@@ -89,6 +97,8 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 					maingui.updateMeasurements(data);				
 				} else if (data.get(0) instanceof HashMap){
 					maingui.updateOperators(data);
+				} else if (data.get(0) instanceof RaavareDTO){
+					maingui.updateRaavare(data);
 				}
 			}
 		}
