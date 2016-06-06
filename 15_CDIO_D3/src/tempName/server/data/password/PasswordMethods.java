@@ -110,9 +110,7 @@ public class PasswordMethods {
 		
 
 		try {
-			System.out.println("Antal operatoerer" + dao.getOperatoerList().size());
 			for (int i = 1 ; i < dao.getOperatoerList().size(); i++){
-				System.out.println("Her er i: " + i);
 				if (iD == dao.getOperatoer(i).getOprId()){			
 					index = i;	
 					break;				
