@@ -110,6 +110,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 
 		return (ArrayList<RaavareDTO>) rawList;
 	}
+	@Override
+	public ArrayList<ReceptDTO> getRecept(){
+		List<ReceptDTO> rawList = new ArrayList<ReceptDTO>();
+		try {
+			rawList = this.receptDAO.getReceptList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+
+		return (ArrayList<ReceptDTO>) rawList;
+	}
 
 	@Override
 	public void updateOp(int id, String name, String ini, String cpr, String password, int admin) {
@@ -164,6 +175,16 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			e.printStackTrace();
 		}
 		
+	}
+	@Override
+	public void addRecept(String receptName){
+		ReceptDTO rDTO = new ReceptDTO();
+		rDTO.setReceptName(receptName);
+		try{
+			this.receptDAO.addRaavare(rDTO);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
 	}
 	
 
