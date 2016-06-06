@@ -8,18 +8,43 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.server.data.dto.WeightDTO;
 
 public class FarmaceutMenu implements FarmaAdminInt{
+	private VerticalPanel container;
+	private ArrayList<WeightDTO> measurements;
+	private MainGUI mainGUI;
 
-	public FarmaceutMenu(){
-		
+	public FarmaceutMenu(VerticalPanel container, ArrayList<WeightDTO> measurements, MainGUI mainGUI){
+		this.container = container;
+		this.measurements = measurements;
+		this.mainGUI = mainGUI;
 	}
 	
 	public void farmaMenu(){
-		
+		final Label farmaHeader = new Label("Farmaceut Menu");
+		final Button measurements = new Button("Check measurements");
+		final Button logout = new Button("Logout");
+		container.clear();
+		container.setSpacing(9);
+		container.add(measurements);
+		container.add(logout);
+
+		measurements.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				measurements();
+			}
+		});
+		logout.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainGUI.loginScreen2();
+			}
+
+		});
 	}
 	
 	@Override
