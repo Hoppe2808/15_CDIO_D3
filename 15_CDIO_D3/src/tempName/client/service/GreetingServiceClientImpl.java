@@ -77,7 +77,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 			if (result instanceof String){
 				String loginCheck = (String) result;
 				maingui.updateLogin(loginCheck);
-			} else if(result instanceof Boolean){
+			} else if(result instanceof Integer){
 				maingui.adminCheck((int) result);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;

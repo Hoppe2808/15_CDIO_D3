@@ -29,6 +29,7 @@ public class MainGUI extends Composite {
 	private GreetingServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private OperatoerMenu opMenu;
+	private FarmaceutMenu faMenu;
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
@@ -104,9 +105,14 @@ public class MainGUI extends Composite {
 	public void adminCheck(int admin){
 		if (admin == 1){
 			AM.adminMenu();
-		} else {
+		} else if (admin == 2){
 			opMenu = new OperatoerMenu(container, serviceImpl, this, id);
 			opMenu.opMenu();
+		} else if (admin == 3){
+			faMenu = new FarmaceutMenu(container, measurements, this);
+			faMenu.farmaMenu();
+		} else {
+			System.out.println("Lul");
 		}
 	}
 
