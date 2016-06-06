@@ -28,4 +28,6 @@ public interface GreetingService extends RemoteService {
 	int getAdmin(int id);
 
 	void addMeasurement(double mm, int id);
+	
+	void addRaavare(String rName, String deliverer);
 }

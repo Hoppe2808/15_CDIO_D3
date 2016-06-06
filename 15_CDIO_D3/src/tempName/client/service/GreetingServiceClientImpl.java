@@ -63,6 +63,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void addMeasurement(double mm, int id){
 		this.service.addMeasurement(mm, id, new defaultCallback());
 	}
+	@Override
+	public void addRaavare(String rName, String deliverer){
+		this.service.addRaavare(rName, deliverer, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 

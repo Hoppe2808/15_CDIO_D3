@@ -2,10 +2,12 @@ package tempName.server;
 
 import tempName.client.service.GreetingService;
 import tempName.server.data.daoimpl.MYSQLOperatoerDAO;
+import tempName.server.data.daoimpl.MYSQLRaavareDAO;
 import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
 import tempName.server.data.dto.OperatoerDTO;
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 import tempName.server.data.password.PasswordMethods;
 
@@ -22,6 +24,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 
 	private MYSQLWeightDAO weightDAO = new MYSQLWeightDAO();
 	private MYSQLOperatoerDAO operatoerDAO = new MYSQLOperatoerDAO();
+	private MYSQLRaavareDAO raavareDAO = new MYSQLRaavareDAO();
 	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
 
 	public void connectDatabase(){
@@ -138,6 +141,19 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public void addRaavare(String rName, String deliverer) {
+		RaavareDTO rDTO = new RaavareDTO();
+		rDTO.setrName(rName);
+		rDTO.setDeliverer(deliverer);
+		try{
+			this.raavareDAO.addRaavare(rDTO);
+		} catch (DALException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 

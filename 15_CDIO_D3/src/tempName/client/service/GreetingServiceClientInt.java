@@ -9,4 +9,5 @@ public interface GreetingServiceClientInt {
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin);
 	void getAdmin(int id);
 	void addMeasurement(double mm, int id);
+	void addRaavare(String rName, String deliverer);
 }
