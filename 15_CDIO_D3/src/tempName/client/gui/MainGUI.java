@@ -122,5 +122,6 @@ public class MainGUI extends Composite {
 	public void updateRaavare(ArrayList raavare){
 		this.raavare = raavare;
 		AM.updateRaavare(raavare);
+		faMenu.updateRaavare(raavare);
 	}
 }
