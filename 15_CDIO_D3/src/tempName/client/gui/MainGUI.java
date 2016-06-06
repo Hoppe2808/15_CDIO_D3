@@ -26,7 +26,7 @@ public class MainGUI extends Composite {
 	private String name;
 	private int id;
 	private String password;
-	private GreetingServiceClientImpl serviceImpl;
+	protected GreetingServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private OperatoerMenu opMenu;
 	private FarmaceutMenu faMenu;
@@ -115,12 +115,13 @@ public class MainGUI extends Composite {
 			System.out.println("Lul");
 		}
 	}
-
 	public void updateMeasurements(ArrayList mm){
 		measurements = mm;
+		AM.updateMeasurements(measurements);
 	}
 
 	public void updateOperators(ArrayList op){
 		operators = op;
+		AM.updateOperators(operators);
 	}
 }

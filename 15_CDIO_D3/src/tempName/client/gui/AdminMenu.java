@@ -23,7 +23,7 @@ import tempName.server.data.dto.WeightDTO;
 public class AdminMenu implements FarmaAdminInt{
 	
 	private VerticalPanel container;
-	private GreetingServiceClientImpl serviceImpl;
+	//private GreetingServiceClientImpl serviceImpl;
 	private MainGUI mainGUI;
 	private int id;
 	private int admin;
@@ -34,7 +34,7 @@ public class AdminMenu implements FarmaAdminInt{
 	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators, ArrayList<WeightDTO> measurements){
 		
 		this.container = container;
-		this.serviceImpl = serviceImpl;
+		//this.serviceImpl = serviceImpl;
 		this.mainGUI = mainGUI;
 		this.id = id;
 		this.operators = operators;
@@ -69,13 +69,13 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		inspectOp.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				serviceImpl.getOperators();
+				mainGUI.serviceImpl.getOperators();
 				inspectOp();
 			}
 		});
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				serviceImpl.getMeasurements();
+				mainGUI.serviceImpl.getMeasurements();
 				Timer t = new Timer() {
 					@Override
 					public void run() {
@@ -182,7 +182,7 @@ public class AdminMenu implements FarmaAdminInt{
 					} else if (iniText.getText().length() > 3 && iniText.getText().length() < 2){
 						Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
 					} else{
-						serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
+						mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
 						Window.alert("Operator updated");						
 					}
 				} catch(Exception e){
@@ -260,7 +260,7 @@ public class AdminMenu implements FarmaAdminInt{
 						failure.setText("Et cpr-nummer er 10 karakterer langt");
 					}else{
 
-						serviceImpl.createOp(id, name, ini, cpr, password, admin);
+						mainGUI.serviceImpl.createOp(id, name, ini, cpr, password, admin);
 						Window.alert("Succes!");
 						adminMenu();
 					}
@@ -331,5 +331,11 @@ public class AdminMenu implements FarmaAdminInt{
 				adminMenu();
 			}
 		});
+	}
+	public void updateMeasurements(ArrayList<WeightDTO> mm){
+		measurements = mm;
+	}
+	public void updateOperators(ArrayList<HashMap> operators){
+		this.operators = operators;
 	}
 }
