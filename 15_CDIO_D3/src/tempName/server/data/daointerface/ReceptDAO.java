@@ -1,0 +1,13 @@
+package tempName.server.data.daointerface;
+
+import java.util.List;
+
+import tempName.server.data.dto.ReceptDTO;
+
+public interface ReceptDAO {
+	ReceptDTO getRecept(int recId) throws DALException;
+	List<ReceptDTO> getReceptList() throws DALException;
+	void createRecept(ReceptDTO rec) throws DALException;
+	void updateRecept(ReceptDTO rec) throws DALException;
+	
+}
