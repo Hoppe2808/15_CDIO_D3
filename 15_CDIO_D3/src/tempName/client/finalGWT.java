@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class _5_CDIO_D3 implements EntryPoint {
+public class finalGWT implements EntryPoint {
 
 
 	/**

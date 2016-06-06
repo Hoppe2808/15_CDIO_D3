@@ -1,2 +1,2 @@
-# Module _5_cdio_d3
+# Module finalGWT
 # RPC service class, partial path of RPC policy file
