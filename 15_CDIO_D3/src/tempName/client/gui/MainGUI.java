@@ -101,8 +101,8 @@ public class MainGUI extends Composite {
 			Window.alert("Something went wrong in login check");
 		}
 	}
-	public void adminCheck(boolean admin){
-		if (admin){
+	public void adminCheck(int admin){
+		if (admin == 1){
 			AM.adminMenu();
 		} else {
 			opMenu = new OperatoerMenu(container, serviceImpl, this, id);

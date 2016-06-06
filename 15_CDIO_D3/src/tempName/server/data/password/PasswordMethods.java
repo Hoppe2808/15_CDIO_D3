@@ -107,15 +107,19 @@ public class PasswordMethods {
 	public boolean correctUserPassword(int iD, String password){
 
 		int index = -1;	
+		
 
 		try {
-			for (int i = 1 ; i < dao.getOperatoerList().size(); i++){
+			System.out.println("Antal operatoerer" + dao.getOperatoerList().size());
+			for (int i = 0 ; i < dao.getOperatoerList().size(); i++){
+				System.out.println("Her er i: " + i);
 				if (iD == dao.getOperatoer(i).getOprId()){			
 					index = i;	
 					break;				
 				}		
 			}
 		} catch (DALException e) {
+			
 			System.out.println("Error in getting operator ID");
 		}
 		try {
@@ -125,6 +129,7 @@ public class PasswordMethods {
 				return false;
 			}
 		} catch (DALException e) {
+			
 			System.out.println("Error in getting operator password");
 		}
 		return false;

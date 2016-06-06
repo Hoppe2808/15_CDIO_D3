@@ -39,11 +39,11 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 		this.service.checkLogin(id, pass, new defaultCallback());
 	}
 	@Override
-	public void createOp(int id, String name, String ini, String cpr, String password, boolean admin){
+	public void createOp(int id, String name, String ini, String cpr, String password, int admin){
 		this.service.createOp(id, name, ini, cpr, password, admin, new defaultCallback());
 	}
 	@Override
-	public void updateOp(int id, String name, String ini, String cpr, String password, boolean admin){
+	public void updateOp(int id, String name, String ini, String cpr, String password, int admin){
 		this.service.updateOp(id, name, ini, cpr, password, admin, new defaultCallback());
 	}
 	public MainGUI getMainGUI(){
@@ -78,7 +78,7 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 				String loginCheck = (String) result;
 				maingui.updateLogin(loginCheck);
 			} else if(result instanceof Boolean){
-				maingui.adminCheck((boolean) result);
+				maingui.adminCheck((int) result);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
 				if (data.get(0) instanceof WeightDTO){

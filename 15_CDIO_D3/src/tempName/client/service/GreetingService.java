@@ -21,11 +21,11 @@ public interface GreetingService extends RemoteService {
 
 	void connectDatabase();
 
-	void createOp(int id, String name, String ini, String cpr, String password, boolean admin);
+	void createOp(int id, String name, String ini, String cpr, String password, int admin);
 
-	void updateOp(int id, String name, String ini, String cpr, String password, boolean admin);
+	void updateOp(int id, String name, String ini, String cpr, String password, int admin);
 
-	boolean getAdmin(int id);
+	int getAdmin(int id);
 
 	void addMeasurement(double mm, int id);
 }

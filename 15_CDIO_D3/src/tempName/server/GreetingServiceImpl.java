@@ -38,7 +38,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		}
 	}
 
-	public void createOp(int id, String name, String init, String cpr, String password, boolean admin){
+	public void createOp(int id, String name, String init, String cpr, String password, int admin){
 
 		try {
 			OperatoerDTO opDTO = new OperatoerDTO();
@@ -79,7 +79,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			finalData.get(i).put("Password", rawList.get(i).getPassword());
 			finalData.get(i).put("cpr", rawList.get(i).getCpr());
 			finalData.get(i).put("Initials", rawList.get(i).getIni());
-			finalData.get(i).put("AdminStatus", Boolean.toString(rawList.get(i).getAdminStatus()));
+			finalData.get(i).put("AdminStatus", Integer.toString(rawList.get(i).getAdminStatus()));
 		}
 		return finalData;
 	}
@@ -99,7 +99,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	}
 
 	@Override
-	public void updateOp(int id, String name, String ini, String cpr, String password, boolean admin) {
+	public void updateOp(int id, String name, String ini, String cpr, String password, int admin) {
 		OperatoerDTO oDTO = new OperatoerDTO();
 		oDTO.setOprId(id);
 		oDTO.setOprNavn(name);
@@ -116,7 +116,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	}
 
 	@Override
-	public boolean getAdmin(int id) {
+	public int getAdmin(int id) {
 		OperatoerDTO oDTO = new OperatoerDTO();
 
 		try {

@@ -26,7 +26,7 @@ public class AdminMenu {
 	private GreetingServiceClientImpl serviceImpl;
 	private MainGUI mainGUI;
 	private int id;
-	private boolean admin;
+	private int admin;
 	private String ini, cpr, name, password;
 	private ArrayList<HashMap> operators;
 	private ArrayList<WeightDTO> measurements;
@@ -170,9 +170,9 @@ public class AdminMenu {
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (adminYes.getValue()){
-					admin = true;
+					admin = 1;
 				} else if(adminNo.getValue()){
-					admin = false;
+					admin = 2;
 				} else {
 					Window.alert("Something went wrong in checking for admin status");
 				}
@@ -247,9 +247,9 @@ public class AdminMenu {
 				cpr = cprField.getText();
 				password = pwField.getText();
 				if (adminYes.getValue()){
-					admin = true;
+					admin = 1;
 				} else if(adminNo.getValue()){
-					admin = false;
+					admin = 2;
 				} else {
 					Window.alert("Something went wrong in checking for admin status");
 				}

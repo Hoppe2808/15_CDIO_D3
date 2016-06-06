@@ -23,15 +23,15 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
 		ResultSet rs = connector.doQuery("SELECT * FROM operatoer WHERE o_id = " + oprId);
-		try{
+			try{
 			if (!rs.first()) throw new DALException("Brugeren " +oprId+ "findes ikke");
 			OperatoerDTO opDTO = new OperatoerDTO();
-			opDTO.setOprId(rs.getInt("o_id"));
-			opDTO.setOprNavn(rs.getString("name"));
+			opDTO.setOprId(rs.getInt("opr_id"));
+			opDTO.setOprNavn(rs.getString("opr_navn"));
 			opDTO.setIni(rs.getString("ini"));
 			opDTO.setCpr(rs.getString("cpr"));
 			opDTO.setPassword(rs.getString("password"));
-			opDTO.setAdminStatus(rs.getBoolean("admin"));
+			opDTO.setAdminStatus(rs.getInt("admin"));
 			OperatoerDTO result = opDTO;
 			return result;
 		} catch(SQLException e) {
@@ -45,12 +45,12 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 		try{
 			while (rs.next()){
 				OperatoerDTO opDTO = new OperatoerDTO();
-				opDTO.setOprId(rs.getInt("o_id"));
-				opDTO.setOprNavn(rs.getString("name"));
+				opDTO.setOprId(rs.getInt("opr_id"));				
+				opDTO.setOprNavn(rs.getString("opr_navn"));
 				opDTO.setIni(rs.getString("ini"));
 				opDTO.setCpr(rs.getString("cpr"));
 				opDTO.setPassword(rs.getString("password"));
-				opDTO.setAdminStatus(rs.getBoolean("admin"));
+				opDTO.setAdminStatus(rs.getInt("admin"));
 				list.add(opDTO);
 			}
 		} catch(SQLException e){
@@ -61,7 +61,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
 		connector.doUpdate(
-				"INSERT INTO operatoer(o_id, name, ini, cpr, password, admin) VALUES "
+				"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, admin) VALUES "
 						+"(" + opr.getOprId() + ", '" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + opr.getCpr() + 
 						"', '" + opr.getPassword() + "', " + opr.getAdminStatus() + ")"
 				);
@@ -71,7 +71,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 	public void updateOperatoer(OperatoerDTO opr) throws DALException {
 		connector.doUpdate(
 				"UPDATE operatoer SET name = '" + opr.getOprNavn() + "', ini = '" + opr.getIni() + "', cpr = '" 
-						+ opr.getCpr() + "', password = '" + opr.getPassword() + "', admin = " + opr.getAdminStatus() + " WHERE o_id = "
+						+ opr.getCpr() + "', password = '" + opr.getPassword() + "', admin = " + opr.getAdminStatus() + " WHERE opr_id = "
 						+ 	opr.getOprId()			
 				);
 
