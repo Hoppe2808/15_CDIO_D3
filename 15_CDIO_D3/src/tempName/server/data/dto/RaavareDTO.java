@@ -6,6 +6,7 @@ public class RaavareDTO implements Serializable{
 	private int rID;
 	private String rName;
 	private String deliverer;
+	
 	public int getrID() {
 		return rID;
 	}
