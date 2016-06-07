@@ -1,7 +1,8 @@
 package tempName.server.data.dto;
 
+import java.io.Serializable;
 
-public class RaavareBatchDTO {
+public class RaavareBatchDTO implements Serializable{
 	
 	int rbId;
 	int raavareId;

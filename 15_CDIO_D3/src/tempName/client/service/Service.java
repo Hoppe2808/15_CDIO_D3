@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import tempName.server.data.dto.RaavareBatchDTO;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
@@ -22,6 +23,8 @@ public interface Service extends RemoteService {
 	ArrayList<RaavareDTO> getRaavare();
 	
 	ArrayList<ReceptDTO> getRecept();
+	
+	ArrayList<RaavareBatchDTO> getRaavareBatch();
 
 	String checkLogin(int id, String pass);
 

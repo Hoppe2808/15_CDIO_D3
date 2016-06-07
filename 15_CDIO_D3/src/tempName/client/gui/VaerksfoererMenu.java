@@ -46,7 +46,7 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.getRaavare();
+				mainGUI.serviceImpl.getRaavareBatch();
 				Timer t = new Timer() {
 					@Override
 					public void run() {

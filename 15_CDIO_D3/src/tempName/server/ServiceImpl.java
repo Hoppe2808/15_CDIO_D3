@@ -156,6 +156,18 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 		return oDTO.getAdminStatus();
 	}
+	
+	@Override
+	public ArrayList<RaavareBatchDTO> getRaavareBatch() {
+		List<RaavareBatchDTO> rawList = new ArrayList<RaavareBatchDTO>();
+		try {
+			rawList = this.raavareBatchDAO.getRaavareBatchList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+
+		return (ArrayList<RaavareBatchDTO>) rawList;
+	}
 
 	@Override
 	public void addMeasurement(double mm, int id) {
@@ -203,6 +215,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			e.printStackTrace();
 		}
 	}
+
 	
 
 

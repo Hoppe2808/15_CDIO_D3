@@ -14,4 +14,5 @@ public interface ServiceClientInt {
 	void addRecept(String receptName);
 	void getRecept();
 	void addRaavareBatch(int raavareID, int maengde);
+	void getRaavareBatch();
 }

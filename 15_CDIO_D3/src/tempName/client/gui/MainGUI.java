@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import tempName.client.service.ServiceClientImpl;
+import tempName.server.data.dto.RaavareBatchDTO;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
@@ -29,6 +30,7 @@ public class MainGUI extends Composite {
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
+	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
 	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, measurements, this);
 
@@ -137,5 +139,9 @@ public class MainGUI extends Composite {
 		this.recept = recept;
 		AM.updateRecept(recept);
 		faMenu.updateRecept(recept);
+	}
+	public void updateRaavareBatch(ArrayList raavareBatch){
+		this.raavareBatch = raavareBatch;
+		vaMenu.updateRaavareBatch(raavareBatch);
 	}
 }

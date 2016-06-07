@@ -11,6 +11,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
 import tempName.server.data.daointerface.DALException;
+import tempName.server.data.dto.RaavareBatchDTO;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
@@ -88,6 +89,10 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void addRaavareBatch(int raavareID, int maengde){
 		this.service.addRaavareBatch(raavareID, maengde, new defaultCallback());
 	}
+	@Override
+	public void getRaavareBatch(){
+		this.service.getRaavareBatch(new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
@@ -114,6 +119,8 @@ public class ServiceClientImpl implements ServiceClientInt{
 					maingui.updateRaavare(data);
 				} else if (data.get(0) instanceof ReceptDTO){
 					maingui.updateRecept(data);
+				} else if (data.get(0) instanceof RaavareBatchDTO){
+					maingui.updateRaavareBatch(data);
 				}
 			}
 		}
