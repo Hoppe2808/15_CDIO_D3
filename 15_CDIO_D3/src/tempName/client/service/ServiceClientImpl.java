@@ -124,7 +124,6 @@ public class ServiceClientImpl implements ServiceClientInt{
 				} else if (data.get(0) instanceof RaavareBatchDTO){
 					maingui.updateRaavareBatch(data);
 				} else if (data.get(0) instanceof ProduktBatchDTO){
-					System.out.println(data.get(0));
 					maingui.updateProduktBatch(data);
 				}
 			}
