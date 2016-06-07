@@ -1,7 +1,7 @@
 package tempName.client;
 
 
-import tempName.client.service.GreetingServiceClientImpl;
+import tempName.client.service.ServiceClientImpl;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
@@ -17,7 +17,7 @@ public class finalGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		GreetingServiceClientImpl clientImpl = new GreetingServiceClientImpl(GWT.getModuleBaseURL() + "greet");
+		ServiceClientImpl clientImpl = new ServiceClientImpl(GWT.getModuleBaseURL() + "greet");
 		RootPanel.get("main").add(clientImpl.getMainGUI());
 	}
 

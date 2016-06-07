@@ -8,15 +8,15 @@ import com.google.gwt.user.client.ui.DoubleBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import tempName.client.service.GreetingServiceClientImpl;
+import tempName.client.service.ServiceClientImpl;
 
 public class OperatoerMenu {
 	private VerticalPanel container;
-	private GreetingServiceClientImpl serviceImpl;
+	private ServiceClientImpl serviceImpl;
 	private MainGUI mainGUI;
 	private int id;
 	
-	public OperatoerMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id){
+	public OperatoerMenu(VerticalPanel container, ServiceClientImpl serviceImpl, MainGUI mainGUI, int id){
 		this.container = container;
 		this.serviceImpl = serviceImpl;
 		this.mainGUI = mainGUI;

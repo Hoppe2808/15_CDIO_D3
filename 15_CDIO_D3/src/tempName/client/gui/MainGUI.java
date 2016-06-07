@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import tempName.client.service.GreetingServiceClientImpl;
+import tempName.client.service.ServiceClientImpl;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
@@ -21,7 +21,7 @@ public class MainGUI extends Composite {
 	private String name;
 	private int id;
 	private String password;
-	protected GreetingServiceClientImpl serviceImpl;
+	protected ServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private OperatoerMenu opMenu;
 	private FarmaceutMenu faMenu;
@@ -31,7 +31,7 @@ public class MainGUI extends Composite {
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
 
-	public MainGUI(GreetingServiceClientImpl serviceImpl){
+	public MainGUI(ServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
 		this.serviceImpl.connectDatabase();
 		loginScreen();

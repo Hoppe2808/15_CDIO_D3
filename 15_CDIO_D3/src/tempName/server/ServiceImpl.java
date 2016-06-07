@@ -1,6 +1,6 @@
 package tempName.server;
 
-import tempName.client.service.GreetingService;
+import tempName.client.service.Service;
 import tempName.server.data.daoimpl.MYSQLOperatoerDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareBatchDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareDAO;
@@ -24,7 +24,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 
-public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
+public class ServiceImpl extends RemoteServiceServlet implements Service {
 
 	private MYSQLWeightDAO weightDAO = new MYSQLWeightDAO();
 	private MYSQLOperatoerDAO operatoerDAO = new MYSQLOperatoerDAO();

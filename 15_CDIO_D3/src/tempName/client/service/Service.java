@@ -14,7 +14,7 @@ import tempName.server.data.dto.WeightDTO;
  * The client-side stub for the RPC service.
  */
 @RemoteServiceRelativePath("greet")
-public interface GreetingService extends RemoteService {
+public interface Service extends RemoteService {
 	ArrayList<WeightDTO> getMeasurements();
 
 	ArrayList<HashMap<String, String>> getOperators();

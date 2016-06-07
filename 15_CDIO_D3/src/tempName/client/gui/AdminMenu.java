@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
-import tempName.client.service.GreetingServiceClientImpl;
+import tempName.client.service.ServiceClientImpl;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
@@ -35,7 +35,7 @@ public class AdminMenu implements FarmaAdminInt{
 	private ArrayList<RaavareDTO> raavare;
 	private ArrayList<ReceptDTO> recept;
 	
-	public AdminMenu(VerticalPanel container, GreetingServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators, ArrayList<WeightDTO> measurements){
+	public AdminMenu(VerticalPanel container, ServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators, ArrayList<WeightDTO> measurements){
 		
 		this.container = container;
 		//this.serviceImpl = serviceImpl;

@@ -12,7 +12,7 @@ import tempName.server.data.dto.WeightDTO;
 /**
  * The async counterpart of <code>GreetingService</code>.
  */
-public interface GreetingServiceAsync {
+public interface ServiceAsync {
 	void getMeasurements(AsyncCallback<ArrayList<WeightDTO>> callback);
 	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);

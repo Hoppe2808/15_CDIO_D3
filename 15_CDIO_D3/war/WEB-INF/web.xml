@@ -9,12 +9,12 @@
   
   <!-- Default page to serve -->
   <servlet>
-  	<servlet-name>greetingServlet</servlet-name>
-  	<servlet-class>tempName.server.GreetingServiceImpl</servlet-class>
+  	<servlet-name>servlet</servlet-name>
+  	<servlet-class>tempName.server.ServiceImpl</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>greetingServlet</servlet-name>
+	<servlet-name>servlet</servlet-name>
 	<url-pattern>/finalGWT/greet</url-pattern>
 </servlet-mapping>
 	

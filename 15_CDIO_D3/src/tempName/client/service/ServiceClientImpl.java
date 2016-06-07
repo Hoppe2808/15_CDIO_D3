@@ -14,12 +14,12 @@ import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.WeightDTO;
 
-public class GreetingServiceClientImpl implements GreetingServiceClientInt{
-	private GreetingServiceAsync service;
+public class ServiceClientImpl implements ServiceClientInt{
+	private ServiceAsync service;
 	private MainGUI maingui;
 
-	public GreetingServiceClientImpl(String url){
-		this.service = GWT.create(GreetingService.class);
+	public ServiceClientImpl(String url){
+		this.service = GWT.create(Service.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
 
