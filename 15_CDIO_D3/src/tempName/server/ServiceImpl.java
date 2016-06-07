@@ -8,12 +8,12 @@ import tempName.server.data.daoimpl.MYSQLReceptDAO;
 import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.OperatoerDTO;
-import tempName.server.data.dto.RaavareBatchDTO;
-import tempName.server.data.dto.RaavareDTO;
-import tempName.server.data.dto.ReceptDTO;
-import tempName.server.data.dto.WeightDTO;
 import tempName.server.data.password.PasswordMethods;
+import tempName.shared.dto.OperatoerDTO;
+import tempName.shared.dto.RaavareBatchDTO;
+import tempName.shared.dto.RaavareDTO;
+import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.WeightDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

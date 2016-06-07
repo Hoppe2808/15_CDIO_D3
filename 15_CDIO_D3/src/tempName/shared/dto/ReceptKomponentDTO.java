@@ -1,4 +1,4 @@
-package tempName.server.data.dto;
+package tempName.shared.dto;
 
 public class ReceptKomponentDTO {
 

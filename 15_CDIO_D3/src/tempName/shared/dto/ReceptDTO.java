@@ -1,4 +1,4 @@
-package tempName.server.data.dto;
+package tempName.shared.dto;
 
 import java.io.Serializable;
 

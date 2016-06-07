@@ -2,7 +2,7 @@ package tempName.server.data.daointerface;
 
 import java.util.List;
 
-import tempName.server.data.dto.ReceptDTO;
+import tempName.shared.dto.ReceptDTO;
 
 public interface ReceptDAO {
 	ReceptDTO getRecept(int receptId) throws DALException;

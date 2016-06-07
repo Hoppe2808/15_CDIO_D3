@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 import tempName.server.data.daoimpl.MYSQLOperatoerDAO;		
 import tempName.server.data.daointerface.DALException;		
-import tempName.server.data.database.Connector;		
-import tempName.server.data.dto.OperatoerDTO;		
+import tempName.server.data.database.Connector;
+import tempName.shared.dto.OperatoerDTO;		
 
 public class MySQLOPTest {		
 

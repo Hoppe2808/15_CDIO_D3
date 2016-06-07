@@ -13,10 +13,10 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import tempName.client.service.ServiceClientImpl;
-import tempName.server.data.dto.RaavareBatchDTO;
-import tempName.server.data.dto.RaavareDTO;
-import tempName.server.data.dto.ReceptDTO;
-import tempName.server.data.dto.WeightDTO;
+import tempName.shared.dto.RaavareBatchDTO;
+import tempName.shared.dto.RaavareDTO;
+import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.WeightDTO;
 
 public class MainGUI extends Composite {
 	private String name;

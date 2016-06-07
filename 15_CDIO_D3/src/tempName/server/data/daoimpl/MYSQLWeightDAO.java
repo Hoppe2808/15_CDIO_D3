@@ -8,7 +8,7 @@ import java.util.List;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.WeightDAO;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.WeightDTO;
+import tempName.shared.dto.WeightDTO;
 
 public class MYSQLWeightDAO implements WeightDAO {
 	private Connector connector;

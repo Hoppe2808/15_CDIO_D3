@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 import tempName.server.data.daoimpl.MYSQLWeightDAO;		
 import tempName.server.data.daointerface.DALException;		
-import tempName.server.data.database.Connector;		
-import tempName.server.data.dto.WeightDTO;		
+import tempName.server.data.database.Connector;
+import tempName.shared.dto.WeightDTO;		
 
 public class MySQLWheightTest {		
 

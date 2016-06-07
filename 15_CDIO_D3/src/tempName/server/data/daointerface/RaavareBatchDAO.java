@@ -2,7 +2,7 @@ package tempName.server.data.daointerface;
 
 import java.util.List;
 
-import tempName.server.data.dto.RaavareBatchDTO;
+import tempName.shared.dto.RaavareBatchDTO;
 
 public interface RaavareBatchDAO {
 	

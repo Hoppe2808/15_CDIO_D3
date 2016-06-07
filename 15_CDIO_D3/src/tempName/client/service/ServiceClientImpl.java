@@ -11,10 +11,10 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
 import tempName.server.data.daointerface.DALException;
-import tempName.server.data.dto.RaavareBatchDTO;
-import tempName.server.data.dto.RaavareDTO;
-import tempName.server.data.dto.ReceptDTO;
-import tempName.server.data.dto.WeightDTO;
+import tempName.shared.dto.RaavareBatchDTO;
+import tempName.shared.dto.RaavareDTO;
+import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.WeightDTO;
 
 public class ServiceClientImpl implements ServiceClientInt{
 	private ServiceAsync service;

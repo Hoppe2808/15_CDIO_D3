@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.OperatoerDAO;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.OperatoerDTO;
+import tempName.shared.dto.OperatoerDTO;
 
 public class MYSQLOperatoerDAO implements OperatoerDAO {
 	private Connector connector;

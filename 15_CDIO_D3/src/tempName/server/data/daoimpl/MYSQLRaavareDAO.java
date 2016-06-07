@@ -8,7 +8,7 @@ import java.util.List;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.RaavareDAO;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.RaavareDTO;
+import tempName.shared.dto.RaavareDTO;
 
 public class MYSQLRaavareDAO implements RaavareDAO{
 	private Connector connector;

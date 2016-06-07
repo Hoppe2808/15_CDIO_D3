@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import tempName.server.data.dto.RaavareBatchDTO;
-import tempName.server.data.dto.RaavareDTO;
-import tempName.server.data.dto.ReceptDTO;
-import tempName.server.data.dto.WeightDTO;
+import tempName.shared.dto.RaavareBatchDTO;
+import tempName.shared.dto.RaavareDTO;
+import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.WeightDTO;
 
 /**
  * The async counterpart of <code>GreetingService</code>.

@@ -2,7 +2,7 @@ package tempName.server.data.daointerface;
 
 import java.util.List;
 
-import tempName.server.data.dto.OperatoerDTO;
+import tempName.shared.dto.OperatoerDTO;
 
 public interface OperatoerDAO {
 	OperatoerDTO getOperatoer(int oprId) throws DALException;

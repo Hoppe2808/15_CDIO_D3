@@ -8,7 +8,7 @@ import java.util.List;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.ReceptDAO;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.ReceptDTO;
+import tempName.shared.dto.ReceptDTO;
 
 
 public class MYSQLReceptDAO implements ReceptDAO{

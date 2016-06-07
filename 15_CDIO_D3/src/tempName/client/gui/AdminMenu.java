@@ -18,9 +18,9 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.client.service.ServiceClientImpl;
-import tempName.server.data.dto.RaavareDTO;
-import tempName.server.data.dto.ReceptDTO;
-import tempName.server.data.dto.WeightDTO;
+import tempName.shared.dto.RaavareDTO;
+import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.WeightDTO;
 
 public class AdminMenu implements FarmaAdminInt{
 	

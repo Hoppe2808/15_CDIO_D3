@@ -7,7 +7,7 @@ import java.util.List;
 
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.RaavareBatchDTO;
+import tempName.shared.dto.RaavareBatchDTO;
 
 public class MYSQLRaavareBatchDAO {
 	private Connector connector;
