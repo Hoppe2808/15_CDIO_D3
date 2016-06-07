@@ -7,15 +7,12 @@ import java.util.List;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.ProduktbatchDAO;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.ProduktbatchDTO;
+import tempName.shared.dto.ProduktbatchDTO;
 
-public class MYSQLProduktbatchDAO implements ProduktbatchDAO{
-
+public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	private Connector connector;
-	
-	//TODO Magnus lav den her
- 	
-	public MYSQLProduktbatchDAO() {
+	 	
+	public MYSQLProduktBatchDAO() {
 		try {
 			connector = new Connector();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
@@ -44,20 +41,22 @@ public class MYSQLProduktbatchDAO implements ProduktbatchDAO{
 	}
 
 	@Override
-	public List<ProduktbatchDTO> getProduktbatchList(int pbId) throws DALException {
+	public List<tempName.shared.dto.ProduktbatchDTO> getProduktbatchList(int pbId) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void createRaavareBatch(ProduktbatchDTO pbId) throws DALException {
+	public void createRaavareBatch(tempName.shared.dto.ProduktbatchDTO pb) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateRaavareBatch(ProduktbatchDTO pbId) throws DALException {
+	public void updateRaavareBatch(tempName.shared.dto.ProduktbatchDTO pb) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
+
