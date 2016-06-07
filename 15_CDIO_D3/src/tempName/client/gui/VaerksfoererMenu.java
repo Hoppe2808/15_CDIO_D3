@@ -22,15 +22,13 @@ import tempName.shared.dto.WeightDTO;
 public class VaerksfoererMenu implements VaerkAdminInt{
 	
 	private VerticalPanel container;
-	private ArrayList<WeightDTO> measurements;
 	private ArrayList<RaavareBatchDTO> raavareBatch;
 	private ArrayList<ProduktBatchDTO> produktBatch;
 	private MainGUI mainGUI;
 	
-	public VaerksfoererMenu(VerticalPanel container, ArrayList<WeightDTO> measurements, MainGUI mainGUI){
+	public VaerksfoererMenu(VerticalPanel container, MainGUI mainGUI){
 		
 		this.container = container;
-		this.measurements = measurements;
 		this.mainGUI = mainGUI;
 		
 	}

@@ -1,20 +1,15 @@
 package tempName.client.service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
-import tempName.server.data.daointerface.DALException;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
-import tempName.shared.dto.WeightDTO;
 
 public class ServiceClientImpl implements ServiceClientInt{
 	private ServiceAsync service;
@@ -119,9 +114,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 				maingui.adminCheck((int) result);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
-				if (data.get(0) instanceof WeightDTO){
-					maingui.updateMeasurements(data);				
-				} else if (data.get(0) instanceof HashMap){
+				if (data.get(0) instanceof HashMap){
 					maingui.updateOperators(data);
 				} else if (data.get(0) instanceof RaavareDTO){
 					maingui.updateRaavare(data);

@@ -31,8 +31,8 @@ public class MainGUI extends Composite {
 	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
-	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
-	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, measurements, this);
+	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators);
+	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, this);
 
 	public MainGUI(ServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -115,17 +115,12 @@ public class MainGUI extends Composite {
 			opMenu = new OperatoerMenu(container, serviceImpl, this, id);
 			opMenu.opMenu();
 		} else if (admin == 3){
-			faMenu = new FarmaceutMenu(container, measurements, this);
+			faMenu = new FarmaceutMenu(container, this);
 			faMenu.farmaMenu();
 		} else if (admin == 4){
 			vaMenu.foremanMenu();
 		}
 	}
-	public void updateMeasurements(ArrayList mm){
-		measurements = mm;
-		AM.updateMeasurements(measurements);
-	}
-
 	public void updateOperators(ArrayList op){
 		operators = op;
 		AM.updateOperators(operators);
