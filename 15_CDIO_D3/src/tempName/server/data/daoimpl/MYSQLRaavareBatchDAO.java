@@ -7,7 +7,6 @@ import java.util.List;
 
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
-import tempName.server.data.dto.OperatoerDTO;
 import tempName.server.data.dto.RaavareBatchDTO;
 
 public class MYSQLRaavareBatchDAO {
@@ -45,8 +44,8 @@ public class MYSQLRaavareBatchDAO {
 	}
 	public void createRaavareBatch(RaavareBatchDTO rb) throws DALException {
 		connector.doUpdate(
-				"INSERT INTO raavarebatch(rb_Id, raavare_Id, maengde) VALUES "
-						+"(" + rb.getRbId() + ", '" + rb.getRaavareId() + "', '" + rb.getMaengde());
+				"INSERT INTO raavarebatch(raavare_Id, maengde) VALUES "
+						+"(" + rb.getRaavareId() + "', '" + rb.getMaengde());
 	}
 
 	public void updateRaavareBatch(RaavareBatchDTO rb) throws DALException {
