@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
+import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
@@ -23,6 +24,7 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 	private VerticalPanel container;
 	private ArrayList<WeightDTO> measurements;
 	private ArrayList<RaavareBatchDTO> raavareBatch;
+	private ArrayList<ProduktBatchDTO> produktBatch;
 	private MainGUI mainGUI;
 	
 	public VaerksfoererMenu(VerticalPanel container, ArrayList<WeightDTO> measurements, MainGUI mainGUI){
@@ -36,21 +38,36 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 	public void foremanMenu(){
 		final Label foremanHeader = new Label("Foreman Menu");
 		foremanHeader.addStyleName("HeaderLabel");
-		final Button measurements = new Button("Check råvarer");
+		final Button raavareMenu = new Button("Check råvarer");
+		final Button produktBatchMenu = new Button("Check produktbatch");
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
 		container.add(foremanHeader);
-		container.add(measurements);
+		container.add(raavareMenu);
+		container.add(produktBatchMenu);
 		container.add(logout);
 
-		measurements.addClickHandler(new ClickHandler() {
+		raavareMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRaavareBatch();
 				Timer t = new Timer() {
 					@Override
 					public void run() {
 						raavareBatch();
+
+					}
+				};
+				t.schedule(100);
+			}
+		});
+		produktBatchMenu.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainGUI.serviceImpl.getProduktBatch();
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						produktBatch();
 
 					}
 				};
@@ -119,14 +136,66 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 			}
 		});
 	}
+	@Override
+	public void produktBatch() {
+		CellTable<ProduktBatchDTO> table = new CellTable<ProduktBatchDTO>();
+		TextColumn<ProduktBatchDTO> pbID = new TextColumn<ProduktBatchDTO>(){
+
+			@Override
+			public String getValue(ProduktBatchDTO object) {
+				return Integer.toString(object.getPbId());
+			}
+
+		};
+		TextColumn<ProduktBatchDTO> status = new TextColumn<ProduktBatchDTO>(){
+
+			@Override
+			public String getValue(ProduktBatchDTO object) {
+				return Integer.toString(object.getStatus());
+			}
+
+		};
+		TextColumn<ProduktBatchDTO> rID = new TextColumn<ProduktBatchDTO>(){
+
+			@Override
+			public String getValue(ProduktBatchDTO object) {
+				return Double.toString(object.getReceptId());
+			}
+
+		};
+
+		table.addColumn(pbID, "ProduktBatch ID");
+		table.addColumn(status, "Status");
+		table.addColumn(rID, "Recept ID");
+
+		ListDataProvider<ProduktBatchDTO> dataProvider = new ListDataProvider<ProduktBatchDTO>();
+
+		dataProvider.addDataDisplay(table);
+
+		List<ProduktBatchDTO> list = new ArrayList<ProduktBatchDTO>();
+		list = dataProvider.getList();
+		for (ProduktBatchDTO mm : produktBatch) {
+			list.add(mm);
+		}
+
+		final Button back = new Button("<- Back");
+		container.clear();
+		container.setSpacing(9);
+		container.add(table);
+		container.add(back);
+
+		back.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				foremanMenu();
+			}
+		});
+		
+	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
 	}
-
-	@Override
-	public void produktBatch() {
-		// TODO Auto-generated method stub
-		
+	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
+		this.produktBatch = produktBatch;
 	}
 
 }
