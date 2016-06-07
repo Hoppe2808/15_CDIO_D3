@@ -12,6 +12,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import tempName.client.gui.MainGUI;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.dto.RaavareDTO;
+import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
 
 public class ServiceClientImpl implements ServiceClientInt{
@@ -111,6 +112,8 @@ public class ServiceClientImpl implements ServiceClientInt{
 					maingui.updateOperators(data);
 				} else if (data.get(0) instanceof RaavareDTO){
 					maingui.updateRaavare(data);
+				} else if (data.get(0) instanceof ReceptDTO){
+					maingui.updateRecept(data);
 				}
 			}
 		}

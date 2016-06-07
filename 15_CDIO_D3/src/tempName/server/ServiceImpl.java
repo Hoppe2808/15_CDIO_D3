@@ -30,8 +30,8 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	private MYSQLOperatoerDAO operatoerDAO = new MYSQLOperatoerDAO();
 	private MYSQLRaavareDAO raavareDAO = new MYSQLRaavareDAO();
 	private MYSQLReceptDAO receptDAO = new MYSQLReceptDAO();
-	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
 	private MYSQLRaavareBatchDAO raavareBatchDAO = new MYSQLRaavareBatchDAO();
+	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
 
 	public void connectDatabase(){
 		try { 

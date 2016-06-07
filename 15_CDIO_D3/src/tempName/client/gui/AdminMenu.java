@@ -94,11 +94,11 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		receptmenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.getRaavare();
+				mainGUI.serviceImpl.getRecept();
 				Timer t = new Timer() {
 					@Override
 					public void run() {
-						raavare();
+						recept();
 
 					}
 				};
