@@ -17,14 +17,8 @@ public class OperatoerDTO implements Serializable{
 	String cpr; 
 	/** Operatør password min. 7 max. 8 karakterer */
 	String password;
-	/** The operators admin status. TRUE = admin, FALSE = not dmin */
+	/** The operators admin status. 1 = Admin, 2 = Operatør, 3 = Farmaceut, 4 = Værksfører */
 	int admin;
-
-
-	public OperatoerDTO() {
-
-	}
-
 
 	public int getOprId() {
 		return oprId;

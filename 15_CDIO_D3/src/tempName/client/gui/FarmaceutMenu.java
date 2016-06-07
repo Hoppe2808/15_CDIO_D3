@@ -32,6 +32,7 @@ public class FarmaceutMenu implements FarmaAdminInt{
 	
 	public void farmaMenu(){
 		final Label farmaHeader = new Label("Farmaceut Menu");
+		farmaHeader.addStyleName("HeaderLabel");
 		final Button raavaremenu = new Button("Check råvarer");
 		final Button receptmenu = new Button("Check recepter");
 		final Button logout = new Button("Logout");
@@ -167,6 +168,18 @@ public class FarmaceutMenu implements FarmaAdminInt{
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
 		this.recept = recept;
+	}
+
+	@Override
+	public void raavareBatch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void produktBatch() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

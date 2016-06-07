@@ -7,19 +7,22 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
+import tempName.server.data.dto.RaavareBatchDTO;
+import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
 
-public class VaerksfoererMenu implements FarmaAdminInt {
+public class VaerksfoererMenu implements VaerkAdminInt{
 	
 	private VerticalPanel container;
 	private ArrayList<WeightDTO> measurements;
-	private ArrayList<ReceptDTO> recept;
+	private ArrayList<RaavareBatchDTO> raavareBatch;
 	private MainGUI mainGUI;
 	
 	public VaerksfoererMenu(VerticalPanel container, ArrayList<WeightDTO> measurements, MainGUI mainGUI){
@@ -32,7 +35,8 @@ public class VaerksfoererMenu implements FarmaAdminInt {
 	
 	public void foremanMenu(){
 		final Label foremanHeader = new Label("Foreman Menu");
-		final Button measurements = new Button("Check measurements");
+		foremanHeader.addStyleName("HeaderLabel");
+		final Button measurements = new Button("Check råvarer");
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
@@ -42,7 +46,15 @@ public class VaerksfoererMenu implements FarmaAdminInt {
 
 		measurements.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				raavare();
+				mainGUI.serviceImpl.getRaavare();
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						raavareBatch();
+
+					}
+				};
+				t.schedule(100);
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -54,44 +66,44 @@ public class VaerksfoererMenu implements FarmaAdminInt {
 	}
 
 	@Override
-	public void raavare() {
-		CellTable<WeightDTO> table = new CellTable<WeightDTO>();
-		TextColumn<WeightDTO> wID = new TextColumn<WeightDTO>(){
+	public void raavareBatch() {
+		CellTable<RaavareBatchDTO> table = new CellTable<RaavareBatchDTO>();
+		TextColumn<RaavareBatchDTO> rbID = new TextColumn<RaavareBatchDTO>(){
 
 			@Override
-			public String getValue(WeightDTO object) {
-				return Integer.toString(object.getWID());
+			public String getValue(RaavareBatchDTO object) {
+				return Integer.toString(object.getRbId());
 			}
 
 		};
-		TextColumn<WeightDTO> meas = new TextColumn<WeightDTO>(){
+		TextColumn<RaavareBatchDTO> rID = new TextColumn<RaavareBatchDTO>(){
 
 			@Override
-			public String getValue(WeightDTO object) {
-				return Double.toString(object.getMS());
+			public String getValue(RaavareBatchDTO object) {
+				return Integer.toString(object.getRaavareId());
 			}
 
 		};
-		TextColumn<WeightDTO> oID = new TextColumn<WeightDTO>(){
+		TextColumn<RaavareBatchDTO> maengde = new TextColumn<RaavareBatchDTO>(){
 
 			@Override
-			public String getValue(WeightDTO object) {
-				return Integer.toString(object.getopID());
+			public String getValue(RaavareBatchDTO object) {
+				return Double.toString(object.getMaengde());
 			}
 
 		};
 
-		table.addColumn(wID, "Weight ID");
-		table.addColumn(meas, "Measurements");
-		table.addColumn(oID, "Operator ID");
+		table.addColumn(rbID, "RaavareBatch ID");
+		table.addColumn(rID, "Raavare ID");
+		table.addColumn(maengde, "Mængde");
 
-		ListDataProvider<WeightDTO> dataProvider = new ListDataProvider<WeightDTO>();
+		ListDataProvider<RaavareBatchDTO> dataProvider = new ListDataProvider<RaavareBatchDTO>();
 
 		dataProvider.addDataDisplay(table);
 
-		List<WeightDTO> list = new ArrayList<WeightDTO>();
+		List<RaavareBatchDTO> list = new ArrayList<RaavareBatchDTO>();
 		list = dataProvider.getList();
-		for (WeightDTO mm : measurements) {
+		for (RaavareBatchDTO mm : raavareBatch) {
 			list.add(mm);
 		}
 
@@ -107,50 +119,14 @@ public class VaerksfoererMenu implements FarmaAdminInt {
 			}
 		});
 	}
+	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
+		this.raavareBatch = raavareBatch;
+	}
+
 	@Override
-	public void recept() {
-		CellTable<ReceptDTO> table = new CellTable<ReceptDTO>();
-		TextColumn<ReceptDTO> rID = new TextColumn<ReceptDTO>(){
-
-			@Override
-			public String getValue(ReceptDTO object) {
-				return Integer.toString(object.getReceptId());
-			}
-
-		};
-		TextColumn<ReceptDTO> rName = new TextColumn<ReceptDTO>(){
-
-			@Override
-			public String getValue(ReceptDTO object) {
-				return object.getReceptName();
-			}
-
-		};
+	public void produktBatch() {
+		// TODO Auto-generated method stub
 		
-		table.addColumn(rID, "Raavare ID");
-		table.addColumn(rName, "Raavare Name");
-
-		ListDataProvider<ReceptDTO> dataProvider = new ListDataProvider<ReceptDTO>();
-
-		dataProvider.addDataDisplay(table);
-
-		List<ReceptDTO> list = new ArrayList<ReceptDTO>();
-		list = dataProvider.getList();
-		for (ReceptDTO mm : recept) {
-			list.add(mm);
-		}
-
-		final Button back = new Button("<- Back");
-		container.clear();
-		container.setSpacing(9);
-		container.add(table);
-		container.add(back);
-
-		back.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				foremanMenu();
-			}
-		});
 	}
 
 }

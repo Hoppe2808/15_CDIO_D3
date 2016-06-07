@@ -26,6 +26,10 @@ h1 {
   width: 400px;
 }
 
+.HeaderLabel{
+	font-size:20pt
+}
+
 .dialogVPanel {
   margin: 5px;
 }

@@ -30,6 +30,7 @@ public class MainGUI extends Composite {
 	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators, measurements);
+	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, measurements, this);
 
 	public MainGUI(ServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -37,6 +38,8 @@ public class MainGUI extends Composite {
 		loginScreen();
 	}
 	public void loginScreen(){
+		final Label loginHeader = new Label("Login");
+		loginHeader.addStyleName("HeaderLabel");
 		final Button loginButton = new Button("Login");
 		final TextBox loginUsername = new TextBox();
 		final Label logUserLabel = new Label("Username: ");
@@ -44,6 +47,7 @@ public class MainGUI extends Composite {
 		final Label logPassLabel = new Label("Password: ");
 		initWidget(container);
 		container.clear();
+		container.add(loginHeader);
 		container.add(logUserLabel);
 		container.add(loginUsername);
 		container.add(logPassLabel);
@@ -64,12 +68,15 @@ public class MainGUI extends Composite {
 		});
 	}
 	public void loginScreen2(){
+		final Label loginHeader = new Label("Login");
+		loginHeader.addStyleName("HeaderLabel");
 		final Button loginButton = new Button("Login");
 		final TextBox loginUsername = new TextBox();
 		final Label logUserLabel = new Label("Username: ");
 		final TextBox loginPassword = new TextBox();
 		final Label logPassLabel = new Label("Password: ");
 		container.clear();
+		container.add(loginHeader);
 		container.add(logUserLabel);
 		container.add(loginUsername);
 		container.add(logPassLabel);
@@ -108,8 +115,8 @@ public class MainGUI extends Composite {
 		} else if (admin == 3){
 			faMenu = new FarmaceutMenu(container, measurements, this);
 			faMenu.farmaMenu();
-		} else {
-			System.out.println("Lul");
+		} else if (admin == 4){
+			vaMenu.foremanMenu();
 		}
 	}
 	public void updateMeasurements(ArrayList mm){

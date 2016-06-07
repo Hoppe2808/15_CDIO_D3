@@ -48,6 +48,7 @@ public class AdminMenu implements FarmaAdminInt{
 	public void adminMenu(){
 
 		final Label adminHeader = new Label("Admin Menu");
+		adminHeader.addStyleName("HeaderLabel");
 		final Button createOp = new Button("Create new operator");
 		final Button editOp = new Button("Change attributes of operator");
 		final Button inspectOp = new Button("Inspect an operator");
@@ -56,6 +57,7 @@ public class AdminMenu implements FarmaAdminInt{
 		final Button logout = new Button("Logout");
 		container.clear();
 		container.setSpacing(9);
+		container.add(adminHeader);
 		container.add(createOp);
 		container.add(editOp);
 		container.add(inspectOp);
@@ -407,5 +409,17 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
 		this.recept = recept;
+	}
+
+	@Override
+	public void raavareBatch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void produktBatch() {
+		// TODO Auto-generated method stub
+		
 	}
 }
