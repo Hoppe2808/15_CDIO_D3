@@ -24,7 +24,6 @@ public class MainGUI extends Composite {
 	private String password;
 	protected ServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
-	private OperatoerMenu opMenu;
 	private FarmaceutMenu faMenu;
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
@@ -33,6 +32,7 @@ public class MainGUI extends Composite {
 	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators);
 	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, this);
+	private Label loginError = new Label();
 
 	public MainGUI(ServiceClientImpl serviceImpl){
 		this.serviceImpl = serviceImpl;
@@ -55,6 +55,7 @@ public class MainGUI extends Composite {
 		container.add(logPassLabel);
 		container.add(loginPassword);
 		container.add(loginButton);
+		container.add(loginError);
 
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -84,6 +85,7 @@ public class MainGUI extends Composite {
 		container.add(logPassLabel);
 		container.add(loginPassword);
 		container.add(loginButton);
+		container.add(loginError);
 
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -112,8 +114,7 @@ public class MainGUI extends Composite {
 		if (admin == 1){
 			AM.adminMenu();
 		} else if (admin == 2){
-			opMenu = new OperatoerMenu(container, serviceImpl, this, id);
-			opMenu.opMenu();
+			loginError.setText("En operatør kan ikke logge ind her");
 		} else if (admin == 3){
 			faMenu = new FarmaceutMenu(container, this);
 			faMenu.farmaMenu();
