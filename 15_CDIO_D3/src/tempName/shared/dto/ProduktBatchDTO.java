@@ -1,6 +1,8 @@
 package tempName.shared.dto;
 
-public class ProduktbatchDTO  {
+import java.io.Serializable;
+
+public class ProduktBatchDTO implements Serializable{
 	int pbId;
 	int receptId;
 	int status;

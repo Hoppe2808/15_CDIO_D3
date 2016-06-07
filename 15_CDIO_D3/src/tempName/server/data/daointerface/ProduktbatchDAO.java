@@ -2,12 +2,12 @@ package tempName.server.data.daointerface;
 
 import java.util.List;
 
-import tempName.shared.dto.ProduktbatchDTO;
+import tempName.shared.dto.ProduktBatchDTO;
 
 public interface ProduktbatchDAO {
 
-	ProduktbatchDTO getProduktbatch(int pbId) throws DALException;
-	List<ProduktbatchDTO> getProduktbatchList( int pbId) throws DALException;
-	void createRaavareBatch(ProduktbatchDTO pb) throws DALException;
-	void updateRaavareBatch(ProduktbatchDTO pb) throws DALException;
+	ProduktBatchDTO getProduktbatch(int pbId) throws DALException;
+	List<ProduktBatchDTO> getProduktbatchList( int pbId) throws DALException;
+	void createRaavareBatch(ProduktBatchDTO pb) throws DALException;
+	void updateRaavareBatch(ProduktBatchDTO pb) throws DALException;
 }
