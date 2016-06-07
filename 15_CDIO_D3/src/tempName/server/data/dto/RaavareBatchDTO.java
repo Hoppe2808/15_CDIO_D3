@@ -6,14 +6,6 @@ public class RaavareBatchDTO {
 	int rbId;
 	int raavareId;
 	double maengde;
-	
-	
-	public RaavareBatchDTO(int rbId, int raavareId, double maengde){
-		this.raavareId = raavareId;
-		this.rbId = rbId;
-		this.maengde = maengde;		
-	}
-
 
 	public int getRbId() {
 		return rbId;

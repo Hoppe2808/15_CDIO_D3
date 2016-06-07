@@ -23,7 +23,10 @@ public class MYSQLRaavareBatchDAO {
 		ResultSet rs = connector.doQuery("SELECT * FROM raavarebatch WHERE rb_Id = " + rbId);
 		try{
 			if (!rs.first()) throw new DALException("RaavareBatch " +rbId+ "findes ikke");
-			RaavareBatchDTO rbDTO = new RaavareBatchDTO (rbId, rs.getInt("raavare_Id"), rs.getDouble("maengde"));
+			RaavareBatchDTO rbDTO = new RaavareBatchDTO();
+			rbDTO.setRbId(rbId);
+			rbDTO.setRaavareId(rs.getInt("raavare_Id"));
+			rbDTO.setMaengde(rs.getDouble("maengde"));
 			return rbDTO;
 		} catch(SQLException e) {
 			throw new DALException(e);
@@ -34,7 +37,10 @@ public class MYSQLRaavareBatchDAO {
 		ResultSet rs = connector.doQuery("SELECT * FROM raavarebatch");
 		try{
 			while (rs.next()){
-				RaavareBatchDTO rbDTO = new RaavareBatchDTO(rs.getInt("rb_Id"),rs.getInt("raavare_Id"),rs.getDouble("maengde"));
+				RaavareBatchDTO rbDTO = new RaavareBatchDTO();
+				rbDTO.setRbId(rs.getInt("rb_Id"));
+				rbDTO.setRaavareId(rs.getInt("raavare_Id"));
+				rbDTO.setMaengde(rs.getDouble("maengde"));
 				list.add(rbDTO);
 			}
 		} catch(SQLException e){
