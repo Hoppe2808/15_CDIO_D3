@@ -61,6 +61,44 @@ public class FarmaceutMenu implements FarmaAdminInt{
 				t.schedule(100);
 			}
 		});
+		receptmenu.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainGUI.serviceImpl.getRecept();
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						recept();
+					}
+				};
+				t.schedule(100);
+			}
+		});
+		raavareBatchMenu.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainGUI.serviceImpl.getRaavareBatch();
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						raavareBatch();
+
+					}
+				};
+				t.schedule(100);
+			}
+		});
+		produktBatchMenu.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainGUI.serviceImpl.getProduktBatch();
+				Timer t = new Timer() {
+					@Override
+					public void run() {
+						produktBatch();
+
+					}
+				};
+				t.schedule(100);
+			}
+		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.loginScreen2();

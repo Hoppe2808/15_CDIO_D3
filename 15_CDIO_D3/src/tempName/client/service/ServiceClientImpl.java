@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
+import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
@@ -122,6 +123,9 @@ public class ServiceClientImpl implements ServiceClientInt{
 					maingui.updateRecept(data);
 				} else if (data.get(0) instanceof RaavareBatchDTO){
 					maingui.updateRaavareBatch(data);
+				} else if (data.get(0) instanceof ProduktBatchDTO){
+					System.out.println(data.get(0));
+					maingui.updateProduktBatch(data);
 				}
 			}
 		}

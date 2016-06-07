@@ -3,16 +3,23 @@ package tempName.client.gui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 import tempName.client.service.ServiceClientImpl;
+import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
@@ -30,6 +37,7 @@ public class MainGUI extends Composite {
 	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
+	private ArrayList<ProduktBatchDTO> produktBatch = new ArrayList<ProduktBatchDTO>();
 	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators);
 	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, this);
 	private Label loginError = new Label();
@@ -57,6 +65,13 @@ public class MainGUI extends Composite {
 		container.add(loginButton);
 		container.add(loginError);
 
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+		    @Override
+		    public void execute() {
+		        loginUsername.setFocus(true);
+		    }
+		});
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				name = loginUsername.getText();
@@ -68,6 +83,38 @@ public class MainGUI extends Composite {
 					Window.alert("Username must be a number bewteen 0 - 100");
 				}
 			}
+		});
+		loginPassword.addKeyDownHandler(new KeyDownHandler() {
+
+		    @Override
+		    public void onKeyDown(KeyDownEvent event) {
+		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+					name = loginUsername.getText();
+					if (name.matches("^[0-9][0-9]?$|^100$")){
+						id = Integer.parseInt(name);
+						password = loginPassword.getText();
+						serviceImpl.checkLogin(id, password);
+					} else {
+						Window.alert("Username must be a number bewteen 0 - 100");
+					}
+		           }
+		    }
+		});
+		loginUsername.addKeyDownHandler(new KeyDownHandler() {
+
+		    @Override
+		    public void onKeyDown(KeyDownEvent event) {
+		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+					name = loginUsername.getText();
+					if (name.matches("^[0-9][0-9]?$|^100$")){
+						id = Integer.parseInt(name);
+						password = loginPassword.getText();
+						serviceImpl.checkLogin(id, password);
+					} else {
+						Window.alert("Username must be a number bewteen 0 - 100");
+					}
+		           }
+		    }
 		});
 	}
 	public void loginScreen2(){
@@ -87,6 +134,13 @@ public class MainGUI extends Composite {
 		container.add(loginButton);
 		container.add(loginError);
 
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+		    @Override
+		    public void execute() {
+		        loginUsername.setFocus(true);
+		    }
+		});
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				name = loginUsername.getText();
@@ -98,6 +152,38 @@ public class MainGUI extends Composite {
 					Window.alert("Username must be a number bewteen 0 - 100");
 				}
 			}
+		});
+		loginPassword.addKeyDownHandler(new KeyDownHandler() {
+
+		    @Override
+		    public void onKeyDown(KeyDownEvent event) {
+		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+					name = loginUsername.getText();
+					if (name.matches("^[0-9][0-9]?$|^100$")){
+						id = Integer.parseInt(name);
+						password = loginPassword.getText();
+						serviceImpl.checkLogin(id, password);
+					} else {
+						Window.alert("Username must be a number bewteen 0 - 100");
+					}
+		           }
+		    }
+		});
+		loginUsername.addKeyDownHandler(new KeyDownHandler() {
+
+		    @Override
+		    public void onKeyDown(KeyDownEvent event) {
+		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+					name = loginUsername.getText();
+					if (name.matches("^[0-9][0-9]?$|^100$")){
+						id = Integer.parseInt(name);
+						password = loginPassword.getText();
+						serviceImpl.checkLogin(id, password);
+					} else {
+						Window.alert("Username must be a number bewteen 0 - 100");
+					}
+		           }
+		    }
 		});
 	}
 
@@ -139,5 +225,13 @@ public class MainGUI extends Composite {
 	public void updateRaavareBatch(ArrayList raavareBatch){
 		this.raavareBatch = raavareBatch;
 		vaMenu.updateRaavareBatch(raavareBatch);
+		faMenu.updateRaavareBatch(raavareBatch);
+		AM.updateRaavareBatch(raavareBatch);
+	}
+	public void updateProduktBatch(ArrayList produktBatch){
+		this.produktBatch = produktBatch;
+		vaMenu.updateProduktBatch(produktBatch);
+		faMenu.updateProduktBatch(produktBatch);
+		AM.updateProduktBatch(produktBatch);
 	}
 }

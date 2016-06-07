@@ -2,6 +2,7 @@ package tempName.server;
 
 import tempName.client.service.Service;
 import tempName.server.data.daoimpl.MYSQLOperatoerDAO;
+import tempName.server.data.daoimpl.MYSQLProduktBatchDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareBatchDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareDAO;
 import tempName.server.data.daoimpl.MYSQLReceptDAO;
