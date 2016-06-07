@@ -2,7 +2,7 @@ package tempName.server.data.dto;
 
 public class ProduktbatchDTO  {
 	int pbId;
-	int recpetId;
+	int receptId;
 	int status;
 	int oprId;
 	int rbId;
@@ -17,12 +17,12 @@ public class ProduktbatchDTO  {
 		this.pbId = pbId;
 	}
 
-	public int getRecpetId() {
-		return recpetId;
+	public int getReceptId() {
+		return getReceptId();
 	}
 
-	public void setRecpetId(int recpetId) {
-		this.recpetId = recpetId;
+	public void setReceptId(int receptId) {
+		this.receptId = receptId;
 	}
 
 	public int getStatus() {
@@ -66,6 +66,6 @@ public class ProduktbatchDTO  {
 	}
 
 	public String toString(){
-		return pbId + " " + recpetId + " " + status + " " + oprId + " "+ rbId + ""+ tara+" "+ netto;
+		return pbId + " " + receptId + " " + status + " " + oprId + " "+ rbId + ""+ tara+" "+ netto;
 	}
 }
