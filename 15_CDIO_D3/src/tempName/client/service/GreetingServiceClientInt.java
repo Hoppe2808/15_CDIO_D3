@@ -13,4 +13,5 @@ public interface GreetingServiceClientInt {
 	void getRaavare();
 	void addRecept(String receptName);
 	void getRecept();
+	void addRaavareBatch(int raavareID, int maengde);
 }

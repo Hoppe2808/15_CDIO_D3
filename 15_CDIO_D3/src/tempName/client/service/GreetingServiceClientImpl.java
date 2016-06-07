@@ -83,6 +83,10 @@ public class GreetingServiceClientImpl implements GreetingServiceClientInt{
 	public void getRecept(){
 		this.service.getRecept(new defaultCallback());
 	}
+	@Override
+	public void addRaavareBatch(int raavareID, int maengde){
+		this.service.addRaavareBatch(raavareID, maengde, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 

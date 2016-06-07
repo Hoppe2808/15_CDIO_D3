@@ -25,4 +25,5 @@ public interface GreetingServiceAsync {
 	void getRaavare(AsyncCallback<ArrayList<RaavareDTO>> callback);
 	void addRecept(String receptName, AsyncCallback callback);
 	void getRecept(AsyncCallback<ArrayList<ReceptDTO>> callback);
+	void addRaavareBatch(int raavareID, int maengde, AsyncCallback callback);
 }

@@ -38,4 +38,6 @@ public interface GreetingService extends RemoteService {
 	void addRaavare(String rName, String deliverer);
 	
 	void addRecept(String receptName);
+	
+	void addRaavareBatch(int raavareID, int maengde);
 }

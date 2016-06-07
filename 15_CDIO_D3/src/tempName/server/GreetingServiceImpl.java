@@ -2,12 +2,14 @@ package tempName.server;
 
 import tempName.client.service.GreetingService;
 import tempName.server.data.daoimpl.MYSQLOperatoerDAO;
+import tempName.server.data.daoimpl.MYSQLRaavareBatchDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareDAO;
 import tempName.server.data.daoimpl.MYSQLReceptDAO;
 import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
 import tempName.server.data.dto.OperatoerDTO;
+import tempName.server.data.dto.RaavareBatchDTO;
 import tempName.server.data.dto.RaavareDTO;
 import tempName.server.data.dto.ReceptDTO;
 import tempName.server.data.dto.WeightDTO;
@@ -29,6 +31,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	private MYSQLRaavareDAO raavareDAO = new MYSQLRaavareDAO();
 	private MYSQLReceptDAO receptDAO = new MYSQLReceptDAO();
 	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
+	private MYSQLRaavareBatchDAO raavareBatchDAO = new MYSQLRaavareBatchDAO();
 
 	public void connectDatabase(){
 		try { 
@@ -185,6 +188,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		rDTO.setReceptName(receptName);
 		try{
 			this.receptDAO.createRecept(rDTO);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void addRaavareBatch(int raavareID, int maengde){
+		RaavareBatchDTO rDTO = new RaavareBatchDTO();
+		rDTO.setRaavareId(raavareID);
+		rDTO.setMaengde(maengde);
+		try{
+			this.raavareBatchDAO.createRaavareBatch(rDTO);
 		}catch (DALException e){
 			e.printStackTrace();
 		}
