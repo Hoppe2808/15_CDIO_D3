@@ -12,16 +12,16 @@ public class ReceptDTO implements Serializable{
 	private int receptId;
 	private String receptNavn;
 	
-	public int receptId() {
+	public int getReceptId() {
 		return receptId;
 	}
-	public void receptId(int receptId) {
+	public void setReceptId(int receptId) {
 		this.receptId = receptId;
 	}
-	public String receptNavn() {
+	public String getReceptNavn() {
 		return receptNavn;
 	}
-	public void receptNavn(String recpetNavn) {
+	public void setReceptNavn(String recpetNavn) {
 		this.receptNavn = recpetNavn;
 	}
 }
