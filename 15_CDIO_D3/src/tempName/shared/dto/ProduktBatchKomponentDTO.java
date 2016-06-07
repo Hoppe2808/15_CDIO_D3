@@ -1,12 +1,12 @@
 package tempName.shared.dto;
 
-public class ProduktbatchKomponentDTO {
+public class ProduktBatchKomponentDTO {
 
 		int pbId, rbId, oprId;
 		double tara, netto;
 
 
-		public ProduktbatchKomponentDTO(int pbId, int rbId, int oprId, double tara, double netto){
+		public ProduktBatchKomponentDTO(int pbId, int rbId, int oprId, double tara, double netto){
 			this.pbId = pbId;
 			this.rbId = rbId;
 			this.oprId=oprId;

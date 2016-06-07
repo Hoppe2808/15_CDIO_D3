@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
@@ -28,4 +29,6 @@ public interface ServiceAsync {
 	void getRecept(AsyncCallback<ArrayList<ReceptDTO>> callback);
 	void addRaavareBatch(int raavareID, int maengde, AsyncCallback callback);
 	void getRaavareBatch(AsyncCallback<ArrayList<RaavareBatchDTO>> callback);
+	void addProduktBatch(int status, int receptID, AsyncCallback callback);
+	void getProduktBatch(AsyncCallback<ArrayList<ProduktBatchDTO>> callback);
 }

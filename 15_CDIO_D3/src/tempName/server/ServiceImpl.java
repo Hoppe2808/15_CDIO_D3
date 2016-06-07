@@ -10,6 +10,7 @@ import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
 import tempName.server.data.password.PasswordMethods;
 import tempName.shared.dto.OperatoerDTO;
+import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
@@ -31,6 +32,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	private MYSQLRaavareDAO raavareDAO = new MYSQLRaavareDAO();
 	private MYSQLReceptDAO receptDAO = new MYSQLReceptDAO();
 	private MYSQLRaavareBatchDAO raavareBatchDAO = new MYSQLRaavareBatchDAO();
+	private MYSQLProduktBatchDAO produktBatchDAO = new MYSQLProduktBatchDAO();
 	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
 
 	public void connectDatabase(){
@@ -168,6 +170,17 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 
 		return (ArrayList<RaavareBatchDTO>) rawList;
 	}
+	@Override
+	public ArrayList<ProduktBatchDTO> getProduktBatch(){
+		List<ProduktBatchDTO> rawList = new ArrayList<ProduktBatchDTO>();
+		try {
+			rawList = this.produktBatchDAO.getProduktBatchList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+
+		return (ArrayList<ProduktBatchDTO>) rawList;
+	}
 
 	@Override
 	public void addMeasurement(double mm, int id) {
@@ -216,7 +229,15 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 	}
 
-	
-
-
+	@Override
+	public void addProduktBatch(int status, int receptID) {
+		ProduktBatchDTO rDTO = new ProduktBatchDTO();
+		rDTO.setStatus(status);
+		rDTO.setReceptId(receptID);
+		try{
+			this.produktBatchDAO.createProduktBatch(rDTO);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
+	}
 }
