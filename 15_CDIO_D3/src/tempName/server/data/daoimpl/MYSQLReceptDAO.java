@@ -29,7 +29,7 @@ public class MYSQLReceptDAO implements ReceptDAO{
 			if (!rs.first()) throw new DALException("Recepten " + receptId + " findes ikke");
 			ReceptDTO recDTO = new ReceptDTO();
 			recDTO.setReceptId(rs.getInt("receptId"));
-			recDTO.setReceptNavn(rs.getString("receptNavn"));
+			recDTO.setReceptName(rs.getString("receptNavn"));
 			ReceptDTO result = recDTO;
 			return result;
 		} catch(SQLException e) {
@@ -45,7 +45,7 @@ public class MYSQLReceptDAO implements ReceptDAO{
 			while (rs.next()){
 				ReceptDTO recDTO = new ReceptDTO();
 				recDTO.setReceptId(rs.getInt("receptId"));
-				recDTO.setReceptNavn(rs.getString("receptNavn"));
+				recDTO.setReceptName(rs.getString("receptNavn"));
 				list.add(recDTO);
 			}
 		} catch(SQLException e){
@@ -58,14 +58,14 @@ public class MYSQLReceptDAO implements ReceptDAO{
 	public void createRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
 				"INSERT INTO recept(receptId, receptNavn) VALUES "
-						+"(" + rec.getReceptId() + ", '" + rec.getReceptNavn() + ")"
+						+"(" + rec.getReceptId() + ", '" + rec.getReceptName() + ")"
 				);		
 	}
 
 	@Override
 	public void updateRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
-				"UPDATE recept SET receptId = '" + rec.getReceptId() + "', receptNavn = '" + rec.getReceptNavn()
+				"UPDATE recept SET receptId = '" + rec.getReceptId() + "', receptNavn = '" + rec.getReceptName()
 				 + " WHERE oprId = " + rec.getReceptId()			
 				);		
 	}

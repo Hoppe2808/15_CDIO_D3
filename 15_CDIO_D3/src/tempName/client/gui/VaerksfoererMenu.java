@@ -122,7 +122,7 @@ public class VaerksfoererMenu implements FarmaAdminInt {
 
 			@Override
 			public String getValue(ReceptDTO object) {
-				return object.getReceptNavn();
+				return object.getReceptName();
 			}
 
 		};

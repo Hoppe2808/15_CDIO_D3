@@ -182,7 +182,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	@Override
 	public void addRecept(String receptName){
 		ReceptDTO rDTO = new ReceptDTO();
-		rDTO.setRec_navn(receptName);
+		rDTO.setReceptName(receptName);
 		try{
 			this.receptDAO.createRecept(rDTO);
 		}catch (DALException e){

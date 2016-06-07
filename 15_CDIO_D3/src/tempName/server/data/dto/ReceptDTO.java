@@ -18,10 +18,10 @@ public class ReceptDTO implements Serializable{
 	public void setReceptId(int receptId) {
 		this.receptId = receptId;
 	}
-	public String getReceptNavn() {
+	public String getReceptName() {
 		return receptNavn;
 	}
-	public void setReceptNavn(String recpetNavn) {
-		this.receptNavn = recpetNavn;
+	public void setReceptName(String receptNavn) {
+		this.receptNavn = receptNavn;
 	}
 }
