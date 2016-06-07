@@ -22,17 +22,13 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 
 	@Override
 	public ProduktbatchDTO getProduktbatch(int pbId) throws DALException {
-		ResultSet rs = connector.doQuery("SELECT * FROM recept WHERE produktbatchId = " + pbId);
+		ResultSet rs = connector.doQuery("SELECT * FROM produktbatch WHERE pb_id = " + pbId);
 		try{
 			if (!rs.first()) throw new DALException("Produktbatch " + pbId + " findes ikke");
 			ProduktbatchDTO pbDTO = new ProduktbatchDTO();
-			pbDTO.setPbId(rs.getInt("pbId"));
-			pbDTO.setPbId(rs.getInt("receptId"));
+			pbDTO.setPbId(rs.getInt("pb_id"));
 			pbDTO.setPbId(rs.getInt("status"));
-			pbDTO.setPbId(rs.getInt("oprId"));
-			pbDTO.setPbId(rs.getInt("rbId"));
-			pbDTO.setTara(rs.getDouble("tara"));
-			pbDTO.setNetto(rs.getDouble("netto"));
+			pbDTO.setPbId(rs.getInt("recept_id"));
 			ProduktbatchDTO result = pbDTO;
 			return result;
 		} catch(SQLException e) {
@@ -41,19 +37,19 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	}
 
 	@Override
-	public List<tempName.shared.dto.ProduktbatchDTO> getProduktbatchList(int pbId) throws DALException {
+	public List<ProduktbatchDTO> getProduktbatchList(int pbId) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void createRaavareBatch(tempName.shared.dto.ProduktbatchDTO pb) throws DALException {
+	public void createRaavareBatch(ProduktbatchDTO pb) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateRaavareBatch(tempName.shared.dto.ProduktbatchDTO pb) throws DALException {
+	public void updateRaavareBatch(ProduktbatchDTO pb) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
