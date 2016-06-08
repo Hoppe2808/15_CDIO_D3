@@ -242,6 +242,18 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 	@Override
 	public void updateRaavare(int id, String name, String deliverer){
-		
+		try{
+			this.raavareDAO.updateRaavare(id, name, deliverer);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void deleteRaavare(int id){
+		try{
+			this.raavareDAO.deleteRaavare(id);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
 	}
 }

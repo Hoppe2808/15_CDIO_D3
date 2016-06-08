@@ -163,6 +163,7 @@ public class RaavareMenu{
 		final Label leveLabel = new Label("Indtast leverandør:");
 		final TextBox leverandoer = new TextBox();
 		final Button submit = new Button("Opdater");
+		final Button delete = new Button("Delete");
 		final Button back = new Button("<- Back");
 		for (int i = 0; i < raavare.size(); i++){
 			lb.addItem(raavare.get(i).getrName());
@@ -177,6 +178,7 @@ public class RaavareMenu{
 		container.add(leveLabel);
 		container.add(leverandoer);
 		container.add(submit);
+		container.add(delete);
 		container.add(back);
 		
 		
@@ -193,11 +195,22 @@ public class RaavareMenu{
 			}
 		});
 		
+		delete.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				for (int i = 0; i < raavare.size(); i++){
+					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.deleteRaavare(i+1);
+					}
+				}
+				mainGUI.adminCheck(prevMenu);
+			}
+		});
+		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
 					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRaavare(i, navn.getText(), leverandoer.getText());
+						mainGUI.serviceImpl.updateRaavare(i+1, navn.getText(), leverandoer.getText());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);

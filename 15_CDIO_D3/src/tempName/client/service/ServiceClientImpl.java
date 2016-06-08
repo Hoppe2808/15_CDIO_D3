@@ -102,6 +102,10 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void updateRaavare(int id, String name, String deliverer){
 		this.service.updateRaavare(id, name, deliverer, new defaultCallback());
 	}
+	@Override
+	public void deleteRaavare(int id){
+		this.service.deleteRaavare(id, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 

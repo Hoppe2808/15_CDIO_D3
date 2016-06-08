@@ -34,4 +34,5 @@ public interface Service extends RemoteService {
 	void addRaavareBatch(int raavareID, int maengde);
 	void addProduktBatch(int status, int receptID);
 	void updateRaavare(int id, String name, String deliverer);
+	void deleteRaavare(int id);
 }

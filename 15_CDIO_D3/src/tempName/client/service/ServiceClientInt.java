@@ -18,4 +18,5 @@ public interface ServiceClientInt {
 	void addProduktBatch(int status, int receptID);
 	void getProduktBatch();
 	void updateRaavare(int id, String name, String deliverer);
+	void deleteRaavare(int id);
 }

@@ -55,6 +55,11 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 				+ "' WHERE raavare_id = " + id
 		);
 	}
-	
+	@Override
+	public void deleteRaavare(int id) throws DALException{
+		connector.doUpdate(
+				"DELETE FROM raavare WHERE raavare_id = " + id
+		);
+	}
 
 }
