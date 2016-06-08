@@ -40,44 +40,14 @@ h1 {
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
+
 #main{
 	text-align: center;
-	width: 250px; 
-	margin: 0 auto;
+	margin: 50px;
+	width: auto;
+	height: auto;
+	background: #ffcaca;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-* multi-line comment
-*/
-p{ line-height: 1em; }
-h1, h2, h3, h4{
-    color: #4d2800;
-	font-weight: bold;
-	line-height: 1.1em;
-	margin: 0 0 .5em 0;
-}
-h1{ font-size: 1.7em; }
-h2{ font-size: 1.5em; }
 
 a{
 	color: black;
@@ -93,10 +63,11 @@ body{
 	font-size: 80%; 
 	line-height: 1.4; 
 	width: 100%; 
-	margin: 0; 
-	background: #e6ffff;
+	background: #ffffff;
 }
-#page{ margin: 20px; }
+#page{ margin: 0px; 
+	background: #ffe6e6;
+}
 
 a:hover:not(.active) {
     background-color: none;
@@ -105,16 +76,11 @@ a:hover:not(.active) {
 .active {
 background-color:#ff0000;
 }
-#content{
-	margin: 30px 0;
-	background: #ffffcc;
-	padding: 20px;
-	clear: both;
-}
 
 #footer{
 	border-bottom: 1px #ccc solid;
 	margin-bottom: 10px;
+	margin: 20px;
 }
 #footer p{
 	text-align: right;
