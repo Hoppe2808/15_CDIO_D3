@@ -52,51 +52,21 @@ public class FarmaceutMenu implements FarmaAdminInt{
 		raavaremenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRaavare();
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						raavare();
-					}
-				};
-				t.schedule(100);
 			}
 		});
 		receptmenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRecept();
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						recept();
-					}
-				};
-				t.schedule(100);
 			}
 		});
 		raavareBatchMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRaavareBatch();
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						raavareBatch();
-
-					}
-				};
-				t.schedule(100);
 			}
 		});
 		produktBatchMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getProduktBatch();
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						produktBatch();
-
-					}
-				};
-				t.schedule(100);
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -318,15 +288,19 @@ public class FarmaceutMenu implements FarmaAdminInt{
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
+		raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		this.produktBatch = produktBatch;
+		produktBatch();
 	}
 
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
 		this.raavare = raavare;
+		raavare();
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
 		this.recept = recept;
+		recept();
 	}
 }

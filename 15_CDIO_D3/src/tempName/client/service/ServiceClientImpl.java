@@ -116,20 +116,15 @@ public class ServiceClientImpl implements ServiceClientInt{
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
 				if (data.get(0) instanceof HashMap){
-					Window.alert("Før8");
 					maingui.updateOperators(data);
 				} else if (data.get(0) instanceof RaavareDTO){
-					Window.alert("Før7");
 					maingui.updateRaavare(data);
 				} else if (data.get(0) instanceof ReceptDTO){
-					Window.alert("Før6");
 					maingui.updateRecept(data);
 				} else if (data.get(0) instanceof RaavareBatchDTO){
-					Window.alert("Før5");
 					maingui.updateRaavareBatch(data);
 				} else if (data.get(0) instanceof ProduktBatchDTO){
 					maingui.updateProduktBatch(data);
-					Window.alert("Før4");
 				}
 			}
 		}

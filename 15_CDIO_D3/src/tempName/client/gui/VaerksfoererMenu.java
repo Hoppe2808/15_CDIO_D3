@@ -49,27 +49,11 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 		raavareMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getRaavareBatch();
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						raavareBatch();
-
-					}
-				};
-				t.schedule(100);
 			}
 		});
 		produktBatchMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.getProduktBatch();
-				Timer t = new Timer() {
-					@Override
-					public void run() {
-						produktBatch();
-
-					}
-				};
-				t.schedule(100);
 			}
 		});
 		logout.addClickHandler(new ClickHandler() {
@@ -191,9 +175,11 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
+		raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		this.produktBatch = produktBatch;
+		produktBatch();
 	}
 
 }
