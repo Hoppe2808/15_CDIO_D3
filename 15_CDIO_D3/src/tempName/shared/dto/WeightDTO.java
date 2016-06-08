@@ -12,7 +12,7 @@ public class WeightDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private int wID;
 	private int opID;
 	private double ms;
@@ -32,11 +32,11 @@ public class WeightDTO implements Serializable{
 	public void setMS(double ms){
 		this.ms = ms;
 	}
-	
+
 	public void setWID(int wID){
 		this.wID = wID;
 	}
-	
+
 	public int getWID(){
 		return wID;
 	}

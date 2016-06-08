@@ -24,10 +24,14 @@ public class ProduktBatchDTO implements Serializable{
 		this.pbId = pbId;
 	}
 
+	// TODO Change to getPrescriptionId
+	
 	public int getReceptId() {
 		return receptId;
 	}
 
+	// TODO Change to setPrescriptionId
+	
 	public void setReceptId(int receptId) {
 		this.receptId = receptId;
 	}

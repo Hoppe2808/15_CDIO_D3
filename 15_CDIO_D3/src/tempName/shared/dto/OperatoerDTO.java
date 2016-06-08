@@ -3,10 +3,16 @@ package tempName.shared.dto;
 import java.io.Serializable;
 
 /**
- * Operatør Data Transfer Object (DTO)
+ * Operator Data Transfer Object (DTO)
  */
 
 public class OperatoerDTO implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/** Operatør id i området 1-99999999. Vælges af brugerne */
 	int oprId; 
 	/** Operatør navn min. 2 max. 20 karakterer */
@@ -28,10 +34,14 @@ public class OperatoerDTO implements Serializable{
 		this.oprId = oprId;
 	}
 
+	// TODO Change to getOprName
+
 	public String getOprNavn() {
 		return oprName;
 	}
 
+	// TODO Change to setOprName
+	
 	public void setOprNavn(String oprName) {
 		this.oprName = oprName;
 	}

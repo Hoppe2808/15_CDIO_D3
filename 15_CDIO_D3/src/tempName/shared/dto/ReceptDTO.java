@@ -3,28 +3,36 @@ package tempName.shared.dto;
 import java.io.Serializable;
 
 public class ReceptDTO implements Serializable{
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private int receptId;
-	private String receptNavn;
-	
+
+	private int prescriptionId;
+	private String prescriptionName;
+
+	// TODO Change to getPrescriptionId
+
 	public int getReceptId() {
-		return receptId;
+		return prescriptionId;
 	}
-	
+
+	// TODO Change to setPrescriptionId
+
 	public void setReceptId(int receptId) {
-		this.receptId = receptId;
+		this.prescriptionId = receptId;
 	}
-	
+
+	// TODO Change to getPrescriptionName
+
 	public String getReceptName() {
-		return receptNavn;
+		return prescriptionName;
 	}
-	
-	public void setReceptName(String receptNavn) {
-		this.receptNavn = receptNavn;
+
+	// TODO Change to setPrescriptionName
+
+	public void setReceptName(String prescriptionName) {
+		this.prescriptionName = prescriptionName;
 	}
 }
