@@ -171,6 +171,8 @@ public class AdminMenu implements FarmaAdminInt{
 					if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
 						oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials")
 								+ " - " + (String) operators.get(i).get("AdminStatus"));
+					} else {
+						oper.setText("No operator with Id: " + answer + " was found. Please enter a valid Operator Id.");
 					}
 				}
 
