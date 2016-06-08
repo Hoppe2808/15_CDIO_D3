@@ -128,4 +128,18 @@ public class MYSQLReceptDAO implements ReceptDAO{
 		);
 	}
 
+	
+	
+	@Override
+	public void deleteRecept(int receptId) throws DALException {
+		connector.doUpdate("DELETE FROM recept WHERE recept_id = " + receptId);
+		
+	}
+
+	@Override
+	public void deleteReceptKomp(int receptId, int raavareId) throws DALException {
+		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = " + receptId + " AND raavare_id = " + raavareId);
+		
+	}
+
 }

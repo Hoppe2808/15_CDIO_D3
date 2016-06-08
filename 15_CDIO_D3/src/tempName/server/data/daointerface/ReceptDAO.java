@@ -11,6 +11,7 @@ public interface ReceptDAO {
 	List<ReceptDTO> getReceptList() throws DALException;
 	void createRecept(ReceptDTO rec) throws DALException;
 	void updateRecept(ReceptDTO rec) throws DALException;
+	void deleteRecept(int receptId) throws DALException;
 	
 	//Methods for "receptkomponent" table access
 		ReceptKomponentDTO getReceptKomp(int receptId, int raavareId) throws DALException;
@@ -18,5 +19,6 @@ public interface ReceptDAO {
 		List<ReceptKomponentDTO> getReceptKompList() throws DALException;
 		void createReceptKomp(ReceptKomponentDTO receptkomponent) throws DALException;
 		void updateReceptKomp(ReceptKomponentDTO receptkomponent) throws DALException;
+		void deleteReceptKomp(int receptId, int raavareId) throws DALException;
 	
 }
