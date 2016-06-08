@@ -90,12 +90,12 @@ public class ServiceClientImpl implements ServiceClientInt{
 		this.service.getRaavareBatch(new defaultCallback());
 	}
 	@Override
-	public void getProduktBatch(){
-		this.service.getProduktBatch(new defaultCallback());
-	}
-	@Override
 	public void addProduktBatch(int status, int receptID){
 		this.service.addProduktBatch(status, receptID, new defaultCallback());
+	}
+	@Override
+	public void getProduktBatch(){
+		this.service.getProduktBatch(new defaultCallback());
 	}
 
 	private class defaultCallback implements AsyncCallback{

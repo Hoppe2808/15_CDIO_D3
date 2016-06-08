@@ -28,8 +28,8 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 			if (!rs.first()) throw new DALException("Produktbatch " + pbId + " findes ikke");
 			ProduktBatchDTO pbDTO = new ProduktBatchDTO();
 			pbDTO.setPbId(rs.getInt("pb_id"));
-			pbDTO.setPbId(rs.getInt("status"));
-			pbDTO.setPbId(rs.getInt("recept_id"));
+			pbDTO.setStatus(rs.getInt("status"));
+			pbDTO.setReceptId(rs.getInt("recept_id"));
 			ProduktBatchDTO result = pbDTO;
 			return result;
 		} catch(SQLException e) {
@@ -45,8 +45,8 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 			while (rs.next()){
 				ProduktBatchDTO pbDTO = new ProduktBatchDTO();
 				pbDTO.setPbId(rs.getInt("pb_id"));
-				pbDTO.setPbId(rs.getInt("status"));
-				pbDTO.setPbId(rs.getInt("recept_id"));
+				pbDTO.setStatus(rs.getInt("status"));
+				pbDTO.setReceptId(rs.getInt("recept_id"));
 				list.add(pbDTO);
 			}
 		} catch(SQLException e){

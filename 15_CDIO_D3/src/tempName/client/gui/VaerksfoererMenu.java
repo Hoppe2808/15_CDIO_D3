@@ -157,7 +157,7 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 
 			@Override
 			public String getValue(ProduktBatchDTO object) {
-				return Double.toString(object.getReceptId());
+				return Integer.toString(object.getReceptId());
 			}
 
 		};
