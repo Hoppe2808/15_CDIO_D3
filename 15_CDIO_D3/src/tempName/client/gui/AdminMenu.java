@@ -16,18 +16,14 @@ import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
-
-import tempName.client.service.ServiceClientImpl;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
-import tempName.shared.dto.WeightDTO;
 
 public class AdminMenu implements FarmaAdminInt{
 	
 	private VerticalPanel container;
-	//private GreetingServiceClientImpl serviceImpl;
 	private MainGUI mainGUI;
 	private int id;
 	private int admin;
@@ -38,10 +34,9 @@ public class AdminMenu implements FarmaAdminInt{
 	private ArrayList<RaavareBatchDTO> raavareBatch;
 	private ArrayList<ProduktBatchDTO> produktBatch;
 	
-	public AdminMenu(VerticalPanel container, ServiceClientImpl serviceImpl, MainGUI mainGUI, int id, ArrayList<HashMap> operators){
+	public AdminMenu(VerticalPanel container, MainGUI mainGUI, int id, ArrayList<HashMap> operators){
 		
 		this.container = container;
-		//this.serviceImpl = serviceImpl;
 		this.mainGUI = mainGUI;
 		this.id = id;
 		this.operators = operators;
@@ -89,6 +84,7 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		raavaremenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				System.out.println("RMENU");
 				mainGUI.serviceImpl.getRaavare();
 				Timer t = new Timer() {
 					@Override
@@ -102,6 +98,7 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		receptmenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				System.out.println("REMENU");
 				mainGUI.serviceImpl.getRecept();
 				Timer t = new Timer() {
 					@Override
@@ -115,6 +112,7 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		raavareBatchMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				System.out.println("RBMENU");
 				mainGUI.serviceImpl.getRaavareBatch();
 				Timer t = new Timer() {
 					@Override
@@ -537,7 +535,6 @@ public class AdminMenu implements FarmaAdminInt{
 				adminMenu();
 			}
 		});
-		
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;

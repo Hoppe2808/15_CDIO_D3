@@ -39,7 +39,7 @@ public class MainGUI extends Composite {
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
 	private ArrayList<ProduktBatchDTO> produktBatch = new ArrayList<ProduktBatchDTO>();
-	private AdminMenu AM = new AdminMenu(container, serviceImpl, this, id, operators);
+	private AdminMenu AM = new AdminMenu(container, this, id, operators);
 	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, this);
 	private Label loginError = new Label();
 

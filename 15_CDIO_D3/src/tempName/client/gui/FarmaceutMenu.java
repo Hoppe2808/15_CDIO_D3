@@ -284,7 +284,7 @@ public class FarmaceutMenu implements FarmaAdminInt{
 
 			@Override
 			public String getValue(ProduktBatchDTO object) {
-				return Double.toString(object.getReceptId());
+				return Integer.toString(object.getReceptId());
 			}
 
 		};
