@@ -9,6 +9,7 @@ import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.RaavareDAO;
 import tempName.server.data.database.Connector;
 import tempName.shared.dto.RaavareDTO;
+import tempName.shared.dto.ReceptKomponentDTO;
 
 public class MYSQLRaavareDAO implements RaavareDAO{
 	private Connector connector;
@@ -47,7 +48,13 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 		return list;
 	}
 	
-	// TODO Add update method
+	@Override
+	public void updateRaavare(int id, String name, String deliverer) throws DALException {
+		connector.doUpdate(
+				"UPDATE raavare SET raavare_navn = '" + name + "', leverandoer = '" + deliverer
+				+ "' WHERE raavare_id = " + id
+		);
+	}
 	
 
 }

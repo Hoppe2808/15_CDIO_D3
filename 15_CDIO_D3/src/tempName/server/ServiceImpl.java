@@ -240,4 +240,8 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			e.printStackTrace();
 		}
 	}
+	@Override
+	public void updateRaavare(int id, String name, String deliverer){
+		
+	}
 }

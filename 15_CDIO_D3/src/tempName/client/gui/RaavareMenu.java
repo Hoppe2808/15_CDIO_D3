@@ -128,6 +128,7 @@ public class RaavareMenu{
 		final TextBox leverandoer = new TextBox();
 		final Button submit = new Button("Opret");
 		final Button back = new Button("<- back");
+		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
 		container.add(navnLbl);
@@ -136,11 +137,14 @@ public class RaavareMenu{
 		container.add(leverandoer);
 		container.add(submit);
 		container.add(back);
+		container.add(message);
 		
 		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.serviceImpl.addRaavare(navn.getText(), leverandoer.getText());
+				mainGUI.adminCheck(prevMenu);
+				message.setText("Råvarer tilføjet");
 			}
 		});
 		
@@ -191,7 +195,12 @@ public class RaavareMenu{
 		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				//TODO Tilføj metode til at opdatere raavare
+				for (int i = 0; i < raavare.size(); i++){
+					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.updateRaavare(i, navn.getText(), leverandoer.getText());
+					}
+				}
+				mainGUI.adminCheck(prevMenu);
 			}
 		});
 		

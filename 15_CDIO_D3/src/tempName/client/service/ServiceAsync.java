@@ -31,4 +31,5 @@ public interface ServiceAsync {
 	void getRaavareBatch(AsyncCallback<ArrayList<RaavareBatchDTO>> callback);
 	void addProduktBatch(int status, int receptID, AsyncCallback callback);
 	void getProduktBatch(AsyncCallback<ArrayList<ProduktBatchDTO>> callback);
+	void updateRaavare(int id, String name, String deliverer, AsyncCallback callback);
 }
