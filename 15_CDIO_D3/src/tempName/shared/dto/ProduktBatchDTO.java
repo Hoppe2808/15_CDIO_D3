@@ -3,6 +3,11 @@ package tempName.shared.dto;
 import java.io.Serializable;
 
 public class ProduktBatchDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	int pbId;
 	int receptId;
 	int status;
@@ -20,7 +25,7 @@ public class ProduktBatchDTO implements Serializable{
 	}
 
 	public int getReceptId() {
-		return getReceptId();
+		return receptId;
 	}
 
 	public void setReceptId(int receptId) {
