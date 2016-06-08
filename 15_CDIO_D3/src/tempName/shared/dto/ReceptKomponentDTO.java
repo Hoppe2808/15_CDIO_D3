@@ -9,31 +9,42 @@ public class ReceptKomponentDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	int prescription_Id, commodity_Id;
+	int recept_id, raavare_id;
 	double nom_netto, tolerance;
 
 	// TODO Change to getPrescription_Id
 
+	public ReceptKomponentDTO(){}
+	
+	public ReceptKomponentDTO(int recept_id, int raavare_id, double nom_netto, double tolerance) {
+		this.recept_id = recept_id;
+		this.raavare_id = raavare_id;
+		this.nom_netto = nom_netto;
+		this.tolerance = tolerance;
+		
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getRecept_Id() {
-		return prescription_Id;
+		return recept_id;
 	}
 
 	// TODO Change to setPrescription_Id
 
-	public void setRecept_Id(int prescription_Id) {
-		this.prescription_Id = prescription_Id;
+	public void setRecept_Id(int recept_id) {
+		this.recept_id = recept_id;
 	}
 
 	// TODO Change to getCommodity_Id
 
-	public int getRaavare_Id() {
-		return commodity_Id;
+	public int getRaavare_id() {
+		return raavare_id;
 	}
 
 	// TODO Change to setCommodity_Id
 
-	public void setRaavare_Id(int commodity_Id) {
-		this.commodity_Id = commodity_Id;
+	public void setRaavare_Id(int raavare_id) {
+		this.raavare_id = raavare_id;
 	}
 
 	public double getNom_netto() {
@@ -53,6 +64,6 @@ public class ReceptKomponentDTO implements Serializable{
 	}
 
 	public String toString(){
-		return prescription_Id + " " +  commodity_Id  + " " +nom_netto+" "+ tolerance;
+		return recept_id + " " +  raavare_id  + " " +nom_netto+" "+ tolerance;
 	}
 }
