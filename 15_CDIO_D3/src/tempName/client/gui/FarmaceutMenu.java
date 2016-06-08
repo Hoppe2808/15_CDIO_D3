@@ -101,7 +101,7 @@ public class FarmaceutMenu implements FarmaAdminInt{
 		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.loginScreen2();
+				mainGUI.loginScreen();
 			}
 
 		});

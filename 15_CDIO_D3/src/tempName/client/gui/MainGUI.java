@@ -29,6 +29,7 @@ public class MainGUI extends Composite {
 	private String name;
 	private int id;
 	private String password;
+	private boolean initialized;
 	protected ServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private FarmaceutMenu faMenu;
@@ -55,76 +56,10 @@ public class MainGUI extends Composite {
 		final Label logUserLabel = new Label("Username: ");
 		final TextBox loginPassword = new TextBox();
 		final Label logPassLabel = new Label("Password: ");
-		initWidget(container);
-		container.clear();
-		container.add(loginHeader);
-		container.add(logUserLabel);
-		container.add(loginUsername);
-		container.add(logPassLabel);
-		container.add(loginPassword);
-		container.add(loginButton);
-		container.add(loginError);
-
-		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-
-		    @Override
-		    public void execute() {
-		        loginUsername.setFocus(true);
-		    }
-		});
-		loginButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				name = loginUsername.getText();
-				if (name.matches("^[0-9][0-9]?$|^100$")){
-					id = Integer.parseInt(name);
-					password = loginPassword.getText();
-					serviceImpl.checkLogin(id, password);
-				} else {
-					Window.alert("Username must be a number bewteen 0 - 100");
-				}
-			}
-		});
-		loginPassword.addKeyDownHandler(new KeyDownHandler() {
-
-		    @Override
-		    public void onKeyDown(KeyDownEvent event) {
-		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					name = loginUsername.getText();
-					if (name.matches("^[0-9][0-9]?$|^100$")){
-						id = Integer.parseInt(name);
-						password = loginPassword.getText();
-						serviceImpl.checkLogin(id, password);
-					} else {
-						Window.alert("Username must be a number bewteen 0 - 100");
-					}
-		           }
-		    }
-		});
-		loginUsername.addKeyDownHandler(new KeyDownHandler() {
-
-		    @Override
-		    public void onKeyDown(KeyDownEvent event) {
-		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					name = loginUsername.getText();
-					if (name.matches("^[0-9][0-9]?$|^100$")){
-						id = Integer.parseInt(name);
-						password = loginPassword.getText();
-						serviceImpl.checkLogin(id, password);
-					} else {
-						Window.alert("Username must be a number bewteen 0 - 100");
-					}
-		           }
-		    }
-		});
-	}
-	public void loginScreen2(){
-		final Label loginHeader = new Label("Login");
-		loginHeader.addStyleName("HeaderLabel");
-		final Button loginButton = new Button("Login");
-		final TextBox loginUsername = new TextBox();
-		final Label logUserLabel = new Label("Username: ");
-		final TextBox loginPassword = new TextBox();
-		final Label logPassLabel = new Label("Password: ");
+		if (!(initialized)){
+			initWidget(container);
+			initialized = true;
+		}
 		container.clear();
 		container.add(loginHeader);
 		container.add(logUserLabel);

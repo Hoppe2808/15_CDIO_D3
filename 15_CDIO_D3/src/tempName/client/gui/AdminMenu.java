@@ -141,7 +141,7 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.loginScreen2();
+				mainGUI.loginScreen();
 			}
 
 		});
@@ -507,7 +507,7 @@ public class AdminMenu implements FarmaAdminInt{
 
 			@Override
 			public String getValue(ProduktBatchDTO object) {
-				return Double.toString(object.getReceptId());
+				return Integer.toString(object.getReceptId());
 			}
 
 		};

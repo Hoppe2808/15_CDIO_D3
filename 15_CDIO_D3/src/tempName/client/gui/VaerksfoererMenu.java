@@ -74,7 +74,7 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 		});
 		logout.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.loginScreen2();
+				mainGUI.loginScreen();
 			}
 
 		});
