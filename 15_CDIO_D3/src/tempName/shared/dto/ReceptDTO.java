@@ -15,12 +15,15 @@ public class ReceptDTO implements Serializable{
 	public int getReceptId() {
 		return receptId;
 	}
+	
 	public void setReceptId(int receptId) {
 		this.receptId = receptId;
 	}
+	
 	public String getReceptName() {
 		return receptNavn;
 	}
+	
 	public void setReceptName(String receptNavn) {
 		this.receptNavn = receptNavn;
 	}

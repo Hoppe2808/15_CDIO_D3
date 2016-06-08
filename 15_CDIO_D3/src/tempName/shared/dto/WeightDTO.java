@@ -8,18 +8,14 @@ import java.io.Serializable;
 
 public class WeightDTO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int wID;
 	private int opID;
 	private double ms;
-
-	/**
-	 * The object used to transfer the weight details to the database
-	 * @param opID The operator behind the measurement
-	 * @param ms the weight of the measurement
-	 */
-	public WeightDTO(){
-
-	}
 
 	public int getopID(){
 		return opID;
@@ -36,9 +32,11 @@ public class WeightDTO implements Serializable{
 	public void setMS(double ms){
 		this.ms = ms;
 	}
+	
 	public void setWID(int wID){
 		this.wID = wID;
 	}
+	
 	public int getWID(){
 		return wID;
 	}

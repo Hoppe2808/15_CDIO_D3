@@ -3,31 +3,45 @@ package tempName.shared.dto;
 import java.io.Serializable;
 
 public class RaavareDTO implements Serializable{
-	private int rID;
-	private String rName;
-	private String deliverer;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int commodityID;
+	private String commodityName;
+	private String supplier;
 	
 	public int getrID() {
-		return rID;
+		return commodityID;
 	}
+	
 	public void setrID(int rID) {
-		this.rID = rID;
+		this.commodityID = rID;
 	}
+	
 	public String getrName() {
-		return rName;
+		return commodityName;
 	}
-	public void setrName(String rName) {
-		this.rName = rName;
+	
+	public void setrName(String commodityName) {
+		this.commodityName = commodityName;
 	}
+	
+	// TODO Change to getSupplier
+	
 	public String getDeliverer() {
-		return deliverer;
+		return supplier;
 	}
-	public void setDeliverer(String deliverer) {
-		this.deliverer = deliverer;
+
+	// TODO Change to getSupplier
+	
+	public void setDeliverer(String supplier) {
+		this.supplier = supplier;
 	}
 
 	public String toString(){
-		return rID + " " + rName + " " + deliverer;
+		return commodityID + " " + commodityName + " " + supplier;
 	}
-
 }

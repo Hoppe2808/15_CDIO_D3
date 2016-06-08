@@ -4,40 +4,39 @@ import java.io.Serializable;
 
 public class RaavareBatchDTO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	int rbId;
-	int raavareId;
-	double maengde;
+	int commodityId;
+	double amount;
 
 	public int getRbId() {
 		return rbId;
 	}
 
-
 	public void setRbId(int rbId) {
 		this.rbId = rbId;
 	}
 
-
 	public int getRaavareId() {
-		return raavareId;
+		return commodityId;
 	}
 
-
-	public void setRaavareId(int raavareId) {
-		this.raavareId = raavareId;
+	public void setRaavareId(int commodityId) {
+		this.commodityId = commodityId;
 	}
-
 
 	public double getMaengde() {
-		return maengde;
+		return amount;
 	}
 
-
-	public void setMaengde(double maengde) {
-		this.maengde = maengde;
+	public void setMaengde(double amount) {
+		this.amount = amount;
 	}
 	public String toString(){
-		return rbId + " " + raavareId + " " + maengde;
+		return rbId + " " + commodityId + " " + amount;
 	}
-
 }
