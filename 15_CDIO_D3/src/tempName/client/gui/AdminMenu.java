@@ -52,7 +52,7 @@ public class AdminMenu implements FarmaAdminInt{
 		final Button createOp = new Button("Create new operator");
 		final Button editOp = new Button("Change attributes of operator");
 		final Button inspectOp = new Button("Inspect an operator");
-		final Button raavaremenu = new Button("Check råvarer");
+		final Button raavaremenu = new Button("Råvarer");
 		final Button receptmenu = new Button("Check recepter");
 		final Button raavareBatchMenu = new Button("Check råvare batch");
 		final Button produktBatchMenu = new Button("Check produkt batch");
@@ -319,60 +319,6 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 
 	@Override
-	public void raavare() {
-		CellTable<RaavareDTO> table = new CellTable<RaavareDTO>();
-		TextColumn<RaavareDTO> rID = new TextColumn<RaavareDTO>(){
-
-			@Override
-			public String getValue(RaavareDTO object) {
-				return Integer.toString(object.getrID());
-			}
-
-		};
-		TextColumn<RaavareDTO> rName = new TextColumn<RaavareDTO>(){
-
-			@Override
-			public String getValue(RaavareDTO object) {
-				return object.getrName();
-			}
-
-		};
-		TextColumn<RaavareDTO> deliverer = new TextColumn<RaavareDTO>(){
-
-			@Override
-			public String getValue(RaavareDTO object) {
-				return object.getDeliverer();
-			}
-
-		};
-
-		table.addColumn(rID, "Raavare ID");
-		table.addColumn(rName, "Raavare Name");
-		table.addColumn(deliverer, "Deliverer");
-
-		ListDataProvider<RaavareDTO> dataProvider = new ListDataProvider<RaavareDTO>();
-
-		dataProvider.addDataDisplay(table);
-
-		List<RaavareDTO> list = new ArrayList<RaavareDTO>();
-		list = dataProvider.getList();
-		for (RaavareDTO mm : raavare) {
-			list.add(mm);
-		}
-
-		final Button back = new Button("<- Back");
-		container.clear();
-		container.setSpacing(9);
-		container.add(table);
-		container.add(back);
-
-		back.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				adminMenu();
-			}
-		});
-	}
-	@Override
 	public void recept() {
 		CellTable<ReceptDTO> table = new CellTable<ReceptDTO>();
 		TextColumn<ReceptDTO> rID = new TextColumn<ReceptDTO>(){
@@ -539,7 +485,8 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
 		this.raavare = raavare;
-		raavare();
+		RaavareMenu raavareMenu = new RaavareMenu(container, raavare, 1, mainGUI);
+		raavareMenu.raavare();
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
 		this.recept = recept;

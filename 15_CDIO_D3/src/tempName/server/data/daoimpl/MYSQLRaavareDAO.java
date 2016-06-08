@@ -25,7 +25,7 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 	public void addRaavare(RaavareDTO w) throws DALException {
 		connector.doUpdate(
 				"INSERT INTO raavare(raavare_navn, leverandoer) VALUES "
-						+"(" + w.getrName() + ", " + w.getDeliverer() + ")"
+						+"('" + w.getrName() + "', '" + w.getDeliverer() + "')"
 				);
 	}
 
