@@ -159,9 +159,9 @@ public class MainGUI extends Composite {
 	}
 	public void updateRaavareBatch(ArrayList raavareBatch){
 		this.raavareBatch = raavareBatch;
+		AM.updateRaavareBatch(raavareBatch);
 		vaMenu.updateRaavareBatch(raavareBatch);
 		faMenu.updateRaavareBatch(raavareBatch);
-		AM.updateRaavareBatch(raavareBatch);
 	}
 	public void updateProduktBatch(ArrayList produktBatch){
 		this.produktBatch = produktBatch;

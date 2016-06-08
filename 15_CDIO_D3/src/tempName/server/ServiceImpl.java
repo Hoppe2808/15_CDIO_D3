@@ -179,7 +179,6 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		System.out.println(rawList);
 		return (ArrayList<ProduktBatchDTO>) rawList;
 	}
 
