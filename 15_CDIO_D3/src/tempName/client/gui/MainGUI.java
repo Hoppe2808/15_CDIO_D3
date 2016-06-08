@@ -32,13 +32,13 @@ public class MainGUI extends Composite {
 	private boolean initialized;
 	protected ServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
-	private FarmaceutMenu faMenu;
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
 	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
 	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
 	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
 	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
 	private ArrayList<ProduktBatchDTO> produktBatch = new ArrayList<ProduktBatchDTO>();
+	private FarmaceutMenu faMenu = new FarmaceutMenu(container, this);
 	private AdminMenu AM = new AdminMenu(container, this, id, operators);
 	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, this);
 	private Label loginError = new Label();
@@ -137,7 +137,6 @@ public class MainGUI extends Composite {
 		} else if (admin == 2){
 			loginError.setText("En operatør kan ikke logge ind her");
 		} else if (admin == 3){
-			faMenu = new FarmaceutMenu(container, this);
 			faMenu.farmaMenu();
 		} else if (admin == 4){
 			vaMenu.foremanMenu();
