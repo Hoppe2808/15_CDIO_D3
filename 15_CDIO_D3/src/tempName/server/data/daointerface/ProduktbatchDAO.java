@@ -4,7 +4,7 @@ import java.util.List;
 
 import tempName.server.data.daointerface.DALException;
 import tempName.shared.dto.ProduktBatchDTO;
-import tempName.shared.dto.ProduktBatchKompDTO;
+import tempName.shared.dto.ProduktBatchKomponentDTO;
 
 public interface ProduktbatchDAO {
 
@@ -14,10 +14,10 @@ public interface ProduktbatchDAO {
 	void createProduktBatch(ProduktBatchDTO pb) throws DALException;
 	void updateProduktBatch(ProduktBatchDTO pb) throws DALException;
 
-	// Methods for acces to the produktbatchkomponent table
-	ProduktBatchKompDTO getProduktBatchKomp(int pbId, int rbId) throws DALException;
-	List<ProduktBatchKompDTO> getProduktBatchKompList(int pbId) throws DALException;
-	List<ProduktBatchKompDTO> getProduktBatchKompList() throws DALException;
-	void createProduktBatchKomp(ProduktBatchKompDTO produktbatchkomp) throws DALException;
-	void updateProduktBatchKomp(ProduktBatchKompDTO produktbatchkomp) throws DALException;	
+	// Methods for acces to the produktbatchkomponentonent table
+	ProduktBatchKomponentDTO getProduktBatchKomponent(int pbId, int rbId) throws DALException;
+	List<ProduktBatchKomponentDTO> getProduktBatchKomponentList(int pbId) throws DALException;
+	List<ProduktBatchKomponentDTO> getProduktBatchKomponentList() throws DALException;
+	void createProduktBatchKomponentonent(ProduktBatchKomponentDTO produktbatchkomponent) throws DALException;
+	void updateProduktBatchKomponent(ProduktBatchKomponentDTO produktbatchkomponent) throws DALException;	
 }
