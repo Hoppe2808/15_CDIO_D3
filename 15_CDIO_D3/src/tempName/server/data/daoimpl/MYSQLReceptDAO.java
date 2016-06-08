@@ -115,7 +115,7 @@ public class MYSQLReceptDAO implements ReceptDAO{
 	public void createReceptKomp(ReceptKomponentDTO receptkomponent) throws DALException {
 		connector.doUpdate(
 				"INSERT INTO receptkomponent(recept_id, raavare_id, nom_netto, tolerance) VALUES " +
-				"(" + receptkomponent.getRecept_Id() + ", '" + receptkomponent.getRaavare_ibnd() + "', '" + receptkomponent.getNom_netto() + "', '" + 
+				"(" + receptkomponent.getRecept_Id() + ", '" + receptkomponent.getRaavare_id() + "', '" + receptkomponent.getNom_netto() + "', '" + 
 				receptkomponent.getTolerance() + "')"
 			);	
 	}
