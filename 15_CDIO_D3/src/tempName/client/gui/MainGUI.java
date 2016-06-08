@@ -30,6 +30,7 @@ public class MainGUI extends Composite {
 	private int id;
 	private String password;
 	private boolean initialized;
+	private int menu;
 	protected ServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
 	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
@@ -49,6 +50,7 @@ public class MainGUI extends Composite {
 		loginScreen();
 	}
 	public void loginScreen(){
+		menu = 0;
 		final Label loginHeader = new Label("Login");
 		loginHeader.addStyleName("HeaderLabel");
 		final Button loginButton = new Button("Login");
@@ -71,10 +73,10 @@ public class MainGUI extends Composite {
 
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
-		    @Override
-		    public void execute() {
-		        loginUsername.setFocus(true);
-		    }
+			@Override
+			public void execute() {
+				loginUsername.setFocus(true);
+			}
 		});
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -90,9 +92,9 @@ public class MainGUI extends Composite {
 		});
 		loginPassword.addKeyDownHandler(new KeyDownHandler() {
 
-		    @Override
-		    public void onKeyDown(KeyDownEvent event) {
-		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+			@Override
+			public void onKeyDown(KeyDownEvent event) {
+				if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
 					name = loginUsername.getText();
 					if (name.matches("^[0-9][0-9]?$|^100$")){
 						id = Integer.parseInt(name);
@@ -101,14 +103,14 @@ public class MainGUI extends Composite {
 					} else {
 						Window.alert("Username must be a number bewteen 0 - 100");
 					}
-		           }
-		    }
+				}
+			}
 		});
 		loginUsername.addKeyDownHandler(new KeyDownHandler() {
 
-		    @Override
-		    public void onKeyDown(KeyDownEvent event) {
-		     if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+			@Override
+			public void onKeyDown(KeyDownEvent event) {
+				if(event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
 					name = loginUsername.getText();
 					if (name.matches("^[0-9][0-9]?$|^100$")){
 						id = Integer.parseInt(name);
@@ -117,8 +119,8 @@ public class MainGUI extends Composite {
 					} else {
 						Window.alert("Username must be a number bewteen 0 - 100");
 					}
-		           }
-		    }
+				}
+			}
 		});
 	}
 
@@ -134,11 +136,14 @@ public class MainGUI extends Composite {
 	public void adminCheck(int admin){
 		if (admin == 1){
 			AM.adminMenu();
+			menu = 1;
 		} else if (admin == 2){
 			loginError.setText("En operatør kan ikke logge ind her");
 		} else if (admin == 3){
+			menu = 2;
 			faMenu.farmaMenu();
 		} else if (admin == 4){
+			menu = 3;
 			vaMenu.foremanMenu();
 		}
 	}
@@ -148,24 +153,38 @@ public class MainGUI extends Composite {
 	}
 	public void updateRaavare(ArrayList raavare){
 		this.raavare = raavare;
-		AM.updateRaavare(raavare);
-		faMenu.updateRaavare(raavare);
+		if (menu == 1){
+			AM.updateRaavare(raavare);
+		}else if (menu == 2){
+			faMenu.updateRaavare(raavare);
+		}
 	}
 	public void updateRecept(ArrayList recept){
 		this.recept = recept;
-		AM.updateRecept(recept);
-		faMenu.updateRecept(recept);
+		if (menu == 1){
+			AM.updateRecept(recept);
+		}else if (menu == 2){
+			faMenu.updateRecept(recept);
+		}
 	}
 	public void updateRaavareBatch(ArrayList raavareBatch){
 		this.raavareBatch = raavareBatch;
-		AM.updateRaavareBatch(raavareBatch);
-		vaMenu.updateRaavareBatch(raavareBatch);
-		faMenu.updateRaavareBatch(raavareBatch);
+		if (menu == 1){
+			AM.updateRaavareBatch(raavareBatch);
+		}else if (menu == 2){
+			faMenu.updateRaavareBatch(raavareBatch);
+		}else if (menu == 3){
+			vaMenu.updateRaavareBatch(raavareBatch);
+		}
 	}
 	public void updateProduktBatch(ArrayList produktBatch){
 		this.produktBatch = produktBatch;
-		vaMenu.updateProduktBatch(produktBatch);
-		faMenu.updateProduktBatch(produktBatch);
-		AM.updateProduktBatch(produktBatch);
+		if (menu == 1){
+			AM.updateProduktBatch(produktBatch);
+		}else if (menu == 2){
+			faMenu.updateProduktBatch(produktBatch);
+		}else if (menu == 3){
+			vaMenu.updateProduktBatch(produktBatch);
+		}
 	}
 }
