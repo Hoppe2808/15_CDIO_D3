@@ -6,6 +6,9 @@ import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Timer;
@@ -22,7 +25,7 @@ import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 
 public class AdminMenu implements FarmaAdminInt{
-	
+
 	private VerticalPanel container;
 	private MainGUI mainGUI;
 	private int id;
@@ -33,15 +36,15 @@ public class AdminMenu implements FarmaAdminInt{
 	private ArrayList<ReceptDTO> recept;
 	private ArrayList<RaavareBatchDTO> raavareBatch;
 	private ArrayList<ProduktBatchDTO> produktBatch;
-	
+
 	public AdminMenu(VerticalPanel container, MainGUI mainGUI, int id, ArrayList<HashMap> operators){
-		
+
 		this.container = container;
 		this.mainGUI = mainGUI;
 		this.id = id;
 		this.operators = operators;
 	}
-	
+
 	public void adminMenu(){
 
 		final Label adminHeader = new Label("Admin Menu");
@@ -164,21 +167,41 @@ public class AdminMenu implements FarmaAdminInt{
 			}
 		});
 		inspect.addClickHandler(new ClickHandler(){
-			@Override
 			public void onClick(ClickEvent event) {
 				int answer = Integer.parseInt(lb.getText());
+				boolean found = false;
 				for (int i = 0; i < operators.size(); i++){
 					if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
 						oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials")
 								+ " - " + (String) operators.get(i).get("AdminStatus"));
-					} else {
-						oper.setText("No operator with Id: " + answer + " was found. Please enter a valid Operator Id.");
-					}
-				}
-
+						found = true;
+					} 
+				}				
+				if (!found){
+					oper.setText("No operator with Id: " + answer + " was found. Please enter a valid Operator Id.");
+				}		
 			}
-
 		});
+		lb.addKeyDownHandler(new KeyDownHandler() {
+
+			@Override
+			public void onKeyDown(KeyDownEvent event) {
+				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER){
+					int answer = Integer.parseInt(lb.getText());
+					boolean found = false;
+					for (int i = 0; i < operators.size(); i++){
+						if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
+							oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials")
+									+ " - " + (String) operators.get(i).get("AdminStatus"));
+							found = true;
+						} 
+					}				
+					if (!found){
+						oper.setText("No operator with Id: " + answer + " was found. Please enter a valid Operator Id.");
+					}		
+				}				
+			}	
+		});    
 	}
 	private void editOp() {
 		final Label editHeader = new Label("Edit an operator");
@@ -404,7 +427,7 @@ public class AdminMenu implements FarmaAdminInt{
 			}
 
 		};
-		
+
 		table.addColumn(rID, "Raavare ID");
 		table.addColumn(rName, "Raavare Name");
 
