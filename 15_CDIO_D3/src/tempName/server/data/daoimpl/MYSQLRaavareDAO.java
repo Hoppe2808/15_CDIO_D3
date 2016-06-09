@@ -43,7 +43,7 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 				list.add(raavareDTO);
 			}
 		} catch(SQLException e){
-			throw new DALException(e);
+			throw new DALException(e.getMessage());
 		}
 		return list;
 	}

@@ -35,7 +35,7 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 			OperatoerDTO result = opDTO;
 			return result;
 		} catch(SQLException e) {
-			throw new DALException(e);
+			throw new DALException(e.getMessage());
 		}
 	}
 

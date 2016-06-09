@@ -1,5 +1,6 @@
 package tempName.client.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.google.gwt.core.client.GWT;
@@ -111,7 +112,11 @@ public class ServiceClientImpl implements ServiceClientInt{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			System.out.println("Failed");
+			String message = caught.getMessage();
+			String constraint = "CONSTRAINT";
+			if(message.toLowerCase().contains(constraint.toLowerCase())){
+				Window.alert("Kan ikke slette, fordi den eksisterer i en anden tabel i databasen");
+			}
 		}
 
 		@Override

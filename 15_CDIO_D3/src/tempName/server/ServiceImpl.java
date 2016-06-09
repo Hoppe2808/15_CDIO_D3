@@ -18,6 +18,7 @@ import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.WeightDTO;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -249,11 +250,13 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 	}
 	@Override
-	public void deleteRaavare(int id){
+	public void deleteRaavare(int id) throws DALException{
 		try{
 			this.raavareDAO.deleteRaavare(id);
 		}catch (DALException e){
 			e.printStackTrace();
+			throw e;
+			
 		}
 	}
 }
