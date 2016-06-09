@@ -107,6 +107,14 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void deleteRaavare(int id){
 		this.service.deleteRaavare(id, new defaultCallback());
 	}
+	
+	public void updateRecept(int id, String name){
+		this.service.updateRecept(id, name, new defaultCallback());
+	}
+	@Override
+	public void deleteRecept(int id){
+		this.service.deleteRecept(id, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 

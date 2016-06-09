@@ -43,10 +43,11 @@ h1 {
 
 #main{
 	text-align: center;
-	margin: 50px;
+	margin-top: 0px;
+	margin: 20px;
 	width: auto;
 	height: auto;
-	background: #ffcaca;
+	background: #ffecec;
 }
 
 a{
@@ -65,8 +66,15 @@ body{
 	width: 100%; 
 	background: #ffffff;
 }
-#page{ margin: 0px; 
-	background: #ffe6e6;
+#page{ margin: 50px;
+	background: #ffecec;
+	margin-top: 0px;
+}
+#logo{
+	width: 100%;
+	margin 0px;
+	font-family: georgia;
+	display: inline-block;
 }
 
 a:hover:not(.active) {
@@ -80,7 +88,7 @@ background-color:#ff0000;
 #footer{
 	border-bottom: 1px #ccc solid;
 	margin-bottom: 10px;
-	margin: 20px;
+	margin: 50px;
 }
 #footer p{
 	text-align: right;

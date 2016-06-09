@@ -58,6 +58,7 @@ public class AdminMenu implements FarmaAdminInt{
 		final Button raavareBatchMenu = new Button("Check råvare batch");
 		final Button produktBatchMenu = new Button("Check produkt batch");
 		final Button logout = new Button("Logout");
+
 		container.clear();
 		container.setSpacing(9);
 		container.add(adminHeader);

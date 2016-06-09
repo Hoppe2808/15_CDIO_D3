@@ -259,4 +259,16 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			
 		}
 	}
+
+	@Override
+	public void updateRecept(int id, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecept(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
