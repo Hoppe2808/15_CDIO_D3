@@ -49,6 +49,7 @@ public class AdminMenu implements FarmaAdminInt{
 
 		final Label adminHeader = new Label("Admin Menu");
 		adminHeader.addStyleName("HeaderLabel");
+		adminHeader.getElement().setAttribute("align", "center");
 		final Button createOp = new Button("Create new operator");
 		final Button editOp = new Button("Change attributes of operator");
 		final Button inspectOp = new Button("Inspect an operator");

@@ -35,6 +35,7 @@ public class FarmaceutMenu implements FarmaAdminInt{
 	public void farmaMenu(){
 		final Label farmaHeader = new Label("Farmaceut Menu");
 		farmaHeader.addStyleName("HeaderLabel");
+		farmaHeader.getElement().setAttribute("align", "center");
 		final Button raavaremenu = new Button("Check råvarer");
 		final Button receptmenu = new Button("Check recepter");
 		final Button raavareBatchMenu = new Button("Check råvare batch");

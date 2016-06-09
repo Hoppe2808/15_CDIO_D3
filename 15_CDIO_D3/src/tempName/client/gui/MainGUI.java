@@ -62,6 +62,8 @@ public class MainGUI extends Composite {
 			initWidget(container);
 			initialized = true;
 		}
+		loginHeader.getElement().setAttribute("align", "center");
+		container.getElement().setAttribute("align", "center");
 		container.clear();
 		container.add(loginHeader);
 		container.add(logUserLabel);
