@@ -36,9 +36,9 @@ public class ReceptMenu {
 		headerLabel.setText("Recept");;
 		headerLabel.addStyleName("HeaderLabel");
 		final Button inspectButton = new Button("Se Recept");
-		final Button addButton = new Button("Tilf�j Recept");
+		final Button addButton = new Button("Tilføj Recept");
 		final Button updateButton = new Button("Rediger Recept");
-		final Button back = new Button("<- Back");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.add(headerLabel);
 		container.add(inspectButton);
@@ -104,7 +104,7 @@ public class ReceptMenu {
 			list.add(mm);
 		}
 
-		final Button back = new Button("<- Back");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.setSpacing(9);
 		container.add(table);
@@ -117,11 +117,11 @@ public class ReceptMenu {
 		});
 	}
 	public void addRecept(){
-		headerLabel.setText("Add new Recept");
-		final Label navnLbl = new Label("Please enter recept name:");
+		headerLabel.setText("Tilføj ny recept");
+		final Label navnLbl = new Label("Indtast recept navn:");
 		final TextBox navn = new TextBox();
-		final Button submit = new Button("Create");
-		final Button back = new Button("<- back");
+		final Button submit = new Button("Opret");
+		final Button back = new Button("<- Tilbage");
 		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
