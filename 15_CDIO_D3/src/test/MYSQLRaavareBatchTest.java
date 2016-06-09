@@ -1,6 +1,4 @@
 package test;
-import java.sql.SQLException;		
-
 import tempName.server.data.daoimpl.MYSQLRaavareBatchDAO;
 import tempName.server.data.daointerface.DALException;		
 import tempName.server.data.database.Connector;
@@ -18,29 +16,56 @@ public class MYSQLRaavareBatchTest {
 
 		test1();		
 
-		test2();		
+		test2();
 
-		test3();		
+		test3();
 
-		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();
-		System.out.println("Alle raavarebatches vises:");		
+		test4();				
+
+
+	}
+	private static void test1() {	
+		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();		
 		try { 		
-			System.out.println(dao.getRaavareBatchList()); 		
+			System.out.println("Test 1: Raavarebatch med ID 1 vises her -->  "+dao.getRaavareBatch(1).toString()); 		
+		}		
+		catch (DALException e) { 		
+			System.out.println(e.getMessage()); 		
+		}
+	}	
+	private static void test2() {
+		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();	
+		try { 		
+			System.out.println("Test 2: Alle raavarebatches vises -->  "+ dao.getRaavareBatchList()); 		
 		}		
 		catch (DALException e) {		
 			System.out.println(e.getMessage()); 		
-		}		
-				
-
+		} 
 	}
-
-	private static void test3() {
-		System.out.println("Opdatering af maengde for raavarebatch ");
+	private static void test3() { 
 		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();
-		
 		RaavareBatchDTO rbDTO = new RaavareBatchDTO();	
 		rbDTO.setRaavareId(7);
-		rbDTO.setMaengde(200d);	
+		rbDTO.setMaengde(7.7);
+		try { 		
+			dao.createRaavareBatch(rbDTO); 		
+		}catch (DALException e) {		
+			System.out.println(e.getMessage());		
+		}				
+		try { 		
+			System.out.println("Test 3: Oprettelse af nyt raavarebatch vises her -->  "+dao.getRaavareBatch(26).toString()); 	
+		}		
+		catch (DALException e) {		
+			System.out.println(e.getMessage());		
+		}
+	}
+	private static void test4() {
+		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();
+
+		RaavareBatchDTO rbDTO = new RaavareBatchDTO();
+		rbDTO.setRbId(1);
+		rbDTO.setRaavareId(1);
+		rbDTO.setMaengde(1111d);	
 		try { 		
 			dao.updateRaavareBatch(rbDTO);		
 		}		
@@ -48,44 +73,12 @@ public class MYSQLRaavareBatchTest {
 			System.out.println(e.getMessage()); 		
 		}		
 
-		System.out.println("Opdateret raavarebatch ");	
 		try { 		
-			System.out.println(dao.getRaavareBatch(8));		
+			System.out.println("Test 4: Opdateret raavarebatch -->  "+ dao.getRaavareBatch(1).toString());		
 		}		
 		catch (DALException e) {		
 			System.out.println(e.getMessage()); 		
 		}
 	}
-
-	private static void test2() {
-		System.out.println("Oprettelse af ny raavarebatch "); // Virker ikke
-		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();
-		RaavareBatchDTO rbDTO = new RaavareBatchDTO();	
-		rbDTO.setRaavareId(7);
-		rbDTO.setMaengde(3.3);
-		try { 		
-			dao.createRaavareBatch(rbDTO); 		
-		}catch (DALException e) {		
-			System.out.println(e.getMessage());		
-		}			
-		System.out.println(" Det senest tilføjet raavarebatch ");	
-		try { 		
-			System.out.println(dao.getRaavareBatch(8)); 		
-		}		
-		catch (DALException e) {		
-			System.out.println(e.getMessage());		
-		}
-	}
-
-	private static void test1() {
-		System.out.println("RaavareBatch nummer 1 ");		
-		MYSQLRaavareBatchDAO dao = new MYSQLRaavareBatchDAO();		
-		try { 		
-			System.out.println(dao.getRaavareBatch(1).toString()); 		
-		}		
-		catch (DALException e) { 		
-			System.out.println(e.getMessage()); 		
-		}
-	}		
 }
 

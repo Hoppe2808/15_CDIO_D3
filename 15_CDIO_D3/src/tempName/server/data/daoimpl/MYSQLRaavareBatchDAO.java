@@ -7,6 +7,7 @@ import java.util.List;
 
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
+import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 
 public class MYSQLRaavareBatchDAO {
@@ -49,16 +50,13 @@ public class MYSQLRaavareBatchDAO {
 		return list;
 	}
 	public void createRaavareBatch(RaavareBatchDTO rb) throws DALException {
-//		System.out.println("-------------"+rb);
 		String query = "INSERT INTO raavarebatch(raavare_Id, maengde) VALUES('" + rb.getRaavareId() + "', '" + rb.getMaengde()+"');";
-//		System.out.println(query);
 		connector.doUpdate(query);
 	}
-
 	public void updateRaavareBatch(RaavareBatchDTO rb) throws DALException {
-		connector.doUpdate(
-				"UPDATE raavarebatch SET maengde WHERE maengde '" + rb.getRbId() + "', '"  + rb.getRaavareId() + "', '" + rb.getMaengde()+"';");
-
-
+		String query = "UPDATE raavarebatch SET maengde = '" + rb.getMaengde() + 
+				"', raavare_Id = '" + rb.getRaavareId() + "' WHERE rb_id = '"+ rb.getRbId()+"'";
+		System.out.println("-------"+query);
+		connector.doUpdate(query);
 	}
 }
