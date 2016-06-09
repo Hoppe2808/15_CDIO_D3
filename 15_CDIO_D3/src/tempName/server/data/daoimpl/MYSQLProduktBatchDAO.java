@@ -96,7 +96,7 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	}
 	@Override
 	public List<ProduktBatchKomponentDTO> getProduktBatchKomponentList(int pbId) throws DALException {
-		List<ProduktBatchKomponentDTO> list = new ArrayList<ProduktBatchKomponentDTO>();
+		List<ProduktBatchKomponentDTO> list = new ArrayList<ProduktBatchKomponentDTO>(pbId);
 		ResultSet rs = connector.doQuery("SELECT * FROM produktbatchkomponent");
 		try{
 			while (rs.next()) {
@@ -122,12 +122,13 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 		String query = "INSERT INTO produktbatchkomponent(pb_id, rb_id, tara, netto, opr_id) VALUES ('" + pbk.getPbId() + "', '" + pbk.getRbId() 
 		+ "', '" + pbk.getNetto() + "', '" + pbk.getTara() + "', '" + pbk.getOprId()  + "')";	
 		connector.doUpdate(query);
-	}
+
+		}
 	@Override
 	public void updateProduktBatchKomponent(ProduktBatchKomponentDTO pbk) throws DALException {
 		String query = "UPDATE produktbatchkomponent SET  netto = '" + pbk.getNetto() + "', tara = '" + pbk.getTara() + "' "
 				+ "WHERE pb_id = '" + pbk.getPbId()+"' AND rb_id = '" + pbk.getRbId()+ "'";
-		//		System.out.println("-------"+query);
+//				System.out.println("-------"+query);
 		connector.doUpdate(query);
 	}
 	@Override

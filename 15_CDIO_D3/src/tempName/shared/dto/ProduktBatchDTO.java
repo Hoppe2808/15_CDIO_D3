@@ -8,6 +8,7 @@ public class ProduktBatchDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+
 	int pbId;
 	int receptId;
 	int status;
@@ -41,7 +42,7 @@ public class ProduktBatchDTO implements Serializable{
 		this.status = status;
 	}
 
-	public String toString1(){
+	public String toString(){
 		return pbId + " " + receptId + " " + status;
 	}
 	
