@@ -480,7 +480,8 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		this.produktBatch = produktBatch;
-		produktBatch();
+		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 1, mainGUI);
+		produktBatchMenu.produktBatch();
 	}
 	public void updateOperators(ArrayList<HashMap> operators){
 		this.operators = operators;
