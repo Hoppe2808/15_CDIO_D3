@@ -21,9 +21,7 @@ public class ReceptKomponentDTO implements Serializable{
 		this.raavare_id = raavare_id;
 		this.nom_netto = nom_netto;
 		this.tolerance = tolerance;
-		
-		// TODO Auto-generated constructor stub
-	}
+		}
 
 	public int getRecept_Id() {
 		return recept_id;

@@ -36,6 +36,7 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 	public void foremanMenu(){
 		final Label foremanHeader = new Label("Foreman Menu");
 		foremanHeader.addStyleName("HeaderLabel");
+		foremanHeader.getElement().setAttribute("align", "center");
 		final Button raavareMenu = new Button("Check råvarer");
 		final Button produktBatchMenu = new Button("Check produktbatch");
 		final Button logout = new Button("Logout");

@@ -1,5 +1,6 @@
 package tempName.client.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.google.gwt.core.client.GWT;
@@ -106,12 +107,24 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void deleteRaavare(int id){
 		this.service.deleteRaavare(id, new defaultCallback());
 	}
+	
+	public void updateRecept(int id, String name){
+		this.service.updateRecept(id, name, new defaultCallback());
+	}
+	@Override
+	public void deleteRecept(int id){
+		this.service.deleteRecept(id, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			System.out.println("Failed");
+			String message = caught.getMessage();
+			String constraint = "CONSTRAINT";
+			if(message.toLowerCase().contains(constraint.toLowerCase())){
+				Window.alert("Kan ikke slette, fordi den eksisterer i en anden tabel i databasen");
+			}
 		}
 
 		@Override

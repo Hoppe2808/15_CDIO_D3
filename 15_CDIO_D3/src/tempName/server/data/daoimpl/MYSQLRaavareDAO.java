@@ -43,16 +43,17 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 				list.add(raavareDTO);
 			}
 		} catch(SQLException e){
-			throw new DALException(e);
+			throw new DALException(e.getMessage());
 		}
 		return list;
 	}
 	
 	@Override
-	public void updateRaavare(int id, String name, String deliverer) throws DALException {
+	public void updateRaavare(RaavareDTO r) throws DALException {
 		connector.doUpdate(
-				"UPDATE raavare SET raavare_navn = '" + name + "', leverandoer = '" + deliverer
-				+ "' WHERE raavare_id = " + id
+				"UPDATE raavare SET raavare_navn = '" + r.getrName() +
+				"', leverandoer = '" + r.getDeliverer()
+				 + "' WHERE raavare_id = " + r.getDeliverer()
 		);
 	}
 	@Override

@@ -18,6 +18,7 @@ import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.WeightDTO;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -243,17 +244,44 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	@Override
 	public void updateRaavare(int id, String name, String deliverer){
 		try{
-			this.raavareDAO.updateRaavare(id, name, deliverer);
+			RaavareDTO r = new RaavareDTO();
+			r.setrID(id);
+			r.setrName(name);
+			r.setDeliverer(deliverer);
+			this.raavareDAO.updateRaavare(r);
 		}catch (DALException e){
 			e.printStackTrace();
 		}
 	}
 	@Override
-	public void deleteRaavare(int id){
+	public void deleteRaavare(int id) throws DALException{
 		try{
 			this.raavareDAO.deleteRaavare(id);
 		}catch (DALException e){
 			e.printStackTrace();
+			throw e;	
+		}
+	}
+
+	@Override
+	public void updateRecept(int id, String name) {
+		try{
+			ReceptDTO r = new ReceptDTO();
+			r.setReceptId(id);
+			r.setReceptName(name);
+			this.receptDAO.updateRecept(r);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteRecept(int id) throws DALException {
+		try{
+			this.receptDAO.deleteRecept(id);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
 		}
 	}
 }

@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tempName.server.data.daointerface.DALException;
+import tempName.server.data.daointerface.RaavareBatchDAO;
 import tempName.server.data.database.Connector;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 
-public class MYSQLRaavareBatchDAO {
+public class MYSQLRaavareBatchDAO implements RaavareBatchDAO{
 	private Connector connector;
 
 	public MYSQLRaavareBatchDAO(){
@@ -58,5 +59,10 @@ public class MYSQLRaavareBatchDAO {
 				"', raavare_Id = '" + rb.getRaavareId() + "' WHERE rb_id = '"+ rb.getRbId()+"'";
 		System.out.println("-------"+query);
 		connector.doUpdate(query);
+	}
+	@Override
+	public void deleteRaavareBatch(int rbId) throws DALException {
+		connector.doUpdate("DELETE FROM raavarebatch WHERE rb_Id = " + rbId);
+		
 	}
 }

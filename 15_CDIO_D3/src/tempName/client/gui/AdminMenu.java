@@ -47,16 +47,18 @@ public class AdminMenu implements FarmaAdminInt{
 
 	public void adminMenu(){
 
-		final Label adminHeader = new Label("Admin Menu");
+		final Label adminHeader = new Label("Administator Menu");
 		adminHeader.addStyleName("HeaderLabel");
-		final Button createOp = new Button("Create new operator");
-		final Button editOp = new Button("Change attributes of operator");
-		final Button inspectOp = new Button("Inspect an operator");
+		adminHeader.getElement().setAttribute("align", "center");
+		final Button createOp = new Button("Opret ny operatør");
+		final Button editOp = new Button("Ændre attributer for operatør");
+		final Button inspectOp = new Button("Inspicer en operatør");
 		final Button raavaremenu = new Button("Råvarer");
-		final Button receptmenu = new Button("Check recepter");
-		final Button raavareBatchMenu = new Button("Check råvare batch");
-		final Button produktBatchMenu = new Button("Check produkt batch");
-		final Button logout = new Button("Logout");
+		final Button receptmenu = new Button("Recepter");
+		final Button raavareBatchMenu = new Button("Tjek råvare batch");
+		final Button produktBatchMenu = new Button("Tjek produkt batch");
+		final Button logout = new Button("Log ud");
+
 		container.clear();
 		container.setSpacing(9);
 		container.add(adminHeader);
@@ -490,6 +492,7 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
 		this.recept = recept;
-		recept();
+		ReceptMenu receptMenu = new ReceptMenu(container, recept, 1, mainGUI);
+		receptMenu.recept();
 	}
 }

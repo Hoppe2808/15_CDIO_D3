@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import tempName.server.data.daointerface.DALException;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
@@ -34,5 +35,7 @@ public interface Service extends RemoteService {
 	void addRaavareBatch(int raavareID, int maengde);
 	void addProduktBatch(int status, int receptID);
 	void updateRaavare(int id, String name, String deliverer);
-	void deleteRaavare(int id);
+	void deleteRaavare(int id) throws DALException;
+	void updateRecept(int id, String name);
+	void deleteRecept(int id) throws DALException;
 }

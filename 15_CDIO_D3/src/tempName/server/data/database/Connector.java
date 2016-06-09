@@ -60,13 +60,13 @@ public class Connector
 	public ResultSet doQuery(String cmd) throws DALException
 	{		
 		try { return stm.executeQuery(cmd); }
-		catch (SQLException e) { throw new DALException(e); }
+		catch (SQLException e) { throw new DALException(e.getMessage()); }
 	}
 
 	public int doUpdate(String cmd) throws DALException
 	{
 		try { return stm.executeUpdate(cmd); }
-		catch (SQLException e) { throw new DALException(e); }
+		catch (SQLException e) { throw new DALException(e.getMessage()); }
 	}
 
 

@@ -59,15 +59,15 @@ public class MYSQLReceptDAO implements ReceptDAO{
 	public void createRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
 				"INSERT INTO recept(recept_id, recept_navn) VALUES "
-						+"(" + rec.getReceptId() + ", '" + rec.getReceptName() + ")"
+						+"(" + rec.getReceptId() + ", '" + rec.getReceptName() + "')"
 				);		
 	}
 
 	@Override
 	public void updateRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
-				"UPDATE recept SET recept_id = '" + rec.getReceptId() + "', recept_navn = '" + rec.getReceptName()
-				 + " WHERE recept_id = " + rec.getReceptId()			
+				"UPDATE recept SET recept_navn = '" + rec.getReceptName()
+				 + "' WHERE recept_id = " + rec.getReceptId()			
 				);		
 	}
 	

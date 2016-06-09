@@ -27,10 +27,11 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 		try{
 			if (!rs.first()) throw new DALException("Produktbatch " + pbId + " findes ikke");
 			ProduktBatchDTO pbDTO = new ProduktBatchDTO();
-			pbDTO.setPbId(pbId);
+			pbDTO.setPbId(rs.getInt("pb_id"));
 			pbDTO.setStatus(rs.getInt("status"));
 			pbDTO.setReceptId(rs.getInt("recept_id"));
-			return pbDTO;
+			ProduktBatchDTO result = pbDTO;
+			return result;
 		} catch(SQLException e) {
 			throw new DALException(e);
 		}
@@ -119,6 +120,18 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 				+ "WHERE pb_id = '" + pbk.getPbId()+"' AND rb_id = '" + pbk.getRbId()+ "'";
 		System.out.println("-------"+query);
 		connector.doUpdate(query);
+	}
+
+	@Override
+	public void deleteProduktBatch(int pbId) throws DALException {
+		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = " + pbId);
+	
+	}
+
+	@Override
+	public void deleteProduktBatchKomponent(int pbId, int rbId) throws DALException {
+		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = " + pbId);
+		
 	}
 
 
