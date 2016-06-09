@@ -37,7 +37,7 @@ public class RaavareMenu{
 		final Button inspectButton = new Button("Se Råvarer");
 		final Button addButton = new Button("Tilføj Råvare");
 		final Button updateButton = new Button("Rediger Råvare");
-		final Button back = new Button("<- Back");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.add(headerLabel);
 		container.add(inspectButton);
@@ -95,9 +95,9 @@ public class RaavareMenu{
 
 		};
 
-		table.addColumn(rID, "Raavare ID");
-		table.addColumn(rName, "Raavare Name");
-		table.addColumn(deliverer, "Deliverer");
+		table.addColumn(rID, "Råvare ID");
+		table.addColumn(rName, "Råvare Navn");
+		table.addColumn(deliverer, "Leverandør");
 
 		ListDataProvider<RaavareDTO> dataProvider = new ListDataProvider<RaavareDTO>();
 
@@ -130,7 +130,7 @@ public class RaavareMenu{
 		final Label leveLbl = new Label("Indtast leverandøren på råvaren:");
 		final TextBox leverandoer = new TextBox();
 		final Button submit = new Button("Opret");
-		final Button back = new Button("<- back");
+		final Button back = new Button("<- Tilbage");
 		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
@@ -201,8 +201,9 @@ public class RaavareMenu{
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
-					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.deleteRaavare(i+1);
+					String rName = raavare.get(i).getrName();
+					if (rName.equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.deleteRaavare(raavare.get(i).getrID());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
@@ -212,8 +213,9 @@ public class RaavareMenu{
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
-					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRaavare(i+1, navn.getText(), leverandoer.getText());
+					String rName = raavare.get(i).getrName();
+					if (rName.equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.updateRaavare(raavare.get(i).getrID(), navn.getText(), leverandoer.getText());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);

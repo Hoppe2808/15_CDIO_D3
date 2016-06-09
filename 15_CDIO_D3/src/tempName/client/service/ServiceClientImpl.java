@@ -123,6 +123,14 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void updateRaavareBatch(int id, int rID, double maengde){
 		this.service.updateRaavareBatch(id, rID, maengde, new defaultCallback());
 	}
+	@Override
+	public void updateProduktBatch(int id, int status, int rID){
+		this.service.updateProduktBatch(id, status, rID, new defaultCallback());
+	}
+	@Override
+	public void deleteProduktBatch(int id){
+		this.service.deleteProduktBatch(id, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
@@ -131,7 +139,9 @@ public class ServiceClientImpl implements ServiceClientInt{
 			String message = caught.getMessage();
 			String constraint = "CONSTRAINT";
 			if(message.toLowerCase().contains(constraint.toLowerCase())){
-				Window.alert("Kan ikke slette, fordi den eksisterer i en anden tabel i databasen");
+				Window.alert("Kan ikke ændre i databasen, fordi der er et problem med fremmednøgler." +
+			" Dette kan enten betyde, at du prøver at slette noget, der findes i en anden tabel, " +
+						"eller at du prøver at bruge et ID fra en anden tabel, hvor ID'et ikke eksisterer");
 			}
 		}
 

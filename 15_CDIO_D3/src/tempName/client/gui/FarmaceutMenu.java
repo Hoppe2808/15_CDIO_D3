@@ -111,7 +111,7 @@ public class FarmaceutMenu implements FarmaAdminInt{
 			list.add(mm);
 		}
 
-		final Button back = new Button("<- Back");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.setSpacing(9);
 		container.add(table);
@@ -235,22 +235,23 @@ public class FarmaceutMenu implements FarmaAdminInt{
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
-		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 2, mainGUI);
+		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 3, mainGUI);
 		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		this.produktBatch = produktBatch;
-		produktBatch();
+		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 3, mainGUI);
+		produktBatchMenu.produktBatch();
 	}
 
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
 		this.raavare = raavare;
-		RaavareMenu raavareMenu = new RaavareMenu(container, raavare, 2, mainGUI);
+		RaavareMenu raavareMenu = new RaavareMenu(container, raavare, 3, mainGUI);
 		raavareMenu.raavare();
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
 		this.recept = recept;
-		ReceptMenu receptMenu = new ReceptMenu(container, recept, 2, mainGUI);
+		ReceptMenu receptMenu = new ReceptMenu(container, recept, 3, mainGUI);
 		receptMenu.recept();
 	}
 }

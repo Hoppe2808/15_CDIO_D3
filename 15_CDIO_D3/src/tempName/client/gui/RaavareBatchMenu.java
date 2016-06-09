@@ -1,6 +1,7 @@
 package tempName.client.gui;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -46,7 +47,7 @@ public class RaavareBatchMenu {
 		container.add(addButton);
 		container.add(updateButton);
 		container.add(back);
-		
+
 		inspectButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				inspectBatch();
@@ -62,14 +63,14 @@ public class RaavareBatchMenu {
 				updateRaavareBatch();
 			}
 		});
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
 	}
-	
+
 	public void inspectBatch() {
 		CellTable<RaavareBatchDTO> table = new CellTable<RaavareBatchDTO>();
 		TextColumn<RaavareBatchDTO> rbID = new TextColumn<RaavareBatchDTO>(){
@@ -143,15 +144,19 @@ public class RaavareBatchMenu {
 		container.add(submit);
 		container.add(back);
 		container.add(message);
-		
-		
+
+
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.addRaavareBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
-				mainGUI.adminCheck(prevMenu);
+				try{
+					mainGUI.serviceImpl.addRaavareBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+					mainGUI.adminCheck(prevMenu);
+				}catch (NumberFormatException e){
+					Window.alert("Please enter numbers only");
+				}
 			}
 		});
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				raavareBatch();
@@ -184,8 +189,7 @@ public class RaavareBatchMenu {
 		container.add(submit);
 		container.add(delete);
 		container.add(back);
-		
-		
+
 		rID.setText(Integer.toString(raavareBatch.get(0).getRaavareId()));
 		maengde.setText(Double.toString(raavareBatch.get(0).getMaengde()));
 		lb.addClickHandler(new ClickHandler() {
@@ -199,7 +203,6 @@ public class RaavareBatchMenu {
 				}
 			}
 		});
-		
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavareBatch.size(); i++){
@@ -211,19 +214,21 @@ public class RaavareBatchMenu {
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
-		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavareBatch.size(); i++){
 					String rbID = Integer.toString(raavareBatch.get(i).getRbId());
 					if (rbID.equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRaavareBatch(i+1, Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+						try{
+							mainGUI.serviceImpl.updateRaavareBatch(Integer.parseInt(rbID), Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+						}catch (NumberFormatException e){
+							Window.alert("Please enter numbers only");
+						}
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
-		
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				raavareBatch();

@@ -22,4 +22,6 @@ public interface ServiceClientInt {
 	void deleteRecept(int id);
 	void updateRaavareBatch(int id, int rID, double maengde);
 	void deleteRaavareBatch(int id);
+	void updateProduktBatch(int id, int status, int rID);
+	void deleteProduktBatch(int id);
 }

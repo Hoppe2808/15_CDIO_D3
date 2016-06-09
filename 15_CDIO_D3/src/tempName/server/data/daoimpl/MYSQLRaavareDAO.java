@@ -53,7 +53,7 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 		connector.doUpdate(
 				"UPDATE raavare SET raavare_navn = '" + r.getrName() +
 				"', leverandoer = '" + r.getDeliverer()
-				 + "' WHERE raavare_id = " + r.getDeliverer()
+				 + "' WHERE raavare_id = " + r.getrID()
 		);
 	}
 	@Override
