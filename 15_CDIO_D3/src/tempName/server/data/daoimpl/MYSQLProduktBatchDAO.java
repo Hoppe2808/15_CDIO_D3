@@ -70,7 +70,7 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	}
 	@Override
 	public void deleteProduktBatch(int pbId) throws DALException {
-		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = " + pbId);
+		connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = " + pbId);
 
 	}
 

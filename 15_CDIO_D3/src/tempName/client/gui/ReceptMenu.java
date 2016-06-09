@@ -177,8 +177,9 @@ public class ReceptMenu {
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < recept.size(); i++){
-					if (recept.get(i).getReceptName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.deleteRecept(i+1);
+					String rName = recept.get(i).getReceptName();
+					if (rName.equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.deleteRecept(recept.get(i).getReceptId());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
@@ -188,8 +189,9 @@ public class ReceptMenu {
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < recept.size(); i++){
-					if (recept.get(i).getReceptName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRecept(i+1, navn.getText());
+					String rName = recept.get(i).getReceptName();
+					if (rName.equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.updateRecept(recept.get(i).getReceptId(), navn.getText());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);

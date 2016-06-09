@@ -201,8 +201,9 @@ public class RaavareMenu{
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
-					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.deleteRaavare(i+1);
+					String rName = raavare.get(i).getrName();
+					if (rName.equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.deleteRaavare(raavare.get(i).getrID());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
@@ -212,8 +213,9 @@ public class RaavareMenu{
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
-					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRaavare(i+1, navn.getText(), leverandoer.getText());
+					String rName = raavare.get(i).getrName();
+					if (rName.equals(lb.getSelectedItemText())){
+						mainGUI.serviceImpl.updateRaavare(raavare.get(i).getrID(), navn.getText(), leverandoer.getText());
 					}
 				}
 				mainGUI.adminCheck(prevMenu);

@@ -215,7 +215,7 @@ public class ProduktBatchMenu {
 				for (int i = 0; i < produktBatch.size(); i++){
 					String rbID = Integer.toString(produktBatch.get(i).getPbId());
 					if (rbID.equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateProduktBatch(i, Integer.parseInt(status.getText()), Integer.parseInt(receptID.getText()));
+						mainGUI.serviceImpl.updateProduktBatch(Integer.parseInt(rbID), Integer.parseInt(status.getText()), Integer.parseInt(receptID.getText()));
 					}
 				}
 				mainGUI.adminCheck(prevMenu);

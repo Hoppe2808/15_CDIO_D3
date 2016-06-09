@@ -217,7 +217,7 @@ public class RaavareBatchMenu {
 				for (int i = 0; i < raavareBatch.size(); i++){
 					String rbID = Integer.toString(raavareBatch.get(i).getRbId());
 					if (rbID.equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRaavareBatch(i+1, Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+						mainGUI.serviceImpl.updateRaavareBatch(Integer.parseInt(rbID), Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
