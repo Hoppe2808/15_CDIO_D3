@@ -224,7 +224,9 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		rDTO.setRaavareId(raavareID);
 		rDTO.setMaengde(maengde);
 		try{
+			System.out.println("TESTING ::: TESTING::: " + rDTO.getRaavareId());
 			this.raavareBatchDAO.createRaavareBatch(rDTO);
+			System.out.println("Færdig");
 		}catch (DALException e){
 			e.printStackTrace();
 		}

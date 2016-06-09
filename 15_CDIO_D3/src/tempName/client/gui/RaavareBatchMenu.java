@@ -6,10 +6,13 @@ import java.util.List;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
@@ -33,9 +36,9 @@ public class RaavareBatchMenu {
 	public void raavareBatch(){
 		headerLabel.setText("RåvarerBatch");;
 		headerLabel.addStyleName("HeaderLabel");
-		final Button inspectButton = new Button("Se Råvarer");
-		final Button addButton = new Button("Tilføj Råvare");
-		final Button updateButton = new Button("Rediger Råvare");
+		final Button inspectButton = new Button("Se Råvarebatches");
+		final Button addButton = new Button("Tilføj Råvarebatch");
+		final Button updateButton = new Button("Rediger Råvarebatch");
 		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.add(headerLabel);
@@ -107,11 +110,13 @@ public class RaavareBatchMenu {
 		for (RaavareBatchDTO mm : raavareBatch) {
 			list.add(mm);
 		}
-
-		final Button back = new Button("<- Back");
+		final ScrollPanel sPanel = new ScrollPanel();
+		final Button back = new Button("<- Tilbage");
+		table.setPageSize(500);
+		sPanel.add(table);
 		container.clear();
 		container.setSpacing(9);
-		container.add(table);
+		container.add(sPanel);
 		container.add(back);
 
 		back.addClickHandler(new ClickHandler() {
@@ -121,20 +126,20 @@ public class RaavareBatchMenu {
 		});
 	}
 	public void addRaavareBatch(){
-		headerLabel.setText("Tilføj ny råvare");
-		final Label navnLbl = new Label("Indtast navnet på råvaren:");
-		final TextBox navn = new TextBox();
-		final Label leveLbl = new Label("Indtast leverandøren på råvaren:");
-		final TextBox leverandoer = new TextBox();
+		headerLabel.setText("Tilføj ny råvarebatch");
+		final Label rIDLbl = new Label("Indtast ID for råvaren:");
+		final TextBox rID = new TextBox();
+		final Label maengdeLbl = new Label("Indtast mængden:");
+		final TextBox maengde = new TextBox();
 		final Button submit = new Button("Opret");
 		final Button back = new Button("<- Tilbage");
 		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
-		container.add(navnLbl);
-		container.add(navn);
-		container.add(leveLbl);
-		container.add(leverandoer);
+		container.add(rIDLbl);
+		container.add(rID);
+		container.add(maengdeLbl);
+		container.add(maengde);
 		container.add(submit);
 		container.add(back);
 		container.add(message);
@@ -142,9 +147,8 @@ public class RaavareBatchMenu {
 		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.addRaavare(navn.getText(), leverandoer.getText());
+				mainGUI.serviceImpl.addRaavareBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
 				mainGUI.adminCheck(prevMenu);
-				message.setText("RåvareBatch tilføjet");
 			}
 		});
 		
@@ -182,14 +186,14 @@ public class RaavareBatchMenu {
 		container.add(back);
 		
 		
-		rID.setText(lb.getSelectedItemText());
+		rID.setText(Integer.toString(raavareBatch.get(0).getRaavareId()));
 		maengde.setText(Double.toString(raavareBatch.get(0).getMaengde()));
 		lb.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavareBatch.size(); i++){
-					rID.setText(lb.getSelectedItemText());
 					String rbID = Integer.toString(raavareBatch.get(i).getRbId());
 					if (rbID.equals(lb.getSelectedItemText())){
+						rID.setText(Integer.toString(raavareBatch.get(i).getRaavareId()));
 						maengde.setText(Double.toString(raavareBatch.get(i).getMaengde()));
 					}
 				}
@@ -213,7 +217,7 @@ public class RaavareBatchMenu {
 				for (int i = 0; i < raavareBatch.size(); i++){
 					String rbID = Integer.toString(raavareBatch.get(i).getRbId());
 					if (rbID.equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateRaavare(i+1, rID.getText(), maengde.getText());
+						mainGUI.serviceImpl.updateRaavareBatch(i+1, Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
 					}
 				}
 				mainGUI.adminCheck(prevMenu);

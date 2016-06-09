@@ -10,6 +10,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
@@ -107,8 +108,10 @@ public class RaavareMenu{
 		for (RaavareDTO mm : raavare) {
 			list.add(mm);
 		}
-
-		final Button back = new Button("<- Back");
+		final ScrollPanel sPanel = new ScrollPanel();
+		final Button back = new Button("<- Tilbage");
+		table.setPageSize(500);
+		sPanel.add(table);
 		container.clear();
 		container.setSpacing(9);
 		container.add(table);

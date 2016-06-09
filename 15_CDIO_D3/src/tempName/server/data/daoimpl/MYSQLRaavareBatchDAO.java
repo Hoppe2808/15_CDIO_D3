@@ -51,7 +51,7 @@ public class MYSQLRaavareBatchDAO implements RaavareBatchDAO{
 		return list;
 	}
 	public void createRaavareBatch(RaavareBatchDTO rb) throws DALException {
-		String query = "INSERT INTO raavarebatch(raavare_Id, maengde) VALUES('" + rb.getRaavareId() + "', '" + rb.getMaengde()+"');";
+		String query = "INSERT INTO raavarebatch(raavare_Id, maengde) VALUES(" + rb.getRaavareId() + ", " + rb.getMaengde()+")";
 		connector.doUpdate(query);
 	}
 	public void updateRaavareBatch(RaavareBatchDTO rb) throws DALException {

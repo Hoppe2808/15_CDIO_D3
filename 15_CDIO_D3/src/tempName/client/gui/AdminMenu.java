@@ -55,8 +55,8 @@ public class AdminMenu implements FarmaAdminInt{
 		final Button inspectOp = new Button("Inspicer en operatør");
 		final Button raavaremenu = new Button("Råvarer");
 		final Button receptmenu = new Button("Recepter");
-		final Button raavareBatchMenu = new Button("Tjek råvare batch");
-		final Button produktBatchMenu = new Button("Tjek produkt batch");
+		final Button raavareBatchMenu = new Button("Råvare batch");
+		final Button produktBatchMenu = new Button("Produkt batch");
 		final Button logout = new Button("Log ud");
 
 		container.clear();
@@ -192,7 +192,7 @@ public class AdminMenu implements FarmaAdminInt{
 		panel.add(adminYes);
 		panel.add(adminNo);
 
-		final Button back = new Button("<- Back");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.setSpacing(9);
 		container.add(id);
@@ -475,7 +475,8 @@ public class AdminMenu implements FarmaAdminInt{
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
-		raavareBatch();
+		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 1, mainGUI);
+		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		this.produktBatch = produktBatch;
