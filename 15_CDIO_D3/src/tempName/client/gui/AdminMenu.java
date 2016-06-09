@@ -15,6 +15,7 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -114,10 +115,10 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 	}
 	private void inspectOp() {
-		final Label inspectHeader = new Label("Inspect an operator");
+		final Label inspectHeader = new Label("Inspicér en operatør");
 		final Label oper = new Label("");
-		final Button inspect = new Button("Inspect");
-		final Button back = new Button("<- Back");
+		final Button inspect = new Button("Inspicér");
+		final Button back = new Button("<- Tilbage");
 		final TextBox lb = new TextBox();
 		container.clear();
 		container.setSpacing(9);
@@ -144,7 +145,7 @@ public class AdminMenu implements FarmaAdminInt{
 					} 
 				}				
 				if (!found){
-					oper.setText("No operator with Id: " + answer + " was found. Please enter a valid Operator Id.");
+					oper.setText("Ingen operatør med ID: " + answer + " blev fundet. Indtast venligst et gyldigt ID.");
 				}		
 			}
 		});
@@ -163,38 +164,36 @@ public class AdminMenu implements FarmaAdminInt{
 						} 
 					}				
 					if (!found){
-						oper.setText("No operator with Id: " + answer + " was found. Please enter a valid Operator Id.");
+						oper.setText("Ingen operatør med ID: " + answer + " blev fundet. Indtast venligst et gyldigt ID.");
 					}		
 				}				
 			}	
 		});    
 	}
 	private void editOp() {
-		final Label editHeader = new Label("Edit an operator");
-		final Label id = new Label("User ID: ");
+		final Label editHeader = new Label("Rediger en operatør");
+		editHeader.addStyleName("HeaderLabel");
+		final Label id = new Label("Bruger ID: ");
 		final TextBox idText = new TextBox();
-		final Label username = new Label("Username: ");
+		final Label username = new Label("Brugernavn: ");
 		final TextBox userText = new TextBox();
-		final Label password = new Label("Password: ");
+		final Label password = new Label("Kodeord: ");
 		final TextBox passText = new TextBox();
-		final Label cpr = new Label("Cpr-number: ");
+		final Label cpr = new Label("Cpr-nummer: ");
 		final TextBox cprText = new TextBox();
 		final Label ini = new Label("Initialer: ");
 		final TextBox iniText = new TextBox();
-		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
-		final RadioButton adminNo = new RadioButton("radioGroup", "No");
-		final Label adminLabel = new Label("Is it an admin? ");
-		final Button submit = new Button("Submit");
-		VerticalPanel panel = new VerticalPanel();
-		panel.setSpacing(3);
-		panel.add(editHeader);
-		panel.add(adminLabel);
-		panel.add(adminYes);
-		panel.add(adminNo);
-
+		final Label adminLabel = new Label("Vælg bruger type:");
+		final ListBox lb = new ListBox();
+		lb.addItem("Admin");
+		lb.addItem("Operatør");
+		lb.addItem("Farmaceut");
+		lb.addItem("Værksfører");
+		final Button submit = new Button("Opdater");
 		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.setSpacing(9);
+		container.add(editHeader);
 		container.add(id);
 		container.add(idText);
 		container.add(username);
@@ -205,17 +204,22 @@ public class AdminMenu implements FarmaAdminInt{
 		container.add(cprText);
 		container.add(password);
 		container.add(passText);
-		container.add(panel);
+		container.add(adminLabel);
+		container.add(lb);
 		container.add(submit);
 		container.add(back);
 
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				if (adminYes.getValue()){
+				if (lb.getSelectedItemText().equals("Admin")){
 					admin = 1;
-				} else if(adminNo.getValue()){
+				} else if(lb.getSelectedItemText().equals("Operatør")){
 					admin = 2;
-				} else {
+				} else if(lb.getSelectedItemText().equals("Admin")){
+					admin = 3;
+				}else if(lb.getSelectedItemText().equals("Admin")){
+					admin = 4;
+				}else {
 					Window.alert("Something went wrong in checking for admin status");
 				}
 				try{
@@ -240,27 +244,28 @@ public class AdminMenu implements FarmaAdminInt{
 		});
 	}
 	private void createOp() {
+		final Label headerLabel = new Label("Opret en bruger");
+		headerLabel.addStyleName("HeaderLabel");
 		final Label failure = new Label("");
-		final Button submitButton = new Button("Send");
+		final Button submitButton = new Button("Opret");
 		final TextBox username = new TextBox();
-		final Label usernameLabel = new Label("Name: ");
+		final Label usernameLabel = new Label("Navn: ");
 		final TextBox iniField = new TextBox();
 		final Label iniLabel = new Label("Initialer: ");
 		final TextBox cprField = new TextBox();
-		final Label cprLabel = new Label("Cpr-number: ");
+		final Label cprLabel = new Label("Cpr-nummer: ");
 		final TextBox pwField = new TextBox();
-		final Label pwLabel = new Label("Password: ");
-		final RadioButton adminYes = new RadioButton("radioGroup", "Yes");
-		final RadioButton adminNo = new RadioButton("radioGroup", "No");
-		final Label adminLabel = new Label("Is it an admin? ");
-		final Button back = new Button("<- Back");
-		VerticalPanel panel = new VerticalPanel();
-		panel.setSpacing(3);
-		panel.add(adminYes);
-		panel.add(adminNo);
+		final Label pwLabel = new Label("Kodeord: ");
+		final Label adminLabel = new Label("Vælg bruger type:");
+		final ListBox lb = new ListBox();
+		lb.addItem("Admin");
+		lb.addItem("Operatør");
+		lb.addItem("Farmaceut");
+		lb.addItem("Værksfører");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.setSpacing(9);
-
+		container.add(headerLabel);
 		container.add(failure);
 		container.add(usernameLabel);
 		container.add(username);
@@ -271,16 +276,12 @@ public class AdminMenu implements FarmaAdminInt{
 		container.add(pwLabel);
 		container.add(pwField);
 		container.add(adminLabel);
-		container.add(panel);
+		container.add(lb);
 		container.add(submitButton);
 		container.add(back);
 
 		// We can add style names to widgets
 		submitButton.addStyleName("sendButton");
-
-		adminYes.setValue(false);
-		adminNo.setValue(true);
-
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				id = 0;
@@ -288,11 +289,15 @@ public class AdminMenu implements FarmaAdminInt{
 				ini = iniField.getText();
 				cpr = cprField.getText();
 				password = pwField.getText();
-				if (adminYes.getValue()){
+				if (lb.getSelectedItemText().equals("Admin")){
 					admin = 1;
-				} else if(adminNo.getValue()){
+				} else if(lb.getSelectedItemText().equals("Operatør")){
 					admin = 2;
-				} else {
+				} else if(lb.getSelectedItemText().equals("Admin")){
+					admin = 3;
+				}else if(lb.getSelectedItemText().equals("Admin")){
+					admin = 4;
+				}else {
 					Window.alert("Something went wrong in checking for admin status");
 				}
 				if(ini.length() > 3){
