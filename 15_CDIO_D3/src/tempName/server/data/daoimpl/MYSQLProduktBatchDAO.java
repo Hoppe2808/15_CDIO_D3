@@ -70,7 +70,8 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	}
 	@Override
 	public void deleteProduktBatch(int pbId) throws DALException {
-		connector.doUpdate("DELETE FROM produktbatch WHERE pb_id = " + pbId);
+		String query =("DELETE FROM produktbatch WHERE pb_id = " + pbId );
+		connector.doUpdate(query);
 
 	}
 
@@ -81,6 +82,7 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	@Override
 	public ProduktBatchKomponentDTO getProduktBatchKomponent(int pbId, int rbId) throws DALException {
 		ResultSet rs = connector.doQuery("SELECT * FROM produktbatchkomponent WHERE pb_id = '" + pbId + "' AND rb_id = '" + rbId+ "'");	
+		
 		try {
 			if (!rs.first()) throw new DALException("Produktbatchkomponent med produkt ID" + pbId + " og raavare ID "+rbId+ " findes ikke");
 			ProduktBatchKomponentDTO pbkDTO = new ProduktBatchKomponentDTO();
@@ -97,7 +99,7 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	@Override
 	public List<ProduktBatchKomponentDTO> getProduktBatchKomponentList(int pbId) throws DALException {
 		List<ProduktBatchKomponentDTO> list = new ArrayList<ProduktBatchKomponentDTO>(pbId);
-		ResultSet rs = connector.doQuery("SELECT * FROM produktbatchkomponent");
+		ResultSet rs = connector.doQuery("SELECT * FROM produktbatchkomponent WHERE pb_id = "+ pbId);
 		try{
 			while (rs.next()) {
 				ProduktBatchKomponentDTO pbkDTO = new ProduktBatchKomponentDTO();
@@ -114,8 +116,21 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	}
 	@Override
 	public List<ProduktBatchKomponentDTO> getProduktBatchKomponentList() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		List<ProduktBatchKomponentDTO> list = new ArrayList<ProduktBatchKomponentDTO>();
+		ResultSet rs = connector.doQuery("SELECT * FROM produktbatchkomponent" );
+		try{
+			while (rs.next()) {
+				ProduktBatchKomponentDTO pbkDTO = new ProduktBatchKomponentDTO();
+				pbkDTO.setPbId(rs.getInt("pb_id"));
+				pbkDTO.setRbId(rs.getInt("rb_id"));
+				pbkDTO.setTara(rs.getDouble("tara"));
+				pbkDTO.setNetto(rs.getDouble("netto"));
+				pbkDTO.setOprId(rs.getInt("opr_id"));
+				list.add(pbkDTO);
+			}
+			return list;
+		}
+		catch (SQLException e) { throw new DALException(e); }
 	}
 	@Override
 	public void createProduktBatchKomponent(ProduktBatchKomponentDTO pbk) throws DALException {
@@ -133,7 +148,8 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 	}
 	@Override
 	public void deleteProduktBatchKomponent(int pbId, int rbId) throws DALException {
-		connector.doUpdate("DELETE FROM produktbatchkomponent WHERE pb_id = " + pbId);
+		String query =("DELETE FROM produktbatchkomponent WHERE pb_id = '" + pbId + "' AND rb_id = '" + rbId+ "'");
+		connector.doUpdate(query);
 
 	}
 

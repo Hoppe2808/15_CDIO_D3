@@ -20,13 +20,13 @@ public class MYSQLProduktBatchTest {
 		ProduktBatchTest3(); // Create
 		ProduktBatchTest4(); // Update				
 		ProduktBatchTest5(); // Delete
-		
+
 		ProduktBatchKomponentTest1(); // Get
 		ProduktBatchKomponentTest2(); // Liste over komponenter med speciffikt pbId
 		ProduktBatchKomponentTest3(); // List over alle komponenter   
 		ProduktBatchKomponentTest4(); // Create
 		ProduktBatchKomponentTest5(); // Update				
-//		ProduktBatchKomponentTest6(); // Delete
+		ProduktBatchKomponentTest6(); // Delete
 
 
 	}
@@ -71,7 +71,7 @@ public class MYSQLProduktBatchTest {
 
 		ProduktBatchDTO pbDTO = new ProduktBatchDTO();
 		pbDTO.setPbId(1);
-	    pbDTO.setStatus(1);
+		pbDTO.setStatus(1);
 		pbDTO.setReceptId(1);	
 		try { 		
 			dao.updateProduktBatch(pbDTO);		
@@ -88,6 +88,16 @@ public class MYSQLProduktBatchTest {
 		}
 	}
 	private static void ProduktBatchTest5() {
+		MYSQLProduktBatchDAO dao = new MYSQLProduktBatchDAO();
+		ProduktBatchDTO pbDTO = new ProduktBatchDTO();	
+		pbDTO.setPbId(2);
+		try { 		
+			dao.deleteProduktBatch(2);		
+		}
+		catch (DALException e) {		
+			System.out.println(e.getMessage());		
+		}
+		System.out.println("Test 5: Produktbatch er nu slettet -->  ");	
 
 	}
 
@@ -103,7 +113,7 @@ public class MYSQLProduktBatchTest {
 	public static void ProduktBatchKomponentTest2() {
 		MYSQLProduktBatchDAO dao = new MYSQLProduktBatchDAO();	
 		try { 		
-			System.out.println("Test 2: Alle produktbatchKomponenter med et speciffikt pbId vises -->  "+ dao.getProduktBatchKomponent(4,3).toString()); 		
+			System.out.println("Test 2: Alle produktbatchKomponenter med et speciffikt pbId vises -->  "+ dao.getProduktBatchKomponentList(3).toString()); 		
 		}		
 		catch (DALException e) {		
 			System.out.println(e.getMessage()); 		
@@ -124,8 +134,8 @@ public class MYSQLProduktBatchTest {
 		pbkDTO.setTara(3.3);
 		pbkDTO.setNetto(3.3);
 		pbkDTO.setOprId(3);
-		pbkDTO.setPbId(4);
-		pbkDTO.setRbId(4);
+		pbkDTO.setPbId(5);
+		pbkDTO.setRbId(5);
 		try { 		
 			dao.createProduktBatchKomponent(pbkDTO); 		
 		}
@@ -145,7 +155,7 @@ public class MYSQLProduktBatchTest {
 		ProduktBatchKomponentDTO pbkDTO = new ProduktBatchKomponentDTO();
 		pbkDTO.setTara(0.33);
 		pbkDTO.setNetto(33.33);
-//		pbkDTO.setOprId(3);
+		//		pbkDTO.setOprId(3);
 		pbkDTO.setPbId(4);
 		pbkDTO.setRbId(4);
 		try { 		
@@ -162,8 +172,17 @@ public class MYSQLProduktBatchTest {
 			System.out.println(e.getMessage()); 		
 		}
 	}
-	//private static void ProduktBatchKomponentTest6(){
-		
-	//}
-
+	public static void ProduktBatchKomponentTest6(){
+		MYSQLProduktBatchDAO dao = new MYSQLProduktBatchDAO();
+		ProduktBatchKomponentDTO pbkDTO = new ProduktBatchKomponentDTO();	
+		pbkDTO.setPbId(2);
+		pbkDTO.setRbId(1);
+		try { 		
+			dao.deleteProduktBatchKomponent(2,1);		
+		}
+		catch (DALException e) {		
+			System.out.println(e.getMessage());		
+		}
+		System.out.println("Test 6: ProduktbatchKomponentet er nu slettet -->  ");	
+		}
 }
