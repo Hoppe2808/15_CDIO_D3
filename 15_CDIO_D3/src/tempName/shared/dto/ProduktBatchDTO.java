@@ -11,10 +11,7 @@ public class ProduktBatchDTO implements Serializable{
 	int pbId;
 	int receptId;
 	int status;
-	int oprId;
-	int rbId;
-	double tara;
-	double netto;
+	
 
 	public int getPbId() {
 		return pbId;
@@ -44,39 +41,8 @@ public class ProduktBatchDTO implements Serializable{
 		this.status = status;
 	}
 
-	public int getOprId() {
-		return oprId;
+	public String toString1(){
+		return pbId + " " + receptId + " " + status;
 	}
-
-	public void setOprId(int oprId) {
-		this.oprId = oprId;
-	}
-
-	public int getRbId() {
-		return rbId;
-	}
-
-	public void setRbId(int rbId) {
-		this.rbId = rbId;
-	}
-
-	public double getTara() {
-		return tara;
-	}
-
-	public void setTara(double tara) {
-		this.tara = tara;
-	}
-
-	public double getNetto() {
-		return netto;
-	}
-
-	public void setNetto(double netto) {
-		this.netto = netto;
-	}
-
-	public String toString(){
-		return pbId + " " + receptId + " " + status + " " + oprId + " "+ rbId + ""+ tara+" "+ netto;
-	}
+	
 }

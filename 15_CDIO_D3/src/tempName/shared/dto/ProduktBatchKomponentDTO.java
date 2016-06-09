@@ -64,4 +64,8 @@ public class ProduktBatchKomponentDTO implements Serializable{
 	public void setOprId(int opr_id) {
 		this.opr_id = opr_id;
 	}
+	public String toString2() {
+			return pb_id + " " + recept_Id + " " + status + " " + opr_Id + " "+ rb_Id + ""+ tara+" "+ netto;
+		
+	}
 }
