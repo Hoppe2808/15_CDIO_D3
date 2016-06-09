@@ -176,7 +176,8 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
-		raavareBatch();
+		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 3, mainGUI);
+		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		this.produktBatch = produktBatch;

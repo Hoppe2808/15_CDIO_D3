@@ -115,6 +115,14 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void deleteRecept(int id){
 		this.service.deleteRecept(id, new defaultCallback());
 	}
+	@Override
+	public void deleteRaavareBatch(int id) {
+		this.service.deleteRaavareBatch(id, new defaultCallback());
+	}
+	@Override
+	public void updateRaavareBatch(int id, int rID, double maengde){
+		this.service.updateRaavareBatch(id, rID, maengde, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 
@@ -151,6 +159,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 		}
 
 	}
+
 
 
 

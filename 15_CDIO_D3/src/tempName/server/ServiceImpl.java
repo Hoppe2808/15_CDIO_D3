@@ -284,4 +284,25 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			throw e;
 		}
 	}
+	@Override
+	public void updateRaavareBatch(int id, int rID, double maengde) {
+		try{
+			RaavareBatchDTO r = new RaavareBatchDTO();
+			r.setRbId(id);
+			r.setRaavareId(rID);
+			r.setMaengde(maengde);
+			this.raavareBatchDAO.updateRaavareBatch(r);
+		}catch (DALException e){
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void deleteRaavareBatch(int id) throws DALException{
+		try{
+			this.raavareBatchDAO.deleteRaavareBatch(id);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

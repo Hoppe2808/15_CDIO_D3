@@ -20,4 +20,6 @@ public interface ServiceClientInt {
 	void updateRaavare(int id, String name, String deliverer);
 	void deleteRaavare(int id);
 	void deleteRecept(int id);
+	void updateRaavareBatch(int id, int rID, double maengde);
+	void deleteRaavareBatch(int id);
 }
