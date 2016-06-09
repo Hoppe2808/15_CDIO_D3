@@ -123,6 +123,14 @@ public class ServiceClientImpl implements ServiceClientInt{
 	public void updateRaavareBatch(int id, int rID, double maengde){
 		this.service.updateRaavareBatch(id, rID, maengde, new defaultCallback());
 	}
+	@Override
+	public void updateProduktBatch(int id, int status, int rID){
+		this.service.updateProduktBatch(id, status, rID, new defaultCallback());
+	}
+	@Override
+	public void deleteProduktBatch(int id){
+		this.service.deleteProduktBatch(id, new defaultCallback());
+	}
 
 	private class defaultCallback implements AsyncCallback{
 

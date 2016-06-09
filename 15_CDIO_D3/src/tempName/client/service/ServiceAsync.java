@@ -37,4 +37,6 @@ public interface ServiceAsync {
 	void deleteRecept(int id, AsyncCallback callback);
 	void updateRaavareBatch(int id, int rID, double maengde, AsyncCallback callback);
 	void deleteRaavareBatch(int id, AsyncCallback callback);
+	void updateProduktBatch(int id, int status, int rID, AsyncCallback callback);
+	void deleteProduktBatch(int id, AsyncCallback callback);
 }
