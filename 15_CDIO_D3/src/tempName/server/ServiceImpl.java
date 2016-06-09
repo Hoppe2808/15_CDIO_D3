@@ -219,7 +219,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 	}
 	@Override
-	public void addRaavareBatch(int raavareID, int maengde){
+	public void addRaavareBatch(int raavareID, int maengde) throws DALException{
 		RaavareBatchDTO rDTO = new RaavareBatchDTO();
 		rDTO.setRaavareId(raavareID);
 		rDTO.setMaengde(maengde);
@@ -229,11 +229,12 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			System.out.println("Færdig");
 		}catch (DALException e){
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
 	@Override
-	public void addProduktBatch(int status, int receptID) {
+	public void addProduktBatch(int status, int receptID) throws DALException {
 		ProduktBatchDTO rDTO = new ProduktBatchDTO();
 		rDTO.setStatus(status);
 		rDTO.setReceptId(receptID);
@@ -241,6 +242,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			this.produktBatchDAO.createProduktBatch(rDTO);
 		}catch (DALException e){
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	@Override

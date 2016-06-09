@@ -51,6 +51,7 @@ public class MainGUI extends Composite {
 	}
 	public void loginScreen(){
 		menu = 0;
+		loginError.setText("");
 		final Label loginHeader = new Label("Login");
 		loginHeader.addStyleName("HeaderLabel");
 		final Button loginButton = new Button("Login");

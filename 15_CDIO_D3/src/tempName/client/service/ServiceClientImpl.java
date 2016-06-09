@@ -139,7 +139,9 @@ public class ServiceClientImpl implements ServiceClientInt{
 			String message = caught.getMessage();
 			String constraint = "CONSTRAINT";
 			if(message.toLowerCase().contains(constraint.toLowerCase())){
-				Window.alert("Kan ikke slette, fordi den eksisterer i en anden tabel i databasen");
+				Window.alert("Kan ikke ændre i databasen, fordi der er et problem med fremmednøgler." +
+			" Dette kan enten betyde, at du prøver at slette noget, der findes i en anden tabel, " +
+						"eller at du prøver at bruge et ID fra en anden tabel, hvor ID'et ikke eksisterer");
 			}
 		}
 
