@@ -55,15 +55,15 @@ public class MYSQLOperatoerDAO implements OperatoerDAO {
 				list.add(opDTO);
 			}
 		} catch(SQLException e){
-			throw new DALException(e);
+			throw new DALException(e.getMessage());
 		}
 		return list;
 	}
 
 	public void createOperatoer(OperatoerDTO opr) throws DALException {
 		connector.doUpdate(
-				"INSERT INTO operatoer(opr_id, opr_navn, ini, cpr, password, admin) VALUES "
-						+"(" + opr.getOprId() + ", '" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + opr.getCpr() + 
+				"INSERT INTO operatoer(opr_navn, ini, cpr, password, admin) VALUES "
+						+"('" + opr.getOprNavn() + "', '" + opr.getIni() + "', '" + opr.getCpr() + 
 						"', '" + opr.getPassword() + "', " + opr.getAdminStatus() + ")"
 				);
 

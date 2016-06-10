@@ -51,11 +51,10 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 	}
 
-	public void createOp(int id, String name, String init, String cpr, String password, int admin){
+	public void createOp(String name, String init, String cpr, String password, int admin) throws DALException{
 
 		try {
 			OperatoerDTO opDTO = new OperatoerDTO();
-			opDTO.setOprId(id);
 			opDTO.setOprNavn(name);
 			opDTO.setIni(init);
 			opDTO.setCpr(cpr);
@@ -64,6 +63,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			operatoerDAO.createOperatoer(opDTO);
 		} catch (DALException e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -133,7 +133,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	@Override
-	public void updateOp(int id, String name, String ini, String cpr, String password, int admin) {
+	public void updateOp(int id, String name, String ini, String cpr, String password, int admin) throws DALException {
 		OperatoerDTO oDTO = new OperatoerDTO();
 		oDTO.setOprId(id);
 		oDTO.setOprNavn(name);
@@ -145,6 +145,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			this.operatoerDAO.updateOperatoer(oDTO);
 		} catch (DALException e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}

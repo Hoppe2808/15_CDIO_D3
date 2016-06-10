@@ -43,8 +43,8 @@ public class ServiceClientImpl implements ServiceClientInt{
 		this.service.checkLogin(id, pass, new defaultCallback());
 	}
 	@Override
-	public void createOp(int id, String name, String ini, String cpr, String password, int admin){
-		this.service.createOp(id, name, ini, cpr, password, admin, new defaultCallback());
+	public void createOp(String name, String ini, String cpr, String password, int admin){
+		this.service.createOp(name, ini, cpr, password, admin, new defaultCallback());
 	}
 	@Override
 	public void updateOp(int id, String name, String ini, String cpr, String password, int admin){
@@ -138,10 +138,19 @@ public class ServiceClientImpl implements ServiceClientInt{
 		public void onFailure(Throwable caught) {
 			String message = caught.getMessage();
 			String constraint = "CONSTRAINT";
+			String trunctation = "truncation:";
+			String password = "'password'";
+			String oprName = "'opr_navn'";
 			if(message.toLowerCase().contains(constraint.toLowerCase())){
 				Window.alert("Kan ikke ændre i databasen, fordi der er et problem med fremmednøgler." +
 			" Dette kan enten betyde, at du prøver at slette noget, der findes i en anden tabel, " +
 						"eller at du prøver at bruge et ID fra en anden tabel, hvor ID'et ikke eksisterer");
+			} else if(message.toLowerCase().contains(trunctation.toLowerCase())){
+				if (message.toLowerCase().contains(password.toLowerCase())){
+					Window.alert("Din adgangskode er for lang");
+				} else if(message.toLowerCase().contains(oprName.toLowerCase())){
+					Window.alert("Navnet er for langt");
+				}
 			}
 		}
 

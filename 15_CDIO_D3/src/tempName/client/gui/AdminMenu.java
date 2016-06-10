@@ -1,6 +1,7 @@
 package tempName.client.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
+
+import tempName.server.data.daointerface.DALException;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
@@ -177,7 +180,7 @@ public class AdminMenu implements FarmaAdminInt{
 		final TextBox idText = new TextBox();
 		final Label username = new Label("Brugernavn: ");
 		final TextBox userText = new TextBox();
-		final Label password = new Label("Kodeord: ");
+		final Label password = new Label("Adgangskode: ");
 		final TextBox passText = new TextBox();
 		final Label cpr = new Label("Cpr-nummer: ");
 		final TextBox cprText = new TextBox();
@@ -198,12 +201,12 @@ public class AdminMenu implements FarmaAdminInt{
 		container.add(idText);
 		container.add(username);
 		container.add(userText);
+		container.add(password);
+		container.add(passText);
 		container.add(ini);
 		container.add(iniText);
 		container.add(cpr);
 		container.add(cprText);
-		container.add(password);
-		container.add(passText);
 		container.add(adminLabel);
 		container.add(lb);
 		container.add(submit);
@@ -215,24 +218,19 @@ public class AdminMenu implements FarmaAdminInt{
 					admin = 1;
 				} else if(lb.getSelectedItemText().equals("Operatør")){
 					admin = 2;
-				} else if(lb.getSelectedItemText().equals("Admin")){
+				} else if(lb.getSelectedItemText().equals("Farmaceut")){
 					admin = 3;
-				}else if(lb.getSelectedItemText().equals("Admin")){
+				}else if(lb.getSelectedItemText().equals("Værksfører")){
 					admin = 4;
 				}else {
-					Window.alert("Something went wrong in checking for admin status");
+					Window.alert("Noget gik galt ved tjek af bruger status");
 				}
-				try{
-					if (cprText.getText().length() != 10){
-						Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
-					} else if (iniText.getText().length() > 3 && iniText.getText().length() < 2){
-						Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
-					} else{
-						mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
-						Window.alert("Operator updated");						
-					}
-				} catch(Exception e){
-					Window.alert("Operator not updated");
+				if (cprText.getText().length() != 10){
+					Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
+				} else if (iniText.getText().length() > 3 && iniText.getText().length() < 2){
+					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
+				} else{
+					mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
 				}
 			}
 		});
@@ -255,7 +253,7 @@ public class AdminMenu implements FarmaAdminInt{
 		final TextBox cprField = new TextBox();
 		final Label cprLabel = new Label("Cpr-nummer: ");
 		final TextBox pwField = new TextBox();
-		final Label pwLabel = new Label("Kodeord: ");
+		final Label pwLabel = new Label("Adgangskode: ");
 		final Label adminLabel = new Label("Vælg bruger type:");
 		final ListBox lb = new ListBox();
 		lb.addItem("Admin");
@@ -269,12 +267,12 @@ public class AdminMenu implements FarmaAdminInt{
 		container.add(failure);
 		container.add(usernameLabel);
 		container.add(username);
+		container.add(pwLabel);
+		container.add(pwField);
 		container.add(iniLabel);
 		container.add(iniField);
 		container.add(cprLabel);
 		container.add(cprField);
-		container.add(pwLabel);
-		container.add(pwField);
 		container.add(adminLabel);
 		container.add(lb);
 		container.add(submitButton);
@@ -284,7 +282,6 @@ public class AdminMenu implements FarmaAdminInt{
 		submitButton.addStyleName("sendButton");
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				id = 0;
 				name = username.getText();
 				ini = iniField.getText();
 				cpr = cprField.getText();
@@ -293,12 +290,12 @@ public class AdminMenu implements FarmaAdminInt{
 					admin = 1;
 				} else if(lb.getSelectedItemText().equals("Operatør")){
 					admin = 2;
-				} else if(lb.getSelectedItemText().equals("Admin")){
+				} else if(lb.getSelectedItemText().equals("Farmaceut")){
 					admin = 3;
-				}else if(lb.getSelectedItemText().equals("Admin")){
+				}else if(lb.getSelectedItemText().equals("Værksfører")){
 					admin = 4;
 				}else {
-					Window.alert("Something went wrong in checking for admin status");
+					Window.alert("Noget gik galt ved tjek for bruger status");
 				}
 				if(ini.length() > 3){
 					failure.setText("Initialerne må maks være 3 karaktere langt");
@@ -306,10 +303,8 @@ public class AdminMenu implements FarmaAdminInt{
 					if(cpr.length()!= 10){
 						failure.setText("Et cpr-nummer er 10 karakterer langt");
 					}else{
-
-						mainGUI.serviceImpl.createOp(id, name, ini, cpr, password, admin);
-						Window.alert("Succes!");
-						adminMenu();
+						mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
+						adminMenu();						
 					}
 				}
 			}
@@ -466,7 +461,7 @@ public class AdminMenu implements FarmaAdminInt{
 			list.add(mm);
 		}
 
-		final Button back = new Button("<- Back");
+		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.setSpacing(9);
 		container.add(table);

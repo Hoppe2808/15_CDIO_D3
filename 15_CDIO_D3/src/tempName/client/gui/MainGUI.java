@@ -52,13 +52,13 @@ public class MainGUI extends Composite {
 	public void loginScreen(){
 		menu = 0;
 		loginError.setText("");
-		final Label loginHeader = new Label("Login");
+		final Label loginHeader = new Label("Log ind");
 		loginHeader.addStyleName("HeaderLabel");
-		final Button loginButton = new Button("Login");
+		final Button loginButton = new Button("Log ind");
 		final TextBox loginUsername = new TextBox();
-		final Label logUserLabel = new Label("Username: ");
+		final Label logUserLabel = new Label("Brugernavn: ");
 		final TextBox loginPassword = new TextBox();
-		final Label logPassLabel = new Label("Password: ");
+		final Label logPassLabel = new Label("Adgangskode: ");
 		if (!(initialized)){
 			initWidget(container);
 			initialized = true;
@@ -89,7 +89,7 @@ public class MainGUI extends Composite {
 					password = loginPassword.getText();
 					serviceImpl.checkLogin(id, password);
 				} else {
-					Window.alert("Username must be a number bewteen 0 - 100");
+					Window.alert("Brugernavnet skal være et tal mellem 0 - 100");
 				}
 			}
 		});
@@ -104,7 +104,7 @@ public class MainGUI extends Composite {
 						password = loginPassword.getText();
 						serviceImpl.checkLogin(id, password);
 					} else {
-						Window.alert("Username must be a number bewteen 0 - 100");
+						Window.alert("Brugernavnet skal være et tal mellem 0 - 100");
 					}
 				}
 			}
@@ -120,7 +120,7 @@ public class MainGUI extends Composite {
 						password = loginPassword.getText();
 						serviceImpl.checkLogin(id, password);
 					} else {
-						Window.alert("Username must be a number bewteen 0 - 100");
+						Window.alert("Brugernavnet skal være et tal mellem 0 - 100");
 					}
 				}
 			}
@@ -131,9 +131,9 @@ public class MainGUI extends Composite {
 		if (check.equals("true")){
 			serviceImpl.getAdmin(id);
 		} else if (check.equals("false")){
-			Window.alert("FAIL");
+			Window.alert("Forkert brugernavn eller adgangskode");
 		} else {
-			Window.alert("Something went wrong in login check");
+			Window.alert("Noget gik galt med log ind tjek");
 		}
 	}
 	public void adminCheck(int admin){

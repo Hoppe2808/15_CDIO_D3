@@ -19,7 +19,7 @@ public interface ServiceAsync {
 	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);
 	void connectDatabase(AsyncCallback callback);
-	void createOp(int id, String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);
+	void createOp(String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);
 	void getAdmin(int id, AsyncCallback callback);
 	void addMeasurement(double mm, int id, AsyncCallback callback);
