@@ -160,7 +160,8 @@ public class ReceptMenu {
 		final Button delete = new Button("Slet");
 		final Button back = new Button("<- Tilbage");
 		for (int i = 0; i < recept.size(); i++){
-			lb.addItem(recept.get(i).getReceptName());
+			String mix = recept.get(i).getReceptId() + " - " + recept.get(i).getReceptName();
+			lb.addItem(mix);
 		}
 		lb.setVisibleItemCount(1);
 		container.clear();
@@ -178,8 +179,8 @@ public class ReceptMenu {
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 					for (int i = 0; i < recept.size(); i++){
-						String rName = recept.get(i).getReceptName();
-						if (rName.equals(lb.getSelectedItemText())){
+						String id = lb.getSelectedItemText().substring(0, lb.getSelectedItemText().indexOf(" "));
+						if (Integer.parseInt(id) == recept.get(i).getReceptId()){
 							mainGUI.serviceImpl.deleteRecept(recept.get(i).getReceptId());
 						}
 					}
@@ -187,15 +188,14 @@ public class ReceptMenu {
 
 			}
 		});
-
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (navn.getText().isEmpty()){
 					Window.alert("En recept skal have et navn");
 				} else {
 				for (int i = 0; i < recept.size(); i++){
-					String rName = recept.get(i).getReceptName();
-					if (rName.equals(lb.getSelectedItemText())){
+					String id = lb.getSelectedItemText().substring(0, lb.getSelectedItemText().indexOf(" "));
+					if (Integer.parseInt(id) == recept.get(i).getReceptId()){
 						mainGUI.serviceImpl.updateRecept(recept.get(i).getReceptId(), navn.getText());
 					}
 				}
@@ -203,7 +203,6 @@ public class ReceptMenu {
 				}
 			}
 		});
-
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				recept();

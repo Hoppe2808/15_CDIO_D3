@@ -126,19 +126,15 @@ public class ProduktBatchMenu {
 	}
 	public void addProduktBatch(){
 		headerLabel.setText("Tilføj ny Produktbatch");
-		final Label rIDLbl = new Label("Indtast status for produktbatchen:");
-		final TextBox rID = new TextBox();
-		final Label maengdeLbl = new Label("Indtast recept ID:");
-		final TextBox maengde = new TextBox();
+		final Label receptLbl = new Label("Indtast recept ID:");
+		final TextBox recept = new TextBox();
 		final Button submit = new Button("Opret");
 		final Button back = new Button("<- Tilbage");
 		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
-		container.add(rIDLbl);
-		container.add(rID);
-		container.add(maengdeLbl);
-		container.add(maengde);
+		container.add(receptLbl);
+		container.add(recept);
 		container.add(submit);
 		container.add(back);
 		container.add(message);
@@ -147,7 +143,7 @@ public class ProduktBatchMenu {
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				try{
-					mainGUI.serviceImpl.addProduktBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+					mainGUI.serviceImpl.addProduktBatch(0, Integer.parseInt(recept.getText()));
 					mainGUI.adminCheck(prevMenu);
 				}catch (NumberFormatException e){
 					Window.alert("Venligst udfyld felterne med tal");
@@ -165,8 +161,6 @@ public class ProduktBatchMenu {
 		headerLabel.setText("Opdater Produktbatch");
 		final Label idLabel = new Label("Vælg ID for produktbatchen:");
 		final ListBox lb = new ListBox();
-		final Label statusLabel = new Label("Indtast status:");
-		final TextBox status = new TextBox();
 		final Label receptLabel = new Label("Indtast recept ID:");
 		final TextBox receptID = new TextBox();
 		final Button submit = new Button("Opdater");
@@ -180,8 +174,6 @@ public class ProduktBatchMenu {
 		container.add(headerLabel);
 		container.add(idLabel);
 		container.add(lb);
-		container.add(statusLabel);
-		container.add(status);
 		container.add(receptLabel);
 		container.add(receptID);
 		container.add(submit);
@@ -189,14 +181,12 @@ public class ProduktBatchMenu {
 		container.add(back);
 
 
-		status.setText(Integer.toString(produktBatch.get(0).getStatus()));
 		receptID.setText(Double.toString(produktBatch.get(0).getReceptId()));
 		lb.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < produktBatch.size(); i++){
 					String rbID = Integer.toString(produktBatch.get(i).getPbId());
 					if (rbID.equals(lb.getSelectedItemText())){
-						status.setText(Integer.toString(produktBatch.get(i).getStatus()));
 						receptID.setText(Double.toString(produktBatch.get(i).getReceptId()));
 					}
 				}
@@ -221,7 +211,7 @@ public class ProduktBatchMenu {
 					String rbID = Integer.toString(produktBatch.get(i).getPbId());
 					if (rbID.equals(lb.getSelectedItemText())){
 						try{
-							mainGUI.serviceImpl.updateProduktBatch(Integer.parseInt(rbID), Integer.parseInt(status.getText()), Integer.parseInt(receptID.getText()));
+							mainGUI.serviceImpl.updateProduktBatch(Integer.parseInt(rbID), produktBatch.get(i).getStatus(), Integer.parseInt(receptID.getText()));
 						}catch (NumberFormatException e){
 							Window.alert("Venligst udfyld felterne med tal");
 						}

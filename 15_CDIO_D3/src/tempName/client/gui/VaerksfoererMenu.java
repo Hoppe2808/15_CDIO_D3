@@ -19,7 +19,7 @@ import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.WeightDTO;
 
-public class VaerksfoererMenu implements VaerkAdminInt{
+public class VaerksfoererMenu{
 	
 	private VerticalPanel container;
 	private ArrayList<RaavareBatchDTO> raavareBatch;
@@ -32,14 +32,13 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 		this.mainGUI = mainGUI;
 		
 	}
-	
 	public void foremanMenu(){
-		final Label foremanHeader = new Label("Foreman Menu");
+		final Label foremanHeader = new Label("Værksfører Menu");
 		foremanHeader.addStyleName("HeaderLabel");
 		foremanHeader.getElement().setAttribute("align", "center");
-		final Button raavareMenu = new Button("Check råvarer");
-		final Button produktBatchMenu = new Button("Check produktbatch");
-		final Button logout = new Button("Logout");
+		final Button raavareMenu = new Button("Tjek råvarebatch");
+		final Button produktBatchMenu = new Button("Tjek produktbatch");
+		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);
 		container.add(foremanHeader);
@@ -63,116 +62,6 @@ public class VaerksfoererMenu implements VaerkAdminInt{
 			}
 
 		});
-	}
-
-	@Override
-	public void raavareBatch() {
-		CellTable<RaavareBatchDTO> table = new CellTable<RaavareBatchDTO>();
-		TextColumn<RaavareBatchDTO> rbID = new TextColumn<RaavareBatchDTO>(){
-
-			@Override
-			public String getValue(RaavareBatchDTO object) {
-				return Integer.toString(object.getRbId());
-			}
-
-		};
-		TextColumn<RaavareBatchDTO> rID = new TextColumn<RaavareBatchDTO>(){
-
-			@Override
-			public String getValue(RaavareBatchDTO object) {
-				return Integer.toString(object.getRaavareId());
-			}
-
-		};
-		TextColumn<RaavareBatchDTO> maengde = new TextColumn<RaavareBatchDTO>(){
-
-			@Override
-			public String getValue(RaavareBatchDTO object) {
-				return Double.toString(object.getMaengde());
-			}
-
-		};
-
-		table.addColumn(rbID, "RaavareBatch ID");
-		table.addColumn(rID, "Raavare ID");
-		table.addColumn(maengde, "Mængde");
-
-		ListDataProvider<RaavareBatchDTO> dataProvider = new ListDataProvider<RaavareBatchDTO>();
-
-		dataProvider.addDataDisplay(table);
-
-		List<RaavareBatchDTO> list = new ArrayList<RaavareBatchDTO>();
-		list = dataProvider.getList();
-		for (RaavareBatchDTO mm : raavareBatch) {
-			list.add(mm);
-		}
-
-		final Button back = new Button("<- Back");
-		container.clear();
-		container.setSpacing(9);
-		container.add(table);
-		container.add(back);
-
-		back.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				foremanMenu();
-			}
-		});
-	}
-	@Override
-	public void produktBatch() {
-		CellTable<ProduktBatchDTO> table = new CellTable<ProduktBatchDTO>();
-		TextColumn<ProduktBatchDTO> pbID = new TextColumn<ProduktBatchDTO>(){
-
-			@Override
-			public String getValue(ProduktBatchDTO object) {
-				return Integer.toString(object.getPbId());
-			}
-
-		};
-		TextColumn<ProduktBatchDTO> status = new TextColumn<ProduktBatchDTO>(){
-
-			@Override
-			public String getValue(ProduktBatchDTO object) {
-				return Integer.toString(object.getStatus());
-			}
-
-		};
-		TextColumn<ProduktBatchDTO> rID = new TextColumn<ProduktBatchDTO>(){
-
-			@Override
-			public String getValue(ProduktBatchDTO object) {
-				return Integer.toString(object.getReceptId());
-			}
-
-		};
-
-		table.addColumn(pbID, "ProduktBatch ID");
-		table.addColumn(status, "Status");
-		table.addColumn(rID, "Recept ID");
-
-		ListDataProvider<ProduktBatchDTO> dataProvider = new ListDataProvider<ProduktBatchDTO>();
-
-		dataProvider.addDataDisplay(table);
-
-		List<ProduktBatchDTO> list = new ArrayList<ProduktBatchDTO>();
-		list = dataProvider.getList();
-		for (ProduktBatchDTO mm : produktBatch) {
-			list.add(mm);
-		}
-
-		final Button back = new Button("<- Back");
-		container.clear();
-		container.setSpacing(9);
-		container.add(table);
-		container.add(back);
-
-		back.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				foremanMenu();
-			}
-		});
-		
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		this.raavareBatch = raavareBatch;
