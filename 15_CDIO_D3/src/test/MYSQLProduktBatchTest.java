@@ -60,7 +60,7 @@ public class MYSQLProduktBatchTest {
 			System.out.println(e.getMessage());		
 		}
 		try { 		
-			System.out.println("Test 3: Oprettelse af nyt produktbatch vises her -->  "+dao.getProduktBatch(3).toString()); 	
+			System.out.println("Test 3: Oprettelse af nyt produktbatch vises her -->  "+dao.getProduktBatch(50).toString()); 	
 		}		
 		catch (DALException e) {		
 			System.out.println(e.getMessage());		

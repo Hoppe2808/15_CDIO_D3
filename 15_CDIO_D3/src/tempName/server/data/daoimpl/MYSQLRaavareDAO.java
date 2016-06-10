@@ -21,7 +21,6 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 			e.printStackTrace();
 		}
 	}
-
 	@Override
 	public void addRaavare(RaavareDTO w) throws DALException {
 		connector.doUpdate(
@@ -29,7 +28,6 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 						+"('" + w.getrName() + "', '" + w.getDeliverer() + "')"
 				);
 	}
-
 	@Override
 	public List<RaavareDTO> getRaavareList() throws DALException {
 		List<RaavareDTO> list = new ArrayList<RaavareDTO>();
@@ -47,7 +45,6 @@ public class MYSQLRaavareDAO implements RaavareDAO{
 		}
 		return list;
 	}
-	
 	@Override
 	public void updateRaavare(RaavareDTO r) throws DALException {
 		connector.doUpdate(
