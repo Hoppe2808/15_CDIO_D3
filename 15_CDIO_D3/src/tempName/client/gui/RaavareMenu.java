@@ -163,7 +163,7 @@ public class RaavareMenu{
 	}
 	public void updateRaavare(){
 		headerLabel.setText("Opdater råvare");
-		final Label idLabel = new Label("Indtast ID for råvaren:");
+		final Label idLabel = new Label("Vælg råvare der skal redigeres:");
 		final ListBox lb = new ListBox();
 		final Label navnLabel = new Label("Indtast navn:");
 		final TextBox navn = new TextBox();

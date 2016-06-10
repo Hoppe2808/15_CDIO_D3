@@ -33,7 +33,7 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 			ProduktBatchDTO result = pbDTO;
 			return result;
 		} catch(SQLException e) {
-			throw new DALException(e);
+			throw new DALException(e.getMessage());
 		}
 	}
 
@@ -50,7 +50,7 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 				list.add(pbDTO);
 			}
 		} catch(SQLException e){
-			throw new DALException(e);
+			throw new DALException(e.getMessage());
 		}
 		return list;
 	}

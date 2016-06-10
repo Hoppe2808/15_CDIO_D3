@@ -38,8 +38,8 @@ public class FarmaceutMenu{
 		farmaHeader.getElement().setAttribute("align", "center");
 		final Button raavaremenu = new Button("Råvarer");
 		final Button receptmenu = new Button("Recepter");
-		final Button raavareBatchMenu = new Button("Tjek råvare batch");
-		final Button produktBatchMenu = new Button("Tjeck produkt batch");
+		final Button raavareBatchMenu = new Button("Råvarebatch");
+		final Button produktBatchMenu = new Button("Produktbatch");
 		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);

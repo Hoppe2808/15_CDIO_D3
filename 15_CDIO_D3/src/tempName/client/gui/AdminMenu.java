@@ -59,8 +59,8 @@ public class AdminMenu{
 		final Button inspectOp = new Button("Inspicer en operatør");
 		final Button raavaremenu = new Button("Råvarer");
 		final Button receptmenu = new Button("Recepter");
-		final Button raavareBatchMenu = new Button("Råvare batch");
-		final Button produktBatchMenu = new Button("Produkt batch");
+		final Button raavareBatchMenu = new Button("Råvarebatch");
+		final Button produktBatchMenu = new Button("Produktbatch");
 		final Button logout = new Button("Log ud");
 
 		container.clear();

@@ -38,8 +38,8 @@ public interface Service extends RemoteService {
 	void deleteRaavare(int id) throws DALException;
 	void updateRecept(int id, String name);
 	void deleteRecept(int id) throws DALException;
-	void updateRaavareBatch(int id, int rID, double maengde);
+	void updateRaavareBatch(int id, int rID, double maengde) throws DALException;
 	void deleteRaavareBatch(int id) throws DALException;
-	void updateProduktBatch(int id, int status, int rID);
+	void updateProduktBatch(int id, int status, int rID) throws DALException;
 	void deleteProduktBatch(int id) throws DALException;
 }

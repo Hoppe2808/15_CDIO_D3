@@ -36,8 +36,8 @@ public class VaerksfoererMenu{
 		final Label foremanHeader = new Label("Værksfører Menu");
 		foremanHeader.addStyleName("HeaderLabel");
 		foremanHeader.getElement().setAttribute("align", "center");
-		final Button raavareMenu = new Button("Tjek råvarebatch");
-		final Button produktBatchMenu = new Button("Tjek produktbatch");
+		final Button raavareMenu = new Button("Råvarebatch");
+		final Button produktBatchMenu = new Button("Produktbatch");
 		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);
