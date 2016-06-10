@@ -24,6 +24,7 @@ public class RaavareMenu{
 	private ArrayList<RaavareDTO> raavare;
 	private MainGUI mainGUI;
 	private Label headerLabel = new Label();
+	private int id;
 
 	public RaavareMenu(VerticalPanel container, ArrayList<RaavareDTO> raavare, int prevMenu, MainGUI mainGUI){
 		this.container = container;
@@ -132,7 +133,6 @@ public class RaavareMenu{
 		final TextBox leverandoer = new TextBox();
 		final Button submit = new Button("Opret");
 		final Button back = new Button("<- Tilbage");
-		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
 		container.add(navnLbl);
@@ -170,8 +170,8 @@ public class RaavareMenu{
 		final Label leveLabel = new Label("Indtast leverandør:");
 		final TextBox leverandoer = new TextBox();
 		final Button submit = new Button("Opdater");
-		final Button delete = new Button("Delete");
-		final Button back = new Button("<- Back");
+		final Button delete = new Button("Slet");
+		final Button back = new Button("<- Tilbage");
 		for (int i = 0; i < raavare.size(); i++){
 			lb.addItem(raavare.get(i).getrName());
 		}
@@ -197,6 +197,7 @@ public class RaavareMenu{
 					navn.setText(lb.getSelectedItemText());
 					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
 						leverandoer.setText(raavare.get(i).getDeliverer());
+						id = i;
 					}
 				}
 			}
@@ -206,7 +207,7 @@ public class RaavareMenu{
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
 					String rName = raavare.get(i).getrName();
-					if (rName.equals(lb.getSelectedItemText())){
+					if (rName.equals(lb.getSelectedItemText()) && raavare.get(i).getrID() == id){
 						mainGUI.serviceImpl.deleteRaavare(raavare.get(i).getrID());
 					}
 				}
@@ -223,7 +224,7 @@ public class RaavareMenu{
 				} else{
 				for (int i = 0; i < raavare.size(); i++){
 					String rName = raavare.get(i).getrName();
-					if (rName.equals(lb.getSelectedItemText())){
+					if (rName.equals(lb.getSelectedItemText()) && raavare.get(i).getrID() == id){
 						mainGUI.serviceImpl.updateRaavare(raavare.get(i).getrID(), navn.getText(), leverandoer.getText());
 					}
 				}

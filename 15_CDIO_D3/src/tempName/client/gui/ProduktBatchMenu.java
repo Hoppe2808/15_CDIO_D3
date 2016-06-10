@@ -33,7 +33,7 @@ public class ProduktBatchMenu {
 	}
 
 	public void produktBatch(){
-		headerLabel.setText("ProduktBatch");;
+		headerLabel.setText("Produktbatch");;
 		headerLabel.addStyleName("HeaderLabel");
 		final Button inspectButton = new Button("Se Produktbatches");
 		final Button addButton = new Button("Tilføj Produktbatch");
@@ -96,7 +96,7 @@ public class ProduktBatchMenu {
 
 		};
 
-		table.addColumn(rbID, "ProduktBatch ID");
+		table.addColumn(rbID, "Produktbatch ID");
 		table.addColumn(rID, "Status");
 		table.addColumn(maengde, "Recept ID");
 
@@ -125,7 +125,7 @@ public class ProduktBatchMenu {
 		});
 	}
 	public void addProduktBatch(){
-		headerLabel.setText("Tilføj ny ProduktBatch");
+		headerLabel.setText("Tilføj ny Produktbatch");
 		final Label rIDLbl = new Label("Indtast status for produktbatchen:");
 		final TextBox rID = new TextBox();
 		final Label maengdeLbl = new Label("Indtast recept ID:");
@@ -162,7 +162,7 @@ public class ProduktBatchMenu {
 		});
 	}
 	public void updateProduktBatch(){
-		headerLabel.setText("Opdater ProduktBatch");
+		headerLabel.setText("Opdater Produktbatch");
 		final Label idLabel = new Label("Vælg ID for produktbatchen:");
 		final ListBox lb = new ListBox();
 		final Label statusLabel = new Label("Indtast status:");

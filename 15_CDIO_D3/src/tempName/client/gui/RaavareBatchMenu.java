@@ -35,7 +35,7 @@ public class RaavareBatchMenu {
 	}
 
 	public void raavareBatch(){
-		headerLabel.setText("RåvarerBatch");;
+		headerLabel.setText("Råvarerbatch");;
 		headerLabel.addStyleName("HeaderLabel");
 		final Button inspectButton = new Button("Se Råvarebatches");
 		final Button addButton = new Button("Tilføj Råvarebatch");
@@ -98,7 +98,7 @@ public class RaavareBatchMenu {
 
 		};
 
-		table.addColumn(rbID, "RaavareBatch ID");
+		table.addColumn(rbID, "Raavarebatch ID");
 		table.addColumn(rID, "Raavare ID");
 		table.addColumn(maengde, "Mængde");
 
@@ -127,7 +127,7 @@ public class RaavareBatchMenu {
 		});
 	}
 	public void addRaavareBatch(){
-		headerLabel.setText("Tilføj ny RåvareBatch");
+		headerLabel.setText("Tilføj ny Råvarebatch");
 		final Label rIDLbl = new Label("Indtast ID for råvaren:");
 		final TextBox rID = new TextBox();
 		final Label maengdeLbl = new Label("Indtast mængden:");
@@ -164,7 +164,7 @@ public class RaavareBatchMenu {
 		});
 	}
 	public void updateRaavareBatch(){
-		headerLabel.setText("Opdater RåvareBatch");
+		headerLabel.setText("Opdater Råvarebatch");
 		final Label idLabel = new Label("Vælg ID for råvarebatchen:");
 		final ListBox lb = new ListBox();
 		final Label rIDLabel = new Label("Indtast ID for råvaren:");
