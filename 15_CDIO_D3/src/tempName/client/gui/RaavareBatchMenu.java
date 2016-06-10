@@ -127,7 +127,7 @@ public class RaavareBatchMenu {
 		});
 	}
 	public void addRaavareBatch(){
-		headerLabel.setText("Tilføj ny råvarebatch");
+		headerLabel.setText("Tilføj ny RåvareBatch");
 		final Label rIDLbl = new Label("Indtast ID for råvaren:");
 		final TextBox rID = new TextBox();
 		final Label maengdeLbl = new Label("Indtast mængden:");
@@ -152,7 +152,7 @@ public class RaavareBatchMenu {
 					mainGUI.serviceImpl.addRaavareBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
 					mainGUI.adminCheck(prevMenu);
 				}catch (NumberFormatException e){
-					Window.alert("Please enter numbers only");
+					Window.alert("Venligst udfyld felterne med tal");
 				}
 			}
 		});
@@ -164,7 +164,7 @@ public class RaavareBatchMenu {
 		});
 	}
 	public void updateRaavareBatch(){
-		headerLabel.setText("Opdater råvare");
+		headerLabel.setText("Opdater RåvareBatch");
 		final Label idLabel = new Label("Vælg ID for råvarebatchen:");
 		final ListBox lb = new ListBox();
 		final Label rIDLabel = new Label("Indtast ID for råvaren:");
@@ -222,7 +222,7 @@ public class RaavareBatchMenu {
 						try{
 							mainGUI.serviceImpl.updateRaavareBatch(Integer.parseInt(rbID), Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
 						}catch (NumberFormatException e){
-							Window.alert("Please enter numbers only");
+							Window.alert("Venligst udfyld felterne med tal");
 						}
 					}
 				}

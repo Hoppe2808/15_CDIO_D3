@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -44,7 +45,7 @@ public class ProduktBatchMenu {
 		container.add(addButton);
 		container.add(updateButton);
 		container.add(back);
-		
+
 		inspectButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				inspectBatch();
@@ -60,14 +61,14 @@ public class ProduktBatchMenu {
 				updateProduktBatch();
 			}
 		});
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
 	}
-	
+
 	public void inspectBatch() {
 		CellTable<ProduktBatchDTO> table = new CellTable<ProduktBatchDTO>();
 		TextColumn<ProduktBatchDTO> rbID = new TextColumn<ProduktBatchDTO>(){
@@ -124,7 +125,7 @@ public class ProduktBatchMenu {
 		});
 	}
 	public void addProduktBatch(){
-		headerLabel.setText("Tilføj ny råvarebatch");
+		headerLabel.setText("Tilføj ny ProduktBatch");
 		final Label rIDLbl = new Label("Indtast status for produktbatchen:");
 		final TextBox rID = new TextBox();
 		final Label maengdeLbl = new Label("Indtast recept ID:");
@@ -141,15 +142,19 @@ public class ProduktBatchMenu {
 		container.add(submit);
 		container.add(back);
 		container.add(message);
-		
-		
+
+
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.addProduktBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
-				mainGUI.adminCheck(prevMenu);
+				try{
+					mainGUI.serviceImpl.addProduktBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+					mainGUI.adminCheck(prevMenu);
+				}catch (NumberFormatException e){
+					Window.alert("Venligst udfyld felterne med tal");
+				}
 			}
 		});
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				produktBatch();
@@ -157,12 +162,12 @@ public class ProduktBatchMenu {
 		});
 	}
 	public void updateProduktBatch(){
-		headerLabel.setText("Opdater råvare");
-		final Label idLabel = new Label("Vælg ID for råvarebatchen:");
+		headerLabel.setText("Opdater ProduktBatch");
+		final Label idLabel = new Label("Vælg ID for produktbatchen:");
 		final ListBox lb = new ListBox();
-		final Label statusLabel = new Label("Indtast ID for råvaren:");
+		final Label statusLabel = new Label("Indtast status:");
 		final TextBox status = new TextBox();
-		final Label receptLabel = new Label("Indtast mængden:");
+		final Label receptLabel = new Label("Indtast recept ID:");
 		final TextBox receptID = new TextBox();
 		final Button submit = new Button("Opdater");
 		final Button delete = new Button("Slet");
@@ -182,8 +187,8 @@ public class ProduktBatchMenu {
 		container.add(submit);
 		container.add(delete);
 		container.add(back);
-		
-		
+
+
 		status.setText(Integer.toString(produktBatch.get(0).getStatus()));
 		receptID.setText(Double.toString(produktBatch.get(0).getReceptId()));
 		lb.addClickHandler(new ClickHandler() {
@@ -197,7 +202,7 @@ public class ProduktBatchMenu {
 				}
 			}
 		});
-		
+
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < produktBatch.size(); i++){
@@ -209,19 +214,23 @@ public class ProduktBatchMenu {
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
-		
+
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < produktBatch.size(); i++){
 					String rbID = Integer.toString(produktBatch.get(i).getPbId());
 					if (rbID.equals(lb.getSelectedItemText())){
-						mainGUI.serviceImpl.updateProduktBatch(Integer.parseInt(rbID), Integer.parseInt(status.getText()), Integer.parseInt(receptID.getText()));
+						try{
+							mainGUI.serviceImpl.updateProduktBatch(Integer.parseInt(rbID), Integer.parseInt(status.getText()), Integer.parseInt(receptID.getText()));
+						}catch (NumberFormatException e){
+							Window.alert("Venligst udfyld felterne med tal");
+						}
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
-		
+
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				produktBatch();
