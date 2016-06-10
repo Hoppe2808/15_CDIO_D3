@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -139,15 +140,18 @@ public class RaavareMenu{
 		container.add(leveLbl);
 		container.add(leverandoer);
 		container.add(submit);
-		container.add(back);
-		container.add(message);
-		
+		container.add(back);		
 		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.addRaavare(navn.getText(), leverandoer.getText());
-				mainGUI.adminCheck(prevMenu);
-				message.setText("Råvarer tilføjet");
+				if (navn.getText().isEmpty()){
+					Window.alert("En råvare skal have et navn");
+				} else if (leverandoer.getText().isEmpty()){
+					Window.alert("En råvare skal have en leverandør");
+				} else{
+					mainGUI.serviceImpl.addRaavare(navn.getText(), leverandoer.getText());
+					mainGUI.adminCheck(prevMenu);
+				}
 			}
 		});
 		
@@ -212,6 +216,11 @@ public class RaavareMenu{
 		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				if (navn.getText().isEmpty()){
+					Window.alert("En råvare skal have et navn");
+				} else if (leverandoer.getText().isEmpty()){
+					Window.alert("En råvare skal have en leverandør");
+				} else{
 				for (int i = 0; i < raavare.size(); i++){
 					String rName = raavare.get(i).getrName();
 					if (rName.equals(lb.getSelectedItemText())){
@@ -219,6 +228,7 @@ public class RaavareMenu{
 					}
 				}
 				mainGUI.adminCheck(prevMenu);
+				}
 			}
 		});
 		
