@@ -225,10 +225,14 @@ public class AdminMenu{
 				}else {
 					Window.alert("Noget gik galt ved tjek af bruger status");
 				}
-				if (cprText.getText().length() != 10){
-					Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
+				if (cprText.getText().length() != 11){
+					Window.alert("Dit cpr-nummer skal være 11 karakterer langt");
+				} else if(cprText.getText().charAt(7) == '-'){
+					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
 				} else if (iniText.getText().length() > 3 || iniText.getText().length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
+				}else if(iniText.getText().matches("[a-zA-Z ]*\\d+.*")){
+					Window.alert("Dine initialer må ikke indeholde tal");
 				} else if (idText.getText().isEmpty()){
 					Window.alert("Du skal indtaste ID'et for den bruger du vil redigere");
 				} else if (userText.getText().isEmpty()){
@@ -303,10 +307,14 @@ public class AdminMenu{
 				}else {
 					Window.alert("Noget gik galt ved tjek for bruger status");
 				}
-				if(cpr.length() != 10){
-					Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
-				} else if (ini.length() > 3 || ini.length() < 2){
+				if (cpr.length() != 11){
+					Window.alert("Dit cpr-nummer skal være 11 karakterer langt");
+				} else if(cpr.charAt(7) == '-'){
+					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
+				}else if (ini.length() > 3 || ini.length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
+				}else if(ini.matches("[a-zA-Z ]*\\d+.*")){
+					Window.alert("Dine initialer må ikke indeholde tal");
 				}else if (username.getText().isEmpty()){
 					Window.alert("Brugernavnet kan ikke være tomt");
 				} else if (pwField.getText().isEmpty()){
