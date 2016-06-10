@@ -173,7 +173,8 @@ public class RaavareMenu{
 		final Button delete = new Button("Slet");
 		final Button back = new Button("<- Tilbage");
 		for (int i = 0; i < raavare.size(); i++){
-			lb.addItem(raavare.get(i).getrName());
+			String mix = raavare.get(i).getrID() + " - " + raavare.get(i).getrName();
+			lb.addItem(mix);
 		}
 		lb.setVisibleItemCount(1);
 		container.clear();
@@ -189,15 +190,15 @@ public class RaavareMenu{
 		container.add(back);
 		
 		
-		navn.setText(lb.getSelectedItemText());
+		navn.setText(lb.getSelectedItemText().substring(lb.getSelectedItemText().lastIndexOf(" ")+1));
 		leverandoer.setText(raavare.get(0).getDeliverer());
 		lb.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
-					navn.setText(lb.getSelectedItemText());
-					if (raavare.get(i).getrName().equals(lb.getSelectedItemText())){
+					String id = lb.getSelectedItemText().substring(0, lb.getSelectedItemText().indexOf(" "));
+					navn.setText(lb.getSelectedItemText().substring(lb.getSelectedItemText().lastIndexOf(" ")+1));
+					if (Integer.parseInt(id) == raavare.get(i).getrID()){
 						leverandoer.setText(raavare.get(i).getDeliverer());
-						id = i;
 					}
 				}
 			}
@@ -206,8 +207,8 @@ public class RaavareMenu{
 		delete.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				for (int i = 0; i < raavare.size(); i++){
-					String rName = raavare.get(i).getrName();
-					if (rName.equals(lb.getSelectedItemText()) && raavare.get(i).getrID() == id){
+					String id = lb.getSelectedItemText().substring(0, lb.getSelectedItemText().indexOf(" "));
+					if (Integer.parseInt(id) == raavare.get(i).getrID()){
 						mainGUI.serviceImpl.deleteRaavare(raavare.get(i).getrID());
 					}
 				}
@@ -223,8 +224,8 @@ public class RaavareMenu{
 					Window.alert("En råvare skal have en leverandør");
 				} else{
 				for (int i = 0; i < raavare.size(); i++){
-					String rName = raavare.get(i).getrName();
-					if (rName.equals(lb.getSelectedItemText()) && raavare.get(i).getrID() == id){
+					String id = lb.getSelectedItemText().substring(0, lb.getSelectedItemText().indexOf(" "));
+					if (Integer.parseInt(id) == raavare.get(i).getrID()){
 						mainGUI.serviceImpl.updateRaavare(raavare.get(i).getrID(), navn.getText(), leverandoer.getText());
 					}
 				}
