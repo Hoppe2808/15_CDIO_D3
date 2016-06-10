@@ -35,4 +35,8 @@ public class ReceptDTO implements Serializable{
 	public void setReceptName(String prescriptionName) {
 		this.prescriptionName = prescriptionName;
 	}
+	
+	public String toString(){
+		return  prescriptionId + " " + prescriptionName;
+	}
 }

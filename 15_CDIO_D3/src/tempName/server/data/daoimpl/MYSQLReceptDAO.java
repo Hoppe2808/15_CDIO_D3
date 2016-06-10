@@ -37,7 +37,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 			throw new DALException(e);
 		}
 	}
-
 	@Override
 	public List<ReceptDTO> getReceptList() throws DALException {
 		List<ReceptDTO> list = new ArrayList<ReceptDTO>();
@@ -54,7 +53,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 		}
 		return list;
 	}
-
 	@Override
 	public void createRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
@@ -62,7 +60,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 						+"(" + rec.getReceptId() + ", '" + rec.getReceptName() + "')"
 				);		
 	}
-
 	@Override
 	public void updateRecept(ReceptDTO rec) throws DALException {
 		connector.doUpdate(
@@ -70,6 +67,12 @@ public class MYSQLReceptDAO implements ReceptDAO{
 				 + "' WHERE recept_id = " + rec.getReceptId()			
 				);		
 	}
+	@Override
+	public void deleteRecept(int receptId) throws DALException {
+		connector.doUpdate("DELETE FROM recept WHERE recept_id = " + receptId);
+		
+	}	
+	
 	
 	@Override
 	public ReceptKomponentDTO getReceptKomp(int receptId, int raavareId) throws DALException {
@@ -80,7 +83,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 	    }
 	    catch (SQLException e) {throw new DALException(e); }
 	}
-
 	@Override
 	public List<ReceptKomponentDTO> getReceptKompList(int receptId) throws DALException {
 		List<ReceptKomponentDTO> list = new ArrayList<ReceptKomponentDTO>();
@@ -95,7 +97,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 		catch (SQLException e) { throw new DALException(e); }
 		return list;
 	}
-
 	@Override
 	public List<ReceptKomponentDTO> getReceptKompList() throws DALException {
 		List<ReceptKomponentDTO> list = new ArrayList<ReceptKomponentDTO>();
@@ -110,7 +111,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 		catch (SQLException e) { throw new DALException(e); }
 		return list;
 	}
-
 	@Override
 	public void createReceptKomp(ReceptKomponentDTO receptkomponent) throws DALException {
 		connector.doUpdate(
@@ -119,7 +119,6 @@ public class MYSQLReceptDAO implements ReceptDAO{
 				receptkomponent.getTolerance() + "')"
 			);	
 	}
-
 	@Override
 	public void updateReceptKomp(ReceptKomponentDTO receptkomponent) throws DALException {
 		connector.doUpdate(
@@ -127,19 +126,8 @@ public class MYSQLReceptDAO implements ReceptDAO{
 				+ "' WHERE raavare_id = " + receptkomponent.getRaavare_id() + " AND recept_id = " + receptkomponent.getRecept_Id()
 		);
 	}
-
-	
-	
-	@Override
-	public void deleteRecept(int receptId) throws DALException {
-		connector.doUpdate("DELETE FROM recept WHERE recept_id = " + receptId);
-		
-	}
-
 	@Override
 	public void deleteReceptKomp(int receptId, int raavareId) throws DALException {
-		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = " + receptId + " AND raavare_id = " + raavareId);
-		
+		connector.doUpdate("DELETE FROM receptkomponent WHERE recept_id = " + receptId + " AND raavare_id = " + raavareId);	
 	}
-
 }
