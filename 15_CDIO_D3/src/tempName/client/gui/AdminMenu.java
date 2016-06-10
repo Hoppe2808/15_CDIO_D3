@@ -176,17 +176,17 @@ public class AdminMenu implements FarmaAdminInt{
 	private void editOp() {
 		final Label editHeader = new Label("Rediger en operatør");
 		editHeader.addStyleName("HeaderLabel");
-		final Label id = new Label("Bruger ID: ");
+		final Label id = new Label("ID for brugeren du vil redigere: ");
 		final TextBox idText = new TextBox();
-		final Label username = new Label("Brugernavn: ");
+		final Label username = new Label("Nyt brugernavn: ");
 		final TextBox userText = new TextBox();
-		final Label password = new Label("Adgangskode: ");
+		final Label password = new Label("Ny adgangskode: ");
 		final TextBox passText = new TextBox();
-		final Label cpr = new Label("Cpr-nummer: ");
+		final Label cpr = new Label("Nyt cpr-nummer: ");
 		final TextBox cprText = new TextBox();
-		final Label ini = new Label("Initialer: ");
+		final Label ini = new Label("Nye initialer: ");
 		final TextBox iniText = new TextBox();
-		final Label adminLabel = new Label("Vælg bruger type:");
+		final Label adminLabel = new Label("Vælg ny bruger type:");
 		final ListBox lb = new ListBox();
 		lb.addItem("Admin");
 		lb.addItem("Operatør");
@@ -227,9 +227,15 @@ public class AdminMenu implements FarmaAdminInt{
 				}
 				if (cprText.getText().length() != 10){
 					Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
-				} else if (iniText.getText().length() > 3 && iniText.getText().length() < 2){
+				} else if (iniText.getText().length() > 3 || iniText.getText().length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
-				} else{
+				} else if (idText.getText().isEmpty()){
+					Window.alert("Du skal indtaste ID'et for den bruger du vil redigere");
+				} else if (userText.getText().isEmpty()){
+					Window.alert("Brugernavnet kan ikke være tomt");
+				} else if (passText.getText().isEmpty()){
+					Window.alert("Adgangskoden kan ikke være tom");
+				} else {
 					mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
 				}
 			}
@@ -297,15 +303,17 @@ public class AdminMenu implements FarmaAdminInt{
 				}else {
 					Window.alert("Noget gik galt ved tjek for bruger status");
 				}
-				if(ini.length() > 3){
-					failure.setText("Initialerne må maks være 3 karaktere langt");
+				if(cpr.length() != 10){
+					Window.alert("Dit cpr-nummer skal være 10 karakterer langt");
+				} else if (ini.length() > 3 || ini.length() < 2){
+					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
+				}else if (username.getText().isEmpty()){
+					Window.alert("Brugernavnet kan ikke være tomt");
+				} else if (pwField.getText().isEmpty()){
+					Window.alert("Adgangskoden kan ikke være tom");
 				}else{
-					if(cpr.length()!= 10){
-						failure.setText("Et cpr-nummer er 10 karakterer langt");
-					}else{
-						mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
-						adminMenu();						
-					}
+					mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
+					adminMenu();						
 				}
 			}
 		});

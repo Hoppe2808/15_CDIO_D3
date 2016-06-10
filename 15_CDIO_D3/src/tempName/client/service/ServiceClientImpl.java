@@ -44,11 +44,11 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void createOp(String name, String ini, String cpr, String password, int admin){
-		this.service.createOp(name, ini, cpr, password, admin, new defaultCallback());
+		this.service.createOp(name, ini, cpr, password, admin, new operatoerCallback(1));
 	}
 	@Override
 	public void updateOp(int id, String name, String ini, String cpr, String password, int admin){
-		this.service.updateOp(id, name, ini, cpr, password, admin, new defaultCallback());
+		this.service.updateOp(id, name, ini, cpr, password, admin, new operatoerCallback(2));
 	}
 	public MainGUI getMainGUI(){
 		return this.maingui;
@@ -138,19 +138,10 @@ public class ServiceClientImpl implements ServiceClientInt{
 		public void onFailure(Throwable caught) {
 			String message = caught.getMessage();
 			String constraint = "CONSTRAINT";
-			String trunctation = "truncation:";
-			String password = "'password'";
-			String oprName = "'opr_navn'";
 			if(message.toLowerCase().contains(constraint.toLowerCase())){
 				Window.alert("Kan ikke ændre i databasen, fordi der er et problem med fremmednøgler." +
 			" Dette kan enten betyde, at du prøver at slette noget, der findes i en anden tabel, " +
 						"eller at du prøver at bruge et ID fra en anden tabel, hvor ID'et ikke eksisterer");
-			} else if(message.toLowerCase().contains(trunctation.toLowerCase())){
-				if (message.toLowerCase().contains(password.toLowerCase())){
-					Window.alert("Din adgangskode er for lang");
-				} else if(message.toLowerCase().contains(oprName.toLowerCase())){
-					Window.alert("Navnet er for langt");
-				}
 			}
 		}
 
@@ -176,9 +167,40 @@ public class ServiceClientImpl implements ServiceClientInt{
 				}
 			}
 		}
-
 	}
+	private class operatoerCallback implements AsyncCallback{
+		int type;
+		
+		public operatoerCallback(int type){
+			this.type = type;
+		}
 
+		@Override
+		public void onFailure(Throwable caught) {
+			String message = caught.getMessage();
+			String trunctation = "truncation:";
+			String password = "'password'";
+			String oprName = "'opr_navn'";
+			if(message.toLowerCase().contains(trunctation.toLowerCase())){
+				if (message.toLowerCase().contains(password.toLowerCase())){
+					Window.alert("Din adgangskode er for lang");
+				} else if(message.toLowerCase().contains(oprName.toLowerCase())){
+					Window.alert("Navnet er for langt");
+				}
+			}
+			
+		}
+
+		@Override
+		public void onSuccess(Object result) {
+			if(type == 1){
+				Window.alert("Operatør blev oprettet");
+			} else if(type == 2){
+				Window.alert("Operatør blev redigeret");
+			}
+		}
+		
+	}
 
 
 
