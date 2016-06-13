@@ -14,6 +14,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.mysql.fabric.xmlrpc.base.Array;
@@ -57,7 +58,7 @@ public class MainGUI extends Composite {
 		final Button loginButton = new Button("Log ind");
 		final TextBox loginUsername = new TextBox();
 		final Label logUserLabel = new Label("Brugernavn: ");
-		final TextBox loginPassword = new TextBox();
+		final PasswordTextBox loginPassword = new PasswordTextBox();
 		final Label logPassLabel = new Label("Adgangskode: ");
 		if (!(initialized)){
 			initWidget(container);
