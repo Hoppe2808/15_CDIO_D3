@@ -67,11 +67,11 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void addMeasurement(double mm, int id){
-		this.service.addMeasurement(mm, id, new defaultCallback());
+		this.service.addMeasurement(mm, id, new updateCallback());
 	}
 	@Override
 	public void addRaavare(int id, String rName, String deliverer){
-		this.service.addRaavare(id, rName, deliverer, new defaultCallback());
+		this.service.addRaavare(id, rName, deliverer, new updateCallback());
 	}
 	@Override
 	public void getRaavare(){
@@ -79,7 +79,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void addRecept(int id, String receptName){
-		this.service.addRecept(id, receptName, new defaultCallback());
+		this.service.addRecept(id, receptName, new updateCallback());
 	}
 	@Override
 	public void getRecept(){
@@ -87,7 +87,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void addRaavareBatch(int id, int raavareID, int maengde){
-		this.service.addRaavareBatch(id, raavareID, maengde, new defaultCallback());
+		this.service.addRaavareBatch(id, raavareID, maengde, new updateCallback());
 	}
 	@Override
 	public void getRaavareBatch(){
@@ -95,7 +95,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void addProduktBatch(int status, int receptID){
-		this.service.addProduktBatch(status, receptID, new defaultCallback());
+		this.service.addProduktBatch(status, receptID, new updateCallback());
 	}
 	@Override
 	public void getProduktBatch(){
@@ -103,7 +103,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void updateRaavare(int id, String name, String deliverer){
-		this.service.updateRaavare(id, name, deliverer, new defaultCallback());
+		this.service.updateRaavare(id, name, deliverer, new updateCallback());
 	}
 	@Override
 	public void deleteRaavare(int id){
@@ -111,7 +111,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	
 	public void updateRecept(int id, String name){
-		this.service.updateRecept(id, name, new defaultCallback());
+		this.service.updateRecept(id, name, new updateCallback());
 	}
 	@Override
 	public void deleteRecept(int id){
@@ -123,11 +123,11 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	@Override
 	public void updateRaavareBatch(int id, int rID, double maengde){
-		this.service.updateRaavareBatch(id, rID, maengde, new defaultCallback());
+		this.service.updateRaavareBatch(id, rID, maengde, new updateCallback());
 	}
 	@Override
 	public void updateProduktBatch(int id, int status, int rID){
-		this.service.updateProduktBatch(id, status, rID, new defaultCallback());
+		this.service.updateProduktBatch(id, status, rID, new updateCallback());
 	}
 	@Override
 	public void deleteProduktBatch(int id){
@@ -146,12 +146,12 @@ public class ServiceClientImpl implements ServiceClientInt{
 	
 	@Override
 	public void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) {
-		this.service.updateProduktKomp(pbID, rbID, tara, netto, oprID, new defaultCallback());
+		this.service.updateProduktKomp(pbID, rbID, tara, netto, oprID, new updateCallback());
 	}
 	
 	@Override
 	public void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) {
-		this.service.updateReceptKomp(receptID, raavareID, nomNetto, tolerance, new defaultCallback());
+		this.service.updateReceptKomp(receptID, raavareID, nomNetto, tolerance, new updateCallback());
 	}
 	
 	@Override
@@ -233,6 +233,25 @@ public class ServiceClientImpl implements ServiceClientInt{
 			} else if(type == 2){
 				Window.alert("Operatør blev redigeret");
 			}
+		}
+		
+	}
+	private class updateCallback implements AsyncCallback{
+
+		@Override
+		public void onFailure(Throwable caught) {
+				String message = caught.getMessage();
+				String constraint = "CONSTRAINT";
+				if(message.toLowerCase().contains(constraint.toLowerCase())){
+					Window.alert("Kan ikke ændre i databasen, fordi der er et problem med fremmednøgler." +
+				" Dette kan enten betyde, at du prøver at slette noget, der findes i en anden tabel, " +
+							"eller at du prøver at bruge et ID fra en anden tabel, hvor ID'et ikke eksisterer");
+				}		
+		}
+
+		@Override
+		public void onSuccess(Object result) {
+			Window.alert("Der er succesfuldt blevet lavet opdateringer i databasen");
 		}
 		
 	}
