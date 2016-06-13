@@ -46,8 +46,6 @@ public interface Service extends RemoteService {
 	void deleteRaavareBatch(int id) throws DALException;
 	void updateProduktBatch(int id, int status, int rID) throws DALException;
 	void deleteProduktBatch(int id) throws DALException;
-	void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException;
-	void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException;
 	void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException;
 	void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException;
 	void deleteProduktKomp(int pbID, int rbID) throws DALException;

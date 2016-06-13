@@ -41,8 +41,6 @@ public interface ServiceAsync {
 	void deleteRaavareBatch(int id, AsyncCallback callback);
 	void updateProduktBatch(int id, int status, int rID, AsyncCallback callback);
 	void deleteProduktBatch(int id, AsyncCallback callback);
-	void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID, AsyncCallback<Void> callback);
-	void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance, AsyncCallback<Void> callback);
 	void deleteProduktKomp(int pbID, int rbID, AsyncCallback<Void> callback);
 	void deleteReceptKomp(int receptID, int raavareID, AsyncCallback<Void> callback);
 	void getProduktKomp(AsyncCallback<ArrayList<ProduktBatchKomponentDTO>> callback);

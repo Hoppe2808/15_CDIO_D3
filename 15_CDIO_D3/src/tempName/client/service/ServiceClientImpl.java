@@ -145,16 +145,6 @@ public class ServiceClientImpl implements ServiceClientInt{
 	}
 	
 	@Override
-	public void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) {
-		this.service.addProduktKomp(pbID, rbID, tara, netto, oprID, new defaultCallback());
-	}
-	
-	@Override
-	public void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) {
-		this.service.addReceptKomp(receptID, raavareID, nomNetto, tolerance, new defaultCallback());
-	}
-	
-	@Override
 	public void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) {
 		this.service.updateProduktKomp(pbID, rbID, tara, netto, oprID, new defaultCallback());
 	}

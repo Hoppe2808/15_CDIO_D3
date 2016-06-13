@@ -26,8 +26,6 @@ public interface ServiceClientInt {
 	void deleteProduktBatch(int id);
 	void getProduktKomp();
 	void getReceptKomp();
-	void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID);
-	void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance);
 	void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID);
 	void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance);
 	void deleteProduktKomp(int pbID, int rbID);

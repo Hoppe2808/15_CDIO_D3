@@ -133,13 +133,6 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 		catch (SQLException e) { throw new DALException(e); }
 	}
 	@Override
-	public void createProduktBatchKomponent(ProduktBatchKomponentDTO pbk) throws DALException {
-		String query = "INSERT INTO produktbatchkomponent(pb_id, rb_id, tara, netto, opr_id) VALUES ('" + pbk.getPbId() + "', '" + pbk.getRbId() 
-		+ "', '" + pbk.getNetto() + "', '" + pbk.getTara() + "', '" + pbk.getOprId()  + "')";	
-		connector.doUpdate(query);
-
-		}
-	@Override
 	public void updateProduktBatchKomponent(ProduktBatchKomponentDTO pbk) throws DALException {
 		String query = "UPDATE produktbatchkomponent SET  netto = '" + pbk.getNetto() + "', tara = '" + pbk.getTara() + "' "
 				+ "WHERE pb_id = '" + pbk.getPbId()+"' AND rb_id = '" + pbk.getRbId()+ "'";

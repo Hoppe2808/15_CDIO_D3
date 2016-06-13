@@ -360,37 +360,6 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	@Override
-	public void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException {
-		ProduktBatchKomponentDTO rDTO = new ProduktBatchKomponentDTO();
-		rDTO.setPbId(pbID);
-		rDTO.setRbId(rbID);
-		rDTO.setTara(tara);
-		rDTO.setNetto(netto);
-		rDTO.setOprId(oprID);
-		try{
-			this.produktBatchDAO.createProduktBatchKomponent(rDTO);
-		}catch (DALException e){
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	@Override
-	public void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException {
-		ReceptKomponentDTO rDTO = new ReceptKomponentDTO();
-		rDTO.setReceptID(receptID);
-		rDTO.setRaavareID(raavareID);
-		rDTO.setNomNetto(nomNetto);
-		rDTO.setTolerance(tolerance);
-		try{
-			this.receptDAO.createReceptKomp(rDTO);
-		}catch (DALException e){
-			e.printStackTrace();
-			throw e;
-		}		
-	}
-
-	@Override
 	public void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException {
 		try{
 			ProduktBatchKomponentDTO r = new ProduktBatchKomponentDTO();
