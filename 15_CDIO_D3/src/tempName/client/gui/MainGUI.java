@@ -190,4 +190,18 @@ public class MainGUI extends Composite {
 			vaMenu.updateProduktBatch(produktBatch);
 		}
 	}
+	public void updateProduktBatchKomp(ArrayList produktKomp){
+		if (menu == 1){
+			AM.updateProduktKomp(produktKomp);
+		} else if (menu == 2){
+			faMenu.updateProduktKomp(produktKomp);
+		}
+	}
+	public void updateReceptKomp(ArrayList receptKomp){
+		if (menu == 1){
+			AM.updateReceptKomp(receptKomp);
+		} else if (menu == 2){
+			faMenu.updateReceptKomp(receptKomp);
+		}
+	}
 }

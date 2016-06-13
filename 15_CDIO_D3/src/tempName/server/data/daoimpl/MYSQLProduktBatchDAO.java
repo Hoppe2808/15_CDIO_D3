@@ -152,8 +152,4 @@ public class MYSQLProduktBatchDAO implements ProduktbatchDAO{
 		connector.doUpdate(query);
 
 	}
-
-
-
 }
-

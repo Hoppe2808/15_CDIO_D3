@@ -8,9 +8,11 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import tempName.server.data.daointerface.DALException;
 import tempName.shared.dto.ProduktBatchDTO;
+import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.ReceptKomponentDTO;
 import tempName.shared.dto.WeightDTO;
 
 /**
@@ -24,6 +26,8 @@ public interface Service extends RemoteService {
 	ArrayList<ReceptDTO> getRecept();
 	ArrayList<RaavareBatchDTO> getRaavareBatch();
 	ArrayList<ProduktBatchDTO> getProduktBatch();
+	ArrayList<ProduktBatchKomponentDTO> getProduktKomp();
+	ArrayList<ReceptKomponentDTO> getReceptKomp();
 	String checkLogin(int id, String pass);
 	void connectDatabase();
 	void createOp(String name, String ini, String cpr, String password, int admin) throws DALException;
@@ -42,4 +46,10 @@ public interface Service extends RemoteService {
 	void deleteRaavareBatch(int id) throws DALException;
 	void updateProduktBatch(int id, int status, int rID) throws DALException;
 	void deleteProduktBatch(int id) throws DALException;
+	void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException;
+	void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException;
+	void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException;
+	void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException;
+	void deleteProduktKomp(int pbID, int rbID) throws DALException;
+	void deleteReceptKomp(int receptID, int raavareID) throws DALException;
 }

@@ -12,9 +12,11 @@ import tempName.server.data.database.Connector;
 import tempName.server.data.password.PasswordMethods;
 import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
+import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.ReceptKomponentDTO;
 import tempName.shared.dto.WeightDTO;
 
 import java.sql.SQLException;
@@ -333,5 +335,109 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+
+	@Override
+	public ArrayList<ProduktBatchKomponentDTO> getProduktKomp() {
+		List<ProduktBatchKomponentDTO> rawList = new ArrayList<ProduktBatchKomponentDTO>();
+		try {
+			rawList = this.produktBatchDAO.getProduktBatchKomponentList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return (ArrayList<ProduktBatchKomponentDTO>) rawList;
+	}
+
+	@Override
+	public ArrayList<ReceptKomponentDTO> getReceptKomp() {
+		List<ReceptKomponentDTO> rawList = new ArrayList<ReceptKomponentDTO>();
+		try {
+			rawList = this.receptDAO.getReceptKompList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return (ArrayList<ReceptKomponentDTO>) rawList;
+	}
+
+	@Override
+	public void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException {
+		ProduktBatchKomponentDTO rDTO = new ProduktBatchKomponentDTO();
+		rDTO.setPbId(pbID);
+		rDTO.setRbId(rbID);
+		rDTO.setTara(tara);
+		rDTO.setNetto(netto);
+		rDTO.setOprId(oprID);
+		try{
+			this.produktBatchDAO.createProduktBatchKomponent(rDTO);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException {
+		ReceptKomponentDTO rDTO = new ReceptKomponentDTO();
+		rDTO.setReceptID(receptID);
+		rDTO.setRaavareID(raavareID);
+		rDTO.setNomNetto(nomNetto);
+		rDTO.setTolerance(tolerance);
+		try{
+			this.receptDAO.createReceptKomp(rDTO);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}		
+	}
+
+	@Override
+	public void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) throws DALException {
+		try{
+			ProduktBatchKomponentDTO r = new ProduktBatchKomponentDTO();
+			r.setPbId(pbID);
+			r.setRbId(rbID);
+			r.setTara(tara);
+			r.setNetto(netto);
+			r.setOprId(oprID);
+			this.produktBatchDAO.updateProduktBatchKomponent(r);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}		
+	}
+
+	@Override
+	public void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) throws DALException {
+		try{
+			ReceptKomponentDTO r = new ReceptKomponentDTO();
+			r.setReceptID(receptID);
+			r.setRaavareID(raavareID);
+			r.setNomNetto(nomNetto);
+			r.setTolerance(tolerance);
+			this.receptDAO.updateReceptKomp(r);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}		
+	}
+
+	@Override
+	public void deleteProduktKomp(int pbID, int rbID) throws DALException {
+		try{
+			this.produktBatchDAO.deleteProduktBatchKomponent(pbID, rbID);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}		
+	}
+
+	@Override
+	public void deleteReceptKomp(int receptID, int raavareID) throws DALException {
+		try{
+			this.receptDAO.deleteReceptKomp(receptID, raavareID);
+		}catch (DALException e){
+			e.printStackTrace();
+			throw e;
+		}			
 	}
 }

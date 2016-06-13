@@ -29,7 +29,7 @@ public class ReceptKomponentDTO implements Serializable{
 
 	// TODO Change to setPrescription_Id
 
-	public void setRecept_Id(int recept_id) {
+	public void setReceptID(int recept_id) {
 		this.recept_id = recept_id;
 	}
 
@@ -41,7 +41,7 @@ public class ReceptKomponentDTO implements Serializable{
 
 	// TODO Change to setCommodity_Id
 
-	public void setRaavare_Id(int raavare_id) {
+	public void setRaavareID(int raavare_id) {
 		this.raavare_id = raavare_id;
 	}
 
@@ -49,7 +49,7 @@ public class ReceptKomponentDTO implements Serializable{
 		return nom_netto;
 	}
 
-	public void setNom_netto(double nom_netto) {
+	public void setNomNetto(double nom_netto) {
 		this.nom_netto = nom_netto;
 	}
 

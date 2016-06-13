@@ -10,9 +10,11 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
 import tempName.shared.dto.ProduktBatchDTO;
+import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.ReceptKomponentDTO;
 
 public class ServiceClientImpl implements ServiceClientInt{
 	private ServiceAsync service;
@@ -132,6 +134,45 @@ public class ServiceClientImpl implements ServiceClientInt{
 		this.service.deleteProduktBatch(id, new defaultCallback());
 	}
 
+	@Override
+	public void getProduktKomp() {
+		this.service.getProduktKomp(new defaultCallback());
+	}
+	
+	@Override
+	public void getReceptKomp() {
+		this.service.getReceptKomp(new defaultCallback());
+	}
+	
+	@Override
+	public void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) {
+		this.service.addProduktKomp(pbID, rbID, tara, netto, oprID, new defaultCallback());
+	}
+	
+	@Override
+	public void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) {
+		this.service.addReceptKomp(receptID, raavareID, nomNetto, tolerance, new defaultCallback());
+	}
+	
+	@Override
+	public void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID) {
+		this.service.updateProduktKomp(pbID, rbID, tara, netto, oprID, new defaultCallback());
+	}
+	
+	@Override
+	public void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance) {
+		this.service.updateReceptKomp(receptID, raavareID, nomNetto, tolerance, new defaultCallback());
+	}
+	
+	@Override
+	public void deleteProduktKomp(int pbID, int rbID) {
+		this.service.deleteProduktKomp(pbID, rbID, new defaultCallback());
+	}
+	
+	@Override
+	public void deleteReceptKomp(int receptID, int raavareID) {
+		this.service.deleteReceptKomp(receptID, raavareID, new defaultCallback());
+	}
 	private class defaultCallback implements AsyncCallback{
 
 		@Override
@@ -164,6 +205,10 @@ public class ServiceClientImpl implements ServiceClientInt{
 					maingui.updateRaavareBatch(data);
 				} else if (data.get(0) instanceof ProduktBatchDTO){
 					maingui.updateProduktBatch(data);
+				} else if (data.get(0) instanceof ProduktBatchKomponentDTO){
+					maingui.updateProduktBatchKomp(data);
+				} else if (data.get(0) instanceof ReceptKomponentDTO){
+					maingui.updateReceptKomp(data);
 				}
 			}
 		}

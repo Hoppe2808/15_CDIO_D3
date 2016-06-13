@@ -6,9 +6,11 @@ import java.util.HashMap;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import tempName.shared.dto.ProduktBatchDTO;
+import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
+import tempName.shared.dto.ReceptKomponentDTO;
 import tempName.shared.dto.WeightDTO;
 
 /**
@@ -39,4 +41,12 @@ public interface ServiceAsync {
 	void deleteRaavareBatch(int id, AsyncCallback callback);
 	void updateProduktBatch(int id, int status, int rID, AsyncCallback callback);
 	void deleteProduktBatch(int id, AsyncCallback callback);
+	void addProduktKomp(int pbID, int rbID, double tara, double netto, int oprID, AsyncCallback<Void> callback);
+	void addReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance, AsyncCallback<Void> callback);
+	void deleteProduktKomp(int pbID, int rbID, AsyncCallback<Void> callback);
+	void deleteReceptKomp(int receptID, int raavareID, AsyncCallback<Void> callback);
+	void getProduktKomp(AsyncCallback<ArrayList<ProduktBatchKomponentDTO>> callback);
+	void getReceptKomp(AsyncCallback<ArrayList<ReceptKomponentDTO>> callback);
+	void updateProduktKomp(int pbID, int rbID, double tara, double netto, int oprID, AsyncCallback<Void> callback);
+	void updateReceptKomp(int receptID, int raavareID, double nomNetto, double tolerance, AsyncCallback<Void> callback);
 }
