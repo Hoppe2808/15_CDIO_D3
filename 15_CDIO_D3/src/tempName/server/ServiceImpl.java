@@ -198,8 +198,9 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	@Override
-	public void addRaavare(String rName, String deliverer) {
+	public void addRaavare(int id, String rName, String deliverer) {
 		RaavareDTO rDTO = new RaavareDTO();
+		rDTO.setrID(id);
 		rDTO.setrName(rName);
 		rDTO.setDeliverer(deliverer);
 		try{
@@ -210,8 +211,9 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		
 	}
 	@Override
-	public void addRecept(String receptName){
+	public void addRecept(int id, String receptName){
 		ReceptDTO rDTO = new ReceptDTO();
+		rDTO.setReceptId(id);
 		rDTO.setReceptName(receptName);
 		try{
 			this.receptDAO.createRecept(rDTO);
@@ -220,8 +222,9 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 	}
 	@Override
-	public void addRaavareBatch(int raavareID, int maengde) throws DALException{
+	public void addRaavareBatch(int id, int raavareID, int maengde) throws DALException{
 		RaavareBatchDTO rDTO = new RaavareBatchDTO();
+		rDTO.setRbId(id);
 		rDTO.setRaavareId(raavareID);
 		rDTO.setMaengde(maengde);
 		try{

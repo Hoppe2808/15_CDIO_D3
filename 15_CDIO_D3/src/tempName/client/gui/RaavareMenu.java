@@ -127,6 +127,8 @@ public class RaavareMenu{
 	}
 	public void addRaavare(){
 		headerLabel.setText("Tilføj ny råvare");
+		final Label idLbl = new Label("Indtast din råvares ID:");
+		final TextBox id = new TextBox();
 		final Label navnLbl = new Label("Indtast navnet på råvaren:");
 		final TextBox navn = new TextBox();
 		final Label leveLbl = new Label("Indtast leverandøren på råvaren:");
@@ -135,6 +137,8 @@ public class RaavareMenu{
 		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.add(headerLabel);
+		container.add(idLbl);
+		container.add(id);
 		container.add(navnLbl);
 		container.add(navn);
 		container.add(leveLbl);
@@ -149,7 +153,7 @@ public class RaavareMenu{
 				} else if (leverandoer.getText().isEmpty()){
 					Window.alert("En råvare skal have en leverandør");
 				} else{
-					mainGUI.serviceImpl.addRaavare(navn.getText(), leverandoer.getText());
+					mainGUI.serviceImpl.addRaavare(Integer.parseInt(id.getText()), navn.getText(), leverandoer.getText());
 					mainGUI.adminCheck(prevMenu);
 				}
 			}

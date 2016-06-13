@@ -9,11 +9,11 @@ public interface ServiceClientInt {
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin);
 	void getAdmin(int id);
 	void addMeasurement(double mm, int id);
-	void addRaavare(String rName, String deliverer);
+	void addRaavare(int id, String rName, String deliverer);
 	void getRaavare();
-	void addRecept(String receptName);
+	void addRecept(int id, String receptName);
 	void getRecept();
-	void addRaavareBatch(int raavareID, int maengde);
+	void addRaavareBatch(int rBID, int raavareID, int maengde);
 	void getRaavareBatch();
 	void addProduktBatch(int status, int receptID);
 	void getProduktBatch();

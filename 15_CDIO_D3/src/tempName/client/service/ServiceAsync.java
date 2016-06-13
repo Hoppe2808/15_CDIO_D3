@@ -23,11 +23,11 @@ public interface ServiceAsync {
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);
 	void getAdmin(int id, AsyncCallback callback);
 	void addMeasurement(double mm, int id, AsyncCallback callback);
-	void addRaavare(String rName, String deliverer, AsyncCallback callback);
+	void addRaavare(int id, String rName, String deliverer, AsyncCallback callback);
 	void getRaavare(AsyncCallback<ArrayList<RaavareDTO>> callback);
-	void addRecept(String receptName, AsyncCallback callback);
+	void addRecept(int id, String receptName, AsyncCallback callback);
 	void getRecept(AsyncCallback<ArrayList<ReceptDTO>> callback);
-	void addRaavareBatch(int raavareID, int maengde, AsyncCallback callback);
+	void addRaavareBatch(int id, int raavareID, int maengde, AsyncCallback callback);
 	void getRaavareBatch(AsyncCallback<ArrayList<RaavareBatchDTO>> callback);
 	void addProduktBatch(int status, int receptID, AsyncCallback callback);
 	void getProduktBatch(AsyncCallback<ArrayList<ProduktBatchDTO>> callback);

@@ -128,6 +128,8 @@ public class RaavareBatchMenu {
 	}
 	public void addRaavareBatch(){
 		headerLabel.setText("Tilføj ny Råvarebatch");
+		final Label idLbl = new Label("Indtast din Råvarebatches ID:");
+		final TextBox id = new TextBox();
 		final Label rIDLbl = new Label("Indtast ID for råvaren:");
 		final TextBox rID = new TextBox();
 		final Label maengdeLbl = new Label("Indtast mængden:");
@@ -137,6 +139,8 @@ public class RaavareBatchMenu {
 		final Label message = new Label();
 		container.clear();
 		container.add(headerLabel);
+		container.add(idLbl);
+		container.add(id);
 		container.add(rIDLbl);
 		container.add(rID);
 		container.add(maengdeLbl);
@@ -149,7 +153,7 @@ public class RaavareBatchMenu {
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				try{
-					mainGUI.serviceImpl.addRaavareBatch(Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
+					mainGUI.serviceImpl.addRaavareBatch(Integer.parseInt(id.getText()), Integer.parseInt(rID.getText()), Integer.parseInt(maengde.getText()));
 					mainGUI.adminCheck(prevMenu);
 				}catch (NumberFormatException e){
 					Window.alert("Venligst udfyld felterne med tal");

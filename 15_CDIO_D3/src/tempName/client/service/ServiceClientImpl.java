@@ -68,24 +68,24 @@ public class ServiceClientImpl implements ServiceClientInt{
 		this.service.addMeasurement(mm, id, new defaultCallback());
 	}
 	@Override
-	public void addRaavare(String rName, String deliverer){
-		this.service.addRaavare(rName, deliverer, new defaultCallback());
+	public void addRaavare(int id, String rName, String deliverer){
+		this.service.addRaavare(id, rName, deliverer, new defaultCallback());
 	}
 	@Override
 	public void getRaavare(){
 		this.service.getRaavare(new defaultCallback());
 	}
 	@Override
-	public void addRecept(String receptName){
-		this.service.addRecept(receptName, new defaultCallback());
+	public void addRecept(int id, String receptName){
+		this.service.addRecept(id, receptName, new defaultCallback());
 	}
 	@Override
 	public void getRecept(){
 		this.service.getRecept(new defaultCallback());
 	}
 	@Override
-	public void addRaavareBatch(int raavareID, int maengde){
-		this.service.addRaavareBatch(raavareID, maengde, new defaultCallback());
+	public void addRaavareBatch(int id, int raavareID, int maengde){
+		this.service.addRaavareBatch(id, raavareID, maengde, new defaultCallback());
 	}
 	@Override
 	public void getRaavareBatch(){

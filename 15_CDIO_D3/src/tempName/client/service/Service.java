@@ -30,9 +30,9 @@ public interface Service extends RemoteService {
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin) throws DALException;
 	int getAdmin(int id);
 	void addMeasurement(double mm, int id);
-	void addRaavare(String rName, String deliverer);
-	void addRecept(String receptName);
-	void addRaavareBatch(int raavareID, int maengde) throws DALException;
+	void addRaavare(int id, String rName, String deliverer);
+	void addRecept(int id, String receptName);
+	void addRaavareBatch(int id, int raavareID, int maengde) throws DALException;
 	void addProduktBatch(int status, int receptID) throws DALException;
 	void updateRaavare(int id, String name, String deliverer);
 	void deleteRaavare(int id) throws DALException;

@@ -122,12 +122,16 @@ public class ReceptMenu {
 	}
 	public void addRecept(){
 		headerLabel.setText("Tilføj ny recept");
+		final Label idLabel = new Label("Indtast dit recepts ID:");
+		final TextBox id = new TextBox();
 		final Label navnLbl = new Label("Indtast recept navn:");
 		final TextBox navn = new TextBox();
 		final Button submit = new Button("Opret");
 		final Button back = new Button("<- Tilbage");
 		container.clear();
 		container.add(headerLabel);
+		container.add(idLabel);
+		container.add(id);
 		container.add(navnLbl);
 		container.add(navn);
 		container.add(submit);
@@ -138,7 +142,7 @@ public class ReceptMenu {
 				if (navn.getText().isEmpty()){
 					Window.alert("En recept skal have et navn");
 				} else {
-				mainGUI.serviceImpl.addRecept(navn.getText());
+				mainGUI.serviceImpl.addRecept(Integer.parseInt(id.getText()), navn.getText());
 				mainGUI.adminCheck(prevMenu);
 				}
 			}
