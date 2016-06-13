@@ -252,7 +252,7 @@ public class AdminMenu{
 				if (!(exists)){
 					Window.alert("Indtast venligst et gyldigt ID for en eksisterende operatør");
 				} else if (cprText.getText().length() != 11){
-					Window.alert("Dit cpr-nummer skal være 11 karakterer langt");
+					Window.alert("Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg");
 				} else if(cprText.getText().charAt(7) == '-'){
 					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
 				} else if (iniText.getText().length() > 3 || iniText.getText().length() < 2){
@@ -265,9 +265,9 @@ public class AdminMenu{
 					Window.alert("Brugernavnet kan ikke være tomt");
 				} else if (passText.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
-				} else if (passMeth.checkPassLength(passText.getText())){
+				} else if (!(passMeth.checkPassLength(passText.getText()))){
 					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
-				} else if (passMeth.checkPass(passText.getText())){
+				} else if (!(passMeth.checkPass(passText.getText()))){
 					Window.alert("Adgangskoden skal følge af DTU's adgangskode regler");
 				} else{
 					mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
@@ -338,7 +338,7 @@ public class AdminMenu{
 					Window.alert("Noget gik galt ved tjek for bruger status");
 				}
 				if (cpr.length() != 11){
-					Window.alert("Dit cpr-nummer skal være 11 karakterer langt");
+					Window.alert("Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg");
 				} else if(cpr.charAt(7) == '-'){
 					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
 				}else if (ini.length() > 3 || ini.length() < 2){
@@ -349,10 +349,10 @@ public class AdminMenu{
 					Window.alert("Brugernavnet kan ikke være tomt");
 				}else if (pwField.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
-				}else if(passMeth.checkPassLength(pwField.getText())){
+				} else if (!(passMeth.checkPassLength(pwField.getText()))){
 					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
-				}else if(passMeth.checkPass(pwField.getText())){
-					Window.alert("Adgangskoden skal følge DTU's adgangskoderegler");
+				} else if (!(passMeth.checkPass(pwField.getText()))){
+					Window.alert("Adgangskoden skal følge af DTU's adgangskode regler");
 				}else{
 					mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
 					adminMenu();						

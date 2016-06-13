@@ -50,11 +50,6 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	public void createOp(String name, String init, String cpr, String password, int admin) throws DALException{
-		if (!(passMeth.checkPass(password))) {
-			
-		} else if (!(passMeth.checkPassLength(password))){
-			
-		} else {
 		try {
 			OperatoerDTO opDTO = new OperatoerDTO();
 			opDTO.setOprNavn(name);
@@ -67,12 +62,17 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			e.printStackTrace();
 			throw e;
 		}
-		}
 	}
 
 	public String checkLogin(int id, String pass){
 		String check;
-		if (passMeth.correctUserPassword(id, pass, operatoerDAO)){
+		List<OperatoerDTO> rawList = new ArrayList<OperatoerDTO>();
+		try {
+			rawList = this.operatoerDAO.getOperatoerList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		if (passMeth.correctUserPassword(pass, rawList)){
 			check = "true";
 		} else{
 			check = "false";

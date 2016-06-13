@@ -1,11 +1,10 @@
 package tempName.shared.password;
 import java.util.ArrayList;
+import java.util.List;
 
-import tempName.server.data.daoimpl.*;
-import tempName.server.data.daointerface.DALException;
+import tempName.shared.dto.OperatoerDTO;
 public class PasswordMethods {
 	private PasswordData AD = new PasswordData();
-	private MYSQLOperatoerDAO dao;
 	private ArrayList<String> character = AD.getCharacter();
 	private boolean smallLetters;
 	private boolean kapLetters;
@@ -85,28 +84,11 @@ public class PasswordMethods {
 	/**
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
-	public boolean correctUserPassword(int iD, String password, MYSQLOperatoerDAO dao){
-		int index = -1;	
-		try {
-			for (int i = 1 ; i <= dao.getOperatoerList().size(); i++){
-				if (iD == dao.getOperatoer(i).getOprId()){
-					index = i;	
-					break;				
-				}		
-			}
-		} catch (DALException e) {		
-			System.out.println("Error in getting operator ID");
-		}
-		try {
-			if(dao.getOperatoer(index).getPassword().equals(password)){
-				return true;
-			}else{
-				return false;
-			}
-		} catch (DALException e) {
-			
-			System.out.println("Error in getting operator password");
-			System.out.println(index);
+	public boolean correctUserPassword(String password, List<OperatoerDTO> list){
+		for (int i = 0 ; i < list.size(); i++){
+			if (password.equals(list.get(i).getPassword())){
+				return true;		
+			}		
 		}
 		return false;
 	}

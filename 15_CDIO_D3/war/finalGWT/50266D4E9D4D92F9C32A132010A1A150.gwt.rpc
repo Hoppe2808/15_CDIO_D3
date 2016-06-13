@@ -1,0 +1,19 @@
+@FinalFields, false
+com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
+com.google.gwt.user.client.rpc.RpcTokenException, true, true, false, false, com.google.gwt.user.client.rpc.RpcTokenException/2345075298, 2345075298
+com.google.gwt.user.client.rpc.XsrfToken, false, false, true, true, com.google.gwt.user.client.rpc.XsrfToken/4254043109, 4254043109
+java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
+java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
+java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
+java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131
+java.util.ArrayList, true, true, false, false, java.util.ArrayList/4159755760, 4159755760
+java.util.HashMap, true, true, false, false, java.util.HashMap/1797211028, 1797211028
+java.util.LinkedHashMap, true, true, false, false, java.util.LinkedHashMap/3008245022, 3008245022
+tempName.client.service.Service, false, false, false, false, _, 155815895
+tempName.server.data.daointerface.DALException, true, true, false, false, tempName.server.data.daointerface.DALException/4197963706, 4197963706
+tempName.shared.dto.ProduktBatchDTO, true, true, false, false, tempName.shared.dto.ProduktBatchDTO/478365274, 478365274
+tempName.shared.dto.ProduktBatchKomponentDTO, true, true, false, false, tempName.shared.dto.ProduktBatchKomponentDTO/2375731812, 2375731812
+tempName.shared.dto.RaavareBatchDTO, true, true, false, false, tempName.shared.dto.RaavareBatchDTO/1748919095, 1748919095
+tempName.shared.dto.RaavareDTO, true, true, false, false, tempName.shared.dto.RaavareDTO/3218852114, 3218852114
+tempName.shared.dto.ReceptDTO, true, true, false, false, tempName.shared.dto.ReceptDTO/3194226378, 3194226378
+tempName.shared.dto.ReceptKomponentDTO, true, true, false, false, tempName.shared.dto.ReceptKomponentDTO/1697180206, 1697180206
