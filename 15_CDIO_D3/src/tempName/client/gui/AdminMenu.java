@@ -214,6 +214,12 @@ public class AdminMenu{
 
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				boolean exists = false;
+				for (int i = 0; i < operators.size(); i++){
+					if (operators.get(i).get("ID") == idText.getText()){
+						exists = true;
+					}
+				}
 				if (lb.getSelectedItemText().equals("Admin")){
 					admin = 1;
 				} else if(lb.getSelectedItemText().equals("Operatør")){
@@ -225,7 +231,9 @@ public class AdminMenu{
 				}else {
 					Window.alert("Noget gik galt ved tjek af bruger status");
 				}
-				if (cprText.getText().length() != 11){
+				if (!(exists)){
+					Window.alert("Indtast venligst et gyldigt ID for en eksisterende operatør");
+				} else if (cprText.getText().length() != 11){
 					Window.alert("Dit cpr-nummer skal være 11 karakterer langt");
 				} else if(cprText.getText().charAt(7) == '-'){
 					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
