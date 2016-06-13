@@ -6,10 +6,8 @@ import tempName.server.data.daoimpl.MYSQLProduktBatchDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareBatchDAO;
 import tempName.server.data.daoimpl.MYSQLRaavareDAO;
 import tempName.server.data.daoimpl.MYSQLReceptDAO;
-import tempName.server.data.daoimpl.MYSQLWeightDAO;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.database.Connector;
-import tempName.server.data.password.PasswordMethods;
 import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
@@ -18,26 +16,24 @@ import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.ReceptKomponentDTO;
 import tempName.shared.dto.WeightDTO;
+import tempName.shared.password.PasswordMethods;
 
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 
 public class ServiceImpl extends RemoteServiceServlet implements Service {
 
-	private MYSQLWeightDAO weightDAO = new MYSQLWeightDAO();
 	private MYSQLOperatoerDAO operatoerDAO = new MYSQLOperatoerDAO();
 	private MYSQLRaavareDAO raavareDAO = new MYSQLRaavareDAO();
 	private MYSQLReceptDAO receptDAO = new MYSQLReceptDAO();
 	private MYSQLRaavareBatchDAO raavareBatchDAO = new MYSQLRaavareBatchDAO();
 	private MYSQLProduktBatchDAO produktBatchDAO = new MYSQLProduktBatchDAO();
-	private PasswordMethods passMeth = new PasswordMethods(operatoerDAO);
+	private PasswordMethods passMeth = new PasswordMethods();
 
 	public void connectDatabase(){
 		try { 
@@ -54,7 +50,11 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	public void createOp(String name, String init, String cpr, String password, int admin) throws DALException{
-
+		if (!(passMeth.checkPass(password))) {
+			
+		} else if (!(passMeth.checkPassLength(password))){
+			
+		} else {
 		try {
 			OperatoerDTO opDTO = new OperatoerDTO();
 			opDTO.setOprNavn(name);
@@ -67,11 +67,12 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			e.printStackTrace();
 			throw e;
 		}
+		}
 	}
 
 	public String checkLogin(int id, String pass){
 		String check;
-		if (passMeth.correctUserPassword(id, pass)){
+		if (passMeth.correctUserPassword(id, pass, operatoerDAO)){
 			check = "true";
 		} else{
 			check = "false";
@@ -97,19 +98,6 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			finalData.get(i).put("AdminStatus", Integer.toString(rawList.get(i).getAdminStatus()));
 		}
 		return finalData;
-	}
-
-
-	@SuppressWarnings("unchecked")
-	public ArrayList<WeightDTO> getMeasurements(){
-		List<WeightDTO> rawList = new ArrayList<WeightDTO>();
-		try {
-			rawList = this.weightDAO.getWeightList();
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-
-		return (ArrayList<WeightDTO>) rawList;
 	}
 	@Override
 	public ArrayList<RaavareDTO> getRaavare(){
@@ -184,19 +172,6 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			e.printStackTrace();
 		}
 		return (ArrayList<ProduktBatchDTO>) rawList;
-	}
-
-	@Override
-	public void addMeasurement(double mm, int id) {
-		WeightDTO wDTO = new WeightDTO();
-		wDTO.setopID(id);
-		wDTO.setMS(mm);
-		try {
-			this.weightDAO.addWeight(wDTO);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	@Override

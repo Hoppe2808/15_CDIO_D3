@@ -27,13 +27,6 @@ public class ServiceClientImpl implements ServiceClientInt{
 
 		this.maingui = new MainGUI(this);
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void getMeasurements() {
-		this.service.getMeasurements(new defaultCallback());
-
-	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public void getOperators() {
@@ -64,10 +57,6 @@ public class ServiceClientImpl implements ServiceClientInt{
 	@Override
 	public void getAdmin(int id){
 		this.service.getAdmin(id, new defaultCallback());
-	}
-	@Override
-	public void addMeasurement(double mm, int id){
-		this.service.addMeasurement(mm, id, new updateCallback());
 	}
 	@Override
 	public void addRaavare(int id, String rName, String deliverer){

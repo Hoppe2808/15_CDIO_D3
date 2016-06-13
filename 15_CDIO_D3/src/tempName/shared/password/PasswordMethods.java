@@ -1,5 +1,6 @@
-package tempName.server.data.password;
+package tempName.shared.password;
 import java.util.ArrayList;
+
 import tempName.server.data.daoimpl.*;
 import tempName.server.data.daointerface.DALException;
 public class PasswordMethods {
@@ -11,9 +12,6 @@ public class PasswordMethods {
 	private boolean numbers;
 	private boolean symbols;
 	private int different;
-	public PasswordMethods(MYSQLOperatoerDAO dao){
-		this.dao = dao;
-	}
 	/**
 	 * @param password Indsæt adgangskoden som skal kontrolleres
 	 * @return true hvis den er på 6 tegn eller derover
@@ -87,7 +85,7 @@ public class PasswordMethods {
 	/**
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
-	public boolean correctUserPassword(int iD, String password){
+	public boolean correctUserPassword(int iD, String password, MYSQLOperatoerDAO dao){
 		int index = -1;	
 		try {
 			for (int i = 1 ; i <= dao.getOperatoerList().size(); i++){
@@ -111,9 +109,5 @@ public class PasswordMethods {
 			System.out.println(index);
 		}
 		return false;
-	}
-	public String getNewPassword(int passwordLength){
-		String password = AD.getNewKode(passwordLength);
-		return password;
 	}
 }

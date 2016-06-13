@@ -17,14 +17,12 @@ import tempName.shared.dto.WeightDTO;
  * The async counterpart of <code>GreetingService</code>.
  */
 public interface ServiceAsync {
-	void getMeasurements(AsyncCallback<ArrayList<WeightDTO>> callback);
 	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);
 	void connectDatabase(AsyncCallback callback);
 	void createOp(String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);
 	void getAdmin(int id, AsyncCallback callback);
-	void addMeasurement(double mm, int id, AsyncCallback callback);
 	void addRaavare(int id, String rName, String deliverer, AsyncCallback callback);
 	void getRaavare(AsyncCallback<ArrayList<RaavareDTO>> callback);
 	void addRecept(int id, String receptName, AsyncCallback callback);

@@ -29,6 +29,7 @@ import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.ReceptKomponentDTO;
+import tempName.shared.password.PasswordMethods;
 
 public class AdminMenu{
 
@@ -42,6 +43,7 @@ public class AdminMenu{
 	private ArrayList<ReceptDTO> recept;
 	private ArrayList<RaavareBatchDTO> raavareBatch;
 	private ArrayList<ProduktBatchDTO> produktBatch;
+	private PasswordMethods passMeth = new PasswordMethods();
 
 	public AdminMenu(VerticalPanel container, MainGUI mainGUI, int id, ArrayList<HashMap> operators){
 
@@ -263,8 +265,10 @@ public class AdminMenu{
 					Window.alert("Brugernavnet kan ikke være tomt");
 				} else if (passText.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
-				} else if (passText.getText().length()<6){
+				} else if (passMeth.checkPassLength(passText.getText())){
 					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
+				} else if (passMeth.checkPass(passText.getText())){
+					Window.alert("Adgangskoden skal følge af DTU's adgangskode regler");
 				} else{
 					mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
 				}
@@ -345,8 +349,10 @@ public class AdminMenu{
 					Window.alert("Brugernavnet kan ikke være tomt");
 				}else if (pwField.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
-				}else if(pwField.getText().length()<6){
+				}else if(passMeth.checkPassLength(pwField.getText())){
 					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
+				}else if(passMeth.checkPass(pwField.getText())){
+					Window.alert("Adgangskoden skal følge DTU's adgangskoderegler");
 				}else{
 					mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
 					adminMenu();						

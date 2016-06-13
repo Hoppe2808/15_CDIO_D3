@@ -20,7 +20,6 @@ import tempName.shared.dto.WeightDTO;
  */
 @RemoteServiceRelativePath("greet")
 public interface Service extends RemoteService {
-	ArrayList<WeightDTO> getMeasurements();
 	ArrayList<HashMap<String, String>> getOperators();
 	ArrayList<RaavareDTO> getRaavare();
 	ArrayList<ReceptDTO> getRecept();
@@ -33,7 +32,6 @@ public interface Service extends RemoteService {
 	void createOp(String name, String ini, String cpr, String password, int admin) throws DALException;
 	void updateOp(int id, String name, String ini, String cpr, String password, int admin) throws DALException;
 	int getAdmin(int id);
-	void addMeasurement(double mm, int id);
 	void addRaavare(int id, String rName, String deliverer) throws DALException;
 	void addRecept(int id, String receptName) throws DALException;
 	void addRaavareBatch(int id, int raavareID, int maengde) throws DALException;
