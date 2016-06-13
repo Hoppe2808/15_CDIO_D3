@@ -200,7 +200,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	@Override
-	public void addRaavare(int id, String rName, String deliverer) {
+	public void addRaavare(int id, String rName, String deliverer) throws DALException {
 		RaavareDTO rDTO = new RaavareDTO();
 		rDTO.setrID(id);
 		rDTO.setrName(rName);
@@ -209,11 +209,12 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			this.raavareDAO.addRaavare(rDTO);
 		} catch (DALException e){
 			e.printStackTrace();
+			throw e;
 		}
 		
 	}
 	@Override
-	public void addRecept(int id, String receptName){
+	public void addRecept(int id, String receptName) throws DALException{
 		ReceptDTO rDTO = new ReceptDTO();
 		rDTO.setReceptId(id);
 		rDTO.setReceptName(receptName);
@@ -221,6 +222,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 			this.receptDAO.createRecept(rDTO);
 		}catch (DALException e){
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	@Override

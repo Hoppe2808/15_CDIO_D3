@@ -141,9 +141,11 @@ public class ReceptMenu {
 			public void onClick(ClickEvent event) {
 				if (navn.getText().isEmpty()){
 					Window.alert("En recept skal have et navn");
+				} else if (id.getText().matches("[a-zA-Z ]*\\d+.*")){
+					Window.alert("ID skal være et tal");
 				} else {
-				mainGUI.serviceImpl.addRecept(Integer.parseInt(id.getText()), navn.getText());
-				mainGUI.adminCheck(prevMenu);
+					mainGUI.serviceImpl.addRecept(Integer.parseInt(id.getText()), navn.getText());
+					mainGUI.adminCheck(prevMenu);
 				}
 			}
 		});

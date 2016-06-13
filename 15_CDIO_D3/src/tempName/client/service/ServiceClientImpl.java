@@ -242,11 +242,14 @@ public class ServiceClientImpl implements ServiceClientInt{
 		public void onFailure(Throwable caught) {
 				String message = caught.getMessage();
 				String constraint = "CONSTRAINT";
+				String duplicate = "DUPLICATE";
 				if(message.toLowerCase().contains(constraint.toLowerCase())){
 					Window.alert("Kan ikke ændre i databasen, fordi der er et problem med fremmednøgler." +
 				" Dette kan enten betyde, at du prøver at slette noget, der findes i en anden tabel, " +
 							"eller at du prøver at bruge et ID fra en anden tabel, hvor ID'et ikke eksisterer");
-				}		
+				}else if(message.toLowerCase().contains(duplicate.toLowerCase())){
+					Window.alert("Kunne ikke oprette i databasen, grundet valgte ID allerede eksisterer");
+				}
 		}
 
 		@Override

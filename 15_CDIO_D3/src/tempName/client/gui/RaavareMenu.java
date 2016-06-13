@@ -152,6 +152,8 @@ public class RaavareMenu{
 					Window.alert("En råvare skal have et navn");
 				} else if (leverandoer.getText().isEmpty()){
 					Window.alert("En råvare skal have en leverandør");
+				} else if (id.getText().matches("[a-zA-Z ]*\\d+.*")){
+					Window.alert("ID skal være et tal");
 				} else{
 					mainGUI.serviceImpl.addRaavare(Integer.parseInt(id.getText()), navn.getText(), leverandoer.getText());
 					mainGUI.adminCheck(prevMenu);
