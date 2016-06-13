@@ -263,7 +263,9 @@ public class AdminMenu{
 					Window.alert("Brugernavnet kan ikke være tomt");
 				} else if (passText.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
-				} else {
+				} else if (passText.getText().length()<6){
+					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
+				} else{
 					mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
 				}
 			}
@@ -341,8 +343,10 @@ public class AdminMenu{
 					Window.alert("Dine initialer må ikke indeholde tal");
 				}else if (username.getText().isEmpty()){
 					Window.alert("Brugernavnet kan ikke være tomt");
-				} else if (pwField.getText().isEmpty()){
+				}else if (pwField.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
+				}else if(pwField.getText().length()<6){
+					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
 				}else{
 					mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
 					adminMenu();						
