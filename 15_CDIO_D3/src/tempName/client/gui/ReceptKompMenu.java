@@ -196,14 +196,14 @@ public class ReceptKompMenu {
 				mainGUI.adminCheck(prevMenu);
 			}
 		});
-
+		
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				if (nomNetto.getText().length() > 5 || nomNetto.getText().substring(0, nomNetto.getText().indexOf(".")).length() > 2 ||
-						nomNetto.getText().substring(nomNetto.getText().lastIndexOf(".")).length() > 2){
+				if (nomNetto.getText().length() > 5 || nomNetto.getText().substring(0, nomNetto.getText().indexOf(".")).length() > 3 ||
+						nomNetto.getText().substring(nomNetto.getText().lastIndexOf(".")).length() > 3){
 					Window.alert("Nom-netto må højst være 4 karakterer, eksclusiv punktum, hvor 2 skal være decimaltal");
-				} else if(tolerance.getText().length() > 4 || tolerance.getText().substring(0, tolerance.getText().indexOf(".")).length() > 2 ||
-						tolerance.getText().substring(tolerance.getText().lastIndexOf(".")).length() >= 2){
+				} else if(tolerance.getText().length() > 4 || tolerance.getText().substring(0, tolerance.getText().indexOf(".")).length() > 3 ||
+						tolerance.getText().substring(tolerance.getText().lastIndexOf(".")).length() > 2){
 					Window.alert("Tolerancen må højst være 3 karakterer, eksclusiv punktum, hvor 1 skal være decimaltal");
 				} else {
 					for (int i = 0; i < receptKomponent.size(); i++){
