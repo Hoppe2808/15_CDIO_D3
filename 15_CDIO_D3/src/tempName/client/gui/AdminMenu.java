@@ -280,6 +280,7 @@ public class AdminMenu{
 	private boolean checkCPR(String CPR) {
 		if (CPR.length() != 11){
 			message = "Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg";
+			return false;
 		}else if(!(CPR.charAt(6) == '-')){
 			message = "Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444";
 			return false;
