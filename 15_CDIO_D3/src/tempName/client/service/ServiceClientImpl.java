@@ -1,8 +1,6 @@
 package tempName.client.service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -28,7 +26,6 @@ public class ServiceClientImpl implements ServiceClientInt{
 
 		this.maingui = new MainGUI(this);
 	}
-	@SuppressWarnings("unchecked")
 	@Override
 	public void getOperators() {
 		this.service.getOperators(new defaultCallback());
@@ -224,7 +221,6 @@ public class ServiceClientImpl implements ServiceClientInt{
 				Window.alert("Operatør blev redigeret");
 			}
 		}
-		
 	}
 	private class updateCallback implements AsyncCallback{
 
@@ -248,7 +244,4 @@ public class ServiceClientImpl implements ServiceClientInt{
 		}
 		
 	}
-
-
-
 }

@@ -15,12 +15,10 @@ import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.ReceptKomponentDTO;
-import tempName.shared.dto.WeightDTO;
 import tempName.shared.password.PasswordMethods;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;

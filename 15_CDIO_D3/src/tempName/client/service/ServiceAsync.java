@@ -1,7 +1,6 @@
 package tempName.client.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -12,11 +11,7 @@ import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.ReceptKomponentDTO;
-import tempName.shared.dto.WeightDTO;
 
-/**
- * The async counterpart of <code>GreetingService</code>.
- */
 public interface ServiceAsync {
 	void getOperators(AsyncCallback<ArrayList<OperatoerDTO>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);

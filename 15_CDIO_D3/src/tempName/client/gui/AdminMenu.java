@@ -125,6 +125,7 @@ public class AdminMenu{
 	private void inspectOp() {
 		final Label inspectHeader = new Label("Inspicér en operatør");
 		final Label oper = new Label("");
+		final Label inspectLbl = new Label("Vælg det ID, for den operatør du vil inspicere");
 		final Button inspect = new Button("Inspicér");
 		final Button back = new Button("<- Tilbage");
 		final TextBox lb = new TextBox();
@@ -132,6 +133,7 @@ public class AdminMenu{
 		container.setSpacing(9);
 		container.add(inspectHeader);
 		container.add(oper);
+		container.add(inspectLbl);
 		container.add(lb);
 		container.add(inspect);
 		container.add(back);
@@ -143,18 +145,22 @@ public class AdminMenu{
 		});
 		inspect.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
-				int answer = Integer.parseInt(lb.getText());
-				boolean found = false;
-				for (int i = 0; i < operators.size(); i++){
-					if (operators.get(i).getOprId() == answer){
-						oper.setText(operators.get(i).getOprNavn() + " - " + operators.get(i).getCpr() + " - " + operators.get(i).getPassword() + " - " + operators.get(i).getIni()
-								+ " - " + operators.get(i).getAdminStatus());
-						found = true;
-					} 
-				}				
-				if (!found){
-					oper.setText("Ingen operatør med ID: " + answer + " blev fundet. Indtast venligst et gyldigt ID.");
-				}		
+				if (lb.getText().matches("[a-zA-Z ]*\\d+.*")){
+					int answer = Integer.parseInt(lb.getText());
+					boolean found = false;
+					for (int i = 0; i < operators.size(); i++){
+						if (operators.get(i).getOprId() == answer){
+							oper.setText(operators.get(i).getOprNavn() + " - " + operators.get(i).getCpr() + " - " + operators.get(i).getPassword() + " - " + operators.get(i).getIni()
+									+ " - " + operators.get(i).getAdminStatus());
+							found = true;
+						} 
+					}				
+					if (!found){
+						oper.setText("Ingen operatør med ID: " + answer + " blev fundet. Indtast venligst et gyldigt ID.");
+					}	
+				} else {
+					Window.alert("Venligst indtast et tal, der representerer en operatørs ID");
+				}
 			}
 		});
 		lb.addKeyDownHandler(new KeyDownHandler() {
@@ -264,7 +270,7 @@ public class AdminMenu{
 			}
 		});
 	}
-	
+
 	private boolean checkCPR(String CPR) {
 		if (CPR.length() != 11){
 			message = "Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg";
@@ -279,16 +285,16 @@ public class AdminMenu{
 		int a = Integer.parseInt(CPR.substring(0, 2));
 		int b = Integer.parseInt(CPR.substring(2, 4));
 		System.out.println(a+" "+b);
-		
+
 		if(a>31||b>12||a<=0||b<=0){
 			message = "Cpr-nummeret skal indeholde en gyldig dato";
 			return false;
 		}
-		
-		
+
+
 		return true;
 	}
-	
+
 	private void createOp() {
 		final Label headerLabel = new Label("Opret en bruger");
 		headerLabel.addStyleName("HeaderLabel");
