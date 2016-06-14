@@ -15,6 +15,8 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
@@ -64,6 +66,7 @@ public class AdminMenu{
 		final Button produktBatchMenu = new Button("Produktbatch");
 		final Button produktKompMenu = new Button("Produktbatchkompent");
 		final Button receptKompMenu = new Button("Receptkomponent");
+		final Button ase = new Button("Start ASEN");
 		final Button logout = new Button("Log ud");
 
 		container.clear();
@@ -78,6 +81,7 @@ public class AdminMenu{
 		container.add(produktBatchMenu);
 		container.add(produktKompMenu);
 		container.add(receptKompMenu);
+		container.add(ase);
 		container.add(logout);
 
 		createOp.addClickHandler(new ClickHandler() {

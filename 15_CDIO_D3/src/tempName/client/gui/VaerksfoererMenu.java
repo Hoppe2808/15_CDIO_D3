@@ -22,8 +22,6 @@ import tempName.shared.dto.WeightDTO;
 public class VaerksfoererMenu{
 	
 	private VerticalPanel container;
-	private ArrayList<RaavareBatchDTO> raavareBatch;
-	private ArrayList<ProduktBatchDTO> produktBatch;
 	private MainGUI mainGUI;
 	
 	public VaerksfoererMenu(VerticalPanel container, MainGUI mainGUI){
@@ -38,12 +36,14 @@ public class VaerksfoererMenu{
 		foremanHeader.getElement().setAttribute("align", "center");
 		final Button raavareMenu = new Button("Råvarebatch");
 		final Button produktBatchMenu = new Button("Produktbatch");
+		final Button ase = new Button("Start ASEN");
 		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);
 		container.add(foremanHeader);
 		container.add(raavareMenu);
 		container.add(produktBatchMenu);
+		container.add(ase);
 		container.add(logout);
 
 		raavareMenu.addClickHandler(new ClickHandler() {
@@ -64,12 +64,10 @@ public class VaerksfoererMenu{
 		});
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
-		this.raavareBatch = raavareBatch;
 		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 4, mainGUI);
 		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
-		this.produktBatch = produktBatch;
 		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 4, mainGUI);
 		produktBatchMenu.produktBatch();
 	}

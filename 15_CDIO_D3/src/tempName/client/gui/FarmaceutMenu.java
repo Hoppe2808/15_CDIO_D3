@@ -23,10 +23,6 @@ import tempName.shared.dto.WeightDTO;
 
 public class FarmaceutMenu{
 	private VerticalPanel container;
-	private ArrayList<RaavareDTO> raavare;
-	private ArrayList<ReceptDTO> recept;
-	private ArrayList<RaavareBatchDTO> raavareBatch;
-	private ArrayList<ProduktBatchDTO> produktBatch;
 	private MainGUI mainGUI;
 
 	public FarmaceutMenu(VerticalPanel container, MainGUI mainGUI){
@@ -44,6 +40,7 @@ public class FarmaceutMenu{
 		final Button produktBatchMenu = new Button("Produktbatch");
 		final Button produktKompMenu = new Button("Produktbatchkomponent");
 		final Button receptKompMenu = new Button("Receptkomponent");
+		final Button ase = new Button("Start ASEN");
 		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);
@@ -54,6 +51,7 @@ public class FarmaceutMenu{
 		container.add(produktBatchMenu);
 		container.add(produktKompMenu);
 		container.add(receptKompMenu);
+		container.add(ase);
 		container.add(logout);
 
 		raavaremenu.addClickHandler(new ClickHandler() {
@@ -94,23 +92,19 @@ public class FarmaceutMenu{
 		});
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
-		this.raavareBatch = raavareBatch;
 		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 3, mainGUI);
 		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
-		this.produktBatch = produktBatch;
 		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 3, mainGUI);
 		produktBatchMenu.produktBatch();
 	}
 
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
-		this.raavare = raavare;
 		RaavareMenu raavareMenu = new RaavareMenu(container, raavare, 3, mainGUI);
 		raavareMenu.raavare();
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
-		this.recept = recept;
 		ReceptMenu receptMenu = new ReceptMenu(container, recept, 3, mainGUI);
 		receptMenu.recept();
 	}
