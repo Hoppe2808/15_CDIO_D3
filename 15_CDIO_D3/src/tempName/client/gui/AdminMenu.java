@@ -38,7 +38,7 @@ public class AdminMenu{
 	private MainGUI mainGUI;
 	private int id;
 	private int admin;
-	private String ini, cpr, name, password;
+	private String ini, cpr, name, password, message;
 	private ArrayList<OperatoerDTO> operators;
 	private PasswordMethods passMeth = new PasswordMethods();
 
@@ -247,13 +247,11 @@ public class AdminMenu{
 				}
 				if (!(exists)){
 					Window.alert("Indtast venligst et gyldigt ID for en eksisterende operatør");
-				} else if (cprText.getText().length() != 11){
-					Window.alert("Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg");
-				} else if(cprText.getText().charAt(7) == '-'){
-					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
+				} else if(checkCPR(cprText.getText())){
+					Window.alert(message);
 				} else if (iniText.getText().length() > 3 || iniText.getText().length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
-				}else if(iniText.getText().matches("[a-zA-Z ]*\\d+.*")){
+				} else if(iniText.getText().matches("[a-zA-Z ]*\\d+.*")){
 					Window.alert("Dine initialer må ikke indeholde tal");
 				} else if (idText.getText().isEmpty()){
 					Window.alert("Du skal indtaste ID'et for den bruger du vil redigere");
@@ -276,6 +274,30 @@ public class AdminMenu{
 			}
 		});
 	}
+	
+	private boolean checkCPR(String CPR) {
+		if (CPR.length() != 11){
+			message = "Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg";
+		}else if(!(CPR.charAt(6) == '-')){
+			message = "Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444";
+			return false;
+		}else if(!(CPR.substring(0,5).matches("[0-9]+") && CPR.substring(7,10).matches("[0-9]+"))){
+			message = "Cpr-nummeret skal kun indholde tal og en bindestreg";
+			return false;
+		}
+		int a = Integer.parseInt(CPR.substring(0, 2));
+		int b = Integer.parseInt(CPR.substring(2, 4));
+		System.out.println(a+" "+b);
+		
+		if(a>31||b>12||a<=0||b<=0){
+			message = "Cpr-nummeret skal indeholde en gyldig dato";
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
 	private void createOp() {
 		final Label headerLabel = new Label("Opret en bruger");
 		headerLabel.addStyleName("HeaderLabel");
@@ -332,17 +354,15 @@ public class AdminMenu{
 				}else {
 					Window.alert("Noget gik galt ved tjek for bruger status");
 				}
-				if (cpr.length() != 11){
-					Window.alert("Dit cpr-nummer skal være 11 karakterer langt, inklusiv bindestreg");
-				} else if(cpr.charAt(7) == '-'){
-					Window.alert("Cpr-nummeret skal være indskrevet på korrekt form. Ek.s: 112233-4444");
-				}else if (ini.length() > 3 || ini.length() < 2){
+				if (checkCPR(cpr)){
+					Window.alert(message);
+				} else if (ini.length() > 3 || ini.length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
-				}else if(ini.matches("[a-zA-Z ]*\\d+.*")){
+				} else if(ini.matches("[a-zA-Z ]*\\d+.*")){
 					Window.alert("Dine initialer må ikke indeholde tal");
-				}else if (username.getText().isEmpty()){
+				} else if (username.getText().isEmpty()){
 					Window.alert("Brugernavnet kan ikke være tomt");
-				}else if (pwField.getText().isEmpty()){
+				} else if (pwField.getText().isEmpty()){
 					Window.alert("Adgangskoden kan ikke være tom");
 				} else if (!(passMeth.checkPassLength(pwField.getText()))){
 					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
