@@ -1,17 +1,14 @@
 package tempName.client.gui;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
@@ -19,14 +16,9 @@ import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.ReceptKomponentDTO;
-import tempName.shared.dto.WeightDTO;
 
 public class FarmaceutMenu{
 	private VerticalPanel container;
-	private ArrayList<RaavareDTO> raavare;
-	private ArrayList<ReceptDTO> recept;
-	private ArrayList<RaavareBatchDTO> raavareBatch;
-	private ArrayList<ProduktBatchDTO> produktBatch;
 	private MainGUI mainGUI;
 
 	public FarmaceutMenu(VerticalPanel container, MainGUI mainGUI){
@@ -94,23 +86,19 @@ public class FarmaceutMenu{
 		});
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
-		this.raavareBatch = raavareBatch;
 		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 3, mainGUI);
 		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
-		this.produktBatch = produktBatch;
 		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 3, mainGUI);
 		produktBatchMenu.produktBatch();
 	}
 
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
-		this.raavare = raavare;
 		RaavareMenu raavareMenu = new RaavareMenu(container, raavare, 3, mainGUI);
 		raavareMenu.raavare();
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
-		this.recept = recept;
 		ReceptMenu receptMenu = new ReceptMenu(container, recept, 3, mainGUI);
 		receptMenu.recept();
 	}

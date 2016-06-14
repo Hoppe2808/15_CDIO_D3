@@ -22,8 +22,6 @@ import tempName.shared.dto.WeightDTO;
 public class VaerksfoererMenu{
 	
 	private VerticalPanel container;
-	private ArrayList<RaavareBatchDTO> raavareBatch;
-	private ArrayList<ProduktBatchDTO> produktBatch;
 	private MainGUI mainGUI;
 	
 	public VaerksfoererMenu(VerticalPanel container, MainGUI mainGUI){
@@ -64,12 +62,10 @@ public class VaerksfoererMenu{
 		});
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
-		this.raavareBatch = raavareBatch;
 		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 4, mainGUI);
 		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
-		this.produktBatch = produktBatch;
 		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 4, mainGUI);
 		produktBatchMenu.produktBatch();
 	}
