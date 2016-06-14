@@ -1,30 +1,19 @@
 package tempName.client.gui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.view.client.ListDataProvider;
 
-import tempName.server.data.daointerface.DALException;
 import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
@@ -38,9 +27,8 @@ public class AdminMenu{
 
 	private VerticalPanel container;
 	private MainGUI mainGUI;
-	private int id;
-	private int admin;
-	private String ini, cpr, name, password, message;
+	private int id, admin;
+	private String message;
 	private ArrayList<OperatoerDTO> operators;
 	private PasswordMethods passMeth = new PasswordMethods();
 
@@ -249,7 +237,7 @@ public class AdminMenu{
 				}
 				if (!(exists)){
 					Window.alert("Indtast venligst et gyldigt ID for en eksisterende operatør");
-				} else if(checkCPR(cprText.getText())){
+				} else if(!(checkCPR(cprText.getText()))){
 					Window.alert(message);
 				} else if (iniText.getText().length() > 3 || iniText.getText().length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
@@ -342,10 +330,6 @@ public class AdminMenu{
 		submitButton.addStyleName("sendButton");
 		submitButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				name = username.getText();
-				ini = iniField.getText();
-				cpr = cprField.getText();
-				password = pwField.getText();
 				if (lb.getSelectedItemText().equals("Admin")){
 					admin = 1;
 				} else if(lb.getSelectedItemText().equals("Operatør")){
@@ -357,11 +341,11 @@ public class AdminMenu{
 				}else {
 					Window.alert("Noget gik galt ved tjek for bruger status");
 				}
-				if (checkCPR(cpr)){
+				if (!(checkCPR(cprField.getText()))){
 					Window.alert(message);
-				} else if (ini.length() > 3 || ini.length() < 2){
+				} else if (iniField.getText().length() > 3 || iniField.getText().length() < 2){
 					Window.alert("Dine initialer skal være mellem 2 og 3 karakterer");
-				} else if(ini.matches("[a-zA-Z ]*\\d+.*")){
+				} else if(iniField.getText().matches("[a-zA-Z ]*\\d+.*")){
 					Window.alert("Dine initialer må ikke indeholde tal");
 				} else if (username.getText().isEmpty()){
 					Window.alert("Brugernavnet kan ikke være tomt");
@@ -372,7 +356,7 @@ public class AdminMenu{
 				} else if (!(passMeth.checkPass(pwField.getText()))){
 					Window.alert("Adgangskoden skal følge af DTU's adgangskode regler");
 				}else{
-					mainGUI.serviceImpl.createOp(name, ini, cpr, password, admin);
+					mainGUI.serviceImpl.createOp(username.getText(), iniField.getText(), cprField.getText(), pwField.getText(), admin);
 					adminMenu();						
 				}
 			}
