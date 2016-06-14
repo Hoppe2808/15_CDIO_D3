@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.server.data.daointerface.DALException;
+import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
@@ -38,14 +39,10 @@ public class AdminMenu{
 	private int id;
 	private int admin;
 	private String ini, cpr, name, password;
-	private ArrayList<HashMap> operators;
-	private ArrayList<RaavareDTO> raavare;
-	private ArrayList<ReceptDTO> recept;
-	private ArrayList<RaavareBatchDTO> raavareBatch;
-	private ArrayList<ProduktBatchDTO> produktBatch;
+	private ArrayList<OperatoerDTO> operators;
 	private PasswordMethods passMeth = new PasswordMethods();
 
-	public AdminMenu(VerticalPanel container, MainGUI mainGUI, int id, ArrayList<HashMap> operators){
+	public AdminMenu(VerticalPanel container, MainGUI mainGUI, int id, ArrayList<OperatoerDTO> operators){
 
 		this.container = container;
 		this.mainGUI = mainGUI;
@@ -54,7 +51,7 @@ public class AdminMenu{
 	}
 
 	public void adminMenu(){
-
+		mainGUI.serviceImpl.getOperators();
 		final Label adminHeader = new Label("Administator Menu");
 		adminHeader.addStyleName("HeaderLabel");
 		adminHeader.getElement().setAttribute("align", "center");
@@ -95,7 +92,7 @@ public class AdminMenu{
 		});
 		inspectOp.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				mainGUI.serviceImpl.getOperators();
+				inspectOp();
 			}
 		});
 		raavaremenu.addClickHandler(new ClickHandler() {
@@ -159,9 +156,9 @@ public class AdminMenu{
 				int answer = Integer.parseInt(lb.getText());
 				boolean found = false;
 				for (int i = 0; i < operators.size(); i++){
-					if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
-						oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials")
-								+ " - " + (String) operators.get(i).get("AdminStatus"));
+					if (operators.get(i).getOprId() == answer){
+						oper.setText(operators.get(i).getOprNavn() + " - " + operators.get(i).getCpr() + " - " + operators.get(i).getPassword() + " - " + operators.get(i).getIni()
+								+ " - " + operators.get(i).getAdminStatus());
 						found = true;
 					} 
 				}				
@@ -178,9 +175,9 @@ public class AdminMenu{
 					int answer = Integer.parseInt(lb.getText());
 					boolean found = false;
 					for (int i = 0; i < operators.size(); i++){
-						if (Integer.parseInt((String) operators.get(i).get("ID")) == answer){
-							oper.setText((String) operators.get(i).get("Username") + " - " + (String) operators.get(i).get("cpr") + " - " + (String) operators.get(i).get("Password") + " - " + (String) operators.get(i).get("Initials")
-									+ " - " + (String) operators.get(i).get("AdminStatus"));
+						if (operators.get(i).getOprId() == answer){
+							oper.setText(operators.get(i).getOprNavn() + " - " + operators.get(i).getCpr() + " - " + operators.get(i).getPassword() + " - " + operators.get(i).getIni()
+									+ " - " + operators.get(i).getAdminStatus());
 							found = true;
 						} 
 					}				
@@ -229,12 +226,11 @@ public class AdminMenu{
 		container.add(lb);
 		container.add(submit);
 		container.add(back);
-
 		submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				boolean exists = false;
 				for (int i = 0; i < operators.size(); i++){
-					if (operators.get(i).get("ID") == idText.getText()){
+					if (operators.get(i).getOprId() == Integer.parseInt(idText.getText())){
 						exists = true;
 					}
 				}
@@ -268,13 +264,12 @@ public class AdminMenu{
 				} else if (!(passMeth.checkPassLength(passText.getText()))){
 					Window.alert("Adgangskoden skal bestå af mindst 6 cifre");
 				} else if (!(passMeth.checkPass(passText.getText()))){
-					Window.alert("Adgangskoden skal følge af DTU's adgangskode regler");
+					Window.alert("Adgangskoden skal følge DTU's adgangskode regler");
 				} else{
 					mainGUI.serviceImpl.updateOp(Integer.parseInt(idText.getText()), userText.getText(), iniText.getText(), cprText.getText(), passText.getText(), admin);
 				}
 			}
 		});
-
 		back.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				adminMenu();
@@ -370,26 +365,21 @@ public class AdminMenu{
 		username.selectAll();
 	}
 	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
-		this.raavareBatch = raavareBatch;
 		RaavareBatchMenu raavareBatchMenu = new RaavareBatchMenu(container, raavareBatch, 1, mainGUI);
 		raavareBatchMenu.raavareBatch();
 	}
 	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
-		this.produktBatch = produktBatch;
 		ProduktBatchMenu produktBatchMenu = new ProduktBatchMenu(container, produktBatch, 1, mainGUI);
 		produktBatchMenu.produktBatch();
 	}
-	public void updateOperators(ArrayList<HashMap> operators){
+	public void updateOperators(ArrayList<OperatoerDTO> operators){
 		this.operators = operators;
-		inspectOp();
 	}
 	public void updateRaavare(ArrayList<RaavareDTO> raavare){
-		this.raavare = raavare;
 		RaavareMenu raavareMenu = new RaavareMenu(container, raavare, 1, mainGUI);
 		raavareMenu.raavare();
 	}
 	public void updateRecept(ArrayList<ReceptDTO> recept){
-		this.recept = recept;
 		ReceptMenu receptMenu = new ReceptMenu(container, recept, 1, mainGUI);
 		receptMenu.recept();
 	}

@@ -1,7 +1,6 @@
 package tempName.client.gui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
@@ -17,14 +16,15 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 import tempName.client.service.ServiceClientImpl;
+import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
+import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
-import tempName.shared.dto.WeightDTO;
+import tempName.shared.dto.ReceptKomponentDTO;
 
 public class MainGUI extends Composite {
 	private String name;
@@ -34,13 +34,8 @@ public class MainGUI extends Composite {
 	private int menu;
 	protected ServiceClientImpl serviceImpl;
 	private VerticalPanel container = new VerticalPanel();
-	private ArrayList<WeightDTO> measurements = new ArrayList<WeightDTO>();
-	private ArrayList<HashMap> operators = new ArrayList<HashMap>();
-	private ArrayList<RaavareDTO> raavare = new ArrayList<RaavareDTO>();
-	private ArrayList<ReceptDTO> recept = new ArrayList<ReceptDTO>();
-	private ArrayList<RaavareBatchDTO> raavareBatch = new ArrayList<RaavareBatchDTO>();
-	private ArrayList<ProduktBatchDTO> produktBatch = new ArrayList<ProduktBatchDTO>();
 	private FarmaceutMenu faMenu = new FarmaceutMenu(container, this);
+	private ArrayList<OperatoerDTO> operators = new ArrayList<OperatoerDTO>();
 	private AdminMenu AM = new AdminMenu(container, this, id, operators);
 	private VaerksfoererMenu vaMenu = new VaerksfoererMenu(container, this);
 	private Label loginError = new Label();
@@ -139,8 +134,8 @@ public class MainGUI extends Composite {
 	}
 	public void adminCheck(int admin){
 		if (admin == 1){
-			AM.adminMenu();
 			menu = 1;
+			AM.adminMenu();
 		} else if (admin == 2){
 			loginError.setText("En operatør kan ikke logge ind her");
 		} else if (admin == 3){
@@ -151,28 +146,24 @@ public class MainGUI extends Composite {
 			vaMenu.foremanMenu();
 		}
 	}
-	public void updateOperators(ArrayList op){
-		operators = op;
-		AM.updateOperators(operators);
+	public void updateOperators(ArrayList<OperatoerDTO> op){
+		AM.updateOperators(op);
 	}
-	public void updateRaavare(ArrayList raavare){
-		this.raavare = raavare;
+	public void updateRaavare(ArrayList<RaavareDTO> raavare){
 		if (menu == 1){
 			AM.updateRaavare(raavare);
 		}else if (menu == 2){
 			faMenu.updateRaavare(raavare);
 		}
 	}
-	public void updateRecept(ArrayList recept){
-		this.recept = recept;
+	public void updateRecept(ArrayList<ReceptDTO> recept){
 		if (menu == 1){
 			AM.updateRecept(recept);
 		}else if (menu == 2){
 			faMenu.updateRecept(recept);
 		}
 	}
-	public void updateRaavareBatch(ArrayList raavareBatch){
-		this.raavareBatch = raavareBatch;
+	public void updateRaavareBatch(ArrayList<RaavareBatchDTO> raavareBatch){
 		if (menu == 1){
 			AM.updateRaavareBatch(raavareBatch);
 		}else if (menu == 2){
@@ -181,8 +172,7 @@ public class MainGUI extends Composite {
 			vaMenu.updateRaavareBatch(raavareBatch);
 		}
 	}
-	public void updateProduktBatch(ArrayList produktBatch){
-		this.produktBatch = produktBatch;
+	public void updateProduktBatch(ArrayList<ProduktBatchDTO> produktBatch){
 		if (menu == 1){
 			AM.updateProduktBatch(produktBatch);
 		}else if (menu == 2){
@@ -191,14 +181,14 @@ public class MainGUI extends Composite {
 			vaMenu.updateProduktBatch(produktBatch);
 		}
 	}
-	public void updateProduktBatchKomp(ArrayList produktKomp){
+	public void updateProduktBatchKomp(ArrayList<ProduktBatchKomponentDTO> produktKomp){
 		if (menu == 1){
 			AM.updateProduktKomp(produktKomp);
 		} else if (menu == 2){
 			faMenu.updateProduktKomp(produktKomp);
 		}
 	}
-	public void updateReceptKomp(ArrayList receptKomp){
+	public void updateReceptKomp(ArrayList<ReceptKomponentDTO> receptKomp){
 		if (menu == 1){
 			AM.updateReceptKomp(receptKomp);
 		} else if (menu == 2){

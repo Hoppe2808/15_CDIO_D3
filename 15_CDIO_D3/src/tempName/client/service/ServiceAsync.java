@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
@@ -17,7 +18,7 @@ import tempName.shared.dto.WeightDTO;
  * The async counterpart of <code>GreetingService</code>.
  */
 public interface ServiceAsync {
-	void getOperators(AsyncCallback<ArrayList<HashMap<String, String>>> callback);
+	void getOperators(AsyncCallback<ArrayList<OperatoerDTO>> callback);
 	void checkLogin(int id, String pass, AsyncCallback callback);
 	void connectDatabase(AsyncCallback callback);
 	void createOp(String name, String ini, String cpr, String password, int admin, AsyncCallback<Void> callback);

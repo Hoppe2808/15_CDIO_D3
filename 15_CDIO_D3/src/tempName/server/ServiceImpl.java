@@ -80,24 +80,14 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		return check;
 	}
 
-	public ArrayList<HashMap<String, String>> getOperators(){
+	public ArrayList<OperatoerDTO> getOperators(){
 		List<OperatoerDTO> rawList = new ArrayList<OperatoerDTO>();
-		ArrayList<HashMap<String, String>> finalData = new ArrayList<HashMap<String, String>>();
 		try {
 			rawList = this.operatoerDAO.getOperatoerList();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		for (int i = 0; i < rawList.size(); i++){
-			finalData.add(new HashMap<String, String>());
-			finalData.get(i).put("ID", Integer.toString(rawList.get(i).getOprId()));
-			finalData.get(i).put("Username", rawList.get(i).getOprNavn());
-			finalData.get(i).put("Password", rawList.get(i).getPassword());
-			finalData.get(i).put("cpr", rawList.get(i).getCpr());
-			finalData.get(i).put("Initials", rawList.get(i).getIni());
-			finalData.get(i).put("AdminStatus", Integer.toString(rawList.get(i).getAdminStatus()));
-		}
-		return finalData;
+		return (ArrayList<OperatoerDTO>) rawList;
 	}
 	@Override
 	public ArrayList<RaavareDTO> getRaavare(){

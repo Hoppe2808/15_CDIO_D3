@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
 import tempName.client.gui.MainGUI;
+import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
@@ -174,7 +175,7 @@ public class ServiceClientImpl implements ServiceClientInt{
 				maingui.adminCheck((int) result);
 			} else if (result instanceof ArrayList){
 				ArrayList data = (ArrayList) result;
-				if (data.get(0) instanceof HashMap){
+				if (data.get(0) instanceof OperatoerDTO){
 					maingui.updateOperators(data);
 				} else if (data.get(0) instanceof RaavareDTO){
 					maingui.updateRaavare(data);

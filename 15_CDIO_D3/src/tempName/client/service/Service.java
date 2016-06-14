@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import tempName.server.data.daointerface.DALException;
+import tempName.shared.dto.OperatoerDTO;
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
 import tempName.shared.dto.RaavareBatchDTO;
@@ -20,7 +21,7 @@ import tempName.shared.dto.WeightDTO;
  */
 @RemoteServiceRelativePath("greet")
 public interface Service extends RemoteService {
-	ArrayList<HashMap<String, String>> getOperators();
+	ArrayList<OperatoerDTO> getOperators();
 	ArrayList<RaavareDTO> getRaavare();
 	ArrayList<ReceptDTO> getRecept();
 	ArrayList<RaavareBatchDTO> getRaavareBatch();
