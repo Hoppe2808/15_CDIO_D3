@@ -1,17 +1,14 @@
 package tempName.client.gui;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.view.client.ListDataProvider;
 
 import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.ProduktBatchKomponentDTO;
@@ -19,7 +16,6 @@ import tempName.shared.dto.RaavareBatchDTO;
 import tempName.shared.dto.RaavareDTO;
 import tempName.shared.dto.ReceptDTO;
 import tempName.shared.dto.ReceptKomponentDTO;
-import tempName.shared.dto.WeightDTO;
 
 public class FarmaceutMenu{
 	private VerticalPanel container;
@@ -40,7 +36,6 @@ public class FarmaceutMenu{
 		final Button produktBatchMenu = new Button("Produktbatch");
 		final Button produktKompMenu = new Button("Produktbatchkomponent");
 		final Button receptKompMenu = new Button("Receptkomponent");
-		final Button ase = new Button("Start ASEN");
 		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);
@@ -51,7 +46,6 @@ public class FarmaceutMenu{
 		container.add(produktBatchMenu);
 		container.add(produktKompMenu);
 		container.add(receptKompMenu);
-		container.add(ase);
 		container.add(logout);
 
 		raavaremenu.addClickHandler(new ClickHandler() {

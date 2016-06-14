@@ -36,14 +36,12 @@ public class VaerksfoererMenu{
 		foremanHeader.getElement().setAttribute("align", "center");
 		final Button raavareMenu = new Button("Råvarebatch");
 		final Button produktBatchMenu = new Button("Produktbatch");
-		final Button ase = new Button("Start ASEN");
 		final Button logout = new Button("Log ud");
 		container.clear();
 		container.setSpacing(9);
 		container.add(foremanHeader);
 		container.add(raavareMenu);
 		container.add(produktBatchMenu);
-		container.add(ase);
 		container.add(logout);
 
 		raavareMenu.addClickHandler(new ClickHandler() {
