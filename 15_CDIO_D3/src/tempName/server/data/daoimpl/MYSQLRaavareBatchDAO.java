@@ -8,7 +8,6 @@ import java.util.List;
 import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.RaavareBatchDAO;
 import tempName.server.data.database.Connector;
-import tempName.shared.dto.ProduktBatchDTO;
 import tempName.shared.dto.RaavareBatchDTO;
 
 public class MYSQLRaavareBatchDAO implements RaavareBatchDAO{

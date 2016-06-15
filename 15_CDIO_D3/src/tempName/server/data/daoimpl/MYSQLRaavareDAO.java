@@ -9,7 +9,6 @@ import tempName.server.data.daointerface.DALException;
 import tempName.server.data.daointerface.RaavareDAO;
 import tempName.server.data.database.Connector;
 import tempName.shared.dto.RaavareDTO;
-import tempName.shared.dto.ReceptKomponentDTO;
 
 public class MYSQLRaavareDAO implements RaavareDAO{
 	private Connector connector;

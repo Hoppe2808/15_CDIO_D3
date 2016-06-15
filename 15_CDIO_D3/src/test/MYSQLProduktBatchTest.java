@@ -24,7 +24,6 @@ public class MYSQLProduktBatchTest {
 		ProduktBatchKomponentTest1(); // Get
 		ProduktBatchKomponentTest2(); // Liste over komponenter med speciffikt pbId
 		ProduktBatchKomponentTest3(); // List over alle komponenter   
-		ProduktBatchKomponentTest4(); // Create
 		ProduktBatchKomponentTest5(); // Update				
 		ProduktBatchKomponentTest6(); // Delete
 
@@ -127,27 +126,6 @@ public class MYSQLProduktBatchTest {
 		catch (DALException e) {		
 			System.out.println(e.getMessage()); 		
 		} 
-	}
-	public static void ProduktBatchKomponentTest4() {
-		MYSQLProduktBatchDAO dao = new MYSQLProduktBatchDAO();
-		ProduktBatchKomponentDTO pbkDTO = new ProduktBatchKomponentDTO();	
-		pbkDTO.setTara(3.3);
-		pbkDTO.setNetto(3.3);
-		pbkDTO.setOprId(3);
-		pbkDTO.setPbId(5);
-		pbkDTO.setRbId(5);
-		try { 		
-			dao.createProduktBatchKomponent(pbkDTO); 		
-		}
-		catch (DALException e) {		
-			System.out.println(e.getMessage());		
-		}
-		try { 		
-			System.out.println("Test 4: Oprettelse af nyt produktbatchKomponent vises her -->  "+dao.getProduktBatchKomponent(4,4).toString()); 	
-		}		
-		catch (DALException e) {		
-			System.out.println(e.getMessage());		
-		}
 	}
 	public static void ProduktBatchKomponentTest5() {
 		MYSQLProduktBatchDAO dao = new MYSQLProduktBatchDAO();
