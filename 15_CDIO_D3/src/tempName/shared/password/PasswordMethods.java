@@ -83,9 +83,9 @@ public class PasswordMethods {
 	/**
 	 * @return true hvis koden stemmer med brugerens adgangskode
 	 */
-	public boolean correctUserPassword(String password, List<OperatoerDTO> list){
+	public boolean correctUserPassword(String password, List<OperatoerDTO> list, int id){
 		for (int i = 0 ; i < list.size(); i++){
-			if (password.equals(list.get(i).getPassword())){
+			if (password.equals(list.get(i).getPassword()) && id == list.get(i).getOprId()){
 				return true;		
 			}		
 		}

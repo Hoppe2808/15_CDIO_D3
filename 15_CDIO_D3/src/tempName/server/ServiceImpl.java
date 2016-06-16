@@ -70,7 +70,7 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		if (passMeth.correctUserPassword(pass, rawList)){
+		if (passMeth.correctUserPassword(pass, rawList, id)){
 			check = "true";
 		} else{
 			check = "false";
