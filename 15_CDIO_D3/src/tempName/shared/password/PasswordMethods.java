@@ -16,8 +16,7 @@ public class PasswordMethods {
 	 * @return true hvis den er på 6 tegn eller derover
 	 */
 	public boolean checkPassLength(String password){
-		if(password.length()<7&&password.length()>8){
-			//			System.out.print("Din adgangskode skal bestå af mindst 6 karakterer!");
+		if(password.length()<6){
 			return false;
 		}else if(password.length()>=6){
 			return true;
