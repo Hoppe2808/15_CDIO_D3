@@ -42,7 +42,7 @@ public class AdminMenu{
 
 	public void adminMenu(){
 		mainGUI.serviceImpl.getOperators();
-		final Label adminHeader = new Label("Administator Menu");
+		final Label adminHeader = new Label("Administrator Menu");
 		adminHeader.addStyleName("HeaderLabel");
 		adminHeader.getElement().setAttribute("align", "center");
 		final Button createOp = new Button("Opret ny operatør");
