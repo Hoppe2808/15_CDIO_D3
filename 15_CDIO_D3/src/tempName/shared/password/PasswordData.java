@@ -35,6 +35,14 @@ public class PasswordData implements IPassword{
 		characters.add("!");
 		characters.add("?");
 		characters.add("=");
+		characters.add("(");
+		characters.add(")");
+		characters.add("/");
+		characters.add("#");
+		characters.add("¤");
+		characters.add("%");
+		characters.add("*");
+
 	}
 	//tal starter ved index 		0-9
 	//smaa bogstaver ved index 		10-35
