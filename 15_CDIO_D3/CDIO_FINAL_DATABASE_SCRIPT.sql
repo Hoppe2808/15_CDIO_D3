@@ -55,7 +55,7 @@ INSERT INTO raavarebatch(rb_id, raavare_id, maengde) VALUES
 (6, 6, 100),
 (7, 7, 100);
 
-INSERT INTO recept(recept_navn) VALUES
+INSERT INTO recept(recept_id, recept_navn) VALUES
 (1, 'Gummi-Vitamin'),
 (2, 'Oral-Vitamin'),
 (3, 'Creme-de-la-creme');
